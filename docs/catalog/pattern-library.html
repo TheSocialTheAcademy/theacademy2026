@@ -1,0 +1,526 @@
+<title>The Academy｜スライド・パターンライブラリ</title>
+<style>
+  :root{
+    --bg:#F4F6FC; --panel:#FFFFFF; --panel-2:#EFF2FB;
+    --ink:#161A2E; --muted:#676688; --faint:#9A9AB2;
+    --line:#E6E6EA; --line-strong:#D9DAE6;
+    --accent:#0141D4; --accent-soft:#E9EEFC; --navy:#012270;
+    --mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+    --display:"Avenir Next","Hiragino Kaku Gothic ProN","Hiragino Sans",system-ui,sans-serif;
+    --sans:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic Medium",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --label:"Avenir Next","Helvetica Neue",Arial,system-ui,sans-serif;
+    /* brand chart palette */
+    --c1:#0141D4; --c2:#3E78FE; --c3:#005BA3; --c4:#8BAEE8; --c5:#27AE60; --c6:#F76B38;
+    --p-light:#EEF2FD; --bsurface:#F4F6FC; --bborder:#E4E6EF; --btext:#222222; --bmuted:#6C6C86;
+    /* chart tokens（グラフ集準拠：Primary Blue に調和する“青みグレー”3段＋アクセント1色） */
+    --acc:#0141D4; --g1:#4A5A8C; --g2:#8C97BC; --g3:#DCE1F0; --ggrid:#EDEFF8;
+    --maxw:1180px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{--bg:#0B0F1F;--panel:#141931;--panel-2:#10152A;--ink:#E9ECF7;--muted:#9FA0BE;--faint:#6C6D8C;
+      --line:#242A47;--line-strong:#323966;--accent:#4E86FF;--accent-soft:#172248;--navy:#6FA0DA;}
+  }
+  :root[data-theme="dark"]{--bg:#0B0F1F;--panel:#141931;--panel-2:#10152A;--ink:#E9ECF7;--muted:#9FA0BE;--faint:#6C6D8C;
+    --line:#242A47;--line-strong:#323966;--accent:#4E86FF;--accent-soft:#172248;--navy:#6FA0DA;}
+  :root[data-theme="light"]{--bg:#F4F6FC;--panel:#FFFFFF;--panel-2:#EFF2FB;--ink:#161A2E;--muted:#676688;--faint:#9A9AB2;
+    --line:#E6E6EA;--line-strong:#D9DAE6;--accent:#0141D4;--accent-soft:#E9EEFC;--navy:#012270;}
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:clamp(1.4rem,4vw,3rem) clamp(1.1rem,4vw,2rem);}
+
+  .bars{display:inline-flex;flex-direction:column;gap:2.5px;vertical-align:middle;}
+  .bars i{display:block;width:15px;height:3.5px;border-radius:2px;background:var(--accent);}
+
+  .eyebrow{font-family:var(--label);font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);font-weight:700;display:inline-flex;align-items:center;gap:.6rem;}
+  h1{font-family:var(--display);font-size:clamp(1.9rem,5vw,2.9rem);line-height:1.12;margin:.55rem 0 0;font-weight:700;letter-spacing:-.015em;text-wrap:balance;}
+  .lede{color:var(--muted);font-size:clamp(1rem,2.4vw,1.12rem);max-width:66ch;margin:.9rem 0 0;}
+  .lede code{font-family:var(--mono);font-size:.82em;background:var(--panel-2);padding:.05rem .32rem;border-radius:4px;border:1px solid var(--line);color:var(--ink);}
+  .meta{display:flex;flex-wrap:wrap;gap:.5rem .9rem;margin-top:1.3rem;font-family:var(--mono);font-size:.72rem;color:var(--faint);}
+  .meta b{color:var(--muted);font-weight:600;}
+
+  .how{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-top:1.6rem;}
+  @media(max-width:720px){.how{grid-template-columns:1fr}}
+  .how .s{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:.8rem .9rem;}
+  .how .s .k{font-family:var(--mono);font-size:.66rem;color:var(--accent);letter-spacing:.1em;}
+  .how .s .t{font-weight:700;font-size:.9rem;margin-top:.15rem;}
+  .how .s .d{font-size:.78rem;color:var(--muted);line-height:1.45;margin-top:.15rem;}
+
+  hr.rule{border:0;border-top:1px solid var(--line);margin:2.6rem 0 2rem;}
+
+  h2.sec{font-family:var(--display);font-size:clamp(1.3rem,3vw,1.7rem);font-weight:700;letter-spacing:-.01em;margin:0 0 .2rem;display:flex;align-items:baseline;gap:.7rem;}
+  h2.sec .n{font-family:var(--mono);font-size:.9rem;color:var(--accent);}
+  h2.sec .ct{font-family:var(--mono);font-size:.8rem;color:var(--faint);font-weight:400;margin-left:auto;}
+  .sec-note{color:var(--muted);max-width:70ch;margin:.1rem 0 1.4rem;font-size:.92rem;}
+
+  .lib{display:grid;grid-template-columns:repeat(auto-fill,minmax(228px,1fr));gap:1rem;}
+  .pat{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;}
+  .thumb{aspect-ratio:16/10;background:#fff;border-bottom:1px solid var(--line);padding:15px;display:flex;position:relative;color:#222;overflow:hidden;}
+  .thumb.c{align-items:center;justify-content:center;}
+  .pat .body{padding:.55rem .75rem .75rem;display:flex;flex-direction:column;flex:1;}
+  .pname{font-weight:700;font-size:.9rem;display:flex;align-items:center;gap:.45rem;line-height:1.2;}
+  .pname .idx{font-family:var(--mono);font-size:.64rem;color:var(--accent);font-weight:600;}
+  .puse{font-size:.76rem;color:var(--muted);line-height:1.5;margin-top:.25rem;flex:1;}
+  .ptag{margin-top:.55rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.03em;color:var(--faint);display:inline-flex;gap:.35rem;align-items:center;}
+  .ptag.ready{color:var(--c5);}
+  .ptag.done{color:var(--accent);font-weight:700;}
+  .ptag .dot{width:6px;height:6px;border-radius:50%;background:currentColor;display:inline-block;}
+
+  /* ===== thumbnail primitives ===== */
+  .bars-v{align-items:flex-end;justify-content:center;gap:11px;width:100%;}
+  .bars-v > i{width:11px;background:var(--c1);border-radius:1px 1px 0 0;}
+  .bars-h{flex-direction:column;justify-content:center;gap:8px;width:100%;}
+  .bars-h > i{height:8px;background:var(--c1);border-radius:0 1px 1px 0;min-width:14px;}
+  .col{display:flex;flex-direction:column-reverse;width:11px;gap:0;}
+  .col > i{width:11px;}
+  .stack{align-items:flex-end;justify-content:center;gap:9px;width:100%;}
+  .pie{width:78px;height:78px;border-radius:50%;}
+  .box{background:var(--bsurface);border:1px solid var(--bborder);border-radius:5px;display:grid;place-items:center;font-size:.6rem;font-weight:700;color:#222;text-align:center;padding:2px 3px;line-height:1.15;}
+  .box.p{background:var(--c1);color:#fff;border-color:var(--c1);}
+  .box.p2{background:var(--c2);color:#fff;border-color:var(--c2);}
+  .box.lp{background:var(--p-light);border-color:var(--c2);color:var(--c1);}
+  .box.g{background:#EAF7EF;border-color:var(--c5);color:#1c7a44;}
+  .box.n{background:#EFEFF4;border-color:#D3D3DE;color:var(--bmuted);}
+  .ar{color:var(--accent);font-weight:800;display:grid;place-items:center;}
+  .lbl{font-size:.56rem;color:var(--bmuted);font-weight:600;}
+  svg.tv{width:100%;height:100%;overflow:visible;}
+  .legend{position:absolute;right:10px;top:10px;display:flex;flex-direction:column;gap:3px;}
+  .legend span{display:flex;align-items:center;gap:4px;font-size:.5rem;color:var(--bmuted);}
+  .legend b{width:8px;height:8px;border-radius:2px;display:inline-block;}
+
+  /* ===== chart-collection primitives（グラフ集準拠・グレー3段＋アクセント） ===== */
+  .donut{position:relative;width:80px;height:80px;border-radius:50%;}
+  /* リング太さ＝ビルダーの hole_size と一致（さらに細リング）：C1 中央数字(hole78→inset11) / C2 ゲージ(hole88→inset6) */
+  .donut .hole{position:absolute;inset:11%;background:#fff;border-radius:50%;display:grid;place-items:center;
+    font-weight:700;font-size:1rem;color:#222;line-height:1;}
+  .donut.thin .hole{inset:6%;}
+  .gcap{position:absolute;left:0;right:0;bottom:-2px;text-align:center;font-size:.54rem;color:var(--bmuted);font-weight:600;}
+  .persons{display:flex;gap:4px;align-items:center;justify-content:center;flex-wrap:wrap;max-width:150px;}
+  .persons svg{width:15px;height:15px;}
+  .dotm{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;width:100%;max-width:118px;}
+  .dotm span{aspect-ratio:1;border-radius:3px;}
+  .wf{align-items:flex-end;justify-content:center;gap:7px;width:100%;height:100%;display:flex;}
+  .wf i{width:11px;border-radius:1px;}
+
+  footer{color:var(--faint);font-family:var(--mono);font-size:.72rem;margin-top:2.6rem;text-align:center;}
+</style>
+
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow"><span class="bars"><i></i><i></i></span> The Academy · Slide Pattern Library</div>
+    <h1>スライド・パターンライブラリ</h1>
+    <p class="lede">コンテンツゾーン（<code>y3.0–12.8</code>）を埋める<b>可視化パターンの一覧</b>。グラフ28種（『グラフ集』準拠）＋図解25種＋追加5種＋事業紹介デッキ由来4種を先に「型」として用意し、資料の内容が来たら <b>内容→型を自動判定</b>、または<b>こちらから型を指定</b>して当てはめる。色・書体は The Academy ブランド（Primary Blue <code>#0141D4</code>／ヒラギノ・Graphik）。</p>
+    <div class="meta">
+      <span><b>収録</b> 112パターン（グラフ28 ／ 図解25 ／ 追加5 ／ デッキ由来4 ／ 本編スライド型50）</span>
+      <span><b>基盤</b> slide-generator ＋ Brand 2026</span>
+      <span><b>参考</b> CONE c-slide パターン集</span>
+    </div>
+
+    <div class="how">
+      <div class="s"><div class="k">USE 01</div><div class="t">内容から自動判定</div><div class="d">「推移→折れ線」「構成比→円」「手順→フロー」のように、情報の型からパターンを選ぶ。</div></div>
+      <div class="s"><div class="k">USE 02</div><div class="t">型を指定して当てる</div><div class="d">「このページはマトリクスで」と指定すれば、内容をその型に流し込む。</div></div>
+      <div class="s"><div class="k">TAG</div><div class="t">実装区分</div><div class="d"><span style="color:var(--c5)">● 既存ヘルパー</span>＝<code>bar/line/pie_chart</code>で即対応。<span style="color:var(--accent);font-weight:700">● 実装済み</span>＝<code>diagrams.py</code>で型化完了。<span style="color:var(--faint)">● 新規ビルダー</span>＝これから型化。</div></div>
+    </div>
+  </header>
+
+  <hr class="rule">
+
+  <!-- ================= CHARTS ================= -->
+  <h2 class="sec"><span class="n">A</span> グラフ<span class="ct">CHARTS · 28型 / 10カテゴリ</span></h2>
+  <p class="sec-note">数値そのものを見せる型。<b>『グラフ集 全カテゴリ v1.0』準拠</b>で、部品を1つ選びレイアウトを1つ選ぶ二層設計。配色は Primary Blue に調和する青みグレー3段（<code>--g1/--g2/--g3</code>）＋アクセント1色（<code>PRIMARY</code>）に統一し、主役は1系列/1点だけ青。縦グリッド・枠線・凡例は置かず、横罫線は最薄グレーのみ。</p>
+
+  <div class="lib">
+
+    <div class="pat"><div class="thumb c"><div class="donut" style="background:conic-gradient(var(--acc) 0 70%,var(--g1) 70% 100%)"><div class="hole">70</div></div></div><div class="body"><div class="pname"><span class="idx">C1</span>中央数字ドーナツ</div><div class="puse">比率や実数をひとつだけ強く言うとき。円は「残り」を示す枠で、主役は中央の数字。</div><div class="ptag done"><span class="dot"></span>pie_chart(doughnut)＋中央数字</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div class="donut thin" style="background:conic-gradient(var(--acc) 0 84%,var(--g3) 84% 100%)"><div class="hole">84</div></div></div><div class="body"><div class="pname"><span class="idx">C2</span>円ゲージ（達成率）</div><div class="puse">達成率・スコアを複数並べるとき。未達側を薄く、満ちていく量として見せる。</div><div class="ptag "><span class="dot"></span>新規ビルダー（円ゲージ）</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div class="donut" style="background:conic-gradient(var(--acc) 0 52%,var(--g2) 52% 80%,var(--g3) 80% 100%)"><div class="hole"></div></div></div><div class="body"><div class="pname"><span class="idx">C3</span>内訳ドーナツ（3項目まで）</div><div class="puse">構成比を読ませたいとき。3項目まで。4項目以上は横棒(B3)へ逃がす。</div><div class="ptag done"><span class="dot"></span>pie_chart(doughnut)</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div class="donut" style="background:conic-gradient(var(--acc) 0 33%,var(--g3) 33% 60%,var(--g2) 60% 82%,var(--g3) 82% 100%)"><div class="hole"></div></div></div><div class="body"><div class="pname"><span class="idx">C4</span>強調スライス＋引き出し</div><div class="puse">全体の中で1カテゴリだけを主張するとき。強調扇を青、残りはグレー。</div><div class="ptag done"><span class="dot"></span>pie_chart(highlight)</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div class="donut" style="background:conic-gradient(var(--acc) 0 58%,var(--g3) 58% 100%)"><div style="position:absolute;inset:9%;border-radius:50%;background:#fff"></div><div style="position:absolute;inset:16%;border-radius:50%;background:conic-gradient(var(--g1) 0 44%,var(--g2) 44% 72%,var(--g3) 72% 100%)"></div><div style="position:absolute;inset:25%;border-radius:50%;background:#fff"></div></div></div><div class="body"><div class="pname"><span class="idx">C5</span>二層ドーナツ（外周＋内側）</div><div class="puse">大分類と内訳を同心円で同時に見せるとき。層は最小限に。</div><div class="ptag "><span class="dot"></span>新規ビルダー（二層）</div></div></div>
+
+    <div class="pat"><div class="thumb"><div class="bars-h" style="display:flex;flex-direction:column;justify-content:center;gap:8px;width:100%"><i style="width:88%;background:var(--acc)"></i><i style="width:74%;background:var(--acc)"></i><i style="width:60%;background:var(--g3)"></i><i style="width:50%;background:var(--g3)"></i><i style="width:40%;background:var(--g3)"></i><i style="width:30%;background:var(--g3)"></i></div></div><div class="body"><div class="pname"><span class="idx">B1</span>降順ロングリスト</div><div class="puse">項目間の順位を言うとき。大きい順に上から並べ、上位だけ青。</div><div class="ptag done"><span class="dot"></span>bar_chart(horizontal, reverse_order, highlight)</div></div></div>
+
+    <div class="pat"><div class="thumb"><div class="bars-h" style="display:flex;flex-direction:column;justify-content:center;gap:8px;width:100%"><i style="width:82%;background:var(--acc)"></i><i style="width:58%;background:var(--g2)"></i></div></div><div class="body"><div class="pname"><span class="idx">B2</span>2本比較</div><div class="puse">2項目を対で比べるとき。主役を青、対照をグレー。</div><div class="ptag done"><span class="dot"></span>bar_chart(horizontal)</div></div></div>
+
+    <div class="pat"><div class="thumb"><div style="display:flex;flex-direction:column;justify-content:center;gap:8px;width:100%"><div style="display:flex;width:100%;height:12px;border-radius:2px;overflow:hidden"><span style="width:54%;background:var(--g1)"></span><span style="width:29%;background:var(--g2)"></span><span style="width:17%;background:var(--g3)"></span></div><div style="display:flex;width:100%;height:12px;border-radius:2px;overflow:hidden"><span style="width:58%;background:var(--g1)"></span><span style="width:27%;background:var(--g2)"></span><span style="width:15%;background:var(--g3)"></span></div><div style="display:flex;width:100%;height:12px;border-radius:2px;overflow:hidden"><span style="width:64%;background:var(--g1)"></span><span style="width:24%;background:var(--g2)"></span><span style="width:12%;background:var(--g3)"></span></div></div></div><div class="body"><div class="pname"><span class="idx">B3</span>100%積み上げ横棒</div><div class="puse">構成比を複数期・複数対象で比較するとき。3系列まで、濃→淡のグレー。</div><div class="ptag done"><span class="dot"></span>bar_chart(horizontal, stacked)</div></div></div>
+
+    <div class="pat"><div class="thumb"><div class="bars-h" style="display:flex;flex-direction:column;justify-content:center;gap:8px;width:100%"><i style="width:70%;background:var(--g2)"></i><i style="width:45%;background:var(--g2)"></i><i style="width:88%;background:var(--acc)"></i><i style="width:30%;background:var(--g2)"></i><i style="width:55%;background:var(--g2)"></i></div></div><div class="body"><div class="pname"><span class="idx">B4</span>従属スパークバー</div><div class="puse">表の各行に極小の棒を添え、数値の相対感を一目で見せるとき。</div><div class="ptag "><span class="dot"></span>新規ビルダー（スパークバー）</div></div></div>
+
+    <div class="pat"><div class="thumb"><div class="bars-v" style="display:flex;align-items:flex-end;justify-content:center;gap:9px;width:100%"><i style="height:30%;background:var(--g3)"></i><i style="height:44%;background:var(--g3)"></i><i style="height:60%;background:var(--g2)"></i><i style="height:74%;background:var(--g2)"></i><i style="height:92%;background:var(--acc)"></i></div></div><div class="body"><div class="pname"><span class="idx">V1</span>時系列・単系列＋直近強調</div><div class="puse">1指標の推移を見せ、直近だけを青で強調するとき。</div><div class="ptag done"><span class="dot"></span>bar_chart(highlight)</div></div></div>
+
+    <div class="pat"><div class="thumb"><div style="display:flex;align-items:flex-end;justify-content:center;gap:11px;width:100%"><span style="display:flex;gap:2px;align-items:flex-end"><i style="width:11px;height:44px;background:var(--acc);border-radius:2px 2px 0 0"></i><i style="width:11px;height:40px;background:var(--g2);border-radius:2px 2px 0 0"></i></span><span style="display:flex;gap:2px;align-items:flex-end"><i style="width:11px;height:52px;background:var(--acc);border-radius:2px 2px 0 0"></i><i style="width:11px;height:46px;background:var(--g2);border-radius:2px 2px 0 0"></i></span><span style="display:flex;gap:2px;align-items:flex-end"><i style="width:11px;height:48px;background:var(--acc);border-radius:2px 2px 0 0"></i><i style="width:11px;height:52px;background:var(--g2);border-radius:2px 2px 0 0"></i></span></div></div><div class="body"><div class="pname"><span class="idx">V2</span>実績＋計画</div><div class="puse">実績と計画/目標を並べて差を見せるとき。実績=青、計画=グレー。</div><div class="ptag done"><span class="dot"></span>bar_chart(2系列)</div></div></div>
+
+    <div class="pat"><div class="thumb"><div style="display:flex;flex-direction:column;justify-content:center;gap:9px;width:100%;padding:0 6px"><div style="font-size:1.35rem;font-weight:800;color:var(--acc);line-height:1">29<span style="font-size:.58rem;color:var(--bmuted);font-weight:600">万人</span></div><div style="display:flex;align-items:flex-end;gap:6px;height:30px"><i style="width:12px;height:30%;background:var(--g3)"></i><i style="width:12px;height:50%;background:var(--g2)"></i><i style="width:12px;height:72%;background:var(--g2)"></i><i style="width:12px;height:100%;background:var(--acc)"></i></div></div></div><div class="body"><div class="pname"><span class="idx">V3</span>数字カード＋縦棒</div><div class="puse">主要数値を大きく置き、対応する推移を下に小さく添えるとき。</div><div class="ptag done"><span class="dot"></span>bar_chart＋数字カード（overlay）</div></div></div>
+
+    <div class="pat"><div class="thumb"><div style="display:flex;justify-content:space-around;align-items:flex-end;width:100%;padding:0 12px"><span style="display:flex;gap:4px;align-items:flex-end"><i style="width:12px;height:40px;background:var(--g2);border-radius:2px 2px 0 0"></i><i style="width:12px;height:52px;background:var(--acc);border-radius:2px 2px 0 0"></i></span><span style="display:flex;gap:4px;align-items:flex-end"><i style="width:12px;height:34px;background:var(--g2);border-radius:2px 2px 0 0"></i><i style="width:12px;height:44px;background:var(--acc);border-radius:2px 2px 0 0"></i></span></div></div><div class="body"><div class="pname"><span class="idx">V4</span>2指標並列＋直近ハイライト</div><div class="puse">関連する2指標を並べ、各々の直近を青、差分を注記するとき。</div><div class="ptag done"><span class="dot"></span>bar_chart×2＋差分コールアウト</div></div></div>
+
+    <div class="pat"><div class="thumb"><div class="stack"><span class="col"><i style="height:20px;background:var(--g1)"></i><i style="height:13px;background:var(--g2)"></i><i style="height:9px;background:var(--g3)"></i></span><span class="col"><i style="height:26px;background:var(--g1)"></i><i style="height:11px;background:var(--g2)"></i><i style="height:12px;background:var(--g3)"></i></span><span class="col"><i style="height:22px;background:var(--g1)"></i><i style="height:18px;background:var(--g2)"></i><i style="height:10px;background:var(--g3)"></i></span><span class="col"><i style="height:30px;background:var(--g1)"></i><i style="height:14px;background:var(--g2)"></i><i style="height:14px;background:var(--g3)"></i></span></div></div><div class="body"><div class="pname"><span class="idx">S1</span>積み上げ縦棒（実数）</div><div class="puse">合計量とその内訳を同時に見せ、期ごとの伸びを追うとき。</div><div class="ptag done"><span class="dot"></span>bar_chart(stacked)</div></div></div>
+
+    <div class="pat"><div class="thumb"><div class="stack"><span class="col"><i style="height:24px;background:var(--g1)"></i><i style="height:14px;background:var(--g2)"></i><i style="height:8px;background:var(--g3)"></i></span><span class="col"><i style="height:24px;background:var(--g1)"></i><i style="height:14px;background:var(--g2)"></i><i style="height:8px;background:var(--g3)"></i></span><span class="col"><i style="height:24px;background:var(--g1)"></i><i style="height:14px;background:var(--g2)"></i><i style="height:8px;background:var(--g3)"></i></span><span class="col"><i style="height:24px;background:var(--g1)"></i><i style="height:14px;background:var(--g2)"></i><i style="height:8px;background:var(--g3)"></i></span></div></div><div class="body"><div class="pname"><span class="idx">S2</span>100%積み上げ縦棒</div><div class="puse">構成比の推移を見せるとき（合計は常に100%）。</div><div class="ptag done"><span class="dot"></span>bar_chart(stacked, 100%)</div></div></div>
+
+    <div class="pat"><div class="thumb"><div class="stack"><span class="col"><i style="height:12px;background:var(--g3)"></i><i style="height:16px;background:var(--acc)"></i><i style="height:10px;background:var(--g2)"></i></span><span class="col"><i style="height:14px;background:var(--g3)"></i><i style="height:20px;background:var(--acc)"></i><i style="height:12px;background:var(--g2)"></i></span><span class="col"><i style="height:10px;background:var(--g3)"></i><i style="height:24px;background:var(--acc)"></i><i style="height:11px;background:var(--g2)"></i></span><span class="col"><i style="height:13px;background:var(--g3)"></i><i style="height:28px;background:var(--acc)"></i><i style="height:12px;background:var(--g2)"></i></span></div></div><div class="body"><div class="pname"><span class="idx">S4</span>積み上げ＋1カテゴリ強調</div><div class="puse">積み上げの中で注目カテゴリだけを青で通し、推移を追うとき。</div><div class="ptag done"><span class="dot"></span>bar_chart(stacked, highlight)</div></div></div>
+
+    <div class="pat"><div class="thumb c"><svg class="tv" viewBox="0 0 100 55" preserveAspectRatio="none"><polyline points="4,44 22,40 40,42 58,30 76,24 96,14" fill="none" stroke="var(--g1)" stroke-width="1.8"/><rect x="92.5" y="10.5" width="7" height="7" fill="var(--g1)"/></svg></div><div class="body"><div class="pname"><span class="idx">T1</span>単線＋線末ラベル</div><div class="puse">1指標の推移を見せるとき。凡例を置かず線末に値ラベル。</div><div class="ptag done"><span class="dot"></span>line_chart</div></div></div>
+
+    <div class="pat"><div class="thumb c"><svg class="tv" viewBox="0 0 100 55" preserveAspectRatio="none"><polyline points="4,40 26,34 48,36 70,22 96,16" fill="none" stroke="var(--acc)" stroke-width="1.8"/><polyline points="4,48 26,44 48,46 70,40 96,38" fill="none" stroke="var(--g2)" stroke-width="2"/></svg></div><div class="body"><div class="pname"><span class="idx">T2</span>2本比較</div><div class="puse">2系列の推移を比べるとき。主役を青、対照をグレー。</div><div class="ptag done"><span class="dot"></span>line_chart(2系列)</div></div></div>
+
+    <div class="pat"><div class="thumb c"><svg class="tv" viewBox="0 0 100 55" preserveAspectRatio="none"><polyline points="4,44 26,38 48,40 66,28" fill="none" stroke="var(--g1)" stroke-width="1.8"/><polyline points="66,28 84,22 98,14" fill="none" stroke="var(--acc)" stroke-width="1.6" stroke-dasharray="4 3"/></svg></div><div class="body"><div class="pname"><span class="idx">T3</span>実績＋予測</div><div class="puse">実績を実線、予測を破線で1本の線として延ばすとき。</div><div class="ptag done"><span class="dot"></span>line_chart（実線＋破線 dash）</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;width:100%;height:100%"><svg viewBox="0 0 100 55" preserveAspectRatio="none" style="width:100%;height:100%"><polyline points="4,44 40,36 70,30 96,18" fill="none" stroke="var(--g1)" stroke-width="3"/></svg><svg viewBox="0 0 100 55" preserveAspectRatio="none" style="width:100%;height:100%"><polyline points="4,20 40,28 70,22 96,34" fill="none" stroke="var(--g1)" stroke-width="3"/></svg><svg viewBox="0 0 100 55" preserveAspectRatio="none" style="width:100%;height:100%"><polyline points="4,40 40,42 70,28 96,24" fill="none" stroke="var(--g1)" stroke-width="3"/></svg><svg viewBox="0 0 100 55" preserveAspectRatio="none" style="width:100%;height:100%"><polyline points="4,30 40,24 70,34 96,20" fill="none" stroke="var(--g1)" stroke-width="3"/></svg></div></div><div class="body"><div class="pname"><span class="idx">T4</span>スモールマルチプル</div><div class="puse">同じ軸の小さな折れ線を並べ、多指標を一望するとき。</div><div class="ptag done"><span class="dot"></span>line_chart×4</div></div></div>
+
+    <div class="pat"><div class="thumb c"><svg class="tv" viewBox="0 0 100 55" preserveAspectRatio="none"><polygon points="0,55 0,34 25,26 50,32 75,14 100,20 100,55" fill="var(--p-light)"/><polyline points="0,34 25,26 50,32 75,14 100,20" fill="none" stroke="var(--acc)" stroke-width="1.6"/></svg></div><div class="body"><div class="pname"><span class="idx">A1</span>累積面グラフ</div><div class="puse">量の推移と「積み重なり・累積」を強調するとき。</div><div class="ptag done"><span class="dot"></span>line_chart(area)</div></div></div>
+
+    <div class="pat"><div class="thumb"><div class="wf"><i style="height:52%;background:var(--g1);margin-bottom:0%"></i><i style="height:18%;background:var(--g1);margin-bottom:52%"></i><i style="height:14%;background:var(--g2);margin-bottom:60%"></i><i style="height:10%;background:var(--g2);margin-bottom:56%"></i><i style="height:58%;background:var(--g1);margin-bottom:0%"></i></div></div><div class="body"><div class="pname"><span class="idx">W1</span>増減分解</div><div class="puse">前期から当期への増減を要因ごとに分解するとき。増=濃/減=中グレー。</div><div class="ptag "><span class="dot"></span>新規ビルダー（ウォーターフォール）</div></div></div>
+
+    <div class="pat"><div class="thumb"><div class="wf"><i style="height:50%;background:var(--g1);margin-bottom:0%"></i><i style="height:22%;background:var(--g1);margin-bottom:50%"></i><i style="height:12%;background:var(--g2);margin-bottom:62%"></i><i style="height:60%;background:var(--g1);margin-bottom:0%"></i></div></div><div class="body"><div class="pname"><span class="idx">W2</span>要因グルーピング</div><div class="puse">多数の増減要因を大グループに畳んで分解を見せるとき。</div><div class="ptag "><span class="dot"></span>新規ビルダー（ウォーターフォール）</div></div></div>
+
+    <div class="pat"><div class="thumb c"><svg class="tv" viewBox="0 0 100 55" preserveAspectRatio="none"><line x1="50" y1="4" x2="50" y2="51" stroke="var(--ggrid)" stroke-width="1.5"/><line x1="4" y1="27" x2="98" y2="27" stroke="var(--ggrid)" stroke-width="1.5"/><g fill="var(--acc)"><circle cx="70" cy="16" r="3.2"/><circle cx="30" cy="18" r="3.2"/><circle cx="34" cy="40" r="3.2"/><circle cx="74" cy="38" r="3.2"/><circle cx="60" cy="30" r="3.2"/></g></svg></div><div class="body"><div class="pname"><span class="idx">X1</span>4象限マトリクス</div><div class="puse">2指標で対象を4象限に配置し、位置づけを示すとき。</div><div class="ptag done"><span class="dot"></span>新規ビルダー（散布図）</div></div></div>
+
+    <div class="pat"><div class="thumb c"><svg class="tv" viewBox="0 0 100 55" preserveAspectRatio="none"><g fill="var(--acc)" opacity=".85"><circle cx="26" cy="38" r="6"/><circle cx="48" cy="26" r="9"/><circle cx="70" cy="34" r="4.5"/><circle cx="84" cy="18" r="6.5"/></g></svg></div><div class="body"><div class="pname"><span class="idx">X2</span>バブル散布図</div><div class="puse">2指標＋量（バブルの大きさ）の3変数を同時に見せるとき。</div><div class="ptag done"><span class="dot"></span>新規ビルダー（バブル）</div></div></div>
+
+    <div class="pat"><div class="thumb c"><svg class="tv" viewBox="0 0 100 55" preserveAspectRatio="none"><g fill="var(--g3)"><circle cx="22" cy="40" r="3"/><circle cx="36" cy="30" r="3"/><circle cx="50" cy="36" r="3"/><circle cx="60" cy="24" r="3"/><circle cx="78" cy="30" r="3"/></g><circle cx="70" cy="16" r="4.5" fill="var(--acc)"/></svg></div><div class="body"><div class="pname"><span class="idx">X3</span>自社だけ強調した散布図</div><div class="puse">多数の点の中で自社/注目点だけを青で立たせるとき。</div><div class="ptag done"><span class="dot"></span>新規ビルダー（散布図）</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div class="persons"><svg viewBox="0 0 24 24" fill="var(--acc)"><circle cx="12" cy="6" r="4"/><path d="M4 22c0-5 3.6-8 8-8s8 3 8 8z"/></svg><svg viewBox="0 0 24 24" fill="var(--acc)"><circle cx="12" cy="6" r="4"/><path d="M4 22c0-5 3.6-8 8-8s8 3 8 8z"/></svg><svg viewBox="0 0 24 24" fill="var(--acc)"><circle cx="12" cy="6" r="4"/><path d="M4 22c0-5 3.6-8 8-8s8 3 8 8z"/></svg><svg viewBox="0 0 24 24" fill="var(--acc)"><circle cx="12" cy="6" r="4"/><path d="M4 22c0-5 3.6-8 8-8s8 3 8 8z"/></svg><svg viewBox="0 0 24 24" fill="var(--acc)"><circle cx="12" cy="6" r="4"/><path d="M4 22c0-5 3.6-8 8-8s8 3 8 8z"/></svg><svg viewBox="0 0 24 24" fill="var(--acc)"><circle cx="12" cy="6" r="4"/><path d="M4 22c0-5 3.6-8 8-8s8 3 8 8z"/></svg><svg viewBox="0 0 24 24" fill="var(--acc)"><circle cx="12" cy="6" r="4"/><path d="M4 22c0-5 3.6-8 8-8s8 3 8 8z"/></svg><svg viewBox="0 0 24 24" fill="var(--g3)"><circle cx="12" cy="6" r="4"/><path d="M4 22c0-5 3.6-8 8-8s8 3 8 8z"/></svg><svg viewBox="0 0 24 24" fill="var(--g3)"><circle cx="12" cy="6" r="4"/><path d="M4 22c0-5 3.6-8 8-8s8 3 8 8z"/></svg><svg viewBox="0 0 24 24" fill="var(--g3)"><circle cx="12" cy="6" r="4"/><path d="M4 22c0-5 3.6-8 8-8s8 3 8 8z"/></svg></div></div><div class="body"><div class="pname"><span class="idx">I1</span>人型ピクトグラム反復</div><div class="puse">割合を人型の数で直感的に（10人中7人など）伝えるとき。</div><div class="ptag "><span class="dot"></span>新規ビルダー（ピクトグラム）</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div class="dotm"><span style="background:var(--acc)"></span><span style="background:var(--acc)"></span><span style="background:var(--acc)"></span><span style="background:var(--acc)"></span><span style="background:var(--acc)"></span><span style="background:var(--acc)"></span><span style="background:var(--acc)"></span><span style="background:var(--g3)"></span><span style="background:var(--g3)"></span><span style="background:var(--g3)"></span></div></div><div class="body"><div class="pname"><span class="idx">I2</span>ドットマトリクス</div><div class="puse">10×n の格子で比率や進捗を粒として見せるとき。</div><div class="ptag "><span class="dot"></span>新規ビルダー（ドットマトリクス）</div></div></div>
+
+  </div>
+
+  <hr class="rule">
+
+  <!-- ================= DIAGRAMS ================= -->
+  <h2 class="sec"><span class="n">B</span> 表・図解<span class="ct">TABLES & DIAGRAMS · 26型 / 5カテゴリ</span></h2>
+  <p class="sec-note"><b>『表・図解デザイン集 v1.0』準拠</b>。要素間の「関係・構造・流れ」を数値でなく図で示す型。配色はグラフ節と同じ Primary Blue 調和の青みグレー＋アクセント1色、線は直角・細く、装飾を足さないスリム設計。カテゴリは 表(D)／ツリー(TR)／ピラミッド(PY)／フロー(F)／サイクル(C)。</p>
+
+  <div class="lib">
+
+    <div class="pat"><div class="thumb c"><div style="width:100%;border:1px solid var(--bborder);border-radius:4px;overflow:hidden;font-size:.46rem;line-height:1.25"><div style="display:grid;grid-template-columns:1.3fr 1fr 1fr .8fr;background:var(--g1);color:#fff;font-weight:600;font-size:.44rem"><div style="padding:1px 5px;text-align:left">科目</div><div style="padding:1px 5px;text-align:right">前期</div><div style="padding:1px 5px;text-align:right">当期</div><div style="padding:1px 5px;text-align:right">増減</div></div><div style="display:grid;grid-template-columns:1.3fr 1fr 1fr .8fr;border-top:1px solid var(--bborder)"><div style="padding:2px 5px;text-align:left">売上高</div><div style="padding:2px 5px;text-align:right">48,934</div><div style="padding:2px 5px;text-align:right">50,239</div><div style="padding:2px 5px;text-align:right"><b style="color:#1C7A44">+2.7%</b></div></div><div style="display:grid;grid-template-columns:1.3fr 1fr 1fr .8fr;border-top:1px solid var(--bborder)"><div style="padding:2px 5px;text-align:left">営業利益</div><div style="padding:2px 5px;text-align:right">7,304</div><div style="padding:2px 5px;text-align:right">7,608</div><div style="padding:2px 5px;text-align:right"><b style="color:#1C7A44">+4.2%</b></div></div><div style="display:grid;grid-template-columns:1.3fr 1fr 1fr .8fr;border-top:1px solid var(--bborder)"><div style="padding:2px 5px;text-align:left">純利益</div><div style="padding:2px 5px;text-align:right">5,105</div><div style="padding:2px 5px;text-align:right">4,890</div><div style="padding:2px 5px;text-align:right"><b style="color:#C15A2B">▲4.2%</b></div></div></div></div><div class="body"><div class="pname"><span class="idx">D1</span>決算比較表</div><div class="puse">複数の財務指標を前期・当期で照合するとき。増減は2色だけ、行の交互塗りはしない。</div><div class="ptag done"><span class="dot"></span>diagram_table</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="width:100%;border:1px solid var(--bborder);border-radius:4px;overflow:hidden;font-size:.46rem;line-height:1.25"><div style="display:grid;grid-template-columns:1.3fr .6fr .6fr 1fr;background:var(--g1);color:#fff;font-weight:600;font-size:.44rem"><div style="padding:1px 5px;text-align:left">重要課題</div><div style="padding:1px 5px;text-align:center">24年</div><div style="padding:1px 5px;text-align:center">25年</div><div style="padding:1px 5px;text-align:left">担当</div></div><div style="display:grid;grid-template-columns:1.3fr .6fr .6fr 1fr;border-top:1px solid var(--bborder)"><div style="padding:2px 5px;text-align:left">安全性向上</div><div style="padding:2px 5px;text-align:center"><span style="color:#1C7A44">●</span></div><div style="padding:2px 5px;text-align:center"><span style="color:#1C7A44">●</span></div><div style="padding:2px 5px;text-align:left">生産本部</div></div><div style="display:grid;grid-template-columns:1.3fr .6fr .6fr 1fr;border-top:1px solid var(--bborder)"><div style="padding:2px 5px;text-align:left">環境負荷</div><div style="padding:2px 5px;text-align:center"><span style="color:#C9A227">●</span></div><div style="padding:2px 5px;text-align:center"><span style="color:#1C7A44">●</span></div><div style="padding:2px 5px;text-align:left">サステナ</div></div><div style="display:grid;grid-template-columns:1.3fr .6fr .6fr 1fr;border-top:1px solid var(--bborder)"><div style="padding:2px 5px;text-align:left">品質改善</div><div style="padding:2px 5px;text-align:center"><span style="color:#C15A2B">●</span></div><div style="padding:2px 5px;text-align:center"><span style="color:#C9A227">●</span></div><div style="padding:2px 5px;text-align:left">品証部</div></div></div></div><div class="body"><div class="pname"><span class="idx">D2</span>ステータス信号表</div><div class="puse">多数の項目の進捗・状態を一覧で判定させるとき。信号色は3色まで、凡例は表の直下に小さく。</div><div class="ptag "><span class="dot"></span>新規ビルダー（信号表）</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="width:100%;border:1px solid var(--bborder);border-radius:4px;overflow:hidden;font-size:.46rem;line-height:1.25"><div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;background:var(--g1);color:#fff;font-weight:600;font-size:.44rem"><div style="padding:1px 5px;text-align:left">項目</div><div style="padding:1px 5px;text-align:center">Q1</div><div style="padding:1px 5px;text-align:center">Q2</div><div style="padding:1px 5px;text-align:center">Q3</div></div><div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;border-top:1px solid var(--bborder)"><div style="padding:2px 5px;text-align:left">A</div><div style="padding:2px 5px;text-align:center"><span style="background:#2E5AA6;color:#fff;padding:1px 4px;border-radius:2px">82</span></div><div style="padding:2px 5px;text-align:center"><span style="background:#9DBBE6;padding:1px 4px;border-radius:2px">54</span></div><div style="padding:2px 5px;text-align:center"><span style="background:#5B87CC;color:#fff;padding:1px 4px;border-radius:2px">71</span></div></div><div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;border-top:1px solid var(--bborder)"><div style="padding:2px 5px;text-align:left">B</div><div style="padding:2px 5px;text-align:center"><span style="background:#CFE0F5;padding:1px 4px;border-radius:2px">31</span></div><div style="padding:2px 5px;text-align:center"><span style="background:#14356E;color:#fff;padding:1px 4px;border-radius:2px">95</span></div><div style="padding:2px 5px;text-align:center"><span style="background:#9DBBE6;padding:1px 4px;border-radius:2px">48</span></div></div></div></div><div class="body"><div class="pname"><span class="idx">D3</span>ヒートマップ強調表</div><div class="puse">行×列の交点を濃淡で示し、注目セルへ目を導くとき。色は1色の濃淡だけで作る。</div><div class="ptag "><span class="dot"></span>新規ビルダー（ヒートマップ表）</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="width:100%;border:1px solid var(--bborder);border-radius:4px;overflow:hidden;font-size:.46rem;line-height:1.25"><div style="display:grid;grid-template-columns:1.6fr 1fr 1fr;background:var(--g1);color:#fff;font-weight:600;font-size:.44rem"><div style="padding:1px 5px;text-align:left">機能</div><div style="padding:1px 5px;text-align:center">A</div><div style="padding:1px 5px;text-align:center">B</div></div><div style="display:grid;grid-template-columns:1.6fr 1fr 1fr;border-top:1px solid var(--bborder)"><div style="padding:2px 5px;text-align:left"><span style="color:var(--acc)">●</span> 価格</div><div style="padding:2px 5px;text-align:center">◯</div><div style="padding:2px 5px;text-align:center">△</div></div><div style="display:grid;grid-template-columns:1.6fr 1fr 1fr;border-top:1px solid var(--bborder)"><div style="padding:2px 5px;text-align:left"><span style="color:var(--acc)">●</span> 機能</div><div style="padding:2px 5px;text-align:center">△</div><div style="padding:2px 5px;text-align:center">◯</div></div><div style="display:grid;grid-template-columns:1.6fr 1fr 1fr;border-top:1px solid var(--bborder)"><div style="padding:2px 5px;text-align:left"><span style="color:var(--acc)">●</span> 保守</div><div style="padding:2px 5px;text-align:center">◯</div><div style="padding:2px 5px;text-align:center">◯</div></div></div></div><div class="body"><div class="pname"><span class="idx">D4</span>アイコン付き属性表</div><div class="puse">項目の属性・特徴を、行頭のアイコンで素早く識別させるとき。</div><div class="ptag ready"><span class="dot"></span>diagram_table（アイコン列）</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="display:flex;gap:6px;width:100%;font-size:.5rem"><div style="flex:1;border:1px solid var(--bborder);border-radius:5px;overflow:hidden"><div style="background:var(--acc);color:#fff;font-weight:700;padding:3px;text-align:center">案A</div><div style="padding:3px;border-top:1px solid var(--bborder)">◯ 高速</div><div style="padding:3px;border-top:1px solid var(--bborder)">△ 高価</div></div><div style="flex:1;border:1px solid var(--bborder);border-radius:5px;overflow:hidden"><div style="background:var(--g2);color:#fff;font-weight:700;padding:3px;text-align:center">案B</div><div style="padding:3px;border-top:1px solid var(--bborder)">△ 標準</div><div style="padding:3px;border-top:1px solid var(--bborder)">◯ 安価</div></div></div></div><div class="body"><div class="pname"><span class="idx">D5</span>2カラム比較表</div><div class="puse">2案・2プランを、対応する属性ごとに左右で比べるとき。</div><div class="ptag ready"><span class="dot"></span>diagram_table（2カラム）</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="width:100%;border:1px solid var(--bborder);border-radius:4px;overflow:hidden;font-size:.46rem;line-height:1.25"><div style="display:grid;grid-template-columns:1fr 2.2fr;background:var(--g1);color:#fff;font-weight:600;font-size:.44rem"><div style="padding:1px 5px;text-align:left">施策</div><div style="padding:1px 5px;text-align:left">達成率</div></div><div style="display:grid;grid-template-columns:1fr 2.2fr;border-top:1px solid var(--bborder)"><div style="padding:2px 5px;text-align:left">採用</div><div style="padding:2px 5px;text-align:left"><span style="display:inline-block;width:70%;height:6px;background:var(--acc);border-radius:2px"></span></div></div><div style="display:grid;grid-template-columns:1fr 2.2fr;border-top:1px solid var(--bborder)"><div style="padding:2px 5px;text-align:left">育成</div><div style="padding:2px 5px;text-align:left"><span style="display:inline-block;width:45%;height:6px;background:var(--g2);border-radius:2px"></span></div></div><div style="display:grid;grid-template-columns:1fr 2.2fr;border-top:1px solid var(--bborder)"><div style="padding:2px 5px;text-align:left">定着</div><div style="padding:2px 5px;text-align:left"><span style="display:inline-block;width:88%;height:6px;background:var(--acc);border-radius:2px"></span></div></div></div></div><div class="body"><div class="pname"><span class="idx">D6</span>進捗・達成率表</div><div class="puse">各行の目標に対する達成度を、セル内の小さなバーで見せるとき。</div><div class="ptag "><span class="dot"></span>新規ビルダー（進捗表）</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="width:100%"><div style="display:flex;justify-content:center"><span style="display:grid;place-items:center;background:var(--g1);color:#fff;border-radius:2px;height:11px;font-size:.46rem;font-weight:700;width:52%">CEO</span></div><div style="height:7px;border-left:1px solid var(--bborder);width:1px;margin:0 auto"></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;border-top:1px solid var(--bborder);padding-top:5px"><span style="display:grid;place-items:center;background:var(--g2);color:#fff;border-radius:2px;height:11px;font-size:.46rem;font-weight:700;width:100%">本部</span><span style="display:grid;place-items:center;background:var(--g2);color:#fff;border-radius:2px;height:11px;font-size:.46rem;font-weight:700;width:100%">本部</span><span style="display:grid;place-items:center;background:var(--g2);color:#fff;border-radius:2px;height:11px;font-size:.46rem;font-weight:700;width:100%">本部</span></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:3px"><span style="background:var(--g3);border-radius:3px;height:11px"></span><span style="background:var(--g3);border-radius:3px;height:11px"></span><span style="background:var(--g3);border-radius:3px;height:11px"></span></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:3px"><span style="background:var(--g3);border-radius:3px;height:11px"></span><span style="background:var(--g3);border-radius:3px;height:11px"></span><span style="background:var(--g3);border-radius:3px;height:11px"></span></div></div></div><div class="body"><div class="pname"><span class="idx">TR1</span>標準組織図</div><div class="puse">役職・部門の親子関係をそのまま伝えるとき。箱の色は階層で3段、線は直角のみ。</div><div class="ptag done"><span class="dot"></span>diagram_tree</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="width:100%"><div style="display:flex;justify-content:center"><span style="display:grid;place-items:center;background:var(--g1);color:#fff;border-radius:2px;height:11px;font-size:.46rem;font-weight:700;width:50%">部門 12</span></div><div style="height:7px;border-left:1px solid var(--bborder);width:1px;margin:0 auto"></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;border-top:1px solid var(--bborder);padding-top:5px"><span style="display:grid;place-items:center;background:var(--g2);color:#fff;border-radius:2px;height:11px;font-size:.46rem;font-weight:700;width:100%">A 5</span><span style="display:grid;place-items:center;background:var(--g2);color:#fff;border-radius:2px;height:11px;font-size:.46rem;font-weight:700;width:100%">B 4</span><span style="display:grid;place-items:center;background:var(--g2);color:#fff;border-radius:2px;height:11px;font-size:.46rem;font-weight:700;width:100%">C 3</span></div></div></div><div class="body"><div class="pname"><span class="idx">TR2</span>人数付きチーム構成図</div><div class="puse">各チームの人数規模を、箱に添えた数字で同時に見せるとき。</div><div class="ptag "><span class="dot"></span>新規ビルダー（人数ツリー）</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="width:100%"><div style="display:flex;justify-content:center"><span style="display:grid;place-items:center;background:var(--g1);color:#fff;border-radius:2px;height:11px;font-size:.46rem;font-weight:700;width:52%">事業</span></div><div style="height:7px;border-left:1px solid var(--bborder);width:1px;margin:0 auto"></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;border-top:1px solid var(--bborder);padding-top:5px"><span style="display:grid;place-items:center;background:var(--g2);color:#fff;border-radius:2px;height:11px;font-size:.46rem;font-weight:700;width:100%">UnitA</span><span style="display:grid;place-items:center;background:var(--g2);color:#fff;border-radius:2px;height:11px;font-size:.46rem;font-weight:700;width:100%">UnitB</span><span style="display:grid;place-items:center;background:var(--g2);color:#fff;border-radius:2px;height:11px;font-size:.46rem;font-weight:700;width:100%">UnitC</span></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:3px"><span style="background:var(--g3);border-radius:3px;height:11px"></span><span style="background:var(--g3);border-radius:3px;height:11px"></span><span style="background:var(--g3);border-radius:3px;height:11px"></span></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:3px"><span style="background:var(--g3);border-radius:3px;height:11px"></span><span style="background:var(--g3);border-radius:3px;height:11px"></span><span style="background:var(--g3);border-radius:3px;height:11px"></span></div></div></div><div class="body"><div class="pname"><span class="idx">TR3</span>事業ユニットツリー</div><div class="puse">事業・製品の構造を、機能ではなく単位で分解して見せるとき。</div><div class="ptag done"><span class="dot"></span>diagram_tree</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="width:100%"><div style="display:flex;justify-content:center"><span style="display:grid;place-items:center;background:var(--g1);color:#fff;border-radius:2px;height:11px;font-size:.46rem;font-weight:700;width:52%">取締役会</span></div><div style="height:7px;border-left:1px solid var(--bborder);width:1px;margin:0 auto"></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;border-top:1px solid var(--bborder);padding-top:5px"><span style="display:grid;place-items:center;background:var(--g2);color:#fff;border-radius:2px;height:11px;font-size:.46rem;font-weight:700;width:100%">執行役</span><span style="display:grid;place-items:center;background:var(--g2);color:#fff;border-radius:2px;height:11px;font-size:.46rem;font-weight:700;width:100%">監査</span><span style="display:grid;place-items:center;background:var(--g2);color:#fff;border-radius:2px;height:11px;font-size:.46rem;font-weight:700;width:100%">委員会</span></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:3px"><span style="background:var(--g3);border-radius:3px;height:11px"></span><span style="background:var(--g3);border-radius:3px;height:11px"></span><span style="background:var(--g3);border-radius:3px;height:11px"></span></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:3px"><span style="background:var(--g3);border-radius:3px;height:11px"></span><span style="background:var(--g3);border-radius:3px;height:11px"></span><span style="background:var(--g3);border-radius:3px;height:11px"></span></div></div></div><div class="body"><div class="pname"><span class="idx">TR4</span>役職ガバナンスツリー</div><div class="puse">権限・レポートラインを、役職の階層で明示するとき。</div><div class="ptag done"><span class="dot"></span>diagram_tree</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="width:100%"><div style="display:flex;justify-content:center"><span style="display:grid;place-items:center;background:var(--g1);color:#fff;border-radius:2px;height:11px;font-size:.46rem;font-weight:700;width:40%">全体</span></div><div style="height:7px;border-left:1px solid var(--bborder);width:1px;margin:0 auto"></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;border-top:1px solid var(--bborder);padding-top:5px"><span style="display:grid;place-items:center;background:var(--g2);color:#fff;border-radius:2px;height:11px;font-size:.46rem;font-weight:700;width:100%">分類A</span><span style="display:grid;place-items:center;background:var(--g2);color:#fff;border-radius:2px;height:11px;font-size:.46rem;font-weight:700;width:100%">分類B</span></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:3px"><div style="display:grid;grid-template-columns:1fr 1fr;gap:3px"><span style="background:var(--g3);border-radius:2px;height:10px"></span><span style="background:var(--g3);border-radius:2px;height:10px"></span></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:3px"><span style="background:var(--g3);border-radius:2px;height:10px"></span><span style="background:var(--g3);border-radius:2px;height:10px"></span></div></div></div></div><div class="body"><div class="pname"><span class="idx">TR5</span>2分岐カテゴリツリー</div><div class="puse">概念を2分岐で細分化し、MECEな分類を見せるとき。</div><div class="ptag "><span class="dot"></span>新規ビルダー（2分岐ツリー）</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="display:flex;flex-direction:column;align-items:center;gap:1.5px;width:100%"><div style="width:34.0%;background:#14356E;color:#fff;text-align:center;font-size:.44rem;font-weight:700;padding:1px 0;border-radius:1px">理念</div><div style="width:63.0%;background:#5B87CC;color:#fff;text-align:center;font-size:.44rem;font-weight:700;padding:1px 0;border-radius:1px">戦略</div><div style="width:92.0%;background:#9DBBE6;color:#fff;text-align:center;font-size:.44rem;font-weight:700;padding:1px 0;border-radius:1px">戦術</div></div></div><div class="body"><div class="pname"><span class="idx">PY1</span>理念体系ピラミッド</div><div class="puse">理念→戦略→戦術の抽象度の階層を、上ほど少数で示すとき。</div><div class="ptag done"><span class="dot"></span>diagram_pyramid</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="display:flex;flex-direction:column;align-items:center;gap:1.5px;width:100%"><div style="width:34.0%;background:#14356E;color:#fff;text-align:center;font-size:.44rem;font-weight:700;padding:1px 0;border-radius:1px">役員</div><div style="width:63.0%;background:#5B87CC;color:#fff;text-align:center;font-size:.44rem;font-weight:700;padding:1px 0;border-radius:1px">管理職</div><div style="width:92.0%;background:#CFE0F5;color:#fff;text-align:center;font-size:.44rem;font-weight:700;padding:1px 0;border-radius:1px">一般</div></div></div><div class="body"><div class="pname"><span class="idx">PY2</span>人数構成ピラミッド</div><div class="puse">階層ごとの人数（少数の上位・多数の現場）を面で示すとき。</div><div class="ptag done"><span class="dot"></span>diagram_pyramid</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="display:flex;flex-direction:column;align-items:center;gap:1.5px;width:100%"><div style="width:92.0%;background:#14356E;color:#fff;text-align:center;font-size:.44rem;font-weight:700;padding:1px 0;border-radius:1px">認知</div><div style="width:70.66666666666667%;background:#2E5AA6;color:#fff;text-align:center;font-size:.44rem;font-weight:700;padding:1px 0;border-radius:1px">興味</div><div style="width:49.333333333333336%;background:#5B87CC;color:#fff;text-align:center;font-size:.44rem;font-weight:700;padding:1px 0;border-radius:1px">比較</div><div style="width:28.0%;background:#9DBBE6;color:#fff;text-align:center;font-size:.44rem;font-weight:700;padding:1px 0;border-radius:1px">受注</div></div></div><div class="body"><div class="pname"><span class="idx">PY3</span>マーケティングファネル</div><div class="puse">見込み客が段階を経て絞り込まれる様子を数値付きで見せるとき。</div><div class="ptag "><span class="dot"></span>新規ビルダー（ファネル）</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="display:flex;flex-direction:column;align-items:center;gap:2px;width:100%"><div style="width:90%;background:#2E5AA6;height:6px;border-radius:1px"></div><div style="width:60%;background:#5B87CC;height:6px;border-radius:1px"></div><div style="width:34%;background:#14356E;height:6px;border-radius:1px"></div><div style="width:60%;background:#5B87CC;height:6px;border-radius:1px"></div><div style="width:90%;background:#2E5AA6;height:6px;border-radius:1px"></div></div></div><div class="body"><div class="pname"><span class="idx">PY4</span>対称ファネル（砂時計）</div><div class="puse">絞り込みと再拡大の両方（獲得→拡張）を1つの形で見せるとき。</div><div class="ptag "><span class="dot"></span>新規ビルダー（砂時計）</div></div></div>
+
+    <div class="pat"><div class="thumb c"><svg viewBox="0 0 90 60" style="max-width:96px"><polygon points="45,6 82,54 8,54" fill="#9DBBE6"/><polygon points="45,18 68,50 22,50" fill="#5B87CC"/><polygon points="45,30 56,48 34,48" fill="#14356E"/></svg></div><div class="body"><div class="pname"><span class="idx">PY5</span>ネスト型3層ピラミッド</div><div class="puse">入れ子の三角で、内包関係のある3層をシンプルに示すとき。</div><div class="ptag done"><span class="dot"></span>diagram_pyramid</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="display:flex;align-items:center;gap:3px;width:100%"><span style="flex:1;background:var(--acc);color:#fff;border-radius:2px;height:18px;display:grid;place-items:center;font-size:.46rem;font-weight:700">書類</span><span style="color:var(--g3);font-weight:700;font-size:.7rem">›</span><span style="flex:1;background:var(--g2);color:#fff;border-radius:2px;height:18px;display:grid;place-items:center;font-size:.46rem;font-weight:700">1次</span><span style="color:var(--g3);font-weight:700;font-size:.7rem">›</span><span style="flex:1;background:var(--g2);color:#fff;border-radius:2px;height:18px;display:grid;place-items:center;font-size:.46rem;font-weight:700">2次</span><span style="color:var(--g3);font-weight:700;font-size:.7rem">›</span><span style="flex:1;background:var(--g2);color:#fff;border-radius:2px;height:18px;display:grid;place-items:center;font-size:.46rem;font-weight:700">内定</span></div></div><div class="body"><div class="pname"><span class="idx">F1</span>選考フロー（横型）</div><div class="puse">4〜6段階のプロセスを1行で示すとき。先頭だけACCENT、残りはグレー、矢印は細く。</div><div class="ptag done"><span class="dot"></span>diagram_flow_h</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="display:flex;align-items:center;gap:4px;width:100%"><span style="width:13px;height:13px;border-radius:50%;background:var(--acc);color:#fff;display:grid;place-items:center;font-size:.5rem;font-weight:700">1</span><span style="flex:1;height:4px;background:var(--g3);border-radius:2px"></span><span style="width:13px;height:13px;border-radius:50%;background:var(--g2);color:#fff;display:grid;place-items:center;font-size:.5rem;font-weight:700">2</span><span style="flex:1;height:4px;background:var(--g3);border-radius:2px"></span><span style="width:13px;height:13px;border-radius:50%;background:var(--g2);color:#fff;display:grid;place-items:center;font-size:.5rem;font-weight:700">3</span><span style="flex:1;height:4px;background:var(--g3);border-radius:2px"></span><span style="width:13px;height:13px;border-radius:50%;background:var(--g2);color:#fff;display:grid;place-items:center;font-size:.5rem;font-weight:700">4</span></div></div><div class="body"><div class="pname"><span class="idx">F2</span>ナンバリングプロセス</div><div class="puse">装飾を抑え、番号だけで手順の順序を示すとき。</div><div class="ptag done"><span class="dot"></span>diagram_steps</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="display:flex;align-items:center;gap:3px;width:100%"><span style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px"><span style="width:15px;height:15px;border-radius:50%;background:var(--acc);"></span><span style="width:80%;height:4px;background:var(--g3);border-radius:2px"></span></span><span style="color:var(--g3);font-weight:800">›</span><span style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px"><span style="width:15px;height:15px;border-radius:50%;background:var(--g3);"></span><span style="width:80%;height:4px;background:var(--g3);border-radius:2px"></span></span><span style="color:var(--g3);font-weight:800">›</span><span style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px"><span style="width:15px;height:15px;border-radius:50%;background:var(--g3);"></span><span style="width:80%;height:4px;background:var(--g3);border-radius:2px"></span></span><span style="color:var(--g3);font-weight:800">›</span><span style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px"><span style="width:15px;height:15px;border-radius:50%;background:var(--g3);"></span><span style="width:80%;height:4px;background:var(--g3);border-radius:2px"></span></span></div></div><div class="body"><div class="pname"><span class="idx">F3</span>アイコンステップフロー</div><div class="puse">多ステップを、各段のアイコンで識別しやすく見せるとき。</div><div class="ptag ready"><span class="dot"></span>diagram_flow_h（アイコン）</div></div></div>
+
+    <div class="pat"><div class="thumb c"><svg viewBox="0 0 90 55" style="max-width:92px"><g fill="none" stroke="var(--g2)" stroke-width="1.4"><path d="M45 8 A20 20 0 0 1 63 40"/><path d="M63 42 A20 20 0 0 1 27 42"/><path d="M27 40 A20 20 0 0 1 45 8"/></g><circle cx="45" cy="8" r="3" fill="var(--acc)"/><circle cx="63" cy="41" r="3" fill="var(--g2)"/><circle cx="27" cy="41" r="3" fill="var(--g2)"/></svg></div><div class="body"><div class="pname"><span class="idx">F4</span>循環・反復フロー</div><div class="puse">終わりが始まりに戻る反復プロセス（改善サイクル）を示すとき。</div><div class="ptag done"><span class="dot"></span>diagram_cycle</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="display:flex;flex-direction:column;gap:2px;width:72%"><span style="background:var(--acc);color:#fff;border-radius:3px;height:11px;display:grid;place-items:center;font-size:.48rem;font-weight:700">STEP 1</span><span style="color:var(--g3);text-align:center;font-weight:800;line-height:.4">·</span><span style="background:var(--g2);color:#fff;border-radius:3px;height:11px;display:grid;place-items:center;font-size:.48rem;font-weight:700">STEP 2</span><span style="color:var(--g3);text-align:center;font-weight:800;line-height:.4">·</span><span style="background:var(--g2);color:#fff;border-radius:3px;height:11px;display:grid;place-items:center;font-size:.48rem;font-weight:700">STEP 3</span></div></div><div class="body"><div class="pname"><span class="idx">F5</span>選考フロー（縦型）</div><div class="puse">各段の説明が長い・7段階を超えるとき、縦に積んで示す。</div><div class="ptag done"><span class="dot"></span>diagram_flow_v</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="position:relative;width:118px;height:80px"><span style="position:absolute;left:0;top:8px;width:40px;height:15px;background:var(--g2);border-radius:3px"></span><span style="position:absolute;right:0;top:8px;width:40px;height:15px;background:var(--g2);border-radius:3px"></span><span style="position:absolute;left:0;bottom:8px;width:40px;height:15px;background:var(--g2);border-radius:3px"></span><span style="position:absolute;right:0;bottom:8px;width:40px;height:15px;background:var(--g2);border-radius:3px"></span><span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:26px;height:26px;border-radius:50%;background:#14356E"></span></div></div><div class="body"><div class="pname"><span class="idx">C1</span>4象限ホイールサイクル</div><div class="puse">中心テーマを支える3〜5要素が周回して機能する構造を示すとき。</div><div class="ptag done"><span class="dot"></span>diagram_cycle（ホイール）</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div class="donut" style="width:70px;height:70px;background:conic-gradient(var(--acc) 0 25%,var(--g2) 25% 50%,var(--g3) 50% 75%,#5B87CC 75% 100%)"><div class="hole" style="inset:37%;background:#fff"></div></div></div><div class="body"><div class="pname"><span class="idx">C2</span>リング型セグメントサイクル</div><div class="puse">PDCA など、決まった順に一巡する4工程を輪で示すとき。</div><div class="ptag "><span class="dot"></span>新規ビルダー（リングサイクル）</div></div></div>
+
+    <div class="pat"><div class="thumb c"><svg viewBox="0 0 90 60" style="max-width:100px"><g stroke="var(--g3)" stroke-width="1.2"><line x1="45" y1="30" x2="18" y2="12"/><line x1="45" y1="30" x2="72" y2="12"/><line x1="45" y1="30" x2="16" y2="46"/><line x1="45" y1="30" x2="74" y2="46"/></g><g fill="var(--g2)"><circle cx="18" cy="12" r="4"/><circle cx="72" cy="12" r="4"/><circle cx="16" cy="46" r="4"/><circle cx="74" cy="46" r="4"/></g><circle cx="45" cy="30" r="6" fill="var(--acc)"/></svg></div><div class="body"><div class="pname"><span class="idx">C3</span>ハブ＆スポーク</div><div class="puse">中心の1要素から放射状に、順序のない関係を示すとき。</div><div class="ptag "><span class="dot"></span>新規ビルダー（放射）</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="display:flex;align-items:center;gap:6px;width:100%"><span style="flex:1;background:var(--acc);color:#fff;border-radius:3px;height:22px;display:grid;place-items:center;font-size:.5rem;font-weight:700">A</span><span style="color:var(--g2);font-weight:800;display:flex;flex-direction:column;line-height:.8">›<span style="transform:scaleX(-1)">›</span></span><span style="flex:1;background:var(--g2);color:#fff;border-radius:3px;height:22px;display:grid;place-items:center;font-size:.5rem;font-weight:700">B</span></div></div><div class="body"><div class="pname"><span class="idx">C4</span>2要素相互サイクル</div><div class="puse">2つの要素が相互に影響し合う関係を、双方向で示すとき。</div><div class="ptag "><span class="dot"></span>新規ビルダー（相互）</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="display:flex;align-items:center;gap:6px;width:100%"><span style="flex:1;background:var(--g3);border-radius:4px;height:24px;display:grid;place-items:center;font-size:.5rem;font-weight:700;color:#333">Before</span><span style="color:var(--acc);font-weight:800">›</span><span style="flex:1;background:var(--acc);color:#fff;border-radius:4px;height:24px;display:grid;place-items:center;font-size:.5rem;font-weight:700">After</span></div></div><div class="body"><div class="pname"><span class="idx">C5</span>Before/After比較サイクル</div><div class="puse">変化の前後を対で並べ、改善の効果を示すとき。</div><div class="ptag done"><span class="dot"></span>diagram_before_after</div></div></div>
+
+  </div>
+
+  <h2 class="sec" style="margin-top:2.4rem"><span class="n">B+</span> 自作拡張<span class="ct">EXTENDED DIAGRAMS · 15</span></h2>
+  <p class="sec-note">『図解集』に無いが実コースで使う型。上と同じ方法（青みグレー＋アクセント・直角・スリム）に揃えて restyle 済み。</p>
+
+  <div class="lib">
+
+    <div class="pat"><div class="thumb c"><div style="position:relative;width:100%;height:100%;background:var(--bsurface);border:1px solid var(--bborder);border-radius:4px">
+      <span style="position:absolute;left:22%;top:34%;width:9px;height:8px;border-radius:50%;background:var(--c1);box-shadow:0 0 0 2px rgba(1,65,212,.15)"></span>
+      <span style="position:absolute;left:58%;top:26%;width:9px;height:8px;border-radius:50%;background:var(--g2);box-shadow:0 0 0 2px rgba(1,65,212,.12)"></span>
+      <span style="position:absolute;left:70%;top:62%;width:9px;height:8px;border-radius:50%;background:var(--c1);box-shadow:0 0 0 2px rgba(1,65,212,.15)"></span>
+    </div></div><div class="body"><div class="pname"><span class="idx">B8</span>地図・マップ</div><div class="puse">拠点・地域など位置関係を示す場合に用いる。</div><div class="ptag"><span class="dot"></span>新規ビルダー（画像＋ピン）</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="display:flex;gap:4px">
+      <div style="display:flex;flex-direction:column;gap:4px">
+        <span style="width:26px;height:15px;background:var(--c2);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)"></span>
+        <span style="width:26px;height:15px;background:var(--c4);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)"></span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px;margin-top:15px">
+        <span style="width:26px;height:15px;background:var(--c1);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)"></span>
+        <span style="width:26px;height:15px;background:var(--c2);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)"></span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px">
+        <span style="width:26px;height:15px;background:var(--c4);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)"></span>
+        <span style="width:26px;height:15px;background:var(--g2);clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)"></span>
+      </div>
+    </div></div><div class="body"><div class="pname"><span class="idx">B9</span>パズル・ハニカム</div><div class="puse">要素が組み合わさって成立する構造を示す場合に用いる。</div><div class="ptag"><span class="dot"></span>新規ビルダー</div></div></div>
+
+    <div class="pat"><div class="thumb c">
+      <svg class="tv" viewBox="0 0 90 55">
+        <g stroke="#C7CEE8" stroke-width="1.4"><line x1="22" y1="16" x2="55" y2="14"/><line x1="22" y1="16" x2="30" y2="42"/><line x1="55" y1="14" x2="72" y2="38"/><line x1="30" y1="42" x2="72" y2="38"/></g>
+        <g><circle cx="22" cy="16" r="7" fill="var(--c1)"/><circle cx="55" cy="14" r="7" fill="var(--c2)"/><circle cx="30" cy="42" r="7" fill="var(--c2)"/><circle cx="72" cy="38" r="7" fill="var(--g2)"/></g>
+      </svg>
+    </div><div class="body"><div class="pname"><span class="idx">B11</span>相関図・概念図</div><div class="puse">複数要素の相互の関係・つながりを示す場合に用いる。</div><div class="ptag"><span class="dot"></span>新規ビルダー</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="position:relative;width:88px;height:40px">
+      <div style="position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:3px">
+        <span class="box lp" style="border-radius:4px"></span><span class="box p" style="border-radius:4px"></span><span class="box n" style="border-radius:4px"></span><span class="box lp" style="border-radius:4px"></span>
+      </div>
+    </div></div><div class="body"><div class="pname"><span class="idx">B12</span>マトリクス</div><div class="puse">2軸4象限で位置づけ・分類する場合に用いる。</div><div class="ptag done"><span class="dot"></span>実装済み diagram_matrix</div></div></div>
+
+    <div class="pat"><div class="thumb c">
+      <svg class="tv" viewBox="0 0 90 55" style="max-width:100px">
+        <circle cx="36" cy="27" r="20" fill="var(--c1)" opacity=".45"/>
+        <circle cx="56" cy="27" r="20" fill="var(--g2)" opacity=".45"/>
+      </svg>
+    </div><div class="body"><div class="pname"><span class="idx">B13</span>ベン図</div><div class="puse">要素の重なり・共通部分を表現する場合に用いる。</div><div class="ptag"><span class="dot"></span>新規ビルダー</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="display:flex;align-items:center;gap:5px;font-weight:800;color:var(--c1)">
+      <span class="box lp" style="width:28px;height:14px;font-size:.7rem">A</span><span style="color:var(--btext)">×</span><span class="box lp" style="width:28px;height:14px;font-size:.7rem">B</span><span style="color:var(--btext)">=</span><span class="box p" style="width:28px;height:14px;font-size:.7rem">C</span>
+    </div></div><div class="body"><div class="pname"><span class="idx">B14</span>数式</div><div class="puse">要素の掛け算・足し算など算出ロジックを示す場合に用いる。</div><div class="ptag done"><span class="dot"></span>実装済み diagram_formula</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="border:1px dashed var(--c2);border-radius:4px;padding:8px;display:flex;gap:5px">
+      <span class="box p" style="width:22px;height:12px"></span><span class="box p2" style="width:22px;height:12px"></span><span class="box lp" style="width:22px;height:12px"></span>
+    </div></div><div class="body"><div class="pname"><span class="idx">B15</span>グループ図（小）</div><div class="puse">少数の要素が1つのまとまりに属することを示す場合に用いる。</div><div class="ptag done"><span class="dot"></span>実装済み diagram_group</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="display:flex;gap:6px">
+      <div style="border:1px dashed var(--c2);border-radius:4px;padding:5px;display:grid;grid-template-columns:1fr 1fr;gap:3px"><span class="box p" style="width:16px;height:9px"></span><span class="box p" style="width:16px;height:9px"></span><span class="box p" style="width:16px;height:9px"></span><span class="box p" style="width:16px;height:9px"></span></div>
+      <div style="border:1px dashed var(--g2);border-radius:4px;padding:5px;display:grid;grid-template-columns:1fr 1fr;gap:3px"><span class="box lp" style="width:16px;height:9px"></span><span class="box lp" style="width:16px;height:9px"></span><span class="box lp" style="width:16px;height:9px"></span><span class="box lp" style="width:16px;height:9px"></span></div>
+    </div></div><div class="body"><div class="pname"><span class="idx">B16</span>グループ図（多）</div><div class="puse">多数の要素を複数のまとまりに分類する場合に用いる。</div><div class="ptag done"><span class="dot"></span>実装済み diagram_group</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="display:flex;align-items:center;gap:8px">
+      <span style="width:16px;height:9px;border-radius:50%;background:var(--c4)"></span>
+      <span style="width:30px;height:16px;border-radius:50%;background:var(--c2)"></span>
+      <span style="width:52px;height:27px;border-radius:50%;background:var(--c1)"></span>
+    </div></div><div class="body"><div class="pname"><span class="idx">B18</span>規模比較図</div><div class="puse">市場規模など、数字の大きさの違いを視覚的に伝える場合に用いる。</div><div class="ptag"><span class="dot"></span>新規ビルダー</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="display:flex;flex-direction:column;gap:3px;width:80%">
+      <span class="box p" style="height:8px">アプリ層</span><span class="box p2" style="height:8px">API層</span><span class="box lp" style="height:8px">データ層</span>
+    </div></div><div class="body"><div class="pname"><span class="idx">B19</span>断層・レイヤー</div><div class="puse">階層構造・積み重なった層の構成を示す場合に用いる。</div><div class="ptag"><span class="dot"></span>新規ビルダー</div></div></div>
+
+    <div class="pat"><div class="thumb c">
+      <svg class="tv" viewBox="0 0 90 55" style="max-width:96px">
+        <polygon points="45,6 82,50 8,50" fill="none" stroke="var(--c2)" stroke-width="1.1"/>
+        <circle cx="45" cy="6" r="6" fill="var(--c1)"/><circle cx="82" cy="50" r="6" fill="var(--g2)"/><circle cx="8" cy="50" r="6" fill="var(--g2)"/>
+      </svg>
+    </div><div class="body"><div class="pname"><span class="idx">B20</span>トライアングル</div><div class="puse">3要素が支え合う関係・バランスを示す場合に用いる。</div><div class="ptag"><span class="dot"></span>新規ビルダー</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="width:100%;display:flex;flex-direction:column;gap:5px;font-size:.5rem">
+      <div style="display:flex;align-items:center;gap:5px"><span class="lbl" style="width:20px">A</span><span style="height:8px;width:70%;background:var(--c1);border-radius:2px"></span></div>
+      <div style="display:flex;align-items:center;gap:5px"><span class="lbl" style="width:20px">B</span><span style="height:8px;width:45%;background:var(--c2);border-radius:2px;margin-left:20%"></span></div>
+      <div style="display:flex;align-items:center;gap:5px"><span class="lbl" style="width:20px">C</span><span style="height:8px;width:40%;background:var(--c4);border-radius:2px;margin-left:45%"></span></div>
+    </div></div><div class="body"><div class="pname"><span class="idx">B22</span>ガントチャート</div><div class="puse">タスクの期間・スケジュールの重なりを示す場合に用いる。</div><div class="ptag"><span class="dot"></span>新規ビルダー</div></div></div>
+
+    <div class="pat"><div class="thumb"><div style="width:100%;display:flex;flex-direction:column;gap:6px">
+      <div style="display:flex;gap:6px;align-items:center"><span style="width:6px;height:8px;border-radius:50%;background:var(--c1)"></span><span style="height:8px;width:80%;background:var(--bsurface);border:1px solid var(--bborder);border-radius:3px"></span></div>
+      <div style="display:flex;gap:6px;align-items:center"><span style="width:6px;height:8px;border-radius:50%;background:var(--c1)"></span><span style="height:8px;width:65%;background:var(--bsurface);border:1px solid var(--bborder);border-radius:3px"></span></div>
+      <div style="display:flex;gap:6px;align-items:center"><span style="width:6px;height:8px;border-radius:50%;background:var(--c1)"></span><span style="height:8px;width:72%;background:var(--bsurface);border:1px solid var(--bborder);border-radius:3px"></span></div>
+    </div></div><div class="body"><div class="pname"><span class="idx">B23</span>箇条書き（縦並び）</div><div class="puse">テキスト量が多い項目を、シンプルに列挙する場合に用いる。</div><div class="ptag ready"><span class="dot"></span>既存対応 card/textbox</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="display:flex;gap:6px;width:100%">
+      <div style="flex:1;background:var(--bsurface);border:1px solid var(--bborder);border-radius:4px;height:23px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px"><span style="width:14px;height:8px;border-radius:50%;background:var(--c1)"></span><span style="width:70%;height:8px;background:#D6DEF7;border-radius:2px"></span></div>
+      <div style="flex:1;background:var(--bsurface);border:1px solid var(--bborder);border-radius:4px;height:23px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px"><span style="width:14px;height:8px;border-radius:50%;background:var(--c2)"></span><span style="width:70%;height:8px;background:#D6DEF7;border-radius:2px"></span></div>
+      <div style="flex:1;background:var(--bsurface);border:1px solid var(--bborder);border-radius:4px;height:23px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px"><span style="width:14px;height:8px;border-radius:50%;background:var(--g2)"></span><span style="width:70%;height:8px;background:#D6DEF7;border-radius:2px"></span></div>
+    </div></div><div class="body"><div class="pname"><span class="idx">B24</span>箇条書き（横並び）</div><div class="puse">テキスト量が少ない項目を、横並びカードで見せる場合に用いる。</div><div class="ptag ready"><span class="dot"></span>既存対応 card</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="width:100%;display:flex;flex-direction:column;gap:4px;font-size:.5rem">
+      <div style="display:flex;align-items:center;gap:5px"><span class="box p" style="width:15px;height:8px;color:#fff">1</span><span style="height:8px;width:78%;background:var(--c1);border-radius:2px"></span></div>
+      <div style="display:flex;align-items:center;gap:5px"><span class="box p2" style="width:15px;height:8px;color:#fff">2</span><span style="height:8px;width:58%;background:var(--c2);border-radius:2px"></span></div>
+      <div style="display:flex;align-items:center;gap:5px"><span class="box lp" style="width:15px;height:8px">3</span><span style="height:8px;width:42%;background:var(--c4);border-radius:2px"></span></div>
+    </div></div><div class="body"><div class="pname"><span class="idx">B25</span>ランキング</div><div class="puse">自社/項目の順位・立ち位置を示す場合に用いる。</div><div class="ptag done"><span class="dot"></span>実装済み diagram_ranking</div></div></div>
+
+  </div>
+
+  <hr class="rule">
+
+  <!-- ================= EXTENDED ================= -->
+  <h2 class="sec"><span class="n">C</span> 追加パターン<span class="ct">EXTENDED · 5</span></h2>
+  <p class="sec-note">前回の追加候補を反映。時間軸・指標・言葉など、コースや事業資料で頻出する型を補う。</p>
+
+  <div class="lib">
+
+    <div class="pat"><div class="thumb c"><div style="position:relative;width:100%">
+      <div style="position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;font-size:.5rem;color:var(--bmuted);font-weight:600"><span>'22</span><span>'23</span><span>'24</span><span>'25</span></div>
+      <div style="height:2px;background:var(--c4);width:100%;margin:24px 0 0"></div>
+      <div style="position:absolute;top:19px;left:0;right:0;display:flex;justify-content:space-between">
+        <span style="width:11px;height:11px;border-radius:50%;background:var(--c1);border:2px solid #fff;box-shadow:0 0 0 1px var(--c1)"></span>
+        <span style="width:11px;height:11px;border-radius:50%;background:var(--c2);border:2px solid #fff;box-shadow:0 0 0 1px var(--c2)"></span>
+        <span style="width:11px;height:11px;border-radius:50%;background:var(--c2);border:2px solid #fff;box-shadow:0 0 0 1px var(--c2)"></span>
+        <span style="width:11px;height:11px;border-radius:50%;background:var(--acc);border:2px solid #fff;box-shadow:0 0 0 1px var(--acc)"></span>
+      </div>
+    </div></div><div class="body"><div class="pname"><span class="idx">C1</span>タイムライン</div><div class="puse">沿革・出来事を時系列（年表）で並べる場合に用いる。</div><div class="ptag done"><span class="dot"></span>実装済み diagram_timeline</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="display:flex;gap:6px;width:100%">
+      <div style="flex:1;background:var(--bsurface);border:1px solid var(--bborder);border-radius:6px;padding:6px 4px;text-align:center"><div style="font-family:var(--display);font-weight:800;color:var(--c1);font-size:1.05rem;line-height:1">72<span style="font-size:.6rem">%</span></div><div class="lbl">継続率</div></div>
+      <div style="flex:1;background:var(--bsurface);border:1px solid var(--bborder);border-radius:6px;padding:6px 4px;text-align:center"><div style="font-family:var(--display);font-weight:800;color:var(--c1);font-size:1.05rem;line-height:1">+80<span style="font-size:.6rem">万</span></div><div class="lbl">年収</div></div>
+      <div style="flex:1;background:var(--bsurface);border:1px solid var(--bborder);border-radius:6px;padding:6px 4px;text-align:center"><div style="font-family:var(--display);font-weight:800;color:var(--c1);font-size:1.05rem;line-height:1">50<span style="font-size:.6rem">NPS</span></div><div class="lbl">推奨度</div></div>
+    </div></div><div class="body"><div class="pname"><span class="idx">C2</span>KPIタイル</div><div class="puse">少数の重要指標（KPI）を大きな数値で強調する場合に用いる。</div><div class="ptag ready"><span class="dot"></span>既存対応 shape_box/textbox</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="width:100%;padding:2px 4px">
+      <span style="font-family:Georgia,'Times New Roman',serif;font-size:2.4rem;color:var(--c2);line-height:.5;opacity:.55;display:block;height:20px">&#10077;</span>
+      <div style="font-size:.66rem;color:#222;font-weight:600;line-height:1.4;margin-top:6px">一歩踏み出す人を増やし、挑戦が循環する社会を。</div>
+      <div style="font-size:.52rem;color:var(--bmuted);margin-top:5px;text-align:right">— The Social</div>
+    </div></div><div class="body"><div class="pname"><span class="idx">C3</span>引用・名言</div><div class="puse">理念・顧客・偉人の言葉を印象的に見せる場合に用いる。</div><div class="ptag ready"><span class="dot"></span>既存対応 textbox</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="width:100%;display:flex;flex-direction:column;gap:7px">
+      <div style="display:flex;gap:6px;align-items:center"><span class="box p" style="width:17px;height:17px;border-radius:4px;color:#fff">Q</span><span style="height:8px;width:72%;background:var(--p-light);border-radius:3px"></span></div>
+      <div style="display:flex;gap:6px;align-items:flex-start"><span class="box p2" style="width:17px;height:17px;border-radius:4px">A</span><div style="flex:1;display:flex;flex-direction:column;gap:3px;padding-top:2px"><span style="height:6px;width:92%;background:var(--bsurface);border:1px solid var(--bborder);border-radius:3px"></span><span style="height:6px;width:58%;background:var(--bsurface);border:1px solid var(--bborder);border-radius:3px"></span></div></div>
+    </div></div><div class="body"><div class="pname"><span class="idx">C4</span>Q&amp;A</div><div class="puse">よくある質問と回答（FAQ）をまとめる場合に用いる。</div><div class="ptag ready"><span class="dot"></span>既存対応 card/callout</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="width:100%">
+      <div style="display:flex;gap:3px">
+        <span class="box p" style="flex:1;height:17px;font-size:.5rem;color:#fff">PHASE 1</span>
+        <span class="box p2" style="flex:1.2;height:17px;font-size:.5rem;color:#fff">2</span>
+        <span class="box lp" style="flex:1.5;height:17px;font-size:.5rem">3</span>
+        <span class="box n" style="flex:1.8;height:17px;font-size:.5rem">4</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:5px;font-size:.48rem;color:var(--bmuted)"><span>受け皿</span><span>開始</span><span>加速</span><span>拡大</span></div>
+    </div></div><div class="body"><div class="pname"><span class="idx">C5</span>ロードマップ</div><div class="puse">中長期の段階的な計画・フェーズ展開を示す場合に用いる。</div><div class="ptag"><span class="dot"></span>新規ビルダー</div></div></div>
+
+  </div>
+
+  <hr class="rule">
+
+  <h2 class="sec"><span class="n">D</span> 事業紹介デッキ由来<span class="ct">DECK PATTERNS · 4</span></h2>
+  <p class="sec-note">実在の事業紹介デッキ（Goodpatch 決算 ／ Canary 会社紹介 ／ trifa 採用）を観察し、<b>配置の原則だけ</b>を蒸留した型。配色は The Academy 青へ置換し、他社の写真・地図・ロゴは持ち込まない（<code>refs/README.md</code> の線引き）。<code>2026-08-27</code> 実装。</p>
+
+  <div class="lib">
+
+    <div class="pat"><div class="thumb c"><div style="position:relative;width:62px;height:56px">
+      <div style="position:absolute;left:0;bottom:0;width:56px;height:56px;border-radius:50%;background:var(--g3)"></div>
+      <div style="position:absolute;left:12px;bottom:0;width:36px;height:36px;border-radius:50%;background:#9DBBE6"></div>
+      <div style="position:absolute;left:22px;bottom:0;width:18px;height:18px;border-radius:50%;background:var(--acc)"></div>
+    </div></div><div class="body"><div class="pname"><span class="idx">D1</span>同心円バブル</div><div class="puse">TAM/SAM・包含関係など、規模の入れ子を示す場合に用いる。</div><div class="ptag done"><span class="dot"></span>実装済み diagram_nested_circles</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="width:100%;display:flex;flex-direction:column;gap:9px">
+      <div style="display:flex;gap:6px;align-items:flex-start"><span style="font-weight:700;color:var(--c1);font-size:.85rem;line-height:1">01</span><div style="flex:1;display:flex;flex-direction:column;gap:3px"><span style="height:7px;width:70%;background:var(--c1);border-radius:2px"></span><span style="height:1px;width:100%;background:var(--p-light)"></span></div></div>
+      <div style="display:flex;gap:6px;align-items:flex-start"><span style="font-weight:700;color:var(--c1);font-size:.85rem;line-height:1">02</span><div style="flex:1;display:flex;flex-direction:column;gap:3px"><span style="height:7px;width:56%;background:var(--c1);border-radius:2px"></span><span style="height:1px;width:100%;background:var(--p-light)"></span></div></div>
+    </div></div><div class="body"><div class="pname"><span class="idx">D2</span>番号付き見出しリスト</div><div class="puse">要因・観点を 01/02/03 の連番＋下線見出しで並列に示す場合に用いる。</div><div class="ptag done"><span class="dot"></span>実装済み diagram_numbered_list</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="display:flex;gap:7px;width:100%;align-items:center">
+      <div style="flex:.9;display:flex;flex-direction:column;gap:3px"><span style="height:8px;width:90%;background:var(--c1);border-radius:2px"></span><span style="height:8px;width:70%;background:var(--c1);border-radius:2px"></span><span style="height:5px;width:80%;background:var(--bsurface);border:1px solid var(--bborder);border-radius:2px;margin-top:2px"></span></div>
+      <div style="flex:1;display:flex;flex-direction:column;gap:4px">
+        <div style="display:flex;gap:4px;align-items:center;border:1px solid var(--bborder);border-radius:4px;padding:3px 4px"><span class="box p" style="width:11px;height:11px;border-radius:50%;font-size:.45rem;color:#fff">✓</span><span style="height:5px;flex:1;background:var(--p-light);border-radius:2px"></span></div>
+        <div style="display:flex;gap:4px;align-items:center;border:1px solid var(--bborder);border-radius:4px;padding:3px 4px"><span class="box p" style="width:11px;height:11px;border-radius:50%;font-size:.45rem;color:#fff">✓</span><span style="height:5px;flex:1;background:var(--p-light);border-radius:2px"></span></div>
+      </div>
+    </div></div><div class="body"><div class="pname"><span class="idx">D3</span>左見出し＋右カード</div><div class="puse">主張（左）とその根拠カード群（右）を非対称2分割で示す場合に用いる。</div><div class="ptag done"><span class="dot"></span>実装済み diagram_split_hero</div></div></div>
+
+    <div class="pat"><div class="thumb c"><div style="display:flex;gap:7px;width:100%;align-items:stretch">
+      <div style="flex:.85;background:var(--p-light);border-left:3px solid var(--c1);border-radius:3px;padding:5px 6px;display:flex;flex-direction:column;justify-content:center"><span style="font-weight:700;color:var(--c1);font-size:.9rem;line-height:1">818</span><span style="height:4px;width:60%;background:var(--bmuted);opacity:.5;border-radius:2px;margin-top:3px"></span></div>
+      <div style="flex:1.1;display:flex;flex-direction:column;gap:6px;justify-content:center">
+        <div style="display:flex;flex-direction:column;gap:2px"><span style="height:6px;width:55%;background:var(--c1);border-radius:2px"></span><span style="height:5px;width:95%;background:var(--bsurface);border:1px solid var(--bborder);border-radius:2px"></span></div>
+        <div style="display:flex;flex-direction:column;gap:2px"><span style="height:6px;width:55%;background:var(--c1);border-radius:2px"></span><span style="height:5px;width:88%;background:var(--bsurface);border:1px solid var(--bborder);border-radius:2px"></span></div>
+      </div>
+    </div></div><div class="body"><div class="pname"><span class="idx">D4</span>KPI＋注釈</div><div class="puse">主要数値（左タイル）と、その背景・内訳の解説（右）を並置する場合に用いる。</div><div class="ptag done"><span class="dot"></span>実装済み diagram_stat_annot</div></div></div>
+
+  </div>
+
+  <hr class="rule">
+
+  <h2 class="sec"><span class="n">E</span> 本編スライド型（ワイヤー準拠）<span class="ct">DECK LAYOUTS · 50</span></h2>
+  <p class="sec-note">ユーザー作成のワイヤーフレーム（全50型）を <b>構図まで一致</b>で <code>wireframes.py</code> に実装（<code>wf_01…wf_50</code>）。1枚＝本文ゾーン全体のレイアウト。<b>仕上げ規定</b>厳守＝アイコン/装飾なし・単色フラット・角丸/影なし・区切りは細罫線・<b>accent は焦点1箇所</b>・色は The Academy 青のみ。共通デバイス＝右「示唆パネル」／下部フル幅バー／「NN｜ラベル」／ラベル下線。動作確認＝<code>projects/wireframe_gallery/</code>（全50型・検査ゲートPASS）。</p>
+
+  <div class="wfgrid">
+    <div class="wfi"><span class="wfn">01</span><div><b>データ＋示唆</b><code>wf_data_insight</code></div></div>
+    <div class="wfi"><span class="wfn">02</span><div><b>左右比較</b><code>wf_compare_lr</code></div></div>
+    <div class="wfi"><span class="wfn">03</span><div><b>結論＋3つの根拠</b><code>wf_conclusion_reasons</code></div></div>
+    <div class="wfi"><span class="wfn">04</span><div><b>課題・原因・解決</b><code>wf_problem_cause_solution</code></div></div>
+    <div class="wfi"><span class="wfn">05</span><div><b>プロセス・手順</b><code>wf_process_steps</code></div></div>
+    <div class="wfi"><span class="wfn">06</span><div><b>重要数値＋推移グラフ</b><code>wf_kpi_trend</code></div></div>
+    <div class="wfi"><span class="wfn">07</span><div><b>全体数値＋内訳</b><code>wf_total_breakdown</code></div></div>
+    <div class="wfi"><span class="wfn">08</span><div><b>マトリクス</b><code>wf_matrix</code></div></div>
+    <div class="wfi"><span class="wfn">09</span><div><b>時系列・変化</b><code>wf_timeline_change</code></div></div>
+    <div class="wfi"><span class="wfn">10</span><div><b>全体像・構造分解</b><code>wf_structure_decompose</code></div></div>
+    <div class="wfi"><span class="wfn">11</span><div><b>事例・成果</b><code>wf_case_result</code></div></div>
+    <div class="wfi"><span class="wfn">12</span><div><b>問い＋回答</b><code>wf_question_answer</code></div></div>
+    <div class="wfi"><span class="wfn">13</span><div><b>1メッセージ</b><code>wf_one_message</code></div></div>
+    <div class="wfi"><span class="wfn">14</span><div><b>重要数値単独</b><code>wf_kpi_single</code></div></div>
+    <div class="wfi"><span class="wfn">15</span><div><b>Before／After</b><code>wf_before_after</code></div></div>
+    <div class="wfi"><span class="wfn">16</span><div><b>メリット・デメリット</b><code>wf_pros_cons</code></div></div>
+    <div class="wfi"><span class="wfn">17</span><div><b>選択肢比較表</b><code>wf_options_table</code></div></div>
+    <div class="wfi"><span class="wfn">18</span><div><b>ランキング</b><code>wf_ranking</code></div></div>
+    <div class="wfi"><span class="wfn">19</span><div><b>ファネル</b><code>wf_funnel</code></div></div>
+    <div class="wfi"><span class="wfn">20</span><div><b>ピラミッド・階層</b><code>wf_pyramid_levels</code></div></div>
+    <div class="wfi"><span class="wfn">21</span><div><b>循環・サイクル</b><code>wf_cycle</code></div></div>
+    <div class="wfi"><span class="wfn">22</span><div><b>ロードマップ</b><code>wf_roadmap</code></div></div>
+    <div class="wfi"><span class="wfn">23</span><div><b>判断フロー</b><code>wf_decision_flow</code></div></div>
+    <div class="wfi"><span class="wfn">24</span><div><b>因果関係</b><code>wf_causality</code></div></div>
+    <div class="wfi"><span class="wfn">25</span><div><b>相関・関係図</b><code>wf_relation</code></div></div>
+    <div class="wfi"><span class="wfn">26</span><div><b>カスタマージャーニー</b><code>wf_journey</code></div></div>
+    <div class="wfi"><span class="wfn">27</span><div><b>計画対実績</b><code>wf_plan_actual</code></div></div>
+    <div class="wfi"><span class="wfn">28</span><div><b>ギャップ分析</b><code>wf_gap</code></div></div>
+    <div class="wfi"><span class="wfn">29</span><div><b>表＋示唆</b><code>wf_table_insight</code></div></div>
+    <div class="wfi"><span class="wfn">30</span><div><b>リスク＋対策</b><code>wf_risk_action</code></div></div>
+    <div class="wfi"><span class="wfn">31</span><div><b>優先順位</b><code>wf_priority</code></div></div>
+    <div class="wfi"><span class="wfn">32</span><div><b>まとめ＋次のアクション</b><code>wf_summary_actions</code></div></div>
+    <div class="wfi"><span class="wfn">33</span><div><b>並列グラフ比較</b><code>wf_dual_charts</code></div></div>
+    <div class="wfi"><span class="wfn">34</span><div><b>重点方針＋実行構造</b><code>wf_policy_execution</code></div></div>
+    <div class="wfi"><span class="wfn">35</span><div><b>ロジックツリー</b><code>wf_logic_tree</code></div></div>
+    <div class="wfi"><span class="wfn">36</span><div><b>KPIドライバー</b><code>wf_kpi_driver</code></div></div>
+    <div class="wfi"><span class="wfn">37</span><div><b>戦略カスケード</b><code>wf_strategy_cascade</code></div></div>
+    <div class="wfi"><span class="wfn">38</span><div><b>同心円・対象範囲</b><code>wf_concentric_scope</code></div></div>
+    <div class="wfi"><span class="wfn">39</span><div><b>ベン図・重なり</b><code>wf_venn</code></div></div>
+    <div class="wfi"><span class="wfn">40</span><div><b>レイヤー・基盤構造</b><code>wf_layers</code></div></div>
+    <div class="wfi"><span class="wfn">41</span><div><b>スイムレーン</b><code>wf_swimlane</code></div></div>
+    <div class="wfi"><span class="wfn">42</span><div><b>RACI・役割分担</b><code>wf_raci</code></div></div>
+    <div class="wfi"><span class="wfn">43</span><div><b>加重評価スコア</b><code>wf_weighted_score</code></div></div>
+    <div class="wfi"><span class="wfn">44</span><div><b>シナリオ比較</b><code>wf_scenarios</code></div></div>
+    <div class="wfi"><span class="wfn">45</span><div><b>仮説検証</b><code>wf_hypothesis</code></div></div>
+    <div class="wfi"><span class="wfn">46</span><div><b>ウォーターフォール</b><code>wf_waterfall</code></div></div>
+    <div class="wfi"><span class="wfn">47</span><div><b>構成比変化</b><code>wf_composition_change</code></div></div>
+    <div class="wfi"><span class="wfn">48</span><div><b>ヒートマップ</b><code>wf_heatmap</code></div></div>
+    <div class="wfi"><span class="wfn">49</span><div><b>顧客の声→論点→施策</b><code>wf_voice_to_action</code></div></div>
+    <div class="wfi"><span class="wfn">50</span><div><b>KPIダッシュボード</b><code>wf_kpi_dashboard</code></div></div>
+  </div>
+  <style>
+    .wfgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.6rem;margin-top:.4rem}
+    .wfi{display:flex;gap:.6rem;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:.5rem .65rem}
+    .wfi .wfn{font-family:var(--mono);font-weight:700;color:var(--accent);font-size:.9rem;min-width:1.5rem;text-align:center}
+    .wfi b{display:block;font-size:.82rem;color:var(--ink);line-height:1.25}
+    .wfi code{font-family:var(--mono);font-size:.62rem;color:var(--muted)}
+  </style>
+
+  <hr class="rule">
+
+  <section>
+    <h2 class="sec"><span class="n">→</span> 進め方</h2>
+    <p class="sec-note"><b>進捗（2026-08-27）</b>：<b>ビルダー実装済み（●青）は計20型</b>＝図解11型（横/縦フロー・ピラミッド・ビフォーアフター・2×2マトリクス・階段ステップ・サイクル・タイムライン・ランキング・数式・グループ図）＋本編C 5型（表・コード・会話・画像解説・UI操作）＋事業紹介デッキ由来4型（同心円・番号リスト・左右分割・KPI＋注釈）。各<code>diagram_xxx(slide, x, y, w, h, *, data, accent)</code> 規約で、項目テキストを渡すだけで The Academy 配色・ゾーン内に収まる（検査ゲートPASS）。動作確認は <code>projects/diagram_gallery/</code>（全22枚）。<b>既存ヘルパー（●緑）は即対応</b>。残る<b>新規ビルダー（●灰）を順次型化</b>していく。</p>
+    <div class="how" style="grid-template-columns:repeat(3,1fr)">
+      <div class="s"><div class="k">STEP 1</div><div class="t">粒度の確定</div><div class="d">この35で過不足ないか、統合/追加するパターンを決める（下記）。</div></div>
+      <div class="s"><div class="k">STEP 2</div><div class="t">ビルダー実装</div><div class="d">新規21型を <code>shape_box/connector</code> で関数化。検査ゲートでゾーン逸脱を潰す。</div></div>
+      <div class="s"><div class="k">STEP 3</div><div class="t">判定表の整備</div><div class="d">「情報の型→パターン」の対応表を作り、内容から自動選択できるようにする。</div></div>
+    </div>
+    <div style="background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 26%,transparent);border-radius:12px;padding:1.1rem 1.3rem;margin-top:1.3rem">
+      <div style="font-weight:700;color:var(--accent);display:flex;align-items:center;gap:.5rem;margin-bottom:.4rem"><span class="bars"><i></i><i></i></span>確認したいこと</div>
+      <p style="margin:.3rem 0;font-size:.9rem">① これで40パターン。さらに追加したい型はあるか（例：スケジュール表、事例カード、テキストのみ、掛け算/足し算の分割 等）</p>
+      <p style="margin:.3rem 0;font-size:.9rem">② 実装の優先順位（よく使う順に型化したい。まず作るべき10パターンは？）</p>
+      <p style="margin:.3rem 0;font-size:.9rem">③ 各パターンは「1ページ丸ごと1図」か、「1ページに複数図を組み合わせ可」か</p>
+    </div>
+  </section>
+
+  <footer>The Academy · スライド・パターンライブラリ · グラフ28 ＋ 図解25 ＋ 追加5 ＋ デッキ由来4 ＋ 本編スライド型50 = 112パターン（グラフ集反映・2026-08） · slide-generator 基盤 ＋ Brand Guideline 2026</footer>
+
+</div>

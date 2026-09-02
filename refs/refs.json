@@ -1,0 +1,32 @@
+[
+  {
+    "id": "slideland-gallery",
+    "title": "Slideland（参考ギャラリー本体）",
+    "file": "",
+    "source": "https://www.slideland.tech/",
+    "captured": "2026-08-26",
+    "doc_type": "登壇資料",
+    "industry": "その他",
+    "colors": ["カラフル"],
+    "taste": ["ミニマル"],
+    "element": ["表紙", "グラフ", "図解"],
+    "notes": "参考の収集元。資料の種類×業種×配色×テイスト×要素の5軸でタグ分類しているのが参考になる。個別スライドを取り込むときは inbox に1枚ずつ落として別レコード化する。",
+    "extract": "todo",
+    "preset": ""
+  },
+  {
+    "id": "saas-trust-blue-cover",
+    "title": "SaaS 会社紹介 表紙（青・信頼感）系",
+    "file": "",
+    "source": "https://www.slideland.tech/",
+    "captured": "2026-08-26",
+    "doc_type": "会社紹介",
+    "industry": "SaaS",
+    "colors": ["ブルー", "ネイビー"],
+    "taste": ["信頼感", "ミニマル"],
+    "element": ["表紙"],
+    "notes": "深めのネイビーブルー主体＋広い余白。大見出しを左上に1つ、図版は右下に小さく。装飾は細いライン区切りのみで直角基調。数字は控えめ。※デザイン観察のみ（内容は取り込まない）。実スクショを inbox に入れたら file を記入して色をスポイトで確定する。",
+    "extract": "done",
+    "preset": "presets/saas-trust-blue.md"
+  }
+]

@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Academy｜参考デザインボード（社内専用）</title>
+<style>
+  :root{--bg:#F4F6FC;--panel:#fff;--ink:#161A2E;--muted:#676688;--faint:#9A9AB2;
+    --line:#E6E6EA;--accent:#0141D4;--accent-soft:#E9EEFC;--ok:#27AE60;--warn:#F76B38;
+    --sans:"Hiragino Kaku Gothic ProN","Hiragino Sans",system-ui,-apple-system,sans-serif;
+    --mono:ui-monospace,Menlo,Consolas,monospace;}
+  @media(prefers-color-scheme:dark){:root{--bg:#0B0F1F;--panel:#141931;--ink:#E9ECF7;
+    --muted:#9FA0BE;--faint:#6C6D8C;--line:#242A47;--accent:#4E86FF;--accent-soft:#172248;}}
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6}
+  .wrap{max-width:1240px;margin:0 auto;padding:clamp(1.2rem,3vw,2.4rem)}
+  h1{font-size:1.5rem;margin:0 0 .2rem;letter-spacing:-.01em}
+  .lede{color:var(--muted);font-size:.9rem;margin:.2rem 0 0}
+  .warnbar{margin:1rem 0;background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 26%,transparent);
+    border-radius:10px;padding:.6rem .9rem;font-size:.82rem;color:var(--ink)}
+  .filters{display:flex;flex-direction:column;gap:.5rem;margin:1.1rem 0 1.4rem;padding:.9rem 1rem;
+    background:var(--panel);border:1px solid var(--line);border-radius:12px}
+  .fgroup{display:flex;flex-wrap:wrap;gap:.35rem;align-items:center}
+  .flabel{font-family:var(--mono);font-size:.66rem;color:var(--faint);width:4.2em;flex:none;letter-spacing:.05em}
+  button.f{font-family:var(--sans);font-size:.72rem;color:var(--muted);background:transparent;
+    border:1px solid var(--line);border-radius:20px;padding:.16rem .6rem;cursor:pointer}
+  button.f:hover{border-color:var(--accent);color:var(--accent)}
+  button.f.on{background:var(--accent);border-color:var(--accent);color:#fff}
+  .bar2{display:flex;gap:.6rem;align-items:center;margin-top:.2rem}
+  .count{font-family:var(--mono);font-size:.72rem;color:var(--faint)}
+  .clear{font-size:.72rem;color:var(--accent);background:none;border:0;cursor:pointer;text-decoration:underline}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
+  .ref{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+  .thumb{aspect-ratio:16/10;background:var(--bg);display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--line)}
+  .thumb img{width:100%;height:100%;object-fit:cover}
+  .noimg{color:var(--faint);font-size:.8rem;text-align:center} .noimg span{font-size:.66rem}
+  .meta{padding:.6rem .75rem .7rem;display:flex;flex-direction:column;gap:.4rem;flex:1}
+  .ttl{font-weight:700;font-size:.9rem;line-height:1.25}
+  .chips{display:flex;flex-wrap:wrap;gap:.25rem}
+  .chip{font-size:.62rem;color:var(--muted);background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:.05rem .35rem}
+  .chip.status.done{color:#fff;background:var(--ok);border-color:var(--ok)}
+  .chip.status.todo{color:var(--warn);border-color:var(--warn)}
+  .note{font-size:.74rem;color:var(--muted);margin:.1rem 0 0;flex:1}
+  .foot{display:flex;gap:.8rem;align-items:center;font-size:.72rem}
+  .src{color:var(--accent)} .preset{color:var(--ok);font-family:var(--mono);font-size:.66rem}
+  .empty{color:var(--muted)}
+  footer{color:var(--faint);font-family:var(--mono);font-size:.7rem;margin-top:2rem;text-align:center}
+</style></head>
+<body><div class="wrap">
+  <h1>参考デザインボード</h1>
+  <p class="lede">外部スライドの参考を種類・業種・配色・テイスト・要素で絞り込む。良いものは presets/ にテーマとして蒸留する。</p>
+  <div class="warnbar">⚠️ <b>社内閲覧専用</b>。このボードと inbox の画像は公開・共有しない（他社資料の再配布防止）。取り込むのは配色・書体・余白・型の“原則”だけ。</div>
+  <div class="filters">
+<div class="fgroup"><span class="flabel">種類</span><button class="f" data-axis="doc_type" data-val="登">登</button><button class="f" data-axis="doc_type" data-val="壇">壇</button><button class="f" data-axis="doc_type" data-val="資">資</button><button class="f" data-axis="doc_type" data-val="料">料</button><button class="f" data-axis="doc_type" data-val="会">会</button><button class="f" data-axis="doc_type" data-val="社">社</button><button class="f" data-axis="doc_type" data-val="紹">紹</button><button class="f" data-axis="doc_type" data-val="介">介</button></div>
+<div class="fgroup"><span class="flabel">業種</span><button class="f" data-axis="industry" data-val="そ">そ</button><button class="f" data-axis="industry" data-val="の">の</button><button class="f" data-axis="industry" data-val="他">他</button><button class="f" data-axis="industry" data-val="S">S</button><button class="f" data-axis="industry" data-val="a">a</button></div>
+<div class="fgroup"><span class="flabel">配色</span><button class="f" data-axis="colors" data-val="カラフル">カラフル</button><button class="f" data-axis="colors" data-val="ブルー">ブルー</button><button class="f" data-axis="colors" data-val="ネイビー">ネイビー</button></div>
+<div class="fgroup"><span class="flabel">テイスト</span><button class="f" data-axis="taste" data-val="ミニマル">ミニマル</button><button class="f" data-axis="taste" data-val="信頼感">信頼感</button></div>
+<div class="fgroup"><span class="flabel">要素</span><button class="f" data-axis="element" data-val="表紙">表紙</button><button class="f" data-axis="element" data-val="グラフ">グラフ</button><button class="f" data-axis="element" data-val="図解">図解</button></div>
+<div class="fgroup"><span class="flabel">状態</span><button class="f" data-axis="status" data-val="todo">未蒸留</button><button class="f" data-axis="status" data-val="done">蒸留済</button></div>
+    <div class="bar2"><span class="count" id="count"></span><button class="clear" id="clear">絞り込みを解除</button></div>
+  </div>
+  <div class="grid" id="grid">
+    <article class="ref" data-doc_type="登｜壇｜資｜料" data-industry="そ｜の｜他" data-colors="カラフル" data-taste="ミニマル" data-element="表紙｜グラフ｜図解" data-status="todo">
+      <div class="thumb"><div class="noimg">画像なし<br><span>inbox に追加</span></div></div>
+      <div class="meta">
+        <div class="ttl">Slideland（参考ギャラリー本体）</div>
+        <div class="chips"><span class="chip status todo">未蒸留</span><span class="chip doc_type">登</span><span class="chip doc_type">壇</span><span class="chip doc_type">資</span><span class="chip doc_type">料</span><span class="chip industry">そ</span><span class="chip industry">の</span><span class="chip industry">他</span><span class="chip colors">カラフル</span><span class="chip taste">ミニマル</span><span class="chip element">表紙</span><span class="chip element">グラフ</span><span class="chip element">図解</span></div>
+        <p class="note">参考の収集元。資料の種類×業種×配色×テイスト×要素の5軸でタグ分類しているのが参考になる。個別スライドを取り込むときは inbox に1枚ずつ落として別レコード化する。</p>
+        <div class="foot"><a class="src" href="https://www.slideland.tech/" target="_blank" rel="noopener">出典</a></div>
+      </div>
+    </article>
+    <article class="ref" data-doc_type="会｜社｜紹｜介" data-industry="S｜a｜a｜S" data-colors="ブルー｜ネイビー" data-taste="信頼感｜ミニマル" data-element="表紙" data-status="done">
+      <div class="thumb"><div class="noimg">画像なし<br><span>inbox に追加</span></div></div>
+      <div class="meta">
+        <div class="ttl">SaaS 会社紹介 表紙（青・信頼感）系</div>
+        <div class="chips"><span class="chip status done">蒸留済</span><span class="chip doc_type">会</span><span class="chip doc_type">社</span><span class="chip doc_type">紹</span><span class="chip doc_type">介</span><span class="chip industry">S</span><span class="chip industry">a</span><span class="chip industry">a</span><span class="chip industry">S</span><span class="chip colors">ブルー</span><span class="chip colors">ネイビー</span><span class="chip taste">信頼感</span><span class="chip taste">ミニマル</span><span class="chip element">表紙</span></div>
+        <p class="note">深めのネイビーブルー主体＋広い余白。大見出しを左上に1つ、図版は右下に小さく。装飾は細いライン区切りのみで直角基調。数字は控えめ。※デザイン観察のみ（内容は取り込まない）。実スクショを inbox に入れたら file を記入して色をスポイトで確定する。</p>
+        <div class="foot"><a class="src" href="https://www.slideland.tech/" target="_blank" rel="noopener">出典</a><a class="preset" href="presets/saas-trust-blue.md">→ presets/saas-trust-blue.md</a></div>
+      </div>
+    </article>
+  </div>
+  <footer>The Academy · 参考デザインボード（社内専用・build_board.py 自動生成） · 2 refs</footer>
+</div>
+<script>
+  const active={};
+  const grid=document.getElementById('grid');
+  const cards=[...grid.querySelectorAll('.ref')];
+  const count=document.getElementById('count');
+  function apply(){
+    let shown=0;
+    cards.forEach(c=>{
+      const ok=Object.entries(active).every(([axis,vals])=>{
+        if(!vals.size) return true;
+        const have=(c.dataset[axis]||'').split('｜');
+        return [...vals].every(v=>have.includes(v));
+      });
+      c.style.display=ok?'':'none'; if(ok) shown++;
+    });
+    count.textContent=shown+' / '+cards.length+' 件';
+  }
+  document.querySelectorAll('button.f').forEach(b=>{
+    b.onclick=()=>{
+      const ax=b.dataset.axis, v=b.dataset.val;
+      active[ax]=active[ax]||new Set();
+      if(active[ax].has(v)){active[ax].delete(v);b.classList.remove('on');}
+      else{active[ax].add(v);b.classList.add('on');}
+      apply();
+    };
+  });
+  document.getElementById('clear').onclick=()=>{
+    for(const k in active) active[k].clear();
+    document.querySelectorAll('button.f.on').forEach(b=>b.classList.remove('on'));
+    apply();
+  };
+  apply();
+</script>
+</body></html>

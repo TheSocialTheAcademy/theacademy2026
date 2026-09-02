@@ -1,0 +1,828 @@
+<title>The Academy｜コース用スライド型テンプレ集 v0.4</title>
+<style>
+  :root{
+    --bg:#F4F6FC; --panel:#FFFFFF; --panel-2:#EFF2FB;
+    --ink:#161A2E; --muted:#676688; --faint:#9A9AB2;
+    --line:#E6E6EA; --line-strong:#D9DAE6;
+    --accent:#0141D4; --accent-soft:#E9EEFC; --navy:#012270;
+    --mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+    --display:"Avenir Next","Hiragino Kaku Gothic ProN","Hiragino Sans",system-ui,sans-serif;
+    --sans:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic Medium",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --label:"Avenir Next","Helvetica Neue",Arial,system-ui,sans-serif;
+    /* brand palette (slide previews) */
+    --c1:#0141D4; --c2:#3E78FE; --c3:#005BA3; --c4:#8BAEE8; --c5:#27AE60; --c6:#F76B38;
+    --p-light:#EEF2FD; --bsurface:#F4F6FC; --bborder:#E4E6EF; --btext:#222222; --bmuted:#6C6C86;
+    --g1:#4A5A8C; --g2:#8C97BC; --g3:#DCE1F0;
+    --maxw:1180px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{--bg:#0B0F1F;--panel:#141931;--panel-2:#10152A;--ink:#E9ECF7;--muted:#9FA0BE;--faint:#6C6D8C;
+      --line:#242A47;--line-strong:#323966;--accent:#4E86FF;--accent-soft:#172248;--navy:#6FA0DA;}
+  }
+  :root[data-theme="dark"]{--bg:#0B0F1F;--panel:#141931;--panel-2:#10152A;--ink:#E9ECF7;--muted:#9FA0BE;--faint:#6C6D8C;
+    --line:#242A47;--line-strong:#323966;--accent:#4E86FF;--accent-soft:#172248;--navy:#6FA0DA;}
+  :root[data-theme="light"]{--bg:#F4F6FC;--panel:#FFFFFF;--panel-2:#EFF2FB;--ink:#161A2E;--muted:#676688;--faint:#9A9AB2;
+    --line:#E6E6EA;--line-strong:#D9DAE6;--accent:#0141D4;--accent-soft:#E9EEFC;--navy:#012270;}
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:clamp(1.4rem,4vw,3rem) clamp(1.1rem,4vw,2rem);}
+
+  .bars{display:inline-flex;flex-direction:column;gap:2.5px;vertical-align:middle;}
+  .bars i{display:block;width:15px;height:3.5px;border-radius:2px;background:var(--accent);}
+
+  .eyebrow{font-family:var(--label);font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);font-weight:700;display:inline-flex;align-items:center;gap:.6rem;}
+  h1{font-family:var(--display);font-size:clamp(1.9rem,5vw,2.9rem);line-height:1.12;margin:.55rem 0 0;font-weight:700;letter-spacing:-.015em;text-wrap:balance;}
+  .lede{color:var(--muted);font-size:clamp(1rem,2.4vw,1.12rem);max-width:66ch;margin:.9rem 0 0;}
+  .lede code, .sec-note code, .zonebox code{font-family:var(--mono);font-size:.82em;background:var(--panel-2);padding:.05rem .32rem;border-radius:4px;border:1px solid var(--line);color:var(--ink);}
+  .meta{display:flex;flex-wrap:wrap;gap:.5rem .9rem;margin-top:1.3rem;font-family:var(--mono);font-size:.72rem;color:var(--faint);}
+  .meta b{color:var(--muted);font-weight:600;}
+
+  hr.rule{border:0;border-top:1px solid var(--line);margin:2.4rem 0 1.8rem;}
+
+  h2.sec{font-family:var(--display);font-size:clamp(1.25rem,3vw,1.6rem);font-weight:700;letter-spacing:-.01em;margin:0 0 .2rem;display:flex;align-items:baseline;gap:.7rem;}
+  h2.sec .n{font-family:var(--mono);font-size:.82rem;color:#fff;background:var(--accent);padding:.15rem .5rem;border-radius:6px;font-weight:700;letter-spacing:.05em;}
+  h2.sec .ct{font-family:var(--mono);font-size:.8rem;color:var(--faint);font-weight:400;margin-left:auto;}
+  .sec-note{color:var(--muted);max-width:74ch;margin:.1rem 0 1.2rem;font-size:.9rem;}
+
+  /* brand block */
+  .brand-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:1.3rem;align-items:start;margin-bottom:.4rem;}
+  @media(max-width:820px){.brand-grid{grid-template-columns:1fr}}
+  .swatches{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem;}
+  @media(max-width:520px){.swatches{grid-template-columns:1fr}}
+  .sw{display:flex;align-items:center;gap:.55rem;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:.45rem .55rem;}
+  .sw .chip{width:24px;height:24px;border-radius:6px;flex:none;border:1px solid rgba(0,0,0,.08);}
+  .sw .role{font-weight:700;font-size:.78rem;line-height:1.2;}
+  .sw .hex{font-family:var(--mono);font-size:.68rem;color:var(--muted);}
+  .zonebox{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:1rem 1.15rem;}
+  .zonebox h4{margin:0 0 .45rem;font-size:.88rem;display:flex;align-items:center;gap:.5rem;}
+  .zonebox h4+h4{margin-top:.9rem;}
+  .zonebox ul{margin:.15rem 0 0;padding-left:1.05rem;}
+  .zonebox li{font-size:.82rem;color:var(--muted);margin:.25rem 0;}
+  .decided{display:inline-block;font-family:var(--mono);font-size:.6rem;color:#fff;background:var(--accent);border-radius:4px;padding:.05rem .35rem;margin-left:.4rem;letter-spacing:.03em;vertical-align:middle;}
+
+  /* phase rhythm */
+  .phases{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.4rem;}
+  .phase{flex:1 1 0;min-width:150px;background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:.7rem .8rem;border-top:3px solid var(--accent);}
+  .phase .k{font-family:var(--mono);font-size:.66rem;color:var(--accent);letter-spacing:.08em;font-weight:600;}
+  .phase .t{font-weight:700;font-size:.92rem;margin-top:.1rem;}
+  .phase .d{font-size:.75rem;color:var(--muted);line-height:1.4;margin-top:.15rem;}
+
+  /* card grid */
+  .lib{display:grid;grid-template-columns:repeat(auto-fill,minmax(238px,1fr));gap:1rem;}
+  .pat{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;}
+  .pbody{padding:.6rem .78rem .8rem;display:flex;flex-direction:column;flex:1;}
+  .pname{font-weight:700;font-size:.92rem;display:flex;align-items:center;gap:.45rem;line-height:1.2;}
+  .pname .idx{font-family:var(--mono);font-size:.64rem;color:#fff;background:var(--accent);padding:.08rem .3rem;border-radius:4px;font-weight:600;}
+  .pen{font-family:var(--label);font-size:.62rem;color:var(--faint);letter-spacing:.1em;text-transform:uppercase;margin-top:.05rem;}
+  .puse{font-size:.76rem;color:var(--muted);line-height:1.5;margin-top:.35rem;flex:1;}
+  .pslot{font-size:.7rem;color:var(--ink);margin-top:.5rem;line-height:1.4;}
+  .pslot b{font-family:var(--mono);font-size:.6rem;color:var(--faint);letter-spacing:.06em;text-transform:uppercase;font-weight:600;display:block;margin-bottom:.1rem;}
+  .ptag{margin-top:.5rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.02em;color:var(--faint);display:inline-flex;gap:.35rem;align-items:center;}
+  .ptag.ready{color:var(--c5);}
+  .ptag.done{color:var(--accent);font-weight:700;}
+  .ptag .dot{width:6px;height:6px;border-radius:50%;background:currentColor;display:inline-block;}
+  .dchip{font-family:var(--mono);font-size:.55rem;letter-spacing:.04em;padding:.08rem .34rem;border-radius:4px;font-weight:600;margin-left:auto;white-space:nowrap;}
+  .dchip.it{background:#E9EEFC;color:#0141D4;}
+  .dchip.biz{background:#E6EEF7;color:#005BA3;}
+  .dchip.lang{background:#EEF1F8;color:#4A5A8C;}
+  .dchip.base{background:#EFEFF4;color:#676688;}
+  .subhead{grid-column:1/-1;font-family:var(--label);font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:.5rem 0 -.1rem;display:flex;align-items:center;gap:.55rem;}
+  .subhead::before{content:"";width:16px;height:2px;background:var(--accent);display:inline-block;}
+  .subhead span{font-family:var(--sans);text-transform:none;letter-spacing:0;font-size:.72rem;color:var(--faint);font-weight:400;}
+
+  /* ===== mini slide ===== */
+  .mini{aspect-ratio:16/10;background:#fff;border:1px solid var(--bborder);border-bottom:0;position:relative;overflow:hidden;color:#222;font-size:clamp(6px,1.15vw,10px);padding:9% 7% 7%;}
+  .mtag{position:absolute;top:0;right:0;width:15%;height:24%;background:var(--c1);color:#fff;border-bottom-left-radius:70%;display:flex;align-items:flex-start;justify-content:flex-end;padding:3% 4% 0 0;font-weight:700;font-size:1em;}
+  .meyebrow{font-family:var(--label);font-weight:700;color:var(--c1);font-size:.8em;letter-spacing:.03em;}
+  .mtitle{font-weight:800;color:#161A2E;font-size:1.3em;line-height:1.12;margin-top:.12em;letter-spacing:-.01em;}
+  .mbar{width:15%;height:2px;background:var(--c1);margin-top:3.5%;border-radius:2px;}
+  .mbd{margin-top:5%;}
+  .ln{height:5px;border-radius:3px;background:#EDEFF5;}
+  .row{display:flex;align-items:center;gap:4%;}
+  .num{flex:none;width:1.7em;height:1.7em;border-radius:50%;background:var(--c3);color:#fff;display:grid;place-items:center;font-weight:700;font-size:.9em;}
+  .box{background:var(--bsurface);border:1px solid var(--bborder);border-radius:4px;display:grid;place-items:center;font-weight:700;color:#222;font-size:.85em;text-align:center;padding:2px;}
+  .box.p{background:var(--c1);color:#fff;border-color:var(--c1);}
+  .box.p2{background:var(--c2);color:#fff;border-color:var(--c2);}
+  .box.lp{background:var(--p-light);border-color:var(--c2);color:var(--c1);}
+  .box.g{background:var(--accent);border-color:var(--accent);color:#fff;}
+  .box.n{background:#EFEFF4;border-color:#D3D3DE;color:var(--bmuted);}
+  .box.warn{background:#EEF1F8;border-color:#8C97BC;color:#4A5A8C;}
+  .ar{color:var(--c1);font-weight:800;}
+  .callout{background:var(--p-light);border-left:3px solid var(--c1);padding:3% 4%;font-size:.9em;color:#222;line-height:1.4;border-radius:0 3px 3px 0;}
+  .callout.g{background:var(--accent-soft);border-left-color:var(--accent);}
+  .callout.o{background:#EEF1F8;border-left-color:#4A5A8C;}
+  .mini.blue{background:var(--c1);padding:0;border-color:var(--c1);}
+  .cv{position:absolute;inset:0;padding:9% 8%;color:#fff;display:flex;flex-direction:column;}
+  .cv .wm{font-family:var(--label);font-weight:700;letter-spacing:.14em;font-size:.85em;opacity:.92;display:flex;align-items:center;gap:.5em;}
+  .cv .bw{display:inline-flex;flex-direction:column;gap:2px;}
+  .cv .bw i{width:11px;height:2.5px;background:#fff;border-radius:1px;display:block;}
+  .cv .ls{font-family:var(--label);letter-spacing:.28em;font-weight:700;font-size:.85em;opacity:.8;margin-top:auto;}
+  .cv .ct{font-family:var(--display);font-weight:700;font-size:1.9em;line-height:1.1;margin-top:.25em;letter-spacing:-.01em;}
+  .cv .cs{font-size:.9em;opacity:.9;margin-top:.5em;line-height:1.4;}
+  .cv .badge{align-self:flex-start;margin-top:.6em;border:1px solid rgba(255,255,255,.5);border-radius:20px;padding:.2em .8em;font-family:var(--mono);font-size:.75em;}
+  .tiles{display:flex;gap:4%;}
+  .tile{flex:1;background:#fff;border:1px solid var(--bborder);border-radius:5px;padding:5% 4%;}
+  .tile .tn{font-family:var(--display);font-weight:800;color:var(--c1);font-size:1.6em;line-height:1;}
+  .tile .tl{height:4px;background:#EDEFF5;border-radius:2px;margin-top:5%;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:4%;}
+  .chk{display:flex;align-items:center;gap:4%;}
+  .chk .cb{flex:none;width:1.2em;height:1.2em;border-radius:3px;border:1.5px solid var(--c1);}
+  .chk .cb.on{background:var(--accent);border-color:var(--accent);}
+  /* ===== 本編フレームワーク（思考フロー×構成） ===== */
+  .fw-step{display:inline-flex;align-items:center;gap:.4rem;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:.28rem .55rem;font-size:.8rem;font-weight:700;color:var(--ink);white-space:nowrap;}
+  .fw-step .k{font-family:var(--mono);font-size:.6rem;color:#fff;background:var(--g1);width:1.1rem;height:1.1rem;border-radius:50%;display:grid;place-items:center;flex:none;}
+  .fw-step.acc{border-color:var(--accent);} .fw-step.acc .k{background:var(--accent);}
+  .fw-arr{color:var(--g2);font-weight:800;flex:none;}
+  .fw-flow{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;}
+  .fw-slide{font-family:var(--mono);font-size:.64rem;background:var(--accent-soft);color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 22%,transparent);border-radius:4px;padding:.15rem .4rem;white-space:nowrap;font-weight:600;}
+  .fw-slide.g{background:var(--panel-2);color:var(--muted);border-color:var(--line);}
+  .fw-sarr{color:var(--g2);font-weight:700;font-size:.68rem;flex:none;}
+  .fw-seq{display:flex;align-items:center;gap:.3rem;flex-wrap:wrap;}
+  .flag{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:1.1rem 1.2rem;}
+  .flag .goal{font-size:.9rem;color:var(--muted);margin:0 0 .8rem;} .flag .goal b{color:var(--ink);}
+  .rowlab{font-family:var(--label);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);font-weight:700;margin:1rem 0 .45rem;}
+  .rowlab:first-of-type{margin-top:.15rem;}
+  .fwgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1rem;}
+  @media(max-width:560px){.fwgrid{grid-template-columns:1fr}}
+  .fw{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:.9rem 1rem 1rem;display:flex;flex-direction:column;gap:.5rem;}
+  .fw .top{display:flex;align-items:baseline;gap:.5rem;}
+  .fw .fwidx{font-family:var(--mono);font-size:.6rem;color:#fff;background:var(--accent);padding:.08rem .3rem;border-radius:4px;font-weight:700;}
+  .fw .nm{font-weight:700;font-size:.98rem;}
+  .fw .purpose{font-size:.79rem;color:var(--muted);line-height:1.5;}
+  .fw .mlab{font-family:var(--mono);font-size:.56rem;letter-spacing:.06em;color:var(--faint);text-transform:uppercase;margin-top:.1rem;}
+  .fw .when{font-size:.72rem;color:var(--muted);margin-top:.05rem;} .fw .when b{color:var(--navy);font-weight:700;}
+  .fw-flow.sm .fw-step{padding:.18rem .42rem;font-size:.71rem;} .fw-flow.sm .fw-step .k{width:.95rem;height:.95rem;font-size:.54rem;}
+  .fwnote{background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 24%,transparent);border-radius:12px;padding:1rem 1.2rem;margin-top:1.3rem;}
+  .fwnote h4{margin:0 0 .4rem;font-size:.9rem;color:var(--accent);display:flex;gap:.5rem;align-items:center;}
+  .fwnote p{margin:.28rem 0;font-size:.84rem;color:var(--ink);} .fwnote code{font-family:var(--mono);font-size:.82em;background:var(--panel);padding:.03rem .3rem;border-radius:4px;border:1px solid var(--line);}
+
+  .footer{color:var(--faint);font-family:var(--mono);font-size:.72rem;margin-top:2.4rem;text-align:center;}
+  .callout-note{background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 26%,transparent);border-radius:12px;padding:1.05rem 1.25rem;margin-top:1.2rem;}
+  .callout-note h4{margin:0 0 .35rem;font-size:.92rem;color:var(--accent);display:flex;align-items:center;gap:.5rem;}
+  .callout-note p{margin:.28rem 0;font-size:.88rem;color:var(--ink);}
+</style>
+
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow"><span class="bars"><i></i><i></i></span> The Academy · Course Slide Templates</div>
+    <h1>コース用スライド型テンプレ集</h1>
+    <p class="lede">レッスンの内容を「型」に流し込んで、コース全体で一貫したスライドを生成するための<b>ページ型カタログ</b>。コースの流れ（コース全体 → 導入 → 本編 → 定着・締め）の4フェーズで、28の型を用意した。本編（C）は IT・ビジネス・語学 の教材に合わせ、画像解説・UI操作・コード・例文対訳・会話などを網羅。さらに本編は<b>「思考の流れ＝フレームワーク」12種</b>（C+セクション）で、型を並べる順番ごと組み立てられる。中身の可視化は別紙<b>パターンライブラリ</b>（グラフ・図解）を各型のコンテンツゾーンに差し込む。</p>
+    <div class="meta">
+      <span><b>版</b> v0.4（本編を大幅拡張・全28型）</span>
+      <span><b>基盤</b> slide-generator ＋ Brand 2026</span>
+      <span><b>領域</b> IT ／ ビジネス ／ 語学</span>
+      <span><b>実装フォント</b> ヒラギノ角ゴ ProN ＋ Graphik（latin）</span>
+    </div>
+  </header>
+
+  <hr class="rule">
+
+  <!-- ===== brand ===== -->
+  <section>
+    <h2 class="sec"><span class="n">00</span> ブランド適用<span class="ct">Brand Mapping</span></h2>
+    <div class="brand-grid">
+      <div>
+        <div class="swatches">
+          <div class="sw"><span class="chip" style="background:#0141D4"></span><span><div class="role">PRIMARY</div><div class="hex">#0141D4 · 主色/見出し/章扉</div></span></div>
+          <div class="sw"><span class="chip" style="background:#005BA3"></span><span><div class="role">SECONDARY</div><div class="hex">#005BA3 / #012270 · 構造</div></span></div>
+          <div class="sw"><span class="chip" style="background:#3E78FE"></span><span><div class="role">HIGHLIGHT</div><div class="hex">#3E78FE · 学習アクセント</div></span></div>
+          <div class="sw"><span class="chip" style="background:#27AE60"></span><span><div class="role">SUCCESS</div><div class="hex">#27AE60 · 正解/完了</div></span></div>
+          <div class="sw"><span class="chip" style="background:#F76B38"></span><span><div class="role">WARN/CTA</div><div class="hex">#F76B38 · 注意/行動（点）</div></span></div>
+          <div class="sw"><span class="chip" style="background:#222222"></span><span><div class="role">TEXT/MUTED</div><div class="hex">#222222 / #676688</div></span></div>
+        </div>
+        <p class="sec-note" style="margin-top:.8rem;font-size:.8rem"><b>赤は不使用</b>（「悪い例」はニュートラル#676688）。アクセントは1画面1〜2色。オレンジ面に白文字を載せない。</p>
+      </div>
+      <div class="zonebox">
+        <h4><span class="bars"><i></i><i></i></span> 確定した仕様</h4>
+        <ul>
+          <li>章扉（モジュール扉）の全面色 ＝ <b>Primary Blue #0141D4</b><span class="decided">決定</span></li>
+          <li>実装フォント ＝ 和文 <b>ヒラギノ角ゴ ProN</b>（見出しW6・本文W3）／latin <b>Graphik</b>。配布時は <code>Noto Sans JP + Inter</code> に自動フォールバック<span class="decided">決定</span></li>
+          <li>固定仕様（サイズ 25.40×14.29cm・ゾーン <code>y3.0–12.8</code>・見出し帯・ページ番号）は不変。<b>色と書体のみ</b>差し替え</li>
+          <li>CONFIDENTIAL は非表示／公式 The Academy ロゴを配置（自作しない）</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ===== phases ===== -->
+  <section>
+    <h2 class="sec"><span class="n">流</span> レッスンのリズム<span class="ct">4 PHASES</span></h2>
+    <p class="sec-note">型は「並べる順番」で意味を持つ。1レッスンは <b>導入 → 本編 → 定着・締め</b> を基本の骨格にし、コース全体は最初に <b>コース全体</b> の型で枠を示す。本編（C）の型は内容に応じて選び・増減する。</p>
+    <div class="phases">
+      <div class="phase"><div class="k">PHASE A</div><div class="t">コース全体</div><div class="d">コースの入口と地図。表紙・カリキュラム・チャプター扉。</div></div>
+      <div class="phase"><div class="k">PHASE B</div><div class="t">導入（Open）</div><div class="d">この回への引き込み。表紙・目標・動機づけ・前提。</div></div>
+      <div class="phase"><div class="k">PHASE C</div><div class="t">本編（Teach）</div><div class="d">中身を教える。概念・手順・例・比較・データ・図解…。</div></div>
+      <div class="phase"><div class="k">PHASE D</div><div class="t">定着・締め（Close）</div><div class="d">手を動かし、確認し、次へ。演習・チェック・まとめ・CTA。</div></div>
+    </div>
+    <p class="sec-note" style="margin-top:.9rem;font-size:.8rem">content.txt は各型とも <code>【セクションラベル】【タイトル】【…】</code> の同じ記法で書き、<code>slides-gen</code> が型を判定して割り当てる。各カードの「スロット」がその型の可変項目。</p>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ================= PHASE A ================= -->
+  <h2 class="sec"><span class="n">A</span> コース全体<span class="ct">COURSE · 3</span></h2>
+  <div class="lib">
+
+    <div class="pat"><div class="mini blue"><div class="cv">
+      <div class="wm"><span class="bw"><i></i><i></i></span> THE ACADEMY</div>
+      <div class="ct" style="margin-top:auto">実務で使える<br>AI活用 実践コース</div>
+      <div class="cs">明日から使える生成AIの型を、8レッスンで。</div>
+    </div></div><div class="pbody">
+      <div class="pname"><span class="idx">A1</span>コース表紙</div><div class="pen">Course Cover</div>
+      <div class="puse">コース全体の顔。コース名・キャッチ・対象者を示す。LP/サムネと世界観を揃える。</div>
+      <div class="pslot"><b>Slots</b>コース名／キャッチ／対象・所要／ロゴ</div>
+      <div class="ptag done"><span class="dot"></span>実装済み pages.course_cover</div>
+    </div></div>
+
+    <div class="pat"><div class="mini">
+      <div class="mtag">—</div>
+      <div class="meyebrow">CURRICULUM ／ 全体像</div>
+      <div class="mtitle">8レッスンの地図</div><div class="mbar"></div>
+      <div class="mbd" style="display:flex;flex-direction:column;gap:8%">
+        <div class="row"><span class="num" style="width:1.5em;height:1.5em">1</span><span class="ln" style="flex:1"></span></div>
+        <div class="row"><span class="num" style="width:1.5em;height:1.5em">2</span><span class="ln" style="flex:1;width:80%"></span></div>
+        <div class="row"><span class="num" style="width:1.5em;height:1.5em">3</span><span class="ln" style="flex:1;width:90%"></span></div>
+        <div class="row"><span class="num" style="width:1.5em;height:1.5em">4</span><span class="ln" style="flex:1;width:70%"></span></div>
+      </div>
+    </div><div class="pbody">
+      <div class="pname"><span class="idx">A2</span>カリキュラム／目次</div><div class="pen">Curriculum</div>
+      <div class="puse">コースの全レッスンを一覧で示し、現在地と道のりを見せる。各回冒頭で再掲も可。</div>
+      <div class="pslot"><b>Slots</b>レッスン名リスト／各回の一言／所要</div>
+      <div class="ptag done"><span class="dot"></span>実装済み pages.curriculum</div>
+    </div></div>
+
+    <div class="pat"><div class="mini blue"><div class="cv">
+      <div class="ls" style="margin-top:0">CHAPTER 02</div>
+      <div class="ct" style="margin-top:.2em">プロンプトの基礎</div>
+      <div class="cs">AIに“伝わる”指示の作り方を学ぶ。</div>
+    </div><div class="mtag" style="background:rgba(255,255,255,.15)">2</div></div><div class="pbody">
+      <div class="pname"><span class="idx">A3</span>チャプター扉</div><div class="pen">Chapter Divider</div>
+      <div class="puse">チャプター（章）の区切り。全面Primary Blueで「ここから新しい単元」を示す。</div>
+      <div class="pslot"><b>Slots</b>チャプター番号／タイトル／サブ</div>
+      <div class="ptag done"><span class="dot"></span>実装済み pages.chapter_cover</div>
+    </div></div>
+
+  </div>
+
+  <hr class="rule">
+
+  <!-- ================= PHASE B ================= -->
+  <h2 class="sec"><span class="n">B</span> 導入<span class="ct">OPEN · 4</span></h2>
+  <div class="lib">
+
+    <div class="pat"><div class="mini blue"><div class="cv">
+      <div class="wm"><span class="bw"><i></i><i></i></span> THE ACADEMY</div>
+      <div class="ls" style="margin-top:auto">LESSON 03</div>
+      <div class="ct" style="margin-top:.15em">プロンプト設計の基本</div>
+      <div class="badge">所要 約12分</div>
+    </div></div><div class="pbody">
+      <div class="pname"><span class="idx">B1</span>レッスン表紙</div><div class="pen">Lesson Cover</div>
+      <div class="puse">各レッスンの入口。章番号・タイトル・所要時間で「この回が始まる」切り替え。</div>
+      <div class="pslot"><b>Slots</b>LESSON番号／タイトル／ねらい／所要</div>
+      <div class="ptag done"><span class="dot"></span>実装済み pages.lesson_cover</div>
+    </div></div>
+
+    <div class="pat"><div class="mini">
+      <div class="mtag">2</div>
+      <div class="meyebrow">OBJECTIVES ／ 到達目標</div>
+      <div class="mtitle">終わったら、こう出来る</div><div class="mbar"></div>
+      <div class="mbd" style="display:flex;flex-direction:column;gap:7%">
+        <div class="row"><span class="num">1</span><span class="ln" style="flex:1"></span></div>
+        <div class="row"><span class="num">2</span><span class="ln" style="flex:1;width:85%"></span></div>
+        <div class="row"><span class="num">3</span><span class="ln" style="flex:1;width:75%"></span></div>
+      </div>
+    </div><div class="pbody">
+      <div class="pname"><span class="idx">B2</span>学習目標</div><div class="pen">Objectives</div>
+      <div class="puse">この回で「出来るようになること」を先に宣言。まとめ・チェックと1対1に対応させる。</div>
+      <div class="pslot"><b>Slots</b>到達目標3〜4（動詞終わり）／リード</div>
+      <div class="ptag done"><span class="dot"></span>実装済み pages.objectives</div>
+    </div></div>
+
+    <div class="pat"><div class="mini">
+      <div class="mtag">3</div>
+      <div class="meyebrow">WHY ／ こんな経験は？</div>
+      <div class="mtitle">なぜAIの回答はブレる？</div><div class="mbar"></div>
+      <div class="mbd">
+        <div class="callout o">「同じ質問なのに毎回ちがう答え」——その原因は指示にある。</div>
+        <div class="row" style="margin-top:6%;gap:4%"><span class="box n" style="flex:1;height:2.4em">Before</span></div>
+      </div>
+    </div><div class="pbody">
+      <div class="pname"><span class="idx">B3</span>導入・動機づけ</div><div class="pen">Hook</div>
+      <div class="puse">問い・あるある・数字で心をつかむ。「自分ごと」にして本編への必要性を作る。</div>
+      <div class="pslot"><b>Slots</b>問い/シナリオ／共感の一文／転換</div>
+      <div class="ptag done"><span class="dot"></span>実装済み pages.motivation</div>
+    </div></div>
+
+    <div class="pat"><div class="mini">
+      <div class="mtag">4</div>
+      <div class="meyebrow">PREREQ ／ 前提・用語</div>
+      <div class="mtitle">この回で使う言葉</div><div class="mbar"></div>
+      <div class="mbd" style="display:flex;flex-direction:column;gap:6%">
+        <div class="row" style="gap:4%"><span class="box lp" style="width:30%;height:1.8em">用語A</span><span class="ln" style="flex:1"></span></div>
+        <div class="row" style="gap:4%"><span class="box lp" style="width:30%;height:1.8em">用語B</span><span class="ln" style="flex:1;width:80%"></span></div>
+        <div class="row" style="gap:4%"><span class="box lp" style="width:30%;height:1.8em">用語C</span><span class="ln" style="flex:1;width:90%"></span></div>
+      </div>
+    </div><div class="pbody">
+      <div class="pname"><span class="idx">B4</span>前提知識・用語</div><div class="pen">Prerequisites</div>
+      <div class="puse">つまずきを防ぐため、前提や専門用語を先に定義。用語＝定義の2カラムで整列。</div>
+      <div class="pslot"><b>Slots</b>用語×定義のペア／前提スキル</div>
+      <div class="ptag done"><span class="dot"></span>実装済み pages.prerequisites</div>
+    </div></div>
+
+  </div>
+
+  <hr class="rule">
+
+  <!-- ================= PHASE C ================= -->
+  <h2 class="sec"><span class="n">C</span> 本編<span class="ct">TEACH · 15</span></h2>
+  <p class="sec-note">内容の「型」に応じて選ぶ。共通の説明型に加え、<b>IT・ビジネス・語学</b>のドメイン別型を用意。どの型もコンテンツゾーンに<b>パターンライブラリの図</b>や<b>画像・コード</b>を差し込む。</p>
+  <div class="lib">
+
+    <div class="subhead">説明の基本型 <span>どの領域でも使う</span></div>
+
+    <div class="pat"><div class="mini">
+      <div class="mtag">5</div>
+      <div class="meyebrow">CONCEPT ／ 概念</div>
+      <div class="mtitle">3つの部品でできている</div><div class="mbar"></div>
+      <div class="mbd">
+        <div class="callout">定義：プロンプト＝指示＋文脈＋出力形式。</div>
+        <div class="row" style="margin-top:6%;gap:0;align-items:center"><span class="box" style="flex:1;height:2em">指示</span><span class="ar" style="width:10%">＋</span><span class="box" style="flex:1;height:2em">文脈</span><span class="ar" style="width:10%">→</span><span class="box lp" style="flex:1;height:2em">安定</span></div>
+      </div>
+    </div><div class="pbody">
+      <div class="pname"><span class="idx">C1</span>概念解説</div><div class="pen">Concept</div>
+      <div class="puse">中核概念を「定義＋図解」で。文章の箇条書きにせず、構造は箱＋線で見せる。</div>
+      <div class="pslot"><b>Slots</b>結論文／定義callout／図解（構成要素）</div>
+      <div class="ptag done"><span class="dot"></span>実装済み pages.concept</div>
+    </div></div>
+
+    <div class="pat"><div class="mini">
+      <div class="mtag">6</div>
+      <div class="meyebrow">HOW-TO ／ 手順</div>
+      <div class="mtitle">3ステップでやる</div><div class="mbar"></div>
+      <div class="mbd" style="display:flex;flex-direction:column;gap:6%">
+        <div class="row" style="gap:3%"><span class="box p" style="width:1.8em;height:1.8em">1</span><span class="ln" style="flex:1"></span></div>
+        <div class="row" style="gap:3%"><span class="box p2" style="width:1.8em;height:1.8em">2</span><span class="ln" style="flex:1;width:80%"></span></div>
+        <div class="row" style="gap:3%"><span class="box lp" style="width:1.8em;height:1.8em">3</span><span class="ln" style="flex:1;width:88%"></span></div>
+      </div>
+    </div><div class="pbody">
+      <div class="pname"><span class="idx">C2</span>手順・ステップ</div><div class="pen">How-to</div>
+      <div class="puse">やり方を順序立てて示す。番号付きステップ＋各手順の一言。フロー縦/横も使える。</div>
+      <div class="pslot"><b>Slots</b>ステップ×3〜5（動詞＋補足）</div>
+      <div class="ptag done"><span class="dot"></span>実装済み pages.steps_page</div>
+    </div></div>
+
+    <div class="pat"><div class="mini">
+      <div class="mtag">7</div>
+      <div class="meyebrow">EXAMPLE ／ 具体例</div>
+      <div class="mtitle">3要素を足すと変わる</div><div class="mbar"></div>
+      <div class="mbd"><div class="grid2">
+        <div class="box n" style="height:3.4em;flex-direction:column">Before</div>
+        <div class="box g" style="height:3.4em;flex-direction:column">After</div>
+      </div><div class="callout" style="margin-top:5%">足したのは文脈と出力形式だけ。</div></div>
+    </div><div class="pbody">
+      <div class="pname"><span class="idx">C3</span>具体例・ケース</div><div class="pen">Example</div>
+      <div class="puse">抽象を具体で固定。Before→After（グレー→ブルー）で改善を色で伝える。</div>
+      <div class="pslot"><b>Slots</b>改善前／改善後／差分の要点</div>
+      <div class="ptag done"><span class="dot"></span>実装済み pages.example</div>
+    </div></div>
+
+    <div class="pat"><div class="mini">
+      <div class="mtag">8</div>
+      <div class="meyebrow">COMPARE ／ 比較・選択</div>
+      <div class="mtitle">どれを使うべき？</div><div class="mbar"></div>
+      <div class="mbd"><div style="border:1px solid var(--bborder);border-radius:4px;overflow:hidden;font-size:.85em">
+        <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr;background:var(--c1);color:#fff"><div style="padding:4% 6%">観点</div><div style="padding:4%">A</div><div style="padding:4%">B</div></div>
+        <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr;border-top:1px solid var(--bborder)"><div style="padding:4% 6%;color:var(--bmuted)">速さ</div><div style="padding:4%">◯</div><div style="padding:4%">△</div></div>
+        <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr;border-top:1px solid var(--bborder);background:var(--bsurface)"><div style="padding:4% 6%;color:var(--bmuted)">精度</div><div style="padding:4%">△</div><div style="padding:4%">◯</div></div>
+      </div></div>
+    </div><div class="pbody">
+      <div class="pname"><span class="idx">C4</span>比較・選択</div><div class="pen">Comparison</div>
+      <div class="puse">選択肢を観点で比べ、判断を助ける。比較表またはマトリクス（2軸4象限）で。</div>
+      <div class="pslot"><b>Slots</b>観点×選択肢の評価／推奨</div>
+      <div class="ptag done"><span class="dot"></span>実装済み pages.comparison</div>
+    </div></div>
+
+    <div class="pat"><div class="mini">
+      <div class="mtag">9</div>
+      <div class="meyebrow">EVIDENCE ／ データ</div>
+      <div class="mtitle">数字で見ると</div><div class="mbar"></div>
+      <div class="mbd" style="display:flex;align-items:flex-end;gap:8%;height:52%">
+        <span style="width:18%;height:40%;background:#9A9AB2;border-radius:2px 2px 0 0"></span>
+        <span style="width:18%;height:78%;background:var(--c1);border-radius:2px 2px 0 0"></span>
+        <span style="width:18%;height:55%;background:#9A9AB2;border-radius:2px 2px 0 0"></span>
+        <span style="width:18%;height:92%;background:var(--c1);border-radius:2px 2px 0 0"></span>
+      </div>
+    </div><div class="pbody">
+      <div class="pname"><span class="idx">C5</span>データ・エビデンス</div><div class="pen">Data</div>
+      <div class="puse">主張を数字で裏づける。グラフ＋リード文＋KPIカードで「どれだけ変わるか」を示す。</div>
+      <div class="pslot"><b>Slots</b>グラフ（棒/折れ線/円）／KPI／結論</div>
+      <div class="ptag done"><span class="dot"></span>実装済み pages.data</div>
+    </div></div>
+
+    <div class="pat"><div class="mini">
+      <div class="mtag">10</div>
+      <div class="meyebrow">STRUCTURE ／ 構造</div>
+      <div class="mtitle">全体の関係を図に</div><div class="mbar"></div>
+      <div class="mbd" style="display:flex;flex-direction:column;align-items:center;gap:4%">
+        <span class="box p" style="width:42%;height:1.5em"></span>
+        <span class="box p2" style="width:66%;height:1.5em"></span>
+        <span class="box lp" style="width:88%;height:1.5em"></span>
+      </div>
+    </div><div class="pbody">
+      <div class="pname"><span class="idx">C6</span>構造・関係図</div><div class="pen">Structure</div>
+      <div class="puse">要素の階層・関係を図解。ピラミッド・ツリー・相関図・レイヤー等から内容に合わせて選ぶ。</div>
+      <div class="pslot"><b>Slots</b>要素とその関係（階層/接続）</div>
+      <div class="ptag done"><span class="dot"></span>実装済み pages.structure</div>
+    </div></div>
+
+    <div class="pat"><div class="mini">
+      <div class="mtag">11</div>
+      <div class="meyebrow">PITFALL ／ よくある失敗</div>
+      <div class="mtitle">つまずきポイント</div><div class="mbar"></div>
+      <div class="mbd" style="display:flex;flex-direction:column;gap:6%">
+        <div class="callout o">やりがちな失敗を先回りで潰す。</div>
+        <div class="row" style="gap:3%"><span class="box warn" style="width:1.6em;height:1.6em">✕</span><span class="ln" style="flex:1"></span></div>
+        <div class="row" style="gap:3%"><span class="box warn" style="width:1.6em;height:1.6em">✕</span><span class="ln" style="flex:1;width:80%"></span></div>
+      </div>
+    </div><div class="pbody">
+      <div class="pname"><span class="idx">C7</span>よくある失敗・注意</div><div class="pen">Pitfalls</div>
+      <div class="puse">典型的なミスと回避策を対で示す。脅しにならないよう「こうすれば大丈夫」を添える。</div>
+      <div class="pslot"><b>Slots</b>失敗×対策のペア／注意点</div>
+      <div class="ptag done"><span class="dot"></span>実装済み pages.pitfalls</div>
+    </div></div>
+
+    <div class="pat"><div class="mini">
+      <div class="mtag">12</div>
+      <div class="meyebrow">VISUAL ／ 画像で説明</div>
+      <div class="mtitle">図・写真で見せる</div><div class="mbar"></div>
+      <div class="mbd" style="display:flex;gap:5%;align-items:stretch">
+        <div style="width:44%;background:#EDEFF5;border:1px solid var(--bborder);border-radius:5px;display:grid;place-items:center;min-height:3.6em">
+          <svg width="62%" viewBox="0 0 24 16"><rect width="24" height="16" rx="1.5" fill="#D6DEF7"/><circle cx="7" cy="6" r="2.2" fill="#fff"/><path d="M2 14 L9 8 L14 12 L19 6 L22 14 Z" fill="#8BAEE8"/></svg>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:16%;justify-content:center">
+          <span class="ln"></span><span class="ln" style="width:85%"></span><span class="ln" style="width:68%"></span>
+        </div>
+      </div>
+    </div><div class="pbody">
+      <div class="pname"><span class="idx">C8</span>画像・図版＋解説<span class="dchip base">共通</span></div><div class="pen">Image + Explanation</div>
+      <div class="puse">写真・スクショ・図版を貼り、横に要点解説。実物や事例を見せて理解を早める。</div>
+      <div class="pslot"><b>Slots</b>画像／見出し／解説の箇条書き／キャプション</div>
+      <div class="ptag done"><span class="dot"></span>実装済み pages.image_explain</div>
+    </div></div>
+
+    <div class="pat"><div class="mini">
+      <div class="mtag">13</div>
+      <div class="meyebrow">UI ／ 画面操作</div>
+      <div class="mtitle">ここをクリック</div><div class="mbar"></div>
+      <div class="mbd"><div style="border:1px solid var(--bborder);border-radius:5px;overflow:hidden">
+        <div style="background:#EDEFF5;display:flex;gap:3px;padding:3% 4%;align-items:center"><span style="width:5px;height:5px;border-radius:50%;background:#C7CEE8"></span><span style="width:5px;height:5px;border-radius:50%;background:#C7CEE8"></span><span style="flex:1;height:6px;background:#fff;border-radius:3px;margin-left:5%"></span></div>
+        <div style="position:relative;height:3.4em;background:#fff;padding:6% 6% 0"><span class="ln" style="width:55%"></span>
+          <span style="position:absolute;left:16%;top:42%;width:1.4em;height:1.4em;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-size:.85em;font-weight:700">1</span>
+          <span style="position:absolute;left:64%;top:58%;width:1.4em;height:1.4em;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-size:.85em;font-weight:700">2</span>
+        </div>
+      </div></div>
+    </div><div class="pbody">
+      <div class="pname"><span class="idx">C9</span>画面操作・UIガイド<span class="dchip it">IT</span></div><div class="pen">UI Walkthrough</div>
+      <div class="puse">スクショに番号ピン・矢印を重ね「どこを押すか」を示す。ツール/Web操作の手順に。</div>
+      <div class="pslot"><b>Slots</b>スクショ／番号ピン×操作説明／順序</div>
+      <div class="ptag done"><span class="dot"></span>実装済み pages.ui_guide</div>
+    </div></div>
+
+    <div class="subhead">IT向け <span>プログラミング・ツール</span></div>
+
+    <div class="pat"><div class="mini">
+      <div class="mtag">14</div>
+      <div class="meyebrow">CODE ／ コード解説</div>
+      <div class="mtitle">コードを読み解く</div><div class="mbar"></div>
+      <div class="mbd"><div style="background:#0E1430;border-radius:5px;padding:5% 6%;font-family:var(--mono);font-size:.82em;line-height:1.75;color:#E5EAFA">
+        <div><span style="color:#7FA8FF">def</span> <span style="color:#8BE9C0">greet</span>(name):</div>
+        <div style="padding-left:1.1em;background:rgba(1,65,212,.18);border-radius:2px;margin:0 -6%;padding-right:6%;padding-left:calc(6% + 1.1em)"><span style="color:#E8A87C">print</span>(<span style="color:#C7E88B">f"Hi {name}"</span>)</div>
+        <div style="color:#8891C4">↑ ここで挨拶を出力</div>
+      </div></div>
+    </div><div class="pbody">
+      <div class="pname"><span class="idx">C10</span>コード解説<span class="dchip it">IT</span></div><div class="pen">Code Explanation</div>
+      <div class="puse">コード/コマンドを等幅ブロックで示し、行ハイライト＋注釈で「どこが何をするか」を説明。ターミナル出力にも使える。</div>
+      <div class="pslot"><b>Slots</b>コード／強調行／行注釈／実行結果</div>
+      <div class="ptag done"><span class="dot"></span>実装済み pages.code_explain</div>
+    </div></div>
+
+    <div class="subhead">語学向け <span>英語・ビジネス会話</span></div>
+
+    <div class="pat"><div class="mini">
+      <div class="mtag">15</div>
+      <div class="meyebrow">PHRASE ／ 例文・対訳</div>
+      <div class="mtitle">使えるフレーズ</div><div class="mbar"></div>
+      <div class="mbd" style="display:flex;flex-direction:column;gap:6%">
+        <div style="font-size:1.15em;font-weight:700;color:#161A2E">Could you say that again?</div>
+        <div style="color:var(--bmuted);font-size:.98em">もう一度言っていただけますか？</div>
+        <div class="callout" style="font-size:.82em">丁寧な依頼。Could you 〜? で柔らかく。</div>
+      </div>
+    </div><div class="pbody">
+      <div class="pname"><span class="idx">C11</span>例文・対訳<span class="dchip lang">語学</span></div><div class="pen">Example &amp; Translation</div>
+      <div class="puse">原文（大）＋対訳（淡）＋ワンポイント注釈。フレーズや例文を印象的に見せる。</div>
+      <div class="pslot"><b>Slots</b>原文／訳／発音・ニュアンス注</div>
+      <div class="ptag done"><span class="dot"></span>実装済み pages.parallel_text</div>
+    </div></div>
+
+    <div class="pat"><div class="mini">
+      <div class="mtag">16</div>
+      <div class="meyebrow">DIALOGUE ／ 会話</div>
+      <div class="mtitle">やりとりで学ぶ</div><div class="mbar"></div>
+      <div class="mbd" style="display:flex;flex-direction:column;gap:7%">
+        <div style="display:flex;gap:4%;align-items:flex-start"><span class="num" style="background:var(--c1);width:1.5em;height:1.5em">A</span><span style="background:var(--p-light);border:1px solid var(--c2);border-radius:9px;padding:3% 5%;flex:1;color:#161A2E;font-size:.9em">How's it going?</span></div>
+        <div style="display:flex;gap:4%;align-items:flex-start;flex-direction:row-reverse"><span class="num" style="background:#8C97BC;width:1.5em;height:1.5em">B</span><span style="background:#EEF1F8;border:1px solid #8C97BC;border-radius:6px;padding:3% 5%;flex:1;color:#161A2E;font-size:.9em;text-align:right">Pretty good!</span></div>
+      </div>
+    </div><div class="pbody">
+      <div class="pname"><span class="idx">C12</span>会話・ダイアログ<span class="dchip lang">語学</span></div><div class="pen">Dialogue</div>
+      <div class="puse">A/Bの吹き出しで会話を再現。ロールプレイ・場面別フレーズの提示に。</div>
+      <div class="pslot"><b>Slots</b>話者A/Bの発話／場面／訳</div>
+      <div class="ptag done"><span class="dot"></span>実装済み pages.dialog</div>
+    </div></div>
+
+    <div class="pat"><div class="mini">
+      <div class="mtag">17</div>
+      <div class="meyebrow">GRAMMAR ／ 構文</div>
+      <div class="mtitle">この型で作る</div><div class="mbar"></div>
+      <div class="mbd">
+        <div style="display:flex;gap:3%;align-items:center;justify-content:center;margin-top:6%">
+          <span class="box lp" style="flex:1;height:1.9em">主語</span><span class="ar">+</span><span class="box p" style="flex:1;height:1.9em">動詞</span><span class="ar">+</span><span class="box lp" style="flex:1;height:1.9em">目的語</span>
+        </div>
+        <div class="callout" style="margin-top:7%;font-size:.82em">例：I / like / coffee.</div>
+      </div>
+    </div><div class="pbody">
+      <div class="pname"><span class="idx">C13</span>文法・構文パターン<span class="dchip lang">語学</span></div><div class="pen">Grammar Pattern</div>
+      <div class="puse">構文を「部品の並び」で図示し、例文で確認。文法ルールを視覚的に。</div>
+      <div class="pslot"><b>Slots</b>構文パターン（部品）／例文／注意</div>
+      <div class="ptag done"><span class="dot"></span>実装済み pages.grammar</div>
+    </div></div>
+
+    <div class="pat"><div class="mini">
+      <div class="mtag">18</div>
+      <div class="meyebrow">VOCAB ／ 語彙・用語</div>
+      <div class="mtitle">覚える言葉</div><div class="mbar"></div>
+      <div class="mbd"><div style="border:1px solid var(--bborder);border-radius:4px;overflow:hidden;font-size:.82em">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1.3fr;background:var(--c1);color:#fff"><div style="padding:3% 5%">語</div><div style="padding:3%">読み/品詞</div><div style="padding:3%">意味</div></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1.3fr;border-top:1px solid var(--bborder)"><div style="padding:3% 5%">deploy</div><div style="padding:3%;color:var(--bmuted)">v.</div><div style="padding:3%;color:var(--bmuted)">配備する</div></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1.3fr;border-top:1px solid var(--bborder);background:var(--bsurface)"><div style="padding:3% 5%">invoice</div><div style="padding:3%;color:var(--bmuted)">n.</div><div style="padding:3%;color:var(--bmuted)">請求書</div></div>
+      </div></div>
+    </div><div class="pbody">
+      <div class="pname"><span class="idx">C14</span>語彙・用語リスト<span class="dchip lang">語学 / IT</span></div><div class="pen">Vocabulary / Glossary</div>
+      <div class="puse">単語・専門用語を「語×読み/品詞×意味」の表で整理。語学の単語帳・IT用語集に。</div>
+      <div class="pslot"><b>Slots</b>語／読み・品詞／意味・例</div>
+      <div class="ptag done"><span class="dot"></span>実装済み pages.vocabulary</div>
+    </div></div>
+
+    <div class="subhead">ビジネス向け <span>実務・フレームワーク</span></div>
+
+    <div class="pat"><div class="mini">
+      <div class="mtag">19</div>
+      <div class="meyebrow">TEMPLATE ／ 書式・雛形</div>
+      <div class="mtitle">そのまま使える型</div><div class="mbar"></div>
+      <div class="mbd"><div style="border:1px solid var(--bborder);border-radius:5px;padding:7% 6%;background:#fff">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span class="box p" style="width:32%;height:1.3em"></span><span class="ln" style="width:24%"></span></div>
+        <div style="height:1px;background:var(--bborder);margin:7% 0"></div>
+        <span class="ln" style="display:block"></span><span class="ln" style="display:block;width:88%;margin-top:6%"></span><span class="ln" style="display:block;width:60%;margin-top:6%"></span>
+      </div></div>
+    </div><div class="pbody">
+      <div class="pname"><span class="idx">C15</span>テンプレート・書式<span class="dchip biz">ビジネス</span></div><div class="pen">Template Showcase</div>
+      <div class="puse">メール・提案書・議事録などの雛形を提示し、埋める箇所を示す。実務にそのまま転用。</div>
+      <div class="pslot"><b>Slots</b>書式サンプル／記入ポイント／使い所</div>
+      <div class="ptag done"><span class="dot"></span>実装済み pages.format_template</div>
+    </div></div>
+
+  </div>
+
+  <hr class="rule">
+
+  <!-- ================= 本編フレームワーク ================= -->
+  <h2 class="sec"><span class="n">C+</span> 本編フレームワーク<span class="ct">TEACH FLOWS · 12</span></h2>
+  <p class="sec-note"><b>本編（C）は「思考の流れ」そのもの</b>。上の15型を単体で並べるだけでなく、思考フローの順に組むと1本の本編になる。フローを型化したもの＝<b>フレームワーク</b>で、頭の整理だけでなく<b>スライドの見せ方そのもの</b>になる。<b>青チップ＝主となる型</b>／グレー＝補助。作り手はコース内容に応じて選び・増減する。</p>
+
+  <div class="flag">
+    <p class="goal"><b>例：課題解決フレーム（添付資料の型）</b>　目的：課題の全体像から本質原因を特定し、解決策とその効果を納得感をもって伝える。「思考の流れ＝スライド構成」の代表例。</p>
+    <div class="rowlab">思考の流れ（フレームワーク）</div>
+    <div class="fw-flow">
+      <span class="fw-step acc"><span class="k">1</span>現状把握</span><span class="fw-arr">▸</span>
+      <span class="fw-step"><span class="k">2</span>課題の分解</span><span class="fw-arr">▸</span>
+      <span class="fw-step"><span class="k">3</span>原因の深掘り</span><span class="fw-arr">▸</span>
+      <span class="fw-step"><span class="k">4</span>解決方針の設計</span><span class="fw-arr">▸</span>
+      <span class="fw-step"><span class="k">5</span>Before / After</span><span class="fw-arr">▸</span>
+      <span class="fw-step"><span class="k">6</span>実行</span>
+    </div>
+    <div class="rowlab">スライド構成（既存の型に落とす）</div>
+    <div class="fw-seq">
+      <span class="fw-slide g">レッスン表紙</span><span class="fw-sarr">›</span>
+      <span class="fw-slide">データ／問題提起</span><span class="fw-sarr">›</span>
+      <span class="fw-slide">構造：ロジックツリー</span><span class="fw-sarr">›</span>
+      <span class="fw-slide">構造：なぜなぜ分析</span><span class="fw-sarr">›</span>
+      <span class="fw-slide">比較／解決方針</span><span class="fw-sarr">›</span>
+      <span class="fw-slide">ビフォーアフター</span><span class="fw-sarr">›</span>
+      <span class="fw-slide">手順：実行ステップ</span><span class="fw-sarr">›</span>
+      <span class="fw-slide g">まとめ</span>
+    </div>
+  </div>
+
+  <div class="fwgrid" style="margin-top:1.1rem">
+
+    <div class="fw"><div class="top"><span class="fwidx">TF1</span><span class="nm">課題解決型</span></div>
+      <div class="purpose">課題特定 → 本質原因 → 解決策 → 効果 を論理的に。上の例。</div>
+      <div class="mlab">思考の流れ</div><div class="fw-flow sm"><span class="fw-step acc"><span class="k">1</span>現状</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">2</span>分解</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">3</span>原因</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">4</span>方針</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">5</span>効果</span></div>
+      <div class="mlab">スライド構成</div><div class="fw-seq"><span class="fw-slide">データ</span><span class="fw-sarr">›</span><span class="fw-slide">ロジックツリー</span><span class="fw-sarr">›</span><span class="fw-slide">なぜなぜ</span><span class="fw-sarr">›</span><span class="fw-slide">解決方針</span><span class="fw-sarr">›</span><span class="fw-slide">Before/After</span><span class="fw-sarr">›</span><span class="fw-slide">手順</span></div>
+      <div class="when"><b>場面：</b>業務改善・提案・振り返り</div></div>
+
+    <div class="fw"><div class="top"><span class="fwidx">TF2</span><span class="nm">概念習得型（What→Why→How）<span class="decided">実装済</span></span></div>
+      <div class="purpose">新しい概念を「理解して使える」まで。最も基本の流れ。</div>
+      <div class="mlab">思考の流れ</div><div class="fw-flow sm"><span class="fw-step acc"><span class="k">1</span>概念とは</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">2</span>なぜ重要</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">3</span>構成要素</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">4</span>具体例</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">5</span>誤解</span></div>
+      <div class="mlab">スライド構成</div><div class="fw-seq"><span class="fw-slide">概念解説</span><span class="fw-sarr">›</span><span class="fw-slide g">動機づけ</span><span class="fw-sarr">›</span><span class="fw-slide">構造：要素分解</span><span class="fw-sarr">›</span><span class="fw-slide">具体例</span><span class="fw-sarr">›</span><span class="fw-slide">よくある失敗</span><span class="fw-sarr">›</span><span class="fw-slide g">まとめ</span></div>
+      <div class="when"><b>場面：</b>基礎概念の導入（IT/ビジネス基礎）　<b>実装：</b><code>【本編:概念習得】</code></div></div>
+
+    <div class="fw"><div class="top"><span class="fwidx">TF3</span><span class="nm">手順習得型（How-to）</span></div>
+      <div class="purpose">作業を「自分で再現できる」ように。操作・実務手順に。</div>
+      <div class="mlab">思考の流れ</div><div class="fw-flow sm"><span class="fw-step acc"><span class="k">1</span>全体像</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">2</span>ステップ分解</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">3</span>各詳細</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">4</span>落とし穴</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">5</span>実践</span></div>
+      <div class="mlab">スライド構成</div><div class="fw-seq"><span class="fw-slide">構造：全体フロー</span><span class="fw-sarr">›</span><span class="fw-slide">手順</span><span class="fw-sarr">›</span><span class="fw-slide">画像／UI解説</span><span class="fw-sarr">›</span><span class="fw-slide">よくある失敗</span><span class="fw-sarr">›</span><span class="fw-slide g">ワーク</span></div>
+      <div class="when"><b>場面：</b>ツール操作・実務手順（IT）</div></div>
+
+    <div class="fw"><div class="top"><span class="fwidx">TF4</span><span class="nm">フレームワーク適用型</span></div>
+      <div class="purpose">3C・4P・SWOT等を、走る事例に当てはめて理解を繋ぐ。</div>
+      <div class="mlab">思考の流れ</div><div class="fw-flow sm"><span class="fw-step acc"><span class="k">1</span>フレーム紹介</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">2</span>各要素</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">3</span>事例に適用</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">4</span>示唆</span></div>
+      <div class="mlab">スライド構成</div><div class="fw-seq"><span class="fw-slide">概念：フレーム図</span><span class="fw-sarr">›</span><span class="fw-slide">構造：各要素</span><span class="fw-sarr">›</span><span class="fw-slide">具体例：事例適用</span><span class="fw-sarr">›</span><span class="fw-slide">データ／比較</span><span class="fw-sarr">›</span><span class="fw-slide g">まとめ</span></div>
+      <div class="when"><b>場面：</b>マーケ・戦略分析（走る事例を全編で反復）</div></div>
+
+    <div class="fw"><div class="top"><span class="fwidx">TF5</span><span class="nm">比較・意思決定型</span></div>
+      <div class="purpose">選択肢から最適を選ぶ。評価軸で比べ、推奨と根拠を示す。</div>
+      <div class="mlab">思考の流れ</div><div class="fw-flow sm"><span class="fw-step acc"><span class="k">1</span>論点</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">2</span>選択肢</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">3</span>評価軸で比較</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">4</span>推奨</span></div>
+      <div class="mlab">スライド構成</div><div class="fw-seq"><span class="fw-slide">概念：論点</span><span class="fw-sarr">›</span><span class="fw-slide">比較表</span><span class="fw-sarr">›</span><span class="fw-slide">構造：マトリクス</span><span class="fw-sarr">›</span><span class="fw-slide">データ</span><span class="fw-sarr">›</span><span class="fw-slide g">まとめ：推奨</span></div>
+      <div class="when"><b>場面：</b>ツール選定・方針決定</div></div>
+
+    <div class="fw"><div class="top"><span class="fwidx">TF6</span><span class="nm">データ・示唆型（分析→結論）</span></div>
+      <div class="purpose">データから結論を導く。問い→数字→読み取り→アクション。</div>
+      <div class="mlab">思考の流れ</div><div class="fw-flow sm"><span class="fw-step acc"><span class="k">1</span>問い</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">2</span>データ</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">3</span>読み取り</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">4</span>結論</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">5</span>行動</span></div>
+      <div class="mlab">スライド構成</div><div class="fw-seq"><span class="fw-slide g">動機づけ：問い</span><span class="fw-sarr">›</span><span class="fw-slide">データ：グラフ</span><span class="fw-sarr">›</span><span class="fw-slide">データ＋示唆</span><span class="fw-sarr">›</span><span class="fw-slide g">まとめ</span><span class="fw-sarr">›</span><span class="fw-slide g">次のアクション</span></div>
+      <div class="when"><b>場面：</b>効果測定・レポート・KPI報告</div></div>
+
+    <div class="fw"><div class="top"><span class="fwidx">TF7</span><span class="nm">語学・スキル型</span></div>
+      <div class="purpose">フレーズ・構文を「使える」まで。提示→意味→例文→運用→練習。</div>
+      <div class="mlab">思考の流れ</div><div class="fw-flow sm"><span class="fw-step acc"><span class="k">1</span>フレーズ</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">2</span>意味/構文</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">3</span>例文</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">4</span>会話で運用</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">5</span>練習</span></div>
+      <div class="mlab">スライド構成</div><div class="fw-seq"><span class="fw-slide">例文・対訳</span><span class="fw-sarr">›</span><span class="fw-slide">文法・構文</span><span class="fw-sarr">›</span><span class="fw-slide">具体例</span><span class="fw-sarr">›</span><span class="fw-slide">会話</span><span class="fw-sarr">›</span><span class="fw-slide g">ワーク</span></div>
+      <div class="when"><b>場面：</b>語学・ビジネス会話</div></div>
+
+    <div class="fw"><div class="top"><span class="fwidx">TF8</span><span class="nm">ストーリー・事例型</span></div>
+      <div class="purpose">1事例を物語として追い、追体験から学ばせる。「筋」で見せる。</div>
+      <div class="mlab">思考の流れ</div><div class="fw-flow sm"><span class="fw-step acc"><span class="k">1</span>背景設定</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">2</span>課題に直面</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">3</span>打ち手</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">4</span>結果</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">5</span>教訓</span></div>
+      <div class="mlab">スライド構成</div><div class="fw-seq"><span class="fw-slide">具体例：背景</span><span class="fw-sarr">›</span><span class="fw-slide">よくある失敗：直面</span><span class="fw-sarr">›</span><span class="fw-slide">手順：打ち手</span><span class="fw-sarr">›</span><span class="fw-slide">Before/After：結果</span><span class="fw-sarr">›</span><span class="fw-slide g">まとめ：教訓</span></div>
+      <div class="when"><b>場面：</b>成功／失敗事例・導入ストーリー・体験談</div></div>
+
+    <div class="fw"><div class="top"><span class="fwidx">TF9</span><span class="nm">原則・ルール型</span></div>
+      <div class="purpose">守るべき原則を提示し、理由と適用例、DO/DON'Tで定着。</div>
+      <div class="mlab">思考の流れ</div><div class="fw-flow sm"><span class="fw-step acc"><span class="k">1</span>原則を提示</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">2</span>各原則の理由</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">3</span>適用例</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">4</span>DO&amp;DON'T</span></div>
+      <div class="mlab">スライド構成</div><div class="fw-seq"><span class="fw-slide">概念：原則リスト</span><span class="fw-sarr">›</span><span class="fw-slide">構造：各原則</span><span class="fw-sarr">›</span><span class="fw-slide">具体例：適用</span><span class="fw-sarr">›</span><span class="fw-slide">よくある失敗：DO/DON'T</span><span class="fw-sarr">›</span><span class="fw-slide g">まとめ</span></div>
+      <div class="when"><b>場面：</b>ガイドライン・規約・作法・品質基準</div></div>
+
+    <div class="fw"><div class="top"><span class="fwidx">TF10</span><span class="nm">判断フロー型（選び方・トラブル対処）</span></div>
+      <div class="purpose">「こういう時はこうする」を条件分岐で。状況→判断→対処。</div>
+      <div class="mlab">思考の流れ</div><div class="fw-flow sm"><span class="fw-step acc"><span class="k">1</span>状況の分類</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">2</span>条件で分岐</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">3</span>判断</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">4</span>対処</span></div>
+      <div class="mlab">スライド構成</div><div class="fw-seq"><span class="fw-slide">概念：判断軸</span><span class="fw-sarr">›</span><span class="fw-slide">構造：判断フロー</span><span class="fw-sarr">›</span><span class="fw-slide">具体例</span><span class="fw-sarr">›</span><span class="fw-slide">手順：対処</span><span class="fw-sarr">›</span><span class="fw-slide g">まとめ</span></div>
+      <div class="when"><b>場面：</b>トラブルシュート・選び方・if-then の判断基準</div></div>
+
+    <div class="fw"><div class="top"><span class="fwidx">TF11</span><span class="nm">時系列・変遷型（歴史・ロードマップ）</span></div>
+      <div class="purpose">過去から未来への流れで文脈を与える。「なぜ今そうか」を時間軸で。</div>
+      <div class="mlab">思考の流れ</div><div class="fw-flow sm"><span class="fw-step acc"><span class="k">1</span>起点</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">2</span>転機</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">3</span>現在</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">4</span>展望</span></div>
+      <div class="mlab">スライド構成</div><div class="fw-seq"><span class="fw-slide">構造：タイムライン</span><span class="fw-sarr">›</span><span class="fw-slide">具体例：転機</span><span class="fw-sarr">›</span><span class="fw-slide">データ：現状</span><span class="fw-sarr">›</span><span class="fw-slide g">まとめ：ロードマップ</span></div>
+      <div class="when"><b>場面：</b>技術・業界の変遷・沿革・今後の見通し</div></div>
+
+    <div class="fw"><div class="top"><span class="fwidx">TF12</span><span class="nm">分類・使い分け型（タクソノミー）</span></div>
+      <div class="purpose">種類を分類軸で整理し、特徴と使い分けを示す。「一覧して選べる」状態に。</div>
+      <div class="mlab">思考の流れ</div><div class="fw-flow sm"><span class="fw-step acc"><span class="k">1</span>全体像</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">2</span>分類軸</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">3</span>各タイプ</span><span class="fw-arr">▸</span><span class="fw-step"><span class="k">4</span>使い分け</span></div>
+      <div class="mlab">スライド構成</div><div class="fw-seq"><span class="fw-slide">概念：全体</span><span class="fw-sarr">›</span><span class="fw-slide">構造：マトリクス／ツリー</span><span class="fw-sarr">›</span><span class="fw-slide">比較：各タイプ</span><span class="fw-sarr">›</span><span class="fw-slide g">まとめ：使い分け</span></div>
+      <div class="when"><b>場面：</b>種類の整理・ツール分類・型の一覧</div></div>
+
+  </div>
+
+  <div class="fwnote">
+    <h4><span class="bars"><i></i><i></i></span> 使い方</h4>
+    <p>フローを指定すると、章扉＋本編を一括生成（例 <code>【本編:概念習得】</code>）。content.txt に材料の見出しを入れるだけで<b>1チャプター分</b>が組める。フィールドの無いページは自動スキップ。</p>
+    <p><b>長尺化（実コース想定）：</b>コースは Chapter 10 × 15枚規模。リスト系フィールド（<code>details＝構成要素</code>／<code>examples＝事例</code>／<code>applications＝応用</code>）は<b>「項目の数だけ1枚ずつ」に展開（fan-out）</b>し、間に小扉も入る。要素・事例を増やすほど厚くなり、<b>1ブロックで15枚規模のチャプター</b>になる（マーケ講座の「各要素を1枚ずつ→事例に当てはめる」パターン）。</p>
+    <p><b>ライブラリ紐付け：</b>各フローは別紙<b>パターンライブラリ</b>の可視化を直接呼ぶ。<b>図解</b>（フロー図・ピラミッド・Before/After・ツリー等）＝常時／<b>グラフ</b>（<code>data＝ラベル=値</code>で円・棒）・<b>表</b>（<code>table＝h1,h2｜a,b</code>で罫線表）＝フィールドがあれば挿入。<b>アイコン/イラスト（併用）</b>：アイコンは<b>強調したい文章の横</b>に置く（<code>why_icons</code>＝動機づけカードの見出し横に Phosphor 1色）。イラストは<code>illust</code>＝修了などの主役に soco-st カラー（章扉は使わない）。グラフは太リング＋凡例、表は行数で高さ調整し、文字とのバランスを取る。<b>脱・機械配置：</b>詳細スライドは非対称レイアウト（大きな主張＋根拠／罫線なし段組み／上結論・下詳細）を<b>ローテーション</b>し、連続で同じ型にしない。<b>wf型接続</b>：<code>wf＝W03=タイトル｜…</code>で本編ワイヤー50型を差し込める（本文はwf既定を作り手が差し替え）。</p>
+    <p><b>実装状況：</b>TF2 概念習得型＝実装済み・長尺対応・ライブラリ紐付け済み（<code>frameworks.py</code>）。TF1〜7＝汎用の中心、TF8〜12＝場面特化。TF1 課題解決の「なぜなぜ分析図」など一部は専用ビルダーを順次追加。</p>
+  </div>
+
+  <hr class="rule">
+
+  <!-- ================= PHASE D ================= -->
+  <h2 class="sec"><span class="n">D</span> 定着・締め<span class="ct">CLOSE · 6</span></h2>
+  <div class="lib">
+
+    <div class="pat"><div class="mini">
+      <div class="mtag">12</div>
+      <div class="meyebrow">WORK ／ 実践</div>
+      <div class="mtitle">やってみよう</div><div class="mbar"></div>
+      <div class="mbd">
+        <div class="callout">お題：あなたの業務の指示を3要素に分解してみよう。</div>
+        <div style="margin-top:6%;border:1px dashed var(--c2);border-radius:5px;height:2.6em"></div>
+      </div>
+    </div><div class="pbody">
+      <div class="pname"><span class="idx">D1</span>ワーク・実践</div><div class="pen">Hands-on</div>
+      <div class="puse">学びを手を動かして試す。お題＋記入欄/手順で、受講生に実践させる。</div>
+      <div class="pslot"><b>Slots</b>お題／手順／記入・提出先</div>
+      <div class="ptag done"><span class="dot"></span>実装済み pages.exercise</div>
+    </div></div>
+
+    <div class="pat"><div class="mini">
+      <div class="mtag">13</div>
+      <div class="meyebrow">EXERCISE ／ 理解チェック</div>
+      <div class="mtitle">足りない要素は？</div><div class="mbar"></div>
+      <div class="mbd"><div class="grid2" style="gap:4%">
+        <span class="box" style="height:1.8em">A</span><span class="box g" style="height:1.8em">✓ B</span>
+        <span class="box" style="height:1.8em">C</span><span class="box" style="height:1.8em">D</span>
+      </div></div>
+    </div><div class="pbody">
+      <div class="pname"><span class="idx">D2</span>理解チェック</div><div class="pen">Quiz</div>
+      <div class="puse">選択式クイズで理解を確認。正解をアクセント青でハイライトし、解説calloutを添える。</div>
+      <div class="pslot"><b>Slots</b>設問／選択肢2〜4／正解／解説</div>
+      <div class="ptag done"><span class="dot"></span>実装済み pages.quiz</div>
+    </div></div>
+
+    <div class="pat"><div class="mini">
+      <div class="mtag">14</div>
+      <div class="meyebrow">CHECKLIST ／ 確認</div>
+      <div class="mtitle">できたか確認</div><div class="mbar"></div>
+      <div class="mbd" style="display:flex;flex-direction:column;gap:7%">
+        <div class="chk"><span class="cb on"></span><span class="ln" style="flex:1"></span></div>
+        <div class="chk"><span class="cb on"></span><span class="ln" style="flex:1;width:85%"></span></div>
+        <div class="chk"><span class="cb"></span><span class="ln" style="flex:1;width:75%"></span></div>
+      </div>
+    </div><div class="pbody">
+      <div class="pname"><span class="idx">D3</span>チェックリスト</div><div class="pen">Checklist</div>
+      <div class="puse">行動に移せる形で要点を再確認。チェックボックス付きの実行リスト。</div>
+      <div class="pslot"><b>Slots</b>チェック項目（動詞・実行可能）</div>
+      <div class="ptag done"><span class="dot"></span>実装済み pages.checklist</div>
+    </div></div>
+
+    <div class="pat"><div class="mini">
+      <div class="mtag">15</div>
+      <div class="meyebrow">SUMMARY ／ まとめ</div>
+      <div class="mtitle">持ち帰る3つ</div><div class="mbar"></div>
+      <div class="mbd"><div class="tiles">
+        <div class="tile"><div class="tn">1</div><div class="tl"></div></div>
+        <div class="tile"><div class="tn">2</div><div class="tl"></div></div>
+        <div class="tile"><div class="tn">3</div><div class="tl"></div></div>
+      </div></div>
+    </div><div class="pbody">
+      <div class="pname"><span class="idx">D4</span>まとめ</div><div class="pen">Summary</div>
+      <div class="puse">要点を3つに畳んで記憶に残す。学習目標（B2）と鏡合わせにすると回収感が出る。</div>
+      <div class="pslot"><b>Slots</b>要点タイル3（番号＋見出し＋一言）</div>
+      <div class="ptag done"><span class="dot"></span>実装済み pages.summary</div>
+    </div></div>
+
+    <div class="pat"><div class="mini">
+      <div class="mtag">16</div>
+      <div class="meyebrow">NEXT ／ 次回・さらに学ぶ</div>
+      <div class="mtitle">次回とおすすめ</div><div class="mbar"></div>
+      <div class="mbd">
+        <div class="callout" style="background:#EEF3FF;border-left-color:var(--c3)">次回 LESSON 04：役割（ペルソナ）を与える。</div>
+        <div class="row" style="margin-top:6%;gap:3%"><span class="box lp" style="width:30%;height:1.6em">参考</span><span class="ln" style="flex:1"></span></div>
+      </div>
+    </div><div class="pbody">
+      <div class="pname"><span class="idx">D5</span>次回予告・さらに学ぶ</div><div class="pen">Next / Resources</div>
+      <div class="puse">連続性をつくり、深掘り先を示す。次回予告＋参考資料/リンクで学習を止めない。</div>
+      <div class="pslot"><b>Slots</b>次回タイトル・予告／参考資料</div>
+      <div class="ptag done"><span class="dot"></span>実装済み pages.next_up</div>
+    </div></div>
+
+    <div class="pat"><div class="mini">
+      <div class="mtag">17</div>
+      <div class="meyebrow">COMPLETE ／ 修了</div>
+      <div class="mtitle">おつかれさまでした</div><div class="mbar"></div>
+      <div class="mbd" style="display:flex;flex-direction:column;gap:6%;align-items:flex-start">
+        <div class="callout g" style="width:100%">この回はここまで。次の一歩へ。</div>
+        <span class="box p" style="padding:3% 8%;height:1.9em;border-radius:20px">無料相談を予約 →</span>
+      </div>
+    </div><div class="pbody">
+      <div class="pname"><span class="idx">D6</span>修了・行動喚起</div><div class="pen">Completion / CTA</div>
+      <div class="puse">達成を労い、次の行動へ誘導。修了メッセージ＋CTA（次コース・相談・課題提出）。</div>
+      <div class="pslot"><b>Slots</b>修了メッセージ／CTAボタン／次アクション</div>
+      <div class="ptag done"><span class="dot"></span>実装済み pages.complete</div>
+    </div></div>
+
+  </div>
+
+  <hr class="rule">
+
+  <section>
+    <h2 class="sec"><span class="n">→</span> 進め方</h2>
+    <p class="sec-note"><b>実装完了（2026-08-26）</b>：全28型を <code>pages.py</code> に関数化済み（各カードの●青＝関数名）。<code>course_cover()</code> <code>curriculum()</code> <code>chapter_cover()</code> … と本編Cの図解ビルダー（<code>diagrams.py</code>）が揃い、「1レッスン＝A/Bで開き、Cで教え、Dで締める」骨格を関数呼び出しだけで組める。すべての型は固定chrome（見出し帯・ページ番号・章扉）を継承し、色と書体だけ The Academy。動作確認は <code>projects/pages_demo/</code>（検査ゲートPASS）。content.txt の 【型名】→関数の対応は slides-gen スキルの判定表を参照。</p>
+    <div class="callout-note">
+      <h4><span class="bars"><i></i><i></i></span> 確認したいこと</h4>
+      <p>① この28型で過不足ないか（さらに候補：引用・専門家の声／Q&A・FAQ／事例インタビュー／料金・プラン／リスニング・音声）</p>
+      <p>② 本編の呼び名・ドメイン分類（IT/ビジネス/語学）はこの粒度でよいか</p>
+      <p>③ まず型化する優先順（サンプルで実証済みの B1/B2/C1/C3/C5/C6/D2/D4 ＋ 新規 C9(UI)/C10(コード)/C11(例文) から広げる想定）</p>
+    </div>
+  </section>
+
+  <div class="footer">The Academy · コース用スライド型テンプレ集 v0.4 · 28型（A3 ／ B4 ／ C15 ／ D6）· 全28型 実装済み（pages.py・2026-08）· slide-generator 基盤 ＋ Brand Guideline 2026</div>
+
+</div>

@@ -1,0 +1,270 @@
+<title>The Academy｜本編フレームワーク集（たたき台）</title>
+<style>
+  :root{
+    --bg:#F4F6FC; --panel:#FFFFFF; --panel-2:#EFF2FB;
+    --ink:#161A2E; --muted:#5D6480; --faint:#9A9AB2;
+    --line:#E6E6EA; --line-strong:#D9DAE6;
+    --accent:#0141D4; --accent-soft:#E9EEFC; --navy:#012270;
+    --mono:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+    --display:"Avenir Next","Hiragino Kaku Gothic ProN","Hiragino Sans",system-ui,sans-serif;
+    --sans:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic Medium",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --label:"Avenir Next","Helvetica Neue",Arial,system-ui,sans-serif;
+    --g1:#4A5A8C; --g2:#8C97BC; --g3:#DCE1F0;
+    --maxw:1180px;
+  }
+  @media (prefers-color-scheme:dark){:root{--bg:#0B0F1F;--panel:#141931;--panel-2:#10152A;--ink:#E9ECF7;--muted:#A9AECB;--faint:#6C6D8C;--line:#242A47;--line-strong:#323966;--accent:#4E86FF;--accent-soft:#172248;--navy:#6FA0DA;--g1:#7C88B4;--g2:#5C6690;--g3:#2A3352;}}
+  :root[data-theme="dark"]{--bg:#0B0F1F;--panel:#141931;--panel-2:#10152A;--ink:#E9ECF7;--muted:#A9AECB;--faint:#6C6D8C;--line:#242A47;--line-strong:#323966;--accent:#4E86FF;--accent-soft:#172248;--navy:#6FA0DA;--g1:#7C88B4;--g2:#5C6690;--g3:#2A3352;}
+  :root[data-theme="light"]{--bg:#F4F6FC;--panel:#FFFFFF;--panel-2:#EFF2FB;--ink:#161A2E;--muted:#5D6480;--faint:#9A9AB2;--line:#E6E6EA;--line-strong:#D9DAE6;--accent:#0141D4;--accent-soft:#E9EEFC;--navy:#012270;--g1:#4A5A8C;--g2:#8C97BC;--g3:#DCE1F0;}
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:clamp(1.4rem,4vw,3rem) clamp(1.1rem,4vw,2rem);}
+  .bars{display:inline-flex;flex-direction:column;gap:2.5px;vertical-align:middle;}
+  .bars i{display:block;width:15px;height:3.5px;border-radius:1px;background:var(--accent);}
+  .eyebrow{font-family:var(--label);font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);font-weight:700;display:inline-flex;align-items:center;gap:.6rem;}
+  h1{font-family:var(--display);font-size:clamp(1.9rem,5vw,2.8rem);line-height:1.12;margin:.55rem 0 0;font-weight:700;letter-spacing:-.015em;text-wrap:balance;}
+  .lede{color:var(--muted);font-size:clamp(1rem,2.4vw,1.1rem);max-width:70ch;margin:.9rem 0 0;}
+  .lede b{color:var(--ink);} .lede code{font-family:var(--mono);font-size:.82em;background:var(--panel-2);padding:.05rem .32rem;border-radius:4px;border:1px solid var(--line);}
+  .meta{display:flex;flex-wrap:wrap;gap:.5rem .9rem;margin-top:1.2rem;font-family:var(--mono);font-size:.72rem;color:var(--faint);}
+  .meta b{color:var(--muted);font-weight:600;}
+  hr.rule{border:0;border-top:1px solid var(--line);margin:2.3rem 0 1.9rem;}
+  h2.sec{font-family:var(--display);font-size:clamp(1.2rem,3vw,1.55rem);font-weight:700;letter-spacing:-.01em;margin:0 0 .2rem;display:flex;align-items:baseline;gap:.7rem;}
+  h2.sec .n{font-family:var(--mono);font-size:.8rem;color:#fff;background:var(--accent);padding:.14rem .5rem;border-radius:5px;font-weight:700;}
+  h2.sec .ct{font-family:var(--mono);font-size:.78rem;color:var(--faint);font-weight:400;margin-left:auto;}
+  .sec-note{color:var(--muted);max-width:78ch;margin:.1rem 0 1.3rem;font-size:.9rem;}
+
+  /* chips */
+  .step{display:inline-flex;align-items:center;gap:.4rem;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:.32rem .6rem;font-size:.82rem;font-weight:700;color:var(--ink);white-space:nowrap;}
+  .step .k{font-family:var(--mono);font-size:.62rem;color:#fff;background:var(--g1);width:1.15rem;height:1.15rem;border-radius:50%;display:grid;place-items:center;flex:none;}
+  .step.acc{border-color:var(--accent);} .step.acc .k{background:var(--accent);}
+  .arr{color:var(--g2);font-weight:800;padding:0 .1rem;flex:none;}
+  .flow{display:flex;align-items:center;gap:.45rem;flex-wrap:wrap;}
+
+  .slide{font-family:var(--mono);font-size:.66rem;letter-spacing:.02em;background:var(--accent-soft);color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 22%,transparent);border-radius:4px;padding:.16rem .42rem;white-space:nowrap;font-weight:600;}
+  .slide.g{background:var(--panel-2);color:var(--muted);border-color:var(--line);}
+  .sarr{color:var(--g2);font-weight:700;font-size:.7rem;flex:none;}
+  .seq{display:flex;align-items:center;gap:.32rem;flex-wrap:wrap;}
+
+  /* flagship */
+  .flag{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:1.15rem 1.25rem;}
+  .flag .goal{font-size:.92rem;color:var(--muted);margin:0 0 .9rem;}
+  .flag .goal b{color:var(--ink);}
+  .rowlab{font-family:var(--label);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);font-weight:700;margin:1.1rem 0 .5rem;}
+  .rowlab:first-of-type{margin-top:.2rem;}
+
+  /* framework cards */
+  .lib{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1rem;}
+  .fw{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:.95rem 1.05rem 1.05rem;display:flex;flex-direction:column;gap:.55rem;}
+  .fw .top{display:flex;align-items:baseline;gap:.5rem;}
+  .fw .idx{font-family:var(--mono);font-size:.62rem;color:#fff;background:var(--accent);padding:.08rem .32rem;border-radius:4px;font-weight:700;}
+  .fw .nm{font-weight:700;font-size:1rem;}
+  .fw .purpose{font-size:.8rem;color:var(--muted);line-height:1.5;}
+  .fw .mlab{font-family:var(--mono);font-size:.58rem;letter-spacing:.06em;color:var(--faint);text-transform:uppercase;margin-top:.15rem;}
+  .fw .when{font-size:.72rem;color:var(--muted);margin-top:.1rem;}
+  .fw .when b{color:var(--navy);font-weight:700;}
+  .flow.sm .step{padding:.2rem .45rem;font-size:.72rem;} .flow.sm .step .k{width:1rem;height:1rem;font-size:.56rem;}
+
+  .note{background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 24%,transparent);border-radius:12px;padding:1rem 1.2rem;margin-top:1.4rem;}
+  .note h4{margin:0 0 .4rem;font-size:.9rem;color:var(--accent);display:flex;gap:.5rem;align-items:center;}
+  .note p{margin:.3rem 0;font-size:.85rem;color:var(--ink);} .note code{font-family:var(--mono);font-size:.82em;background:var(--panel);padding:.03rem .3rem;border-radius:4px;border:1px solid var(--line);}
+  footer{color:var(--faint);font-family:var(--mono);font-size:.72rem;margin-top:2.4rem;text-align:center;}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow"><span class="bars"><i></i><i></i></span> The Academy · Teach Frameworks</div>
+    <h1>本編フレームワーク集</h1>
+    <p class="lede">コースの流れは <b>コース全体 → 導入 → <span style="color:var(--accent)">本編</span> → 定着・締め</b>。この<b>本編＝「思考の流れ」そのもの</b>で、作り手が内容に沿って組み立てる中心部です。思考の流れを型にしたものが<b>フレームワーク</b>——それは頭の整理だけでなく<b>スライドの見せ方そのもの</b>になります。フローが決まれば、既存のページ型（概念/手順/構造/比較/データ/失敗/まとめ…）と図解（ロジックツリー/なぜなぜ/Before-After…）を<b>並べるだけ</b>で本編が1本組めます。</p>
+    <div class="meta">
+      <span><b>位置づけ</b> 本編(C)の設計レイヤー</span>
+      <span><b>粒度</b> 思考フロー × スライド構成</span>
+      <span><b>状態</b> たたき台 v0.1（相談用）</span>
+    </div>
+  </header>
+
+  <hr class="rule">
+
+  <!-- ============ flagship ============ -->
+  <h2 class="sec"><span class="n">例</span> 課題解決フレーム<span class="ct">FLAGSHIP · 添付資料の型</span></h2>
+  <p class="sec-note">「思考の流れ＝スライド構成」の代表例。<b>ロジックツリー → なぜなぜ分析 → Before/After</b> の流れで、課題特定から解決効果までを論理的に説明する。上段＝思考の流れ、下段＝そのままスライドの並びになる。</p>
+
+  <div class="flag">
+    <p class="goal"><b>目的：</b>課題の全体像から本質原因を特定し、解決策とその効果を納得感をもって伝える。</p>
+
+    <div class="rowlab">思考の流れ（フレームワーク）</div>
+    <div class="flow">
+      <span class="step acc"><span class="k">1</span>現状把握</span><span class="arr">▸</span>
+      <span class="step"><span class="k">2</span>課題の分解</span><span class="arr">▸</span>
+      <span class="step"><span class="k">3</span>原因の深掘り</span><span class="arr">▸</span>
+      <span class="step"><span class="k">4</span>解決方針の設計</span><span class="arr">▸</span>
+      <span class="step"><span class="k">5</span>Before / After</span><span class="arr">▸</span>
+      <span class="step"><span class="k">6</span>実行</span>
+    </div>
+
+    <div class="rowlab">スライド構成（既存の型に落とす）</div>
+    <div class="seq">
+      <span class="slide g">レッスン表紙</span><span class="sarr">›</span>
+      <span class="slide">データ／問題提起</span><span class="sarr">›</span>
+      <span class="slide">構造：ロジックツリー</span><span class="sarr">›</span>
+      <span class="slide">構造：なぜなぜ分析</span><span class="sarr">›</span>
+      <span class="slide">比較／解決方針</span><span class="sarr">›</span>
+      <span class="slide">ビフォーアフター</span><span class="sarr">›</span>
+      <span class="slide">手順：実行ステップ</span><span class="sarr">›</span>
+      <span class="slide g">まとめ</span>
+    </div>
+
+    <div class="rowlab">使う場面／伝えたいこと</div>
+    <p class="when" style="font-size:.82rem;color:var(--muted)"><b style="color:var(--navy)">場面：</b>業務改善・品質改善・コスト削減などの課題解決／経営層・上司への報告・提案／改善活動の振り返り。　<b style="color:var(--navy)">メッセージ：</b>「なぜその課題に取り組むのか」「なぜその原因にたどり着いたのか」「なぜその解決策が効くのか」を論理で示し、納得と行動を生む。</p>
+  </div>
+
+  <hr class="rule">
+
+  <!-- ============ framework cards ============ -->
+  <h2 class="sec"><span class="n">C</span> 本編フレームワーク<span class="ct">TEACH FLOWS · 12</span></h2>
+  <p class="sec-note">本編で基本的に作る「思考の流れ」を12に整理（上の課題解決フレームを含む）。各フローは既存のページ型・図解を並べるだけで組める。<b>青チップ＝主となる型</b>／グレー＝補助。作り手はコース内容に応じて選び・増減する。TF1〜7＝汎用の中心、TF8〜12＝場面特化の拡張。</p>
+
+  <div class="lib">
+
+    <!-- 1 課題解決 -->
+    <div class="fw">
+      <div class="top"><span class="idx">TF1</span><span class="nm">課題解決型</span></div>
+      <div class="purpose">課題特定 → 本質原因 → 解決策 → 効果 を論理的に。上のフラッグシップ。</div>
+      <div class="mlab">思考の流れ</div>
+      <div class="flow sm"><span class="step acc"><span class="k">1</span>現状</span><span class="arr">▸</span><span class="step"><span class="k">2</span>分解</span><span class="arr">▸</span><span class="step"><span class="k">3</span>原因</span><span class="arr">▸</span><span class="step"><span class="k">4</span>方針</span><span class="arr">▸</span><span class="step"><span class="k">5</span>効果</span></div>
+      <div class="mlab">スライド構成</div>
+      <div class="seq"><span class="slide">データ</span><span class="sarr">›</span><span class="slide">ロジックツリー</span><span class="sarr">›</span><span class="slide">なぜなぜ</span><span class="sarr">›</span><span class="slide">解決方針</span><span class="sarr">›</span><span class="slide">Before/After</span><span class="sarr">›</span><span class="slide">手順</span></div>
+      <div class="when"><b>場面：</b>業務改善・提案・振り返り</div>
+    </div>
+
+    <!-- 2 概念習得 -->
+    <div class="fw">
+      <div class="top"><span class="idx">TF2</span><span class="nm">概念習得型（What→Why→How）</span></div>
+      <div class="purpose">新しい概念を「理解して使える」まで持っていく、最も基本の流れ。</div>
+      <div class="mlab">思考の流れ</div>
+      <div class="flow sm"><span class="step acc"><span class="k">1</span>概念とは</span><span class="arr">▸</span><span class="step"><span class="k">2</span>なぜ重要</span><span class="arr">▸</span><span class="step"><span class="k">3</span>構成要素</span><span class="arr">▸</span><span class="step"><span class="k">4</span>具体例</span><span class="arr">▸</span><span class="step"><span class="k">5</span>誤解</span></div>
+      <div class="mlab">スライド構成</div>
+      <div class="seq"><span class="slide">概念解説</span><span class="sarr">›</span><span class="slide g">動機づけ</span><span class="sarr">›</span><span class="slide">構造：要素分解</span><span class="sarr">›</span><span class="slide">具体例</span><span class="sarr">›</span><span class="slide">よくある失敗</span><span class="sarr">›</span><span class="slide g">まとめ</span></div>
+      <div class="when"><b>場面：</b>基礎概念の導入（IT/ビジネス基礎）</div>
+    </div>
+
+    <!-- 3 手順習得 -->
+    <div class="fw">
+      <div class="top"><span class="idx">TF3</span><span class="nm">手順習得型（How-to）</span></div>
+      <div class="purpose">作業を「自分で再現できる」ようにする。操作・実務手順に。</div>
+      <div class="mlab">思考の流れ</div>
+      <div class="flow sm"><span class="step acc"><span class="k">1</span>全体像</span><span class="arr">▸</span><span class="step"><span class="k">2</span>ステップ分解</span><span class="arr">▸</span><span class="step"><span class="k">3</span>各詳細</span><span class="arr">▸</span><span class="step"><span class="k">4</span>落とし穴</span><span class="arr">▸</span><span class="step"><span class="k">5</span>実践</span></div>
+      <div class="mlab">スライド構成</div>
+      <div class="seq"><span class="slide">構造：全体フロー</span><span class="sarr">›</span><span class="slide">手順</span><span class="sarr">›</span><span class="slide">画像／UI解説</span><span class="sarr">›</span><span class="slide">よくある失敗</span><span class="sarr">›</span><span class="slide g">ワーク</span></div>
+      <div class="when"><b>場面：</b>ツール操作・実務手順（IT）</div>
+    </div>
+
+    <!-- 4 フレームワーク適用 -->
+    <div class="fw">
+      <div class="top"><span class="idx">TF4</span><span class="nm">フレームワーク適用型</span></div>
+      <div class="purpose">3C・4P・SWOT等の分析フレームを、走る事例に当てはめて理解を繋ぐ。</div>
+      <div class="mlab">思考の流れ</div>
+      <div class="flow sm"><span class="step acc"><span class="k">1</span>フレーム紹介</span><span class="arr">▸</span><span class="step"><span class="k">2</span>各要素</span><span class="arr">▸</span><span class="step"><span class="k">3</span>事例に適用</span><span class="arr">▸</span><span class="step"><span class="k">4</span>示唆</span></div>
+      <div class="mlab">スライド構成</div>
+      <div class="seq"><span class="slide">概念：フレーム図</span><span class="sarr">›</span><span class="slide">構造：各要素</span><span class="sarr">›</span><span class="slide">具体例：事例適用</span><span class="sarr">›</span><span class="slide">データ／比較</span><span class="sarr">›</span><span class="slide g">まとめ</span></div>
+      <div class="when"><b>場面：</b>マーケ・戦略分析（走る事例を全編で反復）</div>
+    </div>
+
+    <!-- 5 比較・意思決定 -->
+    <div class="fw">
+      <div class="top"><span class="idx">TF5</span><span class="nm">比較・意思決定型</span></div>
+      <div class="purpose">選択肢から最適を選ぶ。評価軸で比べ、推奨と根拠を示す。</div>
+      <div class="mlab">思考の流れ</div>
+      <div class="flow sm"><span class="step acc"><span class="k">1</span>論点</span><span class="arr">▸</span><span class="step"><span class="k">2</span>選択肢</span><span class="arr">▸</span><span class="step"><span class="k">3</span>評価軸で比較</span><span class="arr">▸</span><span class="step"><span class="k">4</span>推奨</span></div>
+      <div class="mlab">スライド構成</div>
+      <div class="seq"><span class="slide">概念：論点</span><span class="sarr">›</span><span class="slide">比較表</span><span class="sarr">›</span><span class="slide">構造：マトリクス</span><span class="sarr">›</span><span class="slide">データ</span><span class="sarr">›</span><span class="slide g">まとめ：推奨</span></div>
+      <div class="when"><b>場面：</b>ツール選定・方針決定</div>
+    </div>
+
+    <!-- 6 データ・示唆 -->
+    <div class="fw">
+      <div class="top"><span class="idx">TF6</span><span class="nm">データ・示唆型（分析→結論）</span></div>
+      <div class="purpose">データから結論を導く。問い→数字→読み取り→アクション。</div>
+      <div class="mlab">思考の流れ</div>
+      <div class="flow sm"><span class="step acc"><span class="k">1</span>問い</span><span class="arr">▸</span><span class="step"><span class="k">2</span>データ</span><span class="arr">▸</span><span class="step"><span class="k">3</span>読み取り</span><span class="arr">▸</span><span class="step"><span class="k">4</span>結論</span><span class="arr">▸</span><span class="step"><span class="k">5</span>行動</span></div>
+      <div class="mlab">スライド構成</div>
+      <div class="seq"><span class="slide g">動機づけ：問い</span><span class="sarr">›</span><span class="slide">データ：グラフ</span><span class="sarr">›</span><span class="slide">データ＋示唆</span><span class="sarr">›</span><span class="slide g">まとめ</span><span class="sarr">›</span><span class="slide g">次のアクション</span></div>
+      <div class="when"><b>場面：</b>効果測定・レポート・KPI報告</div>
+    </div>
+
+    <!-- 7 語学・スキル -->
+    <div class="fw">
+      <div class="top"><span class="idx">TF7</span><span class="nm">語学・スキル型</span></div>
+      <div class="purpose">フレーズ・構文を「使える」まで。提示→意味→例文→運用→練習。</div>
+      <div class="mlab">思考の流れ</div>
+      <div class="flow sm"><span class="step acc"><span class="k">1</span>フレーズ</span><span class="arr">▸</span><span class="step"><span class="k">2</span>意味/構文</span><span class="arr">▸</span><span class="step"><span class="k">3</span>例文</span><span class="arr">▸</span><span class="step"><span class="k">4</span>会話で運用</span><span class="arr">▸</span><span class="step"><span class="k">5</span>練習</span></div>
+      <div class="mlab">スライド構成</div>
+      <div class="seq"><span class="slide">例文・対訳</span><span class="sarr">›</span><span class="slide">文法・構文</span><span class="sarr">›</span><span class="slide">具体例</span><span class="sarr">›</span><span class="slide">会話</span><span class="sarr">›</span><span class="slide g">ワーク</span></div>
+      <div class="when"><b>場面：</b>語学・ビジネス会話</div>
+    </div>
+
+    <!-- 8 ストーリー・事例 -->
+    <div class="fw">
+      <div class="top"><span class="idx">TF8</span><span class="nm">ストーリー・事例型（ケーススタディ）</span></div>
+      <div class="purpose">1つの事例を物語として追い、追体験から学ばせる。分析型(TF1)と違い「筋」で見せる。</div>
+      <div class="mlab">思考の流れ</div>
+      <div class="flow sm"><span class="step acc"><span class="k">1</span>背景設定</span><span class="arr">▸</span><span class="step"><span class="k">2</span>課題に直面</span><span class="arr">▸</span><span class="step"><span class="k">3</span>打ち手</span><span class="arr">▸</span><span class="step"><span class="k">4</span>結果</span><span class="arr">▸</span><span class="step"><span class="k">5</span>教訓</span></div>
+      <div class="mlab">スライド構成</div>
+      <div class="seq"><span class="slide">具体例：背景</span><span class="sarr">›</span><span class="slide">よくある失敗：直面</span><span class="sarr">›</span><span class="slide">手順：打ち手</span><span class="sarr">›</span><span class="slide">Before/After：結果</span><span class="sarr">›</span><span class="slide g">まとめ：教訓</span></div>
+      <div class="when"><b>場面：</b>成功／失敗事例・導入ストーリー・体験談</div>
+    </div>
+
+    <!-- 9 原則・ルール -->
+    <div class="fw">
+      <div class="top"><span class="idx">TF9</span><span class="nm">原則・ルール型（ベストプラクティス）</span></div>
+      <div class="purpose">守るべき原則を提示し、理由と適用例、やって良い/悪いで定着させる。</div>
+      <div class="mlab">思考の流れ</div>
+      <div class="flow sm"><span class="step acc"><span class="k">1</span>原則を提示</span><span class="arr">▸</span><span class="step"><span class="k">2</span>各原則の理由</span><span class="arr">▸</span><span class="step"><span class="k">3</span>適用例</span><span class="arr">▸</span><span class="step"><span class="k">4</span>DO&amp;DON'T</span></div>
+      <div class="mlab">スライド構成</div>
+      <div class="seq"><span class="slide">概念：原則リスト</span><span class="sarr">›</span><span class="slide">構造：各原則</span><span class="sarr">›</span><span class="slide">具体例：適用</span><span class="sarr">›</span><span class="slide">よくある失敗：DO/DON'T</span><span class="sarr">›</span><span class="slide g">まとめ</span></div>
+      <div class="when"><b>場面：</b>ガイドライン・規約・作法・品質基準</div>
+    </div>
+
+    <!-- 10 判断フロー -->
+    <div class="fw">
+      <div class="top"><span class="idx">TF10</span><span class="nm">判断フロー型（選び方・トラブル対処）</span></div>
+      <div class="purpose">「こういう時はこうする」を条件分岐で示す。状況→判断→対処の道筋を1枚に。</div>
+      <div class="mlab">思考の流れ</div>
+      <div class="flow sm"><span class="step acc"><span class="k">1</span>状況の分類</span><span class="arr">▸</span><span class="step"><span class="k">2</span>条件で分岐</span><span class="arr">▸</span><span class="step"><span class="k">3</span>判断</span><span class="arr">▸</span><span class="step"><span class="k">4</span>対処</span></div>
+      <div class="mlab">スライド構成</div>
+      <div class="seq"><span class="slide">概念：判断軸</span><span class="sarr">›</span><span class="slide">構造：判断フロー</span><span class="sarr">›</span><span class="slide">具体例</span><span class="sarr">›</span><span class="slide">手順：対処</span><span class="sarr">›</span><span class="slide g">まとめ</span></div>
+      <div class="when"><b>場面：</b>トラブルシュート・選び方・if-then の判断基準</div>
+    </div>
+
+    <!-- 11 時系列・変遷 -->
+    <div class="fw">
+      <div class="top"><span class="idx">TF11</span><span class="nm">時系列・変遷型（歴史・ロードマップ）</span></div>
+      <div class="purpose">過去から未来への流れで文脈を与える。「なぜ今そうなっているか」を時間軸で。</div>
+      <div class="mlab">思考の流れ</div>
+      <div class="flow sm"><span class="step acc"><span class="k">1</span>起点</span><span class="arr">▸</span><span class="step"><span class="k">2</span>転機</span><span class="arr">▸</span><span class="step"><span class="k">3</span>現在</span><span class="arr">▸</span><span class="step"><span class="k">4</span>展望</span></div>
+      <div class="mlab">スライド構成</div>
+      <div class="seq"><span class="slide">構造：タイムライン</span><span class="sarr">›</span><span class="slide">具体例：転機</span><span class="sarr">›</span><span class="slide">データ：現状</span><span class="sarr">›</span><span class="slide g">まとめ：ロードマップ</span></div>
+      <div class="when"><b>場面：</b>技術・業界の変遷・沿革・今後の見通し</div>
+    </div>
+
+    <!-- 12 分類・使い分け -->
+    <div class="fw">
+      <div class="top"><span class="idx">TF12</span><span class="nm">分類・使い分け型（タクソノミー）</span></div>
+      <div class="purpose">種類を分類軸で整理し、それぞれの特徴と使い分けを示す。「一覧して選べる」状態に。</div>
+      <div class="mlab">思考の流れ</div>
+      <div class="flow sm"><span class="step acc"><span class="k">1</span>全体像</span><span class="arr">▸</span><span class="step"><span class="k">2</span>分類軸</span><span class="arr">▸</span><span class="step"><span class="k">3</span>各タイプ</span><span class="arr">▸</span><span class="step"><span class="k">4</span>使い分け</span></div>
+      <div class="mlab">スライド構成</div>
+      <div class="seq"><span class="slide">概念：全体</span><span class="sarr">›</span><span class="slide">構造：マトリクス／ツリー</span><span class="sarr">›</span><span class="slide">比較：各タイプ</span><span class="sarr">›</span><span class="slide g">まとめ：使い分け</span></div>
+      <div class="when"><b>場面：</b>種類の整理・ツール分類・型の一覧</div>
+    </div>
+
+  </div>
+
+  <div class="note">
+    <h4><span class="bars"><i></i><i></i></span> 相談メモ（この先どうするか）</h4>
+    <p>① <b>各フローを「型」として実装</b>：フレームワーク名を指定するだけで、上のスライド構成を一括で生成（例 <code>【本編:課題解決】</code> → 6枚を自動配置）。content.txt に流し込む見出しだけ用意すれば1チャプター分が組める。</p>
+    <p>② <b>不足している図解ビルダー</b>：課題解決フローには <code>ロジックツリー</code> と <code>なぜなぜ分析</code> の専用図が要る（現状ツリーは実装済み・なぜなぜは派生で作れる）。</p>
+    <p>③ <b>粒度の相談</b>：12で過不足ないか／さらに業種別の派生が要るか／各フローの枚数（4〜6枚）は妥当か。TF1〜7が中心、TF8〜12は場面特化。</p>
+  </div>
+
+  <footer>The Academy · 本編フレームワーク集 たたき台 v0.1 · 思考フロー×スライド構成 · 相談用</footer>
+</div>

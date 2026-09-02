@@ -197,7 +197,7 @@ def _slide_regions(slide, items):
     declared = ed.figure_areas(slide)
     if declared:
         return [list(r) + [99] for r in declared]
-    if ed.FIGURE_REGISTRY:
+    if ed.has_figures(slide):
         return []
     return _regions(items)
 

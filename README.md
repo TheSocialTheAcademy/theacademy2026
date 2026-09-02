@@ -258,6 +258,10 @@ slide-generator/
 ├── pyproject.toml                    ← pytest 設定（testpaths / pythonpath）
 ├── slides.py                       ← 共通ヘルパーライブラリ
 ├── brand.py                        ← ブランド設定の単一ソース（色・フォント・雛形名／リブランドはここ）
+├── editorial.py                    ← 統一する7項目の定義元（書体の方向性/本文色/アクセント色/余白/罫線/注釈/トーン）
+├── spreads.py                      ← 誌面構成10型。内容の形から構成を選び、10項目を型ごとに変える
+├── ediagrams.py                    ← 説明図5型（工程/接続/負荷/変化/対応関係。細い線と最小限の面）
+├── audit.py                        ← 編集検査（統一されているか／同じ誌面の反復になっていないか）
 ├── templates/
 │   └── スライド雛形.pptx           ← マスター雛形（編集禁止推奨）
 ├── projects/                         ← 資料ごとのフォルダ（中身は git 管理外／.gitkeep のみ追跡）
@@ -269,7 +273,8 @@ slide-generator/
 │   ├── README.md
 │   └── サンプル商事_AIチャットボット/  ← content.txt / generate.py / output.pptx / preview.png
 ├── docs/
-│   └── REBRAND.md                    ← 自社ブランド向けに作り変える手順
+│   ├── REBRAND.md                    ← 自社ブランド向けに作り変える手順
+│   └── EDITORIAL.md                  ← 資料全体の統一感（統一する7項目／内容ごとに変える10項目）
 ├── tests/                            ← pytest（検査ゲートの回帰テスト）
 │   ├── conftest.py
 │   └── test_*.py                     ← BAND_OVERFLOW / CONTAINER_OVERFLOW / ZONE 等の回帰
@@ -349,6 +354,11 @@ slide-generator/
 ---
 
 ## リファレンス資料
+
+**資料全体の統一感**（同じ資料に見せつつ、全ページを同じテンプレートにしない作り方）は
+[`docs/EDITORIAL.md`](docs/EDITORIAL.md) にまとめてある。統一してよい7項目・内容ごとに変える
+10項目・説明図の画風・編集検査（`audit.py`）の使い方はここが正。実例は
+`projects/editorial_consistency/generate.py`（本文10枚・検査ゲートと編集検査ともに PASS）。
 
 完成例として [`examples/サンプル商事_AIチャットボット/`](examples/) に**架空資料のサンプル**（`content.txt` → `generate.py` → `output.pptx`／検査 PASS 済み）を同梱している。入力と成果物の対応を見たいときはここから。
 

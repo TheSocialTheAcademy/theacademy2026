@@ -81,6 +81,30 @@ from slides import (
 - 非テキスト要素（`connector`/`picture`/`bar_chart`/`line_chart`/`pie_chart`）も geom レジストリに配置矩形を記録し、本文コンテンツゾーン逸脱を `ZONE` ERROR で検知する。ただし**グラフ内部のテキスト（軸ラベル・データラベル・凡例）は文字照合（`validate_render`）の対象外**＝配置（ゾーン）は検査されるが、内部テキストの見切れは自動検知されないので 5-b 視覚確認で見る。
 - 依存: `Pillow`・`pymupdf`（`pip install pymupdf` 済み前提）。`pymupdf` が無い場合はレンダ後突合だけスキップし生成時リントは実行。
 
+## 編集レイヤー（資料全体の統一感）
+
+同じ資料としての統一感は要るが、**全スライドを同じテンプレートにしない**。揃えるものを
+限定し、それ以外は内容に合わせて変える。詳細は `docs/EDITORIAL.md`（そちらが正）。
+
+```python
+import editorial as ed          # 統一する7項目の定義元＋プリミティブ
+from spreads import render_all  # 誌面構成10型（内容の形から選ぶ）
+from ediagrams import edia_process, edia_connection, edia_load, edia_change, edia_correspondence
+from audit import audit         # 編集検査（統一と変化）
+```
+
+- **統一してよいのはこの7つだけ**：基本フォントの方向性 `ed.TYPE` ／ 本文色 `ed.INK`
+  `ed.INK_SUB` ／ アクセント色 `ed.ACCENT`（1資料1色・焦点1〜2箇所）／ 余白の感覚
+  `ed.U` `ed.GRID`（12列）`ed.baseline()` ／ 罫線の太さ `ed.RULE`（5値のみ）／ 注釈
+  `ed.note()` ／ 編集トーン `ed.tone_lint()`。
+- **統一しないのはこの10項目**：見出しの位置／カラム数と幅／数値の見せ方／図解の有無／
+  写真の有無／余白の位置／本文の密度／要素の大きさ／読み順／主役となる要素。
+- 文字は `ed.body()` `ed.heading()` 等で置く。必要高さを検査ゲートと同じ折返し計測
+  （`ed.fit_h`）で決め、返り値の下端 y を `ed.after()` で次の基準線に送る。
+- 図解は「関係を説明する必要があるとき」だけ。`ediagrams` の5型以外を新設しない
+  （画風＝細い線と最小限の面／2色以内／影・3D・光沢・角丸・円形アイコン背景なし）。
+- 生成の最後に `validate()` に続けて `audit(prs)` を通す。`SAME_SPREAD` は ERROR。
+
 ## テンプレ固定デザイン（再設計禁止・上書き禁止）
 
 表表紙・裏表紙・セクション扉・見出し、およびテンプレートから引き継がれる装飾（右上ページ番号サークル／CONFIDENTIAL バッジ／本文の白背景・装飾主色バー・罫線／表紙・裏表紙のロゴ／扉の全面主色）は、現状のデザインをそのまま使う。下記ワークフロー（テンプレ起点で構築）に従えばレイアウト継承で自動保持される。自分で描き直したり図形で隠したりしない。AI が差し替えるのは**テキスト内容のみ**：

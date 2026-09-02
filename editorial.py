@@ -35,8 +35,9 @@
 """
 from __future__ import annotations
 
-from dataclasses import dataclass, field as _dc_field
+from dataclasses import dataclass
 import re
+import weakref as _weakref
 
 from pptx.enum.shapes import MSO_SHAPE
 from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
@@ -58,6 +59,7 @@ __all__ = [
     "note", "mark", "plane", "caption", "fit_h", "after",
     # 検査・記録
     "tone_lint", "Signature", "figure_area", "figure_areas",
+    "has_figures", "reset_figures",
 ]
 
 
@@ -387,20 +389,43 @@ def figure(slide, x, y, w, value, *, unit="", label="", size=None,
 # ---------------------------------------------------------------- 図版の領域
 # 説明図は「線に合わせて」ラベルを置くのが正しく、段組みの起点や基準線には乗らない。
 # どこが図版かは形から推測しきれないので、描いた側が領域を申告する（記録のみ・描画しない）。
+#
+# 記録は「どの Presentation の・どのスライドか」で引く。パッケージは弱参照で
+# 持つので、前のランの記録が次のランに紛れ込むことはない（生成のたびに
+# load_template が新しいパッケージを作るため、古い記録はどのスライドにも当たらない）。
 FIGURE_REGISTRY: list = []
+
+
+def _pkg(slide):
+    return slide.part.package
 
 
 def figure_area(slide, x, y, w, h):
     """説明図が占める矩形を記録する。`audit` の余白検査がこの範囲を除外する。"""
-    FIGURE_REGISTRY.append({"slide_id": slide.slide_id,
+    FIGURE_REGISTRY.append({"pkg": _weakref.ref(_pkg(slide)),
+                            "slide_id": slide.slide_id,
                             "x": float(x), "y": float(y),
                             "w": float(w), "h": float(h)})
+
+
+def _records_for(pkg):
+    return [r for r in FIGURE_REGISTRY if r["pkg"]() is pkg]
 
 
 def figure_areas(slide):
     """そのスライドに記録された図版領域 [(x0, y0, x1, y1), ...]。"""
     return [(r["x"], r["y"], r["x"] + r["w"], r["y"] + r["h"])
-            for r in FIGURE_REGISTRY if r["slide_id"] == slide.slide_id]
+            for r in _records_for(_pkg(slide)) if r["slide_id"] == slide.slide_id]
+
+
+def has_figures(slide) -> bool:
+    """そのスライドが属する資料で、図版領域の申告が使われているか。"""
+    return bool(_records_for(_pkg(slide)))
+
+
+def reset_figures():
+    """記録を消す（テストや、同一プロセスで作り直すとき）。"""
+    FIGURE_REGISTRY.clear()
 
 
 def mark(n: int) -> str:

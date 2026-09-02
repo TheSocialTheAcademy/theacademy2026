@@ -8,6 +8,12 @@ __pycache__/
 projects/*
 !projects/.gitkeep
 
+# 編集レイヤー（editorial/spreads/ediagrams/audit）の実証デッキは案件ではないので、
+# 生成スクリプトだけ追跡する（出力 pptx/pdf は従来どおり管理しない）。
+!projects/editorial_consistency/
+projects/editorial_consistency/*
+!projects/editorial_consistency/generate.py
+
 # グローバルgitignoreの .claude/ 除外を上書きしてスキルを管理対象に含める
 !.claude/
 !.claude/skills/

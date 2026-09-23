@@ -15,11 +15,19 @@
     --ts-deep-navy:  #012270;
     --ts-light-blue: #3E78FE;
     --ts-orange:     #F76B38;
+    --ts-green:      #27AE60;
     --ts-dark:       #222222;
     --ts-mid:        #676688;
     --ts-white:      #FFFFFF;
+    /* プライマリーの透過（ガイドライン外の色は足さず、#0141D4 の濃淡だけで面をつくる） */
+    --tint-04: rgba(1,65,212,.04);
+    --tint-08: rgba(1,65,212,.08);
+    --tint-16: rgba(1,65,212,.16);
+    --line:    rgba(34,34,34,.10);
+    --shadow:  0 12px 32px rgba(1,34,112,.12), 0 2px 6px rgba(1,34,112,.06);
     --font: 'Graphik', 'Inter', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
-    --gutter: clamp(16px, 5vw, 72px);
+    --gutter: clamp(16px, 4.5vw, 64px);
+    --maxw: 1240px;
   }
   *, *::before, *::after { box-sizing: border-box; }
   body {
@@ -31,133 +39,249 @@
     line-height: 1.8;
     -webkit-font-smoothing: antialiased;
   }
+  a { color: inherit; }
   .ico { width: 1em; height: 1em; flex: none; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
 
   /* ── Header ───────────────────────────── */
   .site-header {
-    position: absolute;
-    inset: 0 0 auto 0;
-    z-index: 3;
-    padding: 20px var(--gutter);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(255,255,255,.88);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
   }
-  .site-header img { height: 28px; width: auto; display: block; }
+  .site-header .wrap {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    height: 68px;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; flex: none; }
+  .brand img { height: 22px; width: auto; display: block; }
+  .brand small {
+    color: var(--ts-mid);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: .14em;
+    line-height: 1.2;
+    padding-left: 10px;
+    border-left: 1px solid var(--line);
+  }
+  .gnav { display: flex; gap: 22px; margin-left: auto; }
+  .gnav a {
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color .15s;
+  }
+  .gnav a:hover { color: var(--ts-primary); }
+  .header-actions { display: flex; align-items: center; gap: 14px; flex: none; }
+  .login { font-size: 13px; font-weight: 500; text-decoration: none; }
+  .btn-sm {
+    display: inline-flex;
+    align-items: center;
+    height: 40px;
+    padding: 0 18px;
+    border-radius: 999px;
+    background: var(--ts-primary);
+    color: var(--ts-white);
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .menu { display: none; position: relative; }
+  .menu summary {
+    list-style: none;
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--tint-08);
+    color: var(--ts-primary);
+    cursor: pointer;
+    font-size: 20px;
+  }
+  .menu summary::-webkit-details-marker { display: none; }
+  .menu nav {
+    position: absolute;
+    right: 0;
+    top: 50px;
+    width: 220px;
+    padding: 8px;
+    border-radius: 16px;
+    background: var(--ts-white);
+    box-shadow: var(--shadow);
+  }
+  .menu nav a {
+    display: block;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    text-decoration: none;
+  }
+  .menu nav a:hover { background: var(--tint-04); color: var(--ts-primary); }
 
   /* ── Hero ─────────────────────────────── */
   .hero {
     position: relative;
-    min-height: min(100svh, 860px);
-    display: flex;
-    align-items: center;
     overflow: hidden;
-    isolation: isolate;
+    background:
+      radial-gradient(60% 70% at 88% 30%, var(--tint-08) 0%, rgba(1,65,212,0) 70%),
+      linear-gradient(180deg, var(--tint-04), rgba(1,65,212,0) 70%);
   }
-  .hero__media { position: absolute; inset: 0; z-index: -2; }
-  .hero__bg {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
-    object-position: 70% center;
+  .hero .wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    grid-template-areas:
+      "copy   visual"
+      "cta    visual"
+      "badges visual";
+    grid-template-rows: auto auto 1fr;
+    column-gap: clamp(32px, 5vw, 80px);
+    padding-top: clamp(48px, 7vw, 88px);
+    padding-bottom: clamp(56px, 7vw, 96px);
   }
-  /* 左の窓側（明るい領域）を白く飛ばして、ラベル群の土台にする */
-  .hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background: linear-gradient(90deg,
-      rgba(255,255,255,.82) 0%,
-      rgba(255,255,255,.62) 38%,
-      rgba(255,255,255,0) 60%);
-  }
-  /* 人物横の小ラベル（参考：イメージキャラクター表記） */
-  .hero__media-label {
-    position: absolute;
-    right: 16px;
-    bottom: 16px;
-    margin: 0;
-    padding: 6px 12px;
-    background: rgba(255,255,255,.9);
-    color: var(--ts-dark);
-    font-size: 11px;
+  .hero__copy   { grid-area: copy; }
+  .hero__cta    { grid-area: cta; }
+  .hero__badges { grid-area: badges; }
+  .hero__visual { grid-area: visual; }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 20px;
+    padding: 6px 14px 6px 10px;
+    border-radius: 999px;
+    background: var(--ts-white);
+    box-shadow: 0 0 0 1px var(--tint-16);
+    color: var(--ts-primary);
+    font-size: 13px;
+    font-weight: 500;
     line-height: 1.5;
-    letter-spacing: .12em;
   }
-
-  .hero__inner {
-    width: 100%;
-    padding: 104px var(--gutter) 56px;
+  .eyebrow::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--ts-green);
+    box-shadow: 0 0 0 4px rgba(39,174,96,.18);
   }
-  .hero__content { max-width: 600px; }
-
-  /* 見出し：白ボックスを積む */
   .hero__title {
     margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    font-size: clamp(30px, 3.6vw, 50px);
+    font-size: clamp(32px, 3.7vw, 52px);
     font-weight: 700;
-    line-height: 1.3;
-    letter-spacing: .1em;
+    line-height: 1.32;
+    letter-spacing: .04em;
   }
-  .hero__title > span {
-    display: block;
-    padding: .18em .5em .2em .45em;
-    background: var(--ts-white);
+  .hero__title span { display: inline-block; }
+  /* 「次のキャリア」に蛍光ペン風のマーカー（親しみ） */
+  .hero__title em {
+    font-style: normal;
+    color: var(--ts-primary);
+    background: linear-gradient(transparent 68%, rgba(62,120,254,.22) 68%, rgba(62,120,254,.22) 92%, transparent 92%);
+  }
+  .hero__lead {
+    margin: 24px 0 0;
+    max-width: 30em;
     color: var(--ts-dark);
+    font-size: clamp(15px, 1.25vw, 17px);
+    line-height: 1.9;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
   }
-  .hero__title em { font-style: normal; color: var(--ts-primary); }
 
-  /* 実績バッジ */
-  .badges {
+  /* CTA */
+  .hero__cta { margin-top: 36px; }
+  .cta-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 480px; }
+  .cta-row .btn--primary { grid-column: 1 / -1; min-height: 62px; font-size: 17px; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 56px;
+    padding: 0 26px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-decoration: none;
+    transition: background-color .15s, color .15s, transform .15s, box-shadow .15s;
+  }
+  .btn--primary {
+    position: relative;
+    padding: 0 30px 0 34px;
+    background: var(--ts-primary);
+    color: var(--ts-white);
+    box-shadow: 0 8px 20px rgba(1,65,212,.28);
+  }
+  .btn--primary:hover { background: var(--ts-light-blue); transform: translateY(-1px); }
+  .btn--primary .arrow {
+    display: grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--ts-white);
+    color: var(--ts-primary);
+    font-size: 14px;
+  }
+  .btn--ghost {
+    background: var(--ts-white);
+    color: var(--ts-primary);
+    box-shadow: inset 0 0 0 1.5px var(--tint-16);
+  }
+  .btn--ghost:hover { box-shadow: inset 0 0 0 1.5px var(--ts-primary); }
+  .btn--ghost { padding: 0 16px; font-size: 15px; }
+  .btn--ghost .ico { font-size: 18px; }
+  .btn:focus-visible { outline: 3px solid var(--ts-light-blue); outline-offset: 3px; }
+  .cta-note {
     display: flex;
     align-items: center;
-    gap: 16px;
-    margin: 28px 0 0;
+    gap: 6px;
+    margin: 12px 0 0;
+    color: var(--ts-mid);
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .cta-note .ico { color: var(--ts-green); font-size: 14px; }
+
+  /* 実績バッジ（月桂樹＋円） */
+  .hero__badges {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 40px 0 0;
     padding: 0;
     list-style: none;
+    align-self: start;
   }
-  .laurel {
-    display: flex;
-    align-items: center;
-    gap: 2px;
-    color: var(--ts-primary);
-  }
-  .laurel__branch { width: 38px; height: 108px; flex: none; }
+  .laurel { display: flex; align-items: center; color: var(--ts-primary); }
+  .laurel__branch { width: 30px; height: 88px; flex: none; }
   .laurel__branch--r { transform: scaleX(-1); }
-  .laurel__body { text-align: center; min-width: 118px; }
-  .laurel__label, .circle__label {
-    display: block;
-    color: var(--ts-dark);
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 1.4;
-    letter-spacing: .06em;
-  }
-  .badge__num {
+  .laurel__body { text-align: center; min-width: 96px; }
+  .b-label { display: block; color: var(--ts-mid); font-size: 11px; font-weight: 500; line-height: 1.4; letter-spacing: .06em; }
+  .b-num {
     display: block;
     color: var(--ts-primary);
-    font-size: 48px;
+    font-size: 38px;
     font-weight: 700;
     line-height: 1.05;
-    letter-spacing: 0;
     font-variant-numeric: tabular-nums;
   }
-  .badge__num small { font-size: .42em; font-weight: 700; margin-left: 2px; }
-  .badge__sub {
-    display: block;
-    color: var(--ts-dark);
-    font-size: 13px;
-    font-weight: 700;
-    line-height: 1.3;
-  }
-
+  .b-num small { font-size: .45em; margin-left: 1px; }
+  .b-sub { display: block; font-size: 12px; font-weight: 700; line-height: 1.4; }
   .circle {
-    position: relative;
-    width: 128px;
-    height: 128px;
+    width: 108px;
+    height: 108px;
     flex: none;
     display: flex;
     flex-direction: column;
@@ -165,143 +289,215 @@
     justify-content: center;
     border-radius: 50%;
     background: var(--ts-white);
-    box-shadow: 0 0 0 3px rgba(62,120,254,.28);
+    box-shadow: 0 0 0 1px var(--tint-16), 0 6px 16px rgba(1,34,112,.06);
     text-align: center;
   }
-  .circle__tab {
-    position: absolute;
-    top: 6px;
-    padding: 2px 10px;
-    background: var(--ts-light-blue);
-    color: var(--ts-white);
-    font-size: 11px;
-    font-weight: 700;
-    line-height: 1.6;
-    letter-spacing: .08em;
-  }
-  .circle .badge__num { font-size: 38px; margin-top: 14px; }
-  .stars { display: flex; gap: 1px; color: var(--ts-orange); font-size: 13px; margin-top: 2px; }
-  .circle__icon { color: var(--ts-primary); font-size: 16px; margin-top: 16px; }
-  .circle--week .badge__num { margin-top: 0; font-size: 34px; }
+  .circle .b-num { font-size: 30px; }
+  .stars { display: flex; gap: 1px; color: var(--ts-orange); font-size: 11px; margin: 2px 0 1px; }
+  .circle .ico-top { color: var(--ts-primary); font-size: 16px; margin-bottom: 2px; }
 
-  /* 特長タグ：濃紺の帯に白文字（折返しても帯が行ごとに付く） */
-  .tags { margin: 24px 0 0; display: grid; gap: 8px; justify-items: start; }
-  .tag {
-    margin: 0;
-    font-size: clamp(14px, 1.2vw, 16px);
-    font-weight: 700;
-    line-height: 2.1;
-    letter-spacing: .08em;
-  }
-  .tag { word-break: keep-all; overflow-wrap: anywhere; }
-  .tag span {
-    padding: .32em .7em;
-    background: var(--ts-deep-navy);
-    color: var(--ts-white);
-    -webkit-box-decoration-break: clone;
-    box-decoration-break: clone;
-  }
-
-  /* CTA */
-  .cta { margin-top: 36px; }
-  .cta__main {
+  /* ── ビジュアル：角丸写真＋浮遊カード ───────── */
+  .hero__visual {
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 68px;
-    padding: 0 56px;
-    border-radius: 6px;
-    background: var(--ts-primary);
-    color: var(--ts-white);
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: .12em;
-    text-decoration: none;
-    box-shadow: 0 4px 0 var(--ts-deep-navy);
-    transition: transform .12s, box-shadow .12s, background-color .15s;
+    align-self: center;
+    padding: 28px 8% 36px 10%;
   }
-  .cta__main:hover { background: var(--ts-light-blue); }
-  .cta__main:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--ts-deep-navy); }
-  .cta__main .ico { position: absolute; right: 22px; font-size: 18px; }
-  .cta__pill {
+  /* 写真の背後にずらした主色の面（奥行きとリズム） */
+  .hero__visual::before {
+    content: "";
     position: absolute;
+    right: 0;
     top: 0;
-    left: 50%;
-    transform: translate(-50%, -55%);
-    padding: 3px 16px;
-    border: 1.5px solid var(--ts-primary);
+    width: 72%;
+    height: 78%;
+    border-radius: 40px;
+    background: var(--ts-primary);
+  }
+  .hero__visual::after {
+    content: "";
+    position: absolute;
+    left: 2%;
+    bottom: 8%;
+    width: 96px;
+    height: 96px;
+    background-image: radial-gradient(var(--ts-light-blue) 1.6px, transparent 1.8px);
+    background-size: 14px 14px;
+    opacity: .45;
+  }
+  .photo {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    border-radius: 32px;
+    overflow: hidden;
+    aspect-ratio: 4 / 4.4;
+    box-shadow: var(--shadow);
+  }
+  .photo img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: 50% center;
+  }
+  .photo figcaption {
+    position: absolute;
+    right: 14px;
+    bottom: 12px;
+    padding: 2px 10px;
     border-radius: 999px;
+    background: rgba(255,255,255,.85);
+    color: var(--ts-mid);
+    font-size: 10px;
+    line-height: 1.6;
+  }
+
+  .float {
+    position: absolute;
+    z-index: 2;
     background: var(--ts-white);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    animation: bob 6s ease-in-out infinite;
+  }
+  @keyframes bob { 50% { transform: translateY(-6px); } }
+  @media (prefers-reduced-motion: reduce) { .float { animation: none; } }
+
+  /* 今週の学び */
+  .f-progress {
+    left: 0;
+    top: 12%;
+    width: 232px;
+    padding: 16px 18px;
+    animation-delay: -1s;
+  }
+  .f-progress__head { display: flex; justify-content: space-between; align-items: baseline; }
+  .f-kicker { color: var(--ts-mid); font-size: 11px; font-weight: 500; letter-spacing: .06em; }
+  .f-progress__count { color: var(--ts-primary); font-size: 12px; font-weight: 700; }
+  .bar { height: 6px; margin: 8px 0 12px; border-radius: 999px; background: var(--tint-08); overflow: hidden; }
+  .bar i { display: block; width: 66%; height: 100%; border-radius: inherit; background: var(--ts-primary); }
+  .steps { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+  .steps li { display: flex; align-items: center; gap: 8px; font-size: 12px; line-height: 1.4; }
+  .steps .dot {
+    display: grid;
+    place-items: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    flex: none;
+    font-size: 10px;
+  }
+  .steps .done .dot { background: var(--ts-primary); color: var(--ts-white); }
+  .steps .done span:last-child { color: var(--ts-mid); }
+  .steps .now .dot { box-shadow: inset 0 0 0 1.5px var(--ts-primary); color: var(--ts-primary); font-weight: 700; }
+  .steps .now { font-weight: 700; }
+
+  /* 講師コメント */
+  .f-chat {
+    right: 0;
+    top: 48%;
+    width: 244px;
+    padding: 12px 14px;
+    display: flex;
+    gap: 10px;
+    border-bottom-right-radius: 6px;
+    animation-delay: -3s;
+  }
+  .avatar {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    flex: none;
+    border-radius: 50%;
+    background: var(--tint-08);
     color: var(--ts-primary);
     font-size: 12px;
-    line-height: 1.5;
-    letter-spacing: .1em;
-    white-space: nowrap;
+    font-weight: 700;
   }
-  .cta__sub {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-top: 16px;
-  }
-  .cta__sub a {
+  .f-chat p { margin: 2px 0 0; font-size: 12.5px; line-height: 1.55; word-break: keep-all; overflow-wrap: anywhere; }
+
+  /* できた！ */
+  .f-done {
+    left: 4%;
+    bottom: 4%;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 8px;
-    min-height: 50px;
-    padding: 0 12px;
-    border: 1.5px solid var(--ts-primary);
-    border-radius: 6px;
-    background: rgba(255,255,255,.92);
-    color: var(--ts-primary);
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: .06em;
-    text-decoration: none;
-    transition: background-color .15s, color .15s;
+    gap: 12px;
+    padding: 12px 18px 12px 12px;
+    border-radius: 999px;
+    animation-delay: -4.5s;
   }
-  .cta__sub a:hover { background: var(--ts-primary); color: var(--ts-white); }
-  .cta__sub .ico { font-size: 18px; }
-  .cta a:focus-visible { outline: 3px solid var(--ts-light-blue); outline-offset: 3px; }
+  .f-done .check {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--ts-green);
+    color: var(--ts-white);
+    font-size: 18px;
+  }
+  .f-done strong { display: block; font-size: 14px; line-height: 1.3; }
+  .f-done span { display: block; color: var(--ts-mid); font-size: 11px; line-height: 1.4; }
 
   .hero__note {
-    margin: 14px 0 0;
+    grid-column: 1 / -1;
+    margin: 28px 0 0;
     color: var(--ts-mid);
     font-size: 11px;
     line-height: 1.6;
   }
 
-  /* ── タブレット以下 ─────────────────────── */
-  @media (max-width: 900px) {
-    .site-header { position: static; padding-top: 14px; padding-bottom: 14px; }
-    .site-header img { height: 24px; }
-    .hero { display: block; min-height: 0; }
-    .hero::before { display: none; }
-    .hero__media { position: relative; }
-    .hero__bg { height: auto; aspect-ratio: 4 / 3; object-position: 74% center; }
-    .hero__media-label { right: 12px; top: 12px; bottom: auto; font-size: 10px; }
-    /* 見出しの白ボックスを写真の下端に重ねる */
-    .hero__inner { position: relative; margin-top: -72px; padding: 0 var(--gutter) 48px; }
-    .hero__title { font-size: clamp(24px, 7vw, 34px); gap: 6px; }
-    .badges { justify-content: center; gap: 8px; }
-    .laurel__branch { width: 26px; height: 80px; }
-    .laurel__body { min-width: 96px; }
-    .laurel .badge__num { font-size: 38px; }
-    .circle { width: 98px; height: 98px; }
-    .circle .badge__num { font-size: 30px; }
-    .circle--week .badge__num { font-size: 26px; }
-    .circle__tab { font-size: 10px; padding: 1px 8px; }
-    .laurel__label, .circle__label { font-size: 11px; }
-    .cta__main { min-height: 62px; padding: 0 44px; font-size: 17px; }
-    .cta__sub a { font-size: 14px; }
+  /* ── レスポンシブ ───────────────────────── */
+  @media (max-width: 1180px) {
+    .gnav { gap: 16px; }
+    .gnav a:nth-child(n+5) { display: none; }
   }
-  @media (max-width: 440px) {
-    .cta__sub { grid-template-columns: 1fr; }
+  @media (max-width: 980px) {
+    .gnav, .login { display: none; }
+    .menu { display: block; }
+    .header-actions { margin-left: auto; gap: 10px; }
+    .brand small { display: none; }
+
+    .hero .wrap {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas: "copy" "visual" "cta" "badges";
+      grid-template-rows: none;
+      padding-top: 36px;
+      padding-bottom: 48px;
+    }
+    .hero__visual { margin: 28px auto 0; width: min(100%, 520px); padding: 20px 6% 28px 8%; }
+    .hero__cta { margin-top: 28px; }
+    .cta-row { margin: 0 auto; }
+    .cta-note { justify-content: center; }
+    .hero__badges { justify-content: center; margin-top: 32px; }
+    .hero__note { text-align: center; }
   }
-  @media (max-width: 370px) {
-    .badges { flex-wrap: wrap; }
+  @media (max-width: 560px) {
+    .site-header .wrap { height: 60px; }
+    .btn-sm { height: 36px; padding: 0 14px; font-size: 12px; }
+    .brand img { height: 20px; }
+    .cta-row { grid-template-columns: 1fr; max-width: none; }
+    .btn { width: 100%; }
+    .cta-note { justify-content: center; }
+    .f-progress { width: 184px; padding: 12px 14px; top: 6%; }
+    .f-progress .steps li:last-child { display: none; }
+    .f-chat { width: 196px; top: 54%; padding: 10px 12px; }
+    .f-chat p { font-size: 11.5px; }
+    .avatar { width: 28px; height: 28px; font-size: 11px; }
+    .f-done { padding: 8px 14px 8px 8px; gap: 10px; }
+    .f-done .check { width: 30px; height: 30px; font-size: 15px; }
+    .f-done strong { font-size: 13px; }
+    .hero__badges { gap: 8px; }
+    .laurel__branch { width: 24px; height: 74px; }
+    .laurel__body { min-width: 84px; }
+    .b-num { font-size: 32px; }
+    .circle { width: 96px; height: 96px; }
+    .circle .b-num { font-size: 26px; }
+  }
+  @media (max-width: 360px) {
+    .hero__badges { flex-wrap: wrap; }
   }
 </style>
 </head>
@@ -326,72 +522,134 @@
   <symbol id="i-calendar" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></g></symbol>
   <symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></g></symbol>
   <symbol id="i-folder" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M12 11v5M9.5 13.5h5"/></g></symbol>
-  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
 </svg>
 
 <header class="site-header">
-  <a href="/" aria-label="The Academy トップへ">
-    <img src="assets/academy_logo_blue.png" alt="The Academy" width="895" height="241">
-  </a>
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="The Academy トップへ">
+      <img src="assets/academy_logo_blue.png" alt="The Academy" width="895" height="241">
+      <small>ONLINE LEARNING<br>PLATFORM</small>
+    </a>
+    <nav class="gnav" aria-label="グローバルナビゲーション">
+      <a href="/courses">コースを探す</a>
+      <a href="/about">はじめての方へ</a>
+      <a href="/results">学び方・受講成果</a>
+      <a href="/portfolio">ポートフォリオ</a>
+      <a href="/feed">学びのフィード</a>
+      <a href="/blog">学びのヒント</a>
+      <a href="/faq">FAQ</a>
+    </nav>
+    <div class="header-actions">
+      <a class="login" href="/login">ログイン</a>
+      <a class="btn-sm" href="/consultation">無料相談・体験</a>
+      <details class="menu">
+        <summary aria-label="メニュー"><svg class="ico"><use href="#i-menu"/></svg></summary>
+        <nav aria-label="メニュー">
+          <a href="/courses">コースを探す</a>
+          <a href="/about">はじめての方へ</a>
+          <a href="/results">学び方・受講成果</a>
+          <a href="/portfolio">ポートフォリオ</a>
+          <a href="/feed">学びのフィード</a>
+          <a href="/blog">学びのヒント</a>
+          <a href="/faq">FAQ</a>
+          <a href="/login">ログイン</a>
+        </nav>
+      </details>
+    </div>
+  </div>
 </header>
 
 <main>
   <section class="hero" aria-labelledby="hero-title">
-    <div class="hero__media">
-      <img class="hero__bg" src="assets/hero.webp" alt="明るい部屋でノートパソコンに向かい、メモを取りながら学ぶ女性" width="1672" height="941" fetchpriority="high">
-      <p class="hero__media-label">画像はイメージです</p>
-    </div>
+    <div class="wrap">
 
-    <div class="hero__inner">
-      <div class="hero__content">
+      <div class="hero__copy">
+        <p class="eyebrow">平日夜・週末に、オンラインで</p>
         <h1 class="hero__title" id="hero-title">
-          <span>学んで、つくって、</span>
+          <span>学んで、</span><span>つくって、</span><br>
           <span><em>次のキャリア</em>へ。</span>
         </h1>
+        <p class="hero__lead">
+          平日夜・週末の短い時間で、<wbr>実務に直結する<wbr>アウトプットを。<wbr>講師と仲間に<wbr>支えられながら、<wbr>自分らしい<wbr>キャリアを作ろう。
+        </p>
+      </div>
 
-        <ul class="badges" aria-label="The Academy の特長">
-          <li class="laurel">
-            <svg class="laurel__branch" aria-hidden="true"><use href="#i-laurel"/></svg>
-            <div class="laurel__body">
-              <span class="laurel__label">実務に直結する</span>
-              <span class="badge__num">10<small>+</small></span>
-              <span class="badge__sub">実践コース</span>
-            </div>
-            <svg class="laurel__branch laurel__branch--r" aria-hidden="true"><use href="#i-laurel"/></svg>
-          </li>
-          <li class="circle">
-            <span class="circle__tab">平均満足度</span>
-            <span class="badge__num">4.2<small>※</small></span>
-            <span class="stars" aria-label="5点満点中4.2">
-              <svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico" style="opacity:.3"><use href="#i-star"/></svg>
-            </span>
-          </li>
-          <li class="circle circle--week">
-            <svg class="ico circle__icon" aria-hidden="true"><use href="#i-calendar"/></svg>
-            <span class="badge__num">週2<small>〜</small></span>
-            <span class="circle__label">続けやすい設計</span>
-          </li>
-        </ul>
+      <div class="hero__cta">
+        <div class="cta-row">
+          <a class="btn btn--primary" href="/consultation">
+            無料で相談する
+            <span class="arrow"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+          </a>
+          <a class="btn btn--ghost" href="/courses"><svg class="ico" aria-hidden="true"><use href="#i-search"/></svg>コースを探す</a>
+          <a class="btn btn--ghost" href="/portfolio"><svg class="ico" aria-hidden="true"><use href="#i-folder"/></svg>ポートフォリオを作る</a>
+        </div>
+        <p class="cta-note"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>オンライン開催・相談だけでもOK</p>
+      </div>
 
-        <div class="tags">
-          <p class="tag"><span>平日夜・週末の<wbr>短い時間で、<wbr>実務に直結する<wbr>アウトプットを。</span></p>
-          <p class="tag"><span>講師と仲間に<wbr>支えられながら、<wbr>自分らしい<wbr>キャリアを作ろう。</span></p>
+      <ul class="hero__badges" aria-label="The Academy の特長">
+        <li class="laurel">
+          <svg class="laurel__branch" aria-hidden="true"><use href="#i-laurel"/></svg>
+          <div class="laurel__body">
+            <span class="b-label">実務に直結する</span>
+            <span class="b-num">10<small>+</small></span>
+            <span class="b-sub">実践コース</span>
+          </div>
+          <svg class="laurel__branch laurel__branch--r" aria-hidden="true"><use href="#i-laurel"/></svg>
+        </li>
+        <li class="circle">
+          <span class="b-label">平均満足度</span>
+          <span class="b-num">4.2<small>※</small></span>
+          <span class="stars" aria-label="5点満点中4.2">
+            <svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico"><use href="#i-star"/></svg><svg class="ico" style="opacity:.3"><use href="#i-star"/></svg>
+          </span>
+        </li>
+        <li class="circle">
+          <svg class="ico ico-top" aria-hidden="true"><use href="#i-calendar"/></svg>
+          <span class="b-num">週2<small>〜</small></span>
+          <span class="b-sub">続けやすい設計</span>
+        </li>
+      </ul>
+
+      <div class="hero__visual">
+        <figure class="photo">
+          <img src="assets/hero.webp" alt="明るい部屋でノートパソコンに向かい、メモを取りながら学ぶ女性" width="1672" height="941" fetchpriority="high">
+          <figcaption>画像はイメージです</figcaption>
+        </figure>
+
+        <div class="float f-progress" aria-hidden="true">
+          <div class="f-progress__head">
+            <span class="f-kicker">今週の学び</span>
+            <span class="f-progress__count">2 / 3 完了</span>
+          </div>
+          <div class="bar"><i></i></div>
+          <ul class="steps">
+            <li class="done"><span class="dot"><svg class="ico"><use href="#i-check"/></svg></span><span>基礎を知る 15分</span></li>
+            <li class="done"><span class="dot"><svg class="ico"><use href="#i-check"/></svg></span><span>一緒に試す 25分</span></li>
+            <li class="now"><span class="dot">3</span><span>仕事で使う</span></li>
+          </ul>
         </div>
 
-        <div class="cta">
-          <a class="cta__main" href="#consultation">
-            <span class="cta__pill">まずは気軽に話してみる</span>
-            無料で相談する
-            <svg class="ico" aria-hidden="true"><use href="#i-chevron"/></svg>
-          </a>
-          <div class="cta__sub">
-            <a href="#courses"><svg class="ico" aria-hidden="true"><use href="#i-search"/></svg>コースを探す</a>
-            <a href="#portfolio"><svg class="ico" aria-hidden="true"><use href="#i-folder"/></svg>ポートフォリオを作る</a>
+        <div class="float f-chat" aria-hidden="true">
+          <span class="avatar">講師</span>
+          <div>
+            <span class="f-kicker">講師から</span>
+            <p>いい視点ですね！<wbr>次は実例に<wbr>してみましょう</p>
           </div>
         </div>
 
-        <p class="hero__note">※受講生アンケート（5段階評価）の平均値</p>
+        <div class="float f-done" aria-hidden="true">
+          <span class="check"><svg class="ico"><use href="#i-check"/></svg></span>
+          <div>
+            <strong>できた！</strong>
+            <span>業務改善テンプレート</span>
+          </div>
+        </div>
       </div>
+
+      <p class="hero__note">※受講生アンケート（5段階評価）の平均値</p>
     </div>
   </section>
 </main>

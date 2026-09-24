@@ -518,6 +518,72 @@
     .goal:hover, .goal:hover .goal__illust, .sec-more:hover .ico { transform: none; }
   }
 
+  /* ── 02 WHY THE ACADEMY ───────────────── */
+  .why {
+    padding: clamp(64px, 8vw, 112px) 0;
+    background: var(--tint-04);
+  }
+  .why .sec-head { display: block; text-align: center; max-width: 720px; margin-left: auto; margin-right: auto; }
+  .why .sec-title { font-size: clamp(30px, 4vw, 52px); }
+  .why .sec-lead { max-width: 30em; margin-left: auto; margin-right: auto; }
+  .points {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .point {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    padding: 20px 20px 36px;
+    border-radius: 28px;
+    background: var(--ts-white);
+    text-align: center;
+  }
+  .point__art {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 200px;
+    margin-bottom: 28px;
+    border-radius: 18px;
+  }
+  /* パネル色：主色・オレンジ・グリーンをごく淡くして3つの仕組みを塗り分ける（文字は載せない） */
+  .point--course .point__art    { background: rgba(1,65,212,.08); }
+  .point--portfolio .point__art { background: rgba(247,107,56,.12); }
+  .point--community .point__art { background: rgba(39,174,96,.12); }
+  .point__art svg { width: 148px; height: 148px; }
+  .point__num {
+    margin: 0;
+    color: var(--ts-primary);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    line-height: 1.4;
+  }
+  .point__title {
+    margin: 12px 0 0;
+    color: #1B2233;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.45;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+  .point__text {
+    max-width: 22em;
+    margin: 12px 0 0;
+    color: var(--ts-mid);
+    font-size: 15px;
+    line-height: 1.8;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+
   /* ── レスポンシブ ───────────────────────── */
   @media (max-width: 1320px) {
     .brand small { display: none; }
@@ -583,6 +649,12 @@
     .goal__cat { margin-top: 4px; font-size: 13px; }
     .goal__arrow { width: 36px; height: 36px; font-size: 16px; }
     .goal { align-content: center; }
+  }
+  @media (max-width: 900px) {
+    .points { grid-template-columns: minmax(0, 1fr); max-width: 520px; margin: 0 auto; gap: 16px; }
+    .point__art { height: 168px; margin-bottom: 20px; }
+    .point__art svg { width: 124px; height: 124px; }
+    .point__title { font-size: 20px; }
   }
 </style>
 </head>
@@ -810,6 +882,63 @@
             <p class="goal__cat">相談して一緒に整理</p>
             <span class="goal__arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
           </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="why" id="why" aria-labelledby="why-title">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="sec-num">02</p>
+        <p class="sec-kicker">WHY THE ACADEMY</p>
+        <h2 class="sec-title" id="why-title">学ぶ、残す、飛び込む。</h2>
+        <p class="sec-lead">3つの仕組みで、<wbr>忙しくても学びを<wbr>「できる」に変え、<wbr>キャリアへ<wbr>つなげていきます。</p>
+      </header>
+      <ul class="points">
+        <li class="point point--course">
+          <div class="point__art"><svg viewBox="0 0 120 120" aria-hidden="true"><path d="M26 50q20-8 40 0v48q-20-8-40 0zM66 50q20-8 40 0v48q-20-8-40 0z" fill="#B3C7F4"/>
+<path d="M20 44q20-8 40 0v48q-20-8-40 0z" fill="#FFFFFF" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M60 44q20-8 40 0v48q-20-8-40 0z" fill="#FFFFFF" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M29 56h22M29 65h22M29 74h14" fill="none" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/>
+<rect x="68" y="54" width="7" height="7" rx="1.5" fill="#0141D4"/>
+<rect x="68" y="68" width="7" height="7" rx="1.5" fill="#0141D4"/>
+<path d="M80 57.5h12M80 71.5h9" fill="none" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/>
+<path d="M88 16l12 12-24 24-14 3 3-14z" fill="#F76B38" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M68 40l9 9" fill="none" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/>
+<path d="M22 18 Q22 26 30 26 Q22 26 22 34 Q22 26 14 26 Q22 26 22 18Z" fill="#0141D4" stroke="#012270" stroke-width="2.4" stroke-linejoin="round"/></svg></div>
+          <p class="point__num">POINT 01</p>
+          <h3 class="point__title">コースで<wbr>学ぶ</h3>
+          <p class="point__text">学びたい分野を選び、<wbr>演習とテンプレートで<wbr>実践的に身につける。</p>
+        </li>
+        <li class="point point--portfolio">
+          <div class="point__art"><svg viewBox="0 0 120 120" aria-hidden="true"><rect x="26" y="32" width="76" height="66" rx="9" fill="#B3C7F4"/>
+<rect x="20" y="26" width="76" height="66" rx="9" fill="#FFFFFF" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="37" cy="44" r="8" fill="#0141D4" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/>
+<path d="M51 40h28M51 49h18" fill="none" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/>
+<path d="M32 80l14-9 12 5 20-16" fill="none" stroke="#0141D4" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M70 60h8v8" fill="none" stroke="#0141D4" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M100 14l3.5 7.2 7.9 1.1-5.7 5.6 1.3 7.9-7-3.7-7 3.7 1.3-7.9-5.7-5.6 7.9-1.1z" fill="#F76B38" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/></svg></div>
+          <p class="point__num">POINT 02</p>
+          <h3 class="point__title">ポートフォリオで<wbr>残す</h3>
+          <p class="point__text">成果物と学びの歩みを記録。<wbr>ロールモデルを見つけ、<wbr>続ける力に。</p>
+        </li>
+        <li class="point point--community">
+          <div class="point__art"><svg viewBox="0 0 120 120" aria-hidden="true"><path d="M48 98a18 18 0 0 1 36 0z" fill="#B3C7F4"/>
+<path d="M20 98a13 13 0 0 1 26 0z" fill="#DCE5FA" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M74 98a13 13 0 0 1 26 0z" fill="#DCE5FA" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="33" cy="75" r="8" fill="#FFFFFF" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="87" cy="75" r="8" fill="#FFFFFF" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M42 98a18 18 0 0 1 36 0z" fill="#0141D4" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="60" cy="66" r="11" fill="#FFFFFF" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 98h88" fill="none" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M84 16h22a6 6 0 0 1 6 6v12a6 6 0 0 1-6 6h-12l-8 7 1-7h-3a6 6 0 0 1-6-6V22a6 6 0 0 1 6-6z" fill="#F76B38" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/>
+<path d="M95 22.5v8" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+<circle cx="95" cy="35.5" r="1.8" fill="#FFFFFF"/>
+<path d="M22 24 Q22 32 30 32 Q22 32 22 40 Q22 32 14 32 Q22 32 22 24Z" fill="#0141D4" stroke="#012270" stroke-width="2.4" stroke-linejoin="round"/></svg></div>
+          <p class="point__num">POINT 03</p>
+          <h3 class="point__title">コミュニティーで<wbr>新しいことに<wbr>飛び込む</h3>
+          <p class="point__text">興味のある場に参加して、<wbr>体験しながら学ぶ。</p>
         </li>
       </ul>
     </div>

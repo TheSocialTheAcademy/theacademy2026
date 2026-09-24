@@ -521,135 +521,133 @@
   /* ── 02 WHY THE ACADEMY（学ぶ→残す→飛び込む→また学ぶ） ───────── */
   .why {
     overflow: hidden;
-    padding: clamp(72px, 9vw, 128px) 0;
+    padding: clamp(72px, 8vw, 112px) 0;
     background: linear-gradient(180deg, #FFFFFF 0%, #F7F9FE 100%);
   }
-  .why .sec-head { display: block; text-align: center; max-width: 720px; margin: 0 auto clamp(40px, 5vw, 72px); }
+  .why .sec-head { display: block; text-align: center; max-width: 720px; margin: 0 auto clamp(32px, 4vw, 56px); }
   .why .sec-title { font-size: clamp(30px, 4vw, 52px); }
   .why .sec-lead { max-width: 30em; margin-left: auto; margin-right: auto; }
 
-  .points { --row-gap: 104px; display: grid; gap: var(--row-gap); margin: 0; padding: 0; list-style: none; }
-  .point {
-    position: relative;
+  .points {
+    --gap: 48px;
     display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-    align-items: center;
-    gap: clamp(32px, 5vw, 80px);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--gap);
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
-  .point:nth-child(even) .comp { order: 2; }
-  /* 行と行をつなぐ下向きノード */
+  .point { position: relative; text-align: center; container-type: inline-size; }
+  /* 列と列をつなぐ矢印ノード（図の中央の高さ） */
   .point + .point::before {
     content: "";
     position: absolute;
-    left: 50%;
-    top: calc(var(--row-gap) / -2 - 22px);
-    width: 44px;
-    height: 44px;
-    margin-left: -22px;
+    z-index: 3;
+    left: calc(var(--gap) / -2 - 20px);
+    top: calc(190 * 100cqw / 360 - 20px);
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    background: var(--ts-white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 5v14M6 13l6 6 6-6' fill='none' stroke='%230141D4' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 18px no-repeat;
-    box-shadow: 0 10px 24px rgba(27,34,51,.08), 0 0 0 1px rgba(1,65,212,.10);
+    background: var(--ts-white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6' fill='none' stroke='%230141D4' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 17px no-repeat;
+    box-shadow: 0 10px 24px rgba(27,34,51,.10), 0 0 0 1px rgba(1,65,212,.10);
   }
 
-  /* ── 図：参考比率 600×500 の座標系（--u）で組み、幅に合わせて等倍に縮む ── */
+  /* ── 図：360×420 の座標系（--u）で組み、列幅に合わせて等倍縮小 ── */
   .comp { container-type: inline-size; }
   .comp__canvas {
-    --u: calc(100cqw / 600);
+    --u: calc(100cqw / 360);
     position: relative;
-    height: calc(545 * var(--u));
+    height: calc(420 * var(--u));
     font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
     color: #1B2233;
+    text-align: left;
   }
   .orb { position: absolute; border-radius: 50%; }
   /* 円の色はブランド色から派生：主色の淡色／イエロー→オレンジ／グリーン→ライトブルー */
   .orb--base {
-    left: calc(40 * var(--u)); top: calc(14 * var(--u));
-    width: calc(480 * var(--u)); height: calc(480 * var(--u));
+    left: calc(26 * var(--u)); top: calc(22 * var(--u));
+    width: calc(316 * var(--u)); height: calc(316 * var(--u));
     background: linear-gradient(150deg, #EEF2FD 0%, #E1E7FA 55%, #D6DEF6 100%);
   }
   .orb--sun {
-    left: calc(372 * var(--u)); top: calc(-30 * var(--u));
-    width: calc(208 * var(--u)); height: calc(208 * var(--u));
+    left: calc(236 * var(--u)); top: 0;
+    width: calc(118 * var(--u)); height: calc(118 * var(--u));
     background: linear-gradient(165deg, #F9E6A0 0%, #F5CE7E 60%, #EFC078 100%);
   }
   .orb--leaf {
-    left: calc(18 * var(--u)); top: calc(372 * var(--u));
-    width: calc(140 * var(--u)); height: calc(140 * var(--u));
+    left: 0; top: calc(262 * var(--u));
+    width: calc(92 * var(--u)); height: calc(92 * var(--u));
     background: linear-gradient(165deg, #BFE3DA 0%, #9FD0C7 55%, #8BC2BC 100%);
   }
 
   .panel {
     position: absolute;
-    left: calc(96 * var(--u)); top: calc(50 * var(--u));
-    width: calc(340 * var(--u));
-    padding: calc(38 * var(--u)) calc(32 * var(--u)) calc(32 * var(--u));
-    border-radius: calc(28 * var(--u));
+    left: calc(34 * var(--u)); top: calc(40 * var(--u));
+    width: calc(292 * var(--u));
+    padding: calc(24 * var(--u)) calc(20 * var(--u)) calc(20 * var(--u));
+    border-radius: calc(22 * var(--u));
     background: var(--ts-white);
-    box-shadow: 0 calc(40 * var(--u)) calc(80 * var(--u)) rgba(27,34,51,.10), 0 calc(2 * var(--u)) calc(8 * var(--u)) rgba(27,34,51,.04);
+    box-shadow: 0 calc(28 * var(--u)) calc(56 * var(--u)) rgba(27,34,51,.11), 0 calc(2 * var(--u)) calc(6 * var(--u)) rgba(27,34,51,.04);
   }
   .panel__head { display: flex; align-items: baseline; justify-content: space-between; }
-  .panel__kicker { color: #6B7085; font-size: max(11px, calc(13 * var(--u))); letter-spacing: .06em; }
-  .panel__count { color: var(--ts-primary); font-size: max(12px, calc(16 * var(--u))); font-weight: 700; letter-spacing: .12em; }
-  .bar3 { height: calc(8 * var(--u)); margin-top: calc(22 * var(--u)); border-radius: 999px; background: #EDF0F8; overflow: hidden; }
+  .panel__kicker { color: #6B7085; font-size: calc(11.5 * var(--u)); letter-spacing: .06em; }
+  .panel__count { color: var(--ts-primary); font-size: calc(13.5 * var(--u)); font-weight: 700; letter-spacing: .12em; }
+  .bar3 { height: calc(6 * var(--u)); margin-top: calc(14 * var(--u)); border-radius: 999px; background: #EDF0F8; overflow: hidden; }
   .bar3 i {
     display: block; width: 66%; height: 100%; border-radius: inherit;
     background: linear-gradient(90deg, #0141D4 0%, #3E78FE 55%, #8FA9F5 100%);
   }
   .panel__title {
-    margin: calc(28 * var(--u)) 0 calc(26 * var(--u));
-    font-size: max(14px, calc(23 * var(--u)));
+    margin: calc(16 * var(--u)) 0 calc(16 * var(--u));
+    font-size: calc(17.5 * var(--u));
     font-weight: 400;
     line-height: 1.6;
     letter-spacing: .04em;
     white-space: nowrap;
   }
-  .rows { margin: 0; padding: 0; list-style: none; display: grid; gap: calc(10 * var(--u)); }
+  .rows { margin: 0; padding: 0; list-style: none; display: grid; gap: calc(7 * var(--u)); }
   .rows li {
-    display: flex; align-items: center; justify-content: space-between; gap: 8px;
-    min-height: calc(46 * var(--u));
-    padding: 0 calc(18 * var(--u));
+    display: flex; align-items: center; justify-content: space-between; gap: 6px;
+    min-height: calc(36 * var(--u));
+    padding: 0 calc(13 * var(--u));
     border: 1px solid #E3E6F0;
-    border-radius: calc(12 * var(--u));
+    border-radius: calc(10 * var(--u));
     background: var(--ts-white);
-    font-size: max(11px, calc(14 * var(--u)));
+    font-size: calc(12 * var(--u));
     font-weight: 700;
-    letter-spacing: .04em;
+    letter-spacing: .03em;
     white-space: nowrap;
   }
-  .rows li small { color: #7A7F93; font-size: max(10px, calc(12.5 * var(--u))); font-weight: 400; }
+  .rows li small { color: #7A7F93; font-size: calc(10.5 * var(--u)); font-weight: 400; }
   .rows li.is-done { border-color: #D6E9DE; background: #F1F7F3; color: #2F7550; }
-  .rows li.is-done span::before { content: "✓"; margin-right: .6em; font-weight: 400; }
+  .rows li.is-done span::before { content: "✓"; margin-right: .55em; font-weight: 400; }
 
   .note {
     position: absolute;
     z-index: 2;
+    left: 0; top: calc(326 * var(--u));
     width: calc(190 * var(--u));
-    padding: calc(18 * var(--u)) calc(18 * var(--u)) calc(18 * var(--u)) calc(20 * var(--u));
-    border-radius: calc(20 * var(--u));
+    padding: calc(14 * var(--u)) calc(16 * var(--u));
+    border-radius: calc(16 * var(--u));
     background: var(--ts-white);
-    box-shadow: 0 calc(24 * var(--u)) calc(56 * var(--u)) rgba(27,34,51,.13);
+    box-shadow: 0 calc(18 * var(--u)) calc(40 * var(--u)) rgba(27,34,51,.14);
   }
-  .note--tr { left: calc(412 * var(--u)); top: calc(30 * var(--u)); }
-  .note--bl { left: calc(4 * var(--u)); top: calc(432 * var(--u)); }
-  .note__kicker { display: block; color: var(--ts-primary); font-size: max(10px, calc(12 * var(--u))); font-weight: 700; letter-spacing: .08em; }
-  .note__title  { display: block; margin-top: calc(8 * var(--u)); font-size: max(11px, calc(14.5 * var(--u))); font-weight: 700; line-height: 1.4; letter-spacing: .02em; white-space: nowrap; }
-  .note__sub    { display: block; margin-top: calc(8 * var(--u)); color: #7A7F93; font-size: max(9.5px, calc(11 * var(--u))); line-height: 1.5; white-space: nowrap; }
+  .note__kicker { display: block; color: var(--ts-primary); font-size: calc(10.5 * var(--u)); font-weight: 700; letter-spacing: .08em; }
+  .note__title  { display: block; margin-top: calc(5 * var(--u)); font-size: calc(13.5 * var(--u)); font-weight: 700; line-height: 1.4; white-space: nowrap; }
+  .note__sub    { display: block; margin-top: calc(4 * var(--u)); color: #7A7F93; font-size: calc(10 * var(--u)); line-height: 1.5; white-space: nowrap; }
 
-  /* ── テキスト側 ── */
-  .point__body { max-width: 30em; }
+  /* ── テキスト ── */
   .point__num {
-    display: flex; align-items: center; gap: 12px;
-    margin: 0;
+    margin: 20px 0 0;
     color: var(--ts-primary);
     font-size: 14px;
     font-weight: 700;
-    letter-spacing: .18em;
+    letter-spacing: .16em;
   }
-  .point__num::after { content: ""; width: 40px; height: 1.5px; background: currentColor; opacity: .5; }
   .point__title {
-    margin: 16px 0 0;
+    margin: 8px 0 0;
     color: #1B2233;
-    font-size: clamp(24px, 2.6vw, 34px);
+    font-size: clamp(20px, 1.9vw, 24px);
     font-weight: 700;
     line-height: 1.45;
     letter-spacing: .03em;
@@ -658,15 +656,16 @@
   }
   .point__title em { font-style: normal; color: var(--ts-primary); }
   .point__text {
-    margin: 16px 0 0;
+    max-width: 22em;
+    margin: 10px auto 0;
     color: #5F6479;
-    font-size: 16px;
-    line-height: 1.9;
+    font-size: 15px;
+    line-height: 1.8;
     word-break: keep-all;
     overflow-wrap: anywhere;
   }
 
-  .loop { display: flex; justify-content: center; margin-top: 72px; }
+  .loop { display: flex; justify-content: center; margin-top: 48px; }
   .loop__label {
     display: inline-flex; align-items: center; gap: 10px;
     padding: 12px 24px;
@@ -679,6 +678,7 @@
     letter-spacing: .04em;
   }
   .loop__label .ico { font-size: 18px; }
+  .swipe-hint { display: none; }
 
   /* ── レスポンシブ ───────────────────────── */
   @media (max-width: 1320px) {
@@ -746,25 +746,31 @@
     .goal__arrow { width: 36px; height: 36px; font-size: 16px; }
     .goal { align-content: center; }
   }
-  @media (max-width: 900px) {
-    .points { --row-gap: 88px; max-width: 560px; margin: 0 auto; }
-    .point { grid-template-columns: minmax(0, 1fr); gap: 24px; }
-    .point:nth-child(even) .comp { order: 0; }
-    .point__body { text-align: center; margin: 0 auto; }
-    .point__num { justify-content: center; }
-    .point__num::after { display: none; }
-    .loop { margin-top: 56px; }
-  }
-  /* スマホ：図を 440 幅の座標系に切り替え、小カードをメインカードの外側（上・下）へ逃がす */
-  @media (max-width: 560px) {
-    .comp__canvas { --u: calc(100cqw / 440); height: calc(600 * var(--u)); }
-    .orb--base { left: calc(20 * var(--u)); top: calc(80 * var(--u)); width: calc(400 * var(--u)); height: calc(400 * var(--u)); }
-    .orb--sun  { left: calc(292 * var(--u)); top: calc(24 * var(--u)); width: calc(148 * var(--u)); height: calc(148 * var(--u)); }
-    .orb--leaf { left: 0; top: calc(420 * var(--u)); width: calc(120 * var(--u)); height: calc(120 * var(--u)); }
-    .panel { left: calc(44 * var(--u)); top: calc(104 * var(--u)); width: calc(352 * var(--u)); }
-    .note { width: calc(200 * var(--u)); }
-    .note--tr { left: calc(240 * var(--u)); top: 0; }
-    .note--bl { left: 0; top: calc(492 * var(--u)); }
+  /* タブレット以下：横スワイプのカルーセル（縦に積まずスクロール量を抑える） */
+  @media (max-width: 980px) {
+    .points {
+      grid-template-columns: none;
+      grid-auto-flow: column;
+      grid-auto-columns: min(80%, 340px);
+      gap: 16px;
+      margin: 0 calc(var(--gutter) * -1);
+      padding: 4px var(--gutter) 8px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding: 0 var(--gutter);
+      scrollbar-width: none;
+    }
+    .points::-webkit-scrollbar { display: none; }
+    .point { scroll-snap-align: start; }
+    .point + .point::before { display: none; }
+    .points:focus-visible { outline: 3px solid var(--ts-light-blue); outline-offset: 2px; }
+    .swipe-hint {
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      margin: 20px 0 0;
+      color: var(--ts-mid);
+      font-size: 12px;
+    }
+    .loop { margin-top: 24px; }
   }
 </style>
 </head>
@@ -1006,7 +1012,7 @@
         <h2 class="sec-title" id="why-title">学ぶ、残す、飛び込む。</h2>
         <p class="sec-lead">3つの仕組みで、<wbr>忙しくても学びを<wbr>「できる」に変え、<wbr>キャリアへ<wbr>つなげていきます。</p>
       </header>
-      <ul class="points">
+      <ul class="points" tabindex="0" aria-label="3つの仕組み">
         <li class="point">
           <div class="comp" aria-hidden="true">
             <div class="comp__canvas">
@@ -1017,8 +1023,7 @@
                 <p class="panel__title">企画書を、テンプレートで<br>つくってみる。</p>
                 <ul class="rows"><li class="is-done"><span>基礎を知る</span><small>15分</small></li><li class="is-done"><span>一緒に試す</span><small>25分</small></li><li><span>仕事で使う</span><small>今週</small></li></ul>
               </div>
-              <div class="note note--tr"><span class="note__kicker">講師から</span><span class="note__title">いい視点ですね！</span><span class="note__sub">次は実例にしてみましょう</span></div>
-              <div class="note note--bl"><span class="note__kicker">できた！</span><span class="note__title">業務改善テンプレート</span><span class="note__sub">そのまま仕事で使える</span></div>
+              <div class="note"><span class="note__kicker">できた！</span><span class="note__title">業務改善テンプレート</span><span class="note__sub">そのまま仕事で使える</span></div>
             </div>
           </div>
           <div class="point__body">
@@ -1037,8 +1042,7 @@
                 <p class="panel__title">学んだことも、<br>歩んだ過程も、記録に。</p>
                 <ul class="rows"><li class="is-done"><span>成果物を公開</span><small>企画書</small></li><li class="is-done"><span>学習ログを記録</span><small>今日</small></li><li><span>振り返りを書く</span><small>今週</small></li></ul>
               </div>
-              <div class="note note--tr"><span class="note__kicker">ロールモデル</span><span class="note__title">先輩の歩みを見る</span><span class="note__sub">次の目標のヒントに</span></div>
-              <div class="note note--bl"><span class="note__kicker">公開した！</span><span class="note__title">ポートフォリオに公開</span><span class="note__sub">学びの過程も実績に</span></div>
+              <div class="note"><span class="note__kicker">ロールモデル</span><span class="note__title">先輩の歩みを見る</span><span class="note__sub">次の目標のヒントに</span></div>
             </div>
           </div>
           <div class="point__body">
@@ -1057,8 +1061,7 @@
                 <p class="panel__title">気になる分野の場に、<br>参加してみる。</p>
                 <ul class="rows"><li class="is-done"><span>興味のある場を選ぶ</span></li><li class="is-done"><span>参加して体験する</span></li><li><span>次の学びへつなげる</span><small>今週</small></li></ul>
               </div>
-              <div class="note note--tr"><span class="note__kicker">仲間から</span><span class="note__title">一緒にやってみよう！</span><span class="note__sub">次の場でも会いましょう</span></div>
-              <div class="note note--bl"><span class="note__kicker">参加した！</span><span class="note__title">はじめての体験</span><span class="note__sub">次の学びのきっかけに</span></div>
+              <div class="note"><span class="note__kicker">仲間から</span><span class="note__title">一緒にやってみよう！</span><span class="note__sub">次の場でも会いましょう</span></div>
             </div>
           </div>
           <div class="point__body">
@@ -1068,6 +1071,7 @@
           </div>
         </li>
       </ul>
+      <p class="swipe-hint" aria-hidden="true">横にスワイプして3つの仕組みを見る →</p>
       <div class="loop" aria-hidden="true">
         <span class="loop__label"><svg class="ico"><use href="#i-loop"/></svg>体験が、次の学びへ</span>
       </div>

@@ -9,8 +9,10 @@
   --ink: #1B2233;
   --sub: #5F6479;
   --line: rgba(34,34,34,.10);
-  --font: 'Graphik', 'Inter', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
-  --jp: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+  --font: 'Graphik', 'Inter', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic', 'Meiryo', 'IPAPGothic', sans-serif;
+  --jp: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', 'IPAPGothic', sans-serif;
+  /* 画面モック用：英数字は Arial、和文は丸みのない標準ゴシック（OSごとの定番を順に指定） */
+  --ui: Arial, 'Helvetica Neue', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic UI', 'Yu Gothic', 'Meiryo', 'Noto Sans JP', 'IPAPGothic', sans-serif;
   --gutter: clamp(16px, 4.5vw, 64px);
 }
 *, *::before, *::after { box-sizing: border-box; }
@@ -276,7 +278,7 @@ body { margin: 0; background: #fff; color: var(--ink); font-family: var(--font);
 .mix__legend, .crew2__msg { white-space: nowrap; }
 
 /* ════════ 案B（改2）：実寸の画面を等倍縮小（スクショ品質） ════════ */
-.t3 { container-type: inline-size; border-radius: 24px; overflow: hidden; font-family: var(--jp); text-align: left; box-shadow: inset 0 0 0 1px rgba(27,34,51,.04); }
+.t3 { container-type: inline-size; border-radius: 24px; overflow: hidden; font-family: var(--ui); text-align: left; box-shadow: inset 0 0 0 1px rgba(27,34,51,.04); }
 .t3--blue { background: radial-gradient(120% 100% at 0% 0%, #F6F8FE 0%, #E1E8FB 100%); }
 .t3--sand { background: radial-gradient(120% 100% at 0% 0%, #FEFAF2 0%, #F6E6C8 100%); }
 .t3--mint { background: radial-gradient(120% 100% at 0% 0%, #F3FAF7 0%, #D5ECE3 100%); }

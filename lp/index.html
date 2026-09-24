@@ -520,6 +520,7 @@
 
   /* ── 02 WHY THE ACADEMY（学ぶ→残す→飛び込む→また学ぶ の循環図） ── */
   .why {
+    overflow: hidden;
     padding: clamp(64px, 8vw, 112px) 0;
     background: var(--tint-04);
   }
@@ -542,7 +543,7 @@
     position: absolute;
     z-index: 2;
     left: calc(var(--gap) / -2 - 20px);
-    top: 110px;
+    top: 160px;
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -550,112 +551,89 @@
     box-shadow: 0 0 0 6px var(--tint-04), 0 6px 14px rgba(1,65,212,.25);
   }
 
-  /* ステージ：各仕組みの“画面”を小さなUIで見せる */
-  .stage {
-    position: relative;
-    display: grid;
-    place-items: center;
-    height: 260px;
-    padding: 24px;
-    border-radius: 24px;
-    background: var(--ts-white);
-    box-shadow: 0 0 0 1px var(--line);
-    overflow: hidden;
+  /* ステージ：やわらかい円＋白いメインカード＋重なる小カード */
+  .stage { position: relative; height: 360px; display: grid; place-items: center; }
+  .orb { position: absolute; border-radius: 50%; pointer-events: none; }
+  .orb--base {
+    width: 310px;
+    height: 310px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(160deg, rgba(62,120,254,.16), rgba(1,65,212,.07));
   }
-  .stage::before {           /* 背景の淡い面（ヒーローの主色パネルの縮小版） */
-    content: "";
-    position: absolute;
-    inset: 18px 18px 18px 38%;
-    border-radius: 18px;
-    background: var(--tint-08);
-  }
-  .mock {
+  .orb--warm  { width: 132px; height: 132px; background: linear-gradient(150deg, rgba(247,107,56,.38), rgba(247,107,56,.14)); }
+  .orb--fresh { width: 104px; height: 104px; background: linear-gradient(150deg, rgba(39,174,96,.32), rgba(39,174,96,.12)); }
+  .panel {
     position: relative;
-    width: min(100%, 236px);
-    padding: 14px 16px;
-    border-radius: 16px;
+    width: min(88%, 300px);
+    padding: 22px 20px 20px;
+    border-radius: 28px;
     background: var(--ts-white);
-    box-shadow: var(--shadow);
+    box-shadow: 0 30px 60px rgba(1,34,112,.10), 0 2px 8px rgba(1,34,112,.04);
     text-align: left;
-    font-size: 12px;
-    line-height: 1.5;
   }
-  .mock__head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
-  .mock__kicker { color: var(--ts-mid); font-size: 12px; font-weight: 500; letter-spacing: .04em; }
-  .mock__tag {
-    padding: 1px 8px;
-    border-radius: 999px;
-    background: var(--tint-08);
-    color: var(--ts-primary);
-    font-size: 11px;
-    font-weight: 700;
-    white-space: nowrap;
+  .panel__head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .panel__kicker { color: var(--ts-mid); font-size: 12px; letter-spacing: .04em; }
+  .panel__count { color: var(--ts-primary); font-size: 14px; font-weight: 700; letter-spacing: .08em; }
+  .bar2 { height: 6px; margin-top: 12px; border-radius: 999px; background: var(--tint-08); overflow: hidden; }
+  .bar2 i { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--ts-primary), var(--ts-light-blue) 70%, rgba(62,120,254,.7)); }
+  .panel__title {
+    margin: 16px 0 14px;
+    color: #1B2233;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 1.55;
+    letter-spacing: .02em;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
   }
-  .mock__list { margin: 0; padding: 0; list-style: none; display: grid; gap: 7px; }
-  .mock__list li { display: flex; align-items: center; gap: 8px; }
-  .dot { display: grid; place-items: center; width: 18px; height: 18px; flex: none; border-radius: 50%; font-size: 10px; }
-  .dot--done { background: var(--ts-primary); color: var(--ts-white); }
-  .dot--now { box-shadow: inset 0 0 0 1.5px var(--ts-primary); color: var(--ts-primary); font-weight: 700; }
-  .muted { color: var(--ts-mid); }
-  .chip {
-    position: absolute;
-    display: inline-flex;
+  .rows { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+  .rows li {
+    display: flex;
     align-items: center;
-    gap: 6px;
-    padding: 6px 12px 6px 8px;
-    border-radius: 999px;
-    background: var(--ts-white);
-    box-shadow: var(--shadow);
-    font-size: 12px;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 9px 12px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    color: #1B2233;
+    font-size: 12.5px;
     font-weight: 700;
-    white-space: nowrap;
+    line-height: 1.4;
   }
-  .chip i { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; font-style: normal; font-size: 12px; }
-
-  /* 02 残す：タイムライン */
-  .timeline { position: relative; margin: 0; padding: 0 0 0 16px; list-style: none; display: grid; gap: 8px; }
-  .timeline::before { content: ""; position: absolute; left: 4px; top: 6px; bottom: 6px; width: 2px; background: var(--tint-16); }
-  .timeline li { position: relative; }
-  .timeline li::before {
-    content: "";
-    position: absolute;
-    left: -16px;
-    top: 5px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--ts-white);
-    box-shadow: inset 0 0 0 2px var(--ts-primary);
-  }
-  .timeline li.is-work::before { background: var(--ts-primary); }
-  .profile { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
-  .avatar-s {
+  .rows li small { color: var(--ts-mid); font-size: 11px; font-weight: 500; white-space: nowrap; }
+  .rows li.is-done { border-color: rgba(39,174,96,.20); background: rgba(39,174,96,.07); color: #1E7A48; }
+  .rows li.is-done span::before { content: "✓"; margin-right: 6px; font-weight: 500; }
+  .rows li.is-blue { border-color: var(--tint-16); background: var(--tint-04); color: var(--ts-primary); }
+  .me { display: flex; align-items: center; gap: 8px; }
+  .me__icon {
     display: grid;
     place-items: center;
-    width: 28px;
-    height: 28px;
-    flex: none;
+    width: 26px;
+    height: 26px;
     border-radius: 50%;
-    background: var(--ts-primary);
-    color: var(--ts-white);
-    font-size: 12px;
-    font-weight: 700;
-  }
-  .avatars { display: flex; margin: 12px 0 0; }
-  .avatars .avatar-s { box-shadow: 0 0 0 2px var(--ts-white); }
-  .avatars .avatar-s + .avatar-s { margin-left: -4px; }
-  .avatars .avatar-s:nth-child(2) { background: var(--ts-light-blue); }
-  .avatars .avatar-s:nth-child(3) { background: var(--ts-deep-navy); }
-  .mock__btn {
-    display: inline-block;
-    margin-left: auto;
-    padding: 3px 12px;
-    border-radius: 999px;
-    background: var(--ts-primary);
+    background: linear-gradient(135deg, var(--ts-primary), var(--ts-light-blue));
     color: var(--ts-white);
     font-size: 11px;
     font-weight: 700;
   }
+  /* 小カードはメインカードの角の余白にだけ重ねる（本文を隠さない） */
+  .stage--note-bottom .panel { transform: translateY(-30px); }
+  .stage--note-top .panel { transform: translateY(30px); }
+  .note {
+    position: absolute;
+    z-index: 2;
+    min-width: 168px;
+    padding: 14px 18px 14px 16px;
+    border-radius: 20px;
+    background: var(--ts-white);
+    box-shadow: 0 18px 40px rgba(1,34,112,.12);
+    text-align: left;
+  }
+  .note__kicker { display: block; color: var(--ts-primary); font-size: 11px; font-weight: 700; letter-spacing: .06em; }
+  .note__title  { display: block; margin-top: 4px; color: #1B2233; font-size: 14px; font-weight: 700; line-height: 1.4; }
+  .note__sub    { display: block; margin-top: 4px; color: var(--ts-mid); font-size: 11px; line-height: 1.4; }
 
   .point__num {
     margin: 28px 0 0;
@@ -791,7 +769,7 @@
   @media (max-width: 900px) {
     .points { --gap: 64px; grid-template-columns: minmax(0, 1fr); max-width: 480px; margin: 0 auto; }
     .point + .point::before { left: 50%; top: calc(var(--gap) / -2 - 20px); margin-left: -20px; transform: rotate(90deg); }
-    .stage { height: 232px; }
+    .stage { height: 340px; }
     .point__title { font-size: 20px; }
     .loop { height: auto; margin: 40px auto 0; border: 0; text-align: center; }
     .loop::before { display: none; }
@@ -1039,45 +1017,61 @@
       </header>
       <ul class="points">
         <li class="point">
-          <div class="stage" aria-hidden="true">
-            <div class="mock">
-              <div class="mock__head"><span class="mock__kicker">今週のレッスン</span><span class="mock__tag">2 / 3</span></div>
-              <ul class="mock__list">
-                <li><span class="dot dot--done"><svg class="ico"><use href="#i-check"/></svg></span><span class="muted">基礎を知る</span></li>
-                <li><span class="dot dot--done"><svg class="ico"><use href="#i-check"/></svg></span><span class="muted">一緒に試す</span></li>
-                <li><span class="dot dot--now">3</span><b>仕事で使う</b></li>
+          <div class="stage stage--note-bottom" aria-hidden="true">
+            <span class="orb orb--base"></span>
+            <span class="orb orb--warm" style="right:2%;top:4%"></span>
+            <span class="orb orb--fresh" style="left:0;bottom:6%"></span>
+            <div class="panel">
+              <div class="panel__head"><span class="panel__kicker">今週の学び</span><span class="panel__count">2 / 3</span></div>
+              <div class="bar2"><i style="width:66%"></i></div>
+              <p class="panel__title">企画書を、テンプレートで<br>つくってみる。</p>
+              <ul class="rows">
+                <li class="is-done"><span>基礎を知る</span><small>15分</small></li>
+                <li class="is-done"><span>一緒に試す</span><small>25分</small></li>
+                <li><span>仕事で使う</span><small>今週</small></li>
               </ul>
             </div>
-            <span class="chip" style="right:14px;bottom:18px"><i style="background:var(--ts-orange);color:#fff"><svg class="ico"><use href="#i-folder"/></svg></i>テンプレート</span>
+            <div class="note" style="left:0;bottom:-2%"><span class="note__kicker">テンプレート</span><span class="note__title">業務改善テンプレート</span><span class="note__sub">そのまま仕事で使える</span></div>
           </div>
           <p class="point__num">POINT 01</p>
           <h3 class="point__title">コースで<wbr><em>学ぶ</em></h3>
           <p class="point__text">学びたい分野を選び、<wbr>演習とテンプレートで<wbr>実践的に身につける。</p>
         </li>
         <li class="point">
-          <div class="stage" aria-hidden="true">
-            <div class="mock">
-              <div class="profile"><span class="avatar-s">M</span><span><b>My Portfolio</b><br><span class="muted">学びの記録</span></span></div>
-              <ul class="timeline">
-                <li class="is-work"><b>成果物を公開</b></li>
-                <li class="muted">学習ログを記録</li>
-                <li class="muted">振り返りを追加</li>
+          <div class="stage stage--note-top" aria-hidden="true">
+            <span class="orb orb--base"></span>
+            <span class="orb orb--fresh" style="left:2%;top:6%"></span>
+            <span class="orb orb--warm" style="right:0;bottom:4%"></span>
+            <div class="panel">
+              <div class="panel__head"><span class="me"><span class="me__icon">M</span><span class="panel__kicker">My Portfolio</span></span></div>
+              <p class="panel__title">学んだことも、<br>歩んだ過程も、記録に。</p>
+              <ul class="rows">
+                <li class="is-blue"><span>成果物：企画書</span><small>公開</small></li>
+                <li><span>学習ログ</span><small>毎日</small></li>
+                <li><span>振り返り</span><small>今週</small></li>
               </ul>
             </div>
-            <span class="chip" style="right:14px;top:18px"><i style="background:var(--ts-orange);color:#fff"><svg class="ico"><use href="#i-star"/></svg></i>ロールモデル</span>
+            <div class="note" style="right:0;top:-2%"><span class="note__kicker">ロールモデル</span><span class="note__title">先輩の歩みを見る</span><span class="note__sub">次の目標のヒントに</span></div>
           </div>
           <p class="point__num">POINT 02</p>
           <h3 class="point__title">ポートフォリオで<wbr><em>残す</em></h3>
           <p class="point__text">成果物と学びの歩みを記録。<wbr>ロールモデルを見つけ、<wbr>続ける力に。</p>
         </li>
         <li class="point">
-          <div class="stage" aria-hidden="true">
-            <div class="mock">
-              <div class="mock__head"><span class="mock__kicker">コミュニティー</span><span class="mock__tag">イベント</span></div>
-              <b>興味のある分野の場</b>
-              <div class="avatars"><span class="avatar-s">A</span><span class="avatar-s">K</span><span class="avatar-s">Y</span><span class="mock__btn">参加する</span></div>
+          <div class="stage stage--note-top" aria-hidden="true">
+            <span class="orb orb--base"></span>
+            <span class="orb orb--warm" style="right:2%;top:4%"></span>
+            <span class="orb orb--fresh" style="left:0;bottom:6%"></span>
+            <div class="panel">
+              <div class="panel__head"><span class="panel__kicker">コミュニティー</span></div>
+              <p class="panel__title">気になる分野の場に、<br>参加してみる。</p>
+              <ul class="rows">
+                <li class="is-done"><span>興味のある場を選ぶ</span></li>
+                <li class="is-done"><span>参加して体験する</span></li>
+                <li><span>次の学びへつなげる</span><small>今週</small></li>
+              </ul>
             </div>
-            <span class="chip" style="left:14px;bottom:18px"><i style="background:var(--ts-green);color:#fff"><svg class="ico"><use href="#i-check"/></svg></i>やってみた！</span>
+            <div class="note" style="right:0;top:-2%"><span class="note__kicker">仲間から</span><span class="note__title">一緒にやってみよう！</span><span class="note__sub">次の場でも会いましょう</span></div>
           </div>
           <p class="point__num">POINT 03</p>
           <h3 class="point__title">コミュニティーに<wbr><em>飛び込む</em></h3>

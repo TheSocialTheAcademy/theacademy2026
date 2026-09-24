@@ -356,3 +356,11 @@ body { margin: 0; background: #fff; color: var(--ink); font-family: var(--font);
 .t3-crew { display: flex; align-items: center; margin-top: calc(10 * var(--u)); }
 .t3-crew .av { width: calc(28 * var(--u)); height: calc(28 * var(--u)); font-size: calc(11 * var(--u)); }
 .t3-msg { margin-left: calc(12 * var(--u)); padding: calc(6 * var(--u)) calc(12 * var(--u)); border-radius: calc(12 * var(--u)) calc(12 * var(--u)) calc(12 * var(--u)) calc(4 * var(--u)); background: #F2F4F8; font-size: calc(12.5 * var(--u)); font-weight: 700; white-space: nowrap; }
+
+/* 案B：見出し・本文の位置を 01 START HERE と同じ左揃えに */
+.why--b .sec-head { text-align: left; max-width: none; margin: 0 0 clamp(32px, 4vw, 52px); }
+.why--b .sec-title { font-size: clamp(30px, 3.4vw, 44px); }
+.why--b .sec-lead { max-width: none; margin: 14px 0 0; }
+.why--b .point { text-align: left; }
+.why--b .point__text { margin: 10px 0 0; }
+.why--b .loop { justify-content: flex-start; }

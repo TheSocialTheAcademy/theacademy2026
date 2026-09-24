@@ -308,7 +308,7 @@ body { margin: 0; background: #fff; color: var(--ink); font-family: var(--font);
 .gt.o { background: #F4A06F; }
 .ph { display: inline-block; width: calc(24 * var(--u)); height: calc(20 * var(--u)); margin: calc(8 * var(--u)) 0 0 calc(6 * var(--u)); border-radius: calc(3 * var(--u)); background: url("assets/hero.webp") no-repeat; background-size: 360%; vertical-align: top; }
 .ph--l { width: calc(38 * var(--u)); height: calc(30 * var(--u)); background-size: 280%; }
-.dn { position: absolute; right: calc(8 * var(--u)); top: calc(8 * var(--u)); width: calc(18 * var(--u)); height: calc(18 * var(--u)); border-radius: 50%; background: conic-gradient(#F37A45 0 72%, #E6E9F0 72%); -webkit-mask: radial-gradient(circle, transparent 42%, #000 44%); mask: radial-gradient(circle, transparent 42%, #000 44%); }
+.dn { position: absolute; right: calc(8 * var(--u)); top: calc(8 * var(--u)); width: calc(18 * var(--u)); height: calc(18 * var(--u)); border-radius: 50%; background: radial-gradient(circle, #fff 0 42%, transparent 44%), conic-gradient(#F37A45 0 72%, #E6E9F0 72%); }
 .dn--s { position: static; display: inline-block; width: calc(14 * var(--u)); height: calc(14 * var(--u)); }
 .mb { position: absolute; left: calc(8 * var(--u)); bottom: calc(8 * var(--u)); display: inline-flex; align-items: flex-end; gap: calc(2 * var(--u)); height: calc(18 * var(--u)); }
 .mb i { display: block; width: calc(3 * var(--u)); background: #5B86F6; border-radius: 1px; }

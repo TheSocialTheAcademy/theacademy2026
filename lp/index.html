@@ -469,11 +469,13 @@
   .goals li { display: flex; }
   .goal {
     position: relative;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto auto;
+    align-content: start;
+    column-gap: 12px;
     width: 100%;
-    min-height: 312px;
-    padding: 156px 24px 24px;
+    padding: 156px 20px 24px 24px;
     overflow: hidden;
     border: 1.5px solid #E4E4E4;
     border-radius: 20px;
@@ -494,15 +496,16 @@
     transition: transform .3s;
   }
   .goal:hover .goal__illust { transform: rotate(-3deg); }
-  .goal__title { margin: 0; font-size: 18px; font-weight: 700; line-height: 1.5; }
-  .goal__cat { margin: 8px 0 0; color: var(--ts-mid); font-size: 14px; line-height: 1.5; }
+  .goal__title { grid-column: 1; margin: 0; font-size: 18px; font-weight: 700; line-height: 1.5; word-break: keep-all; overflow-wrap: anywhere; }
+  .goal__cat { grid-column: 1; margin: 6px 0 0; color: var(--ts-mid); font-size: 14px; line-height: 1.5; }
   .goal__arrow {
     display: grid;
     place-items: center;
-    align-self: flex-end;
+    grid-column: 2;
+    grid-row: 1 / 3;
+    align-self: center;
     width: 40px;
     height: 40px;
-    margin-top: auto;
     border-radius: 50%;
     background: var(--ts-primary);
     color: var(--ts-white);
@@ -576,9 +579,10 @@
     .goals { grid-template-columns: minmax(0, 1fr); gap: 12px; }
     .goal { min-height: 0; padding: 22px 16px 22px 104px; }
     .goal__illust { left: -10px; top: 50%; width: 108px; height: 108px; margin-top: -54px; }
-    .goal__title { font-size: 15px; padding-right: 44px; }
+    .goal__title { font-size: 15px; }
     .goal__cat { margin-top: 4px; font-size: 13px; }
-    .goal__arrow { position: absolute; right: 16px; top: 50%; margin: -18px 0 0; width: 36px; height: 36px; font-size: 16px; }
+    .goal__arrow { width: 36px; height: 36px; font-size: 16px; }
+    .goal { align-content: center; }
   }
 </style>
 </head>
@@ -754,7 +758,7 @@
 <path d="M48 48h7v15h8" fill="none" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/>
 <path d="M96 17 Q96 28 107 28 Q96 28 96 39 Q96 28 85 28 Q96 28 96 17Z" fill="#F76B38" stroke="#012270" stroke-width="2.4" stroke-linejoin="round"/>
 <path d="M106 44 Q106 50 112 50 Q106 50 106 56 Q106 50 100 50 Q106 50 106 44Z" fill="#0141D4" stroke="#012270" stroke-width="2.4" stroke-linejoin="round"/></svg>
-            <h3 class="goal__title">仕事を効率化したい</h3>
+            <h3 class="goal__title">仕事を<wbr>効率化したい</h3>
             <p class="goal__cat">生成AI・ノーコード</p>
             <span class="goal__arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
           </a>
@@ -769,7 +773,7 @@
 <path d="M38 75l4 15h9l-3-13" fill="#FFFFFF" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M85 47l8-6M87 63h10M85 79l8 6" fill="none" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M94 33c-12-7-9-18-1-13 8-5 12 6 1 13z" fill="#F76B38" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/></svg>
-            <h3 class="goal__title">発信を強みにしたい</h3>
+            <h3 class="goal__title">発信を<wbr>強みにしたい</h3>
             <p class="goal__cat">マーケティング</p>
             <span class="goal__arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
           </a>
@@ -785,7 +789,7 @@
 <ellipse cx="81" cy="70" rx="4.2" ry="10" fill="none" stroke="#FFFFFF" stroke-width="2.4"/>
 <path d="M71 70h20" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"/>
 <path d="M100 22 Q100 30 108 30 Q100 30 100 38 Q100 30 92 30 Q100 30 100 22Z" fill="#F76B38" stroke="#012270" stroke-width="2.4" stroke-linejoin="round"/></svg>
-            <h3 class="goal__title">英語で選択肢を広げたい</h3>
+            <h3 class="goal__title">英語で<wbr>選択肢を<wbr>広げたい</h3>
             <p class="goal__cat">英語・TOEIC</p>
             <span class="goal__arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
           </a>
@@ -802,7 +806,7 @@
 <circle cx="88" cy="25" r="13" fill="#F76B38" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M83.5 21.5a4.6 4.6 0 1 1 6.6 4.2c-1.4.8-2.1 1.7-2.1 3.3" fill="none" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round"/>
 <circle cx="88" cy="34" r="1.7" fill="#FFFFFF"/></svg>
-            <h3 class="goal__title">まだ決まっていない</h3>
+            <h3 class="goal__title">まだ<wbr>決まっていない</h3>
             <p class="goal__cat">相談して一緒に整理</p>
             <span class="goal__arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
           </a>

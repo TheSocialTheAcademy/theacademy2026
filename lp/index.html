@@ -413,37 +413,50 @@
 
 
   /* ── 01 START HERE ────────────────────── */
-  .start { padding: clamp(64px, 8vw, 112px) 0; }
-  .sec-head { max-width: 640px; margin-bottom: clamp(32px, 4vw, 48px); }
-  .sec-kicker {
+  .start {
+    padding: clamp(64px, 8vw, 104px) 0;
+    background: #FAFAF8;            /* 白に近い生成り：ヒーロー（青み）との切り替えを示す */
+  }
+  .sec-head {
     display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 0 0 12px;
-    color: var(--ts-primary);
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: .14em;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: clamp(32px, 4vw, 52px);
   }
-  .sec-kicker b {
-    display: grid;
-    place-items: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: var(--ts-primary);
-    color: var(--ts-white);
-    font-size: 12px;
-    letter-spacing: 0;
-  }
-  .sec-title {
+  .sec-num, .sec-kicker {
     margin: 0;
-    font-size: clamp(26px, 3vw, 36px);
+    color: var(--ts-mid);
     font-weight: 700;
     line-height: 1.4;
-    letter-spacing: .04em;
   }
-  .sec-lead { margin: 12px 0 0; color: var(--ts-dark); font-size: 16px; line-height: 1.8; }
+  .sec-num { font-size: 13px; letter-spacing: .18em; }
+  .sec-kicker { margin-top: 20px; font-size: 15px; letter-spacing: .22em; }
+  .sec-title {
+    margin: 10px 0 0;
+    color: #1B2233;
+    font-size: clamp(30px, 3.4vw, 44px);
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: .02em;
+  }
+  .sec-lead { margin: 14px 0 0; color: var(--ts-mid); font-size: 15px; line-height: 1.8; word-break: keep-all; overflow-wrap: anywhere; }
+  .sec-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 28px;
+    flex: none;
+    margin-bottom: 20px;
+    padding: 0 0 12px;
+    border-bottom: 2px solid #1B2233;
+    color: #1B2233;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .sec-more .ico { color: var(--ts-orange); font-size: 22px; transition: transform .2s; }
+  .sec-more:hover .ico { transform: translate(2px, -2px); }
+  .sec-more:focus-visible { outline: 3px solid var(--ts-light-blue); outline-offset: 4px; }
 
   .goals {
     display: grid;
@@ -453,53 +466,53 @@
     padding: 0;
     list-style: none;
   }
+  .goals li { display: flex; }
   .goal {
     position: relative;
     display: flex;
     flex-direction: column;
-    height: 100%;
-    padding: 28px 24px 24px;
-    border-radius: 24px;
+    width: 100%;
+    min-height: 312px;
+    padding: 156px 24px 24px;
+    overflow: hidden;
+    border: 1.5px solid #E4E4E4;
+    border-radius: 20px;
     background: var(--ts-white);
-    box-shadow: 0 0 0 1px var(--line), 0 8px 24px rgba(1,34,112,.05);
-    color: var(--ts-dark);
+    color: #1B2233;
     text-decoration: none;
-    transition: transform .2s, box-shadow .2s;
+    transition: border-color .2s, box-shadow .2s, transform .2s;
   }
-  .goal:hover { transform: translateY(-4px); box-shadow: 0 0 0 1.5px var(--ts-primary), 0 16px 32px rgba(1,34,112,.10); }
+  .goal:hover { border-color: var(--tint-60); box-shadow: 0 12px 28px rgba(1,34,112,.08); transform: translateY(-2px); }
   .goal:focus-visible { outline: 3px solid var(--ts-light-blue); outline-offset: 3px; }
-  .goal__illust { width: 112px; height: 112px; margin: 0 auto 20px; transition: transform .3s; }
-  .goal:hover .goal__illust { transform: rotate(-4deg) scale(1.04); }
-  .goal__title { margin: 0; font-size: 18px; font-weight: 700; line-height: 1.5; }
-  .goal__foot {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    margin-top: auto;
-    padding-top: 16px;
+  /* イラストは背景の面ごとカード左上に寄せ、角で少し切れる配置にする */
+  .goal__illust {
+    position: absolute;
+    left: -12px;
+    top: -12px;
+    width: 152px;
+    height: 152px;
+    transition: transform .3s;
   }
-  .goal__cat { color: var(--ts-primary); font-size: 14px; font-weight: 500; line-height: 1.5; }
+  .goal:hover .goal__illust { transform: rotate(-3deg); }
+  .goal__title { margin: 0; font-size: 18px; font-weight: 700; line-height: 1.5; }
+  .goal__cat { margin: 8px 0 0; color: var(--ts-mid); font-size: 14px; line-height: 1.5; }
   .goal__arrow {
     display: grid;
     place-items: center;
+    align-self: flex-end;
     width: 40px;
     height: 40px;
-    flex: none;
+    margin-top: auto;
     border-radius: 50%;
-    background: var(--tint-08);
-    color: var(--ts-primary);
-    font-size: 16px;
-    transition: background-color .2s, color .2s;
+    background: var(--ts-primary);
+    color: var(--ts-white);
+    font-size: 18px;
+    transition: background-color .2s;
   }
-  .goal:hover .goal__arrow { background: var(--ts-primary); color: var(--ts-white); }
-  /* 「まだ決まっていない」は相談への導線なので面の色で区別 */
-  .goal--consult { background: var(--tint-04); box-shadow: inset 0 0 0 1.5px var(--tint-60); }
-  .goal--consult .goal__arrow { background: var(--ts-primary); color: var(--ts-white); }
-  .goal--consult:hover .goal__arrow { background: var(--ts-deep-navy); }
+  .goal:hover .goal__arrow { background: var(--ts-deep-navy); }
   @media (prefers-reduced-motion: reduce) {
-    .goal, .goal__illust { transition: none; }
-    .goal:hover, .goal:hover .goal__illust { transform: none; }
+    .goal, .goal__illust, .sec-more .ico { transition: none; }
+    .goal:hover, .goal:hover .goal__illust, .sec-more:hover .ico { transform: none; }
   }
 
   /* ── レスポンシブ ───────────────────────── */
@@ -557,15 +570,15 @@
   @media (max-width: 980px) {
     .goals { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
-  @media (max-width: 560px) {
+  @media (max-width: 640px) {
+    .sec-head { flex-direction: column; align-items: flex-start; }
+    .sec-more { margin-bottom: 0; }
     .goals { grid-template-columns: minmax(0, 1fr); gap: 12px; }
-    .goal { flex-direction: row; align-items: center; gap: 16px; padding: 16px 16px 16px 12px; border-radius: 20px; }
-    .goal__illust { width: 72px; height: 72px; margin: 0; flex: none; }
-    .goal__body { flex: 1; min-width: 0; }
-    .goal__title { font-size: 16px; }
-    .goal__foot { margin-top: 2px; padding-top: 0; }
-    .goal__cat { font-size: 13px; }
-    .goal__arrow { width: 36px; height: 36px; }
+    .goal { min-height: 0; padding: 22px 16px 22px 104px; }
+    .goal__illust { left: -10px; top: 50%; width: 108px; height: 108px; margin-top: -54px; }
+    .goal__title { font-size: 15px; padding-right: 44px; }
+    .goal__cat { margin-top: 4px; font-size: 13px; }
+    .goal__arrow { position: absolute; right: 16px; top: 50%; margin: -18px 0 0; width: 36px; height: 36px; font-size: 16px; }
   }
 </style>
 </head>
@@ -594,6 +607,7 @@
   <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-book" viewBox="0 0 24 24"><path d="M2 5h6a4 4 0 0 1 4 4v12a3 3 0 0 0-3-3H2zM22 5h-6a4 4 0 0 0-4 4v12a3 3 0 0 1 3-3h7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
   <symbol id="i-laptop" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="11" rx="1.5"/><path d="M2 19h20"/></g></symbol>
+  <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
 </svg>
 
@@ -719,9 +733,13 @@
   <section class="start" id="start-here" aria-labelledby="start-title">
     <div class="wrap">
       <header class="sec-head">
-        <p class="sec-kicker"><b>01</b>START HERE</p>
-        <h2 class="sec-title" id="start-title">いまの目的から探す</h2>
-        <p class="sec-lead">やってみたいことから、ぴったりの学びを見つけよう。</p>
+        <div>
+          <p class="sec-num">01</p>
+          <p class="sec-kicker">START HERE</p>
+          <h2 class="sec-title" id="start-title">いまの目的から探す</h2>
+          <p class="sec-lead">やってみたいことから、<wbr>ぴったりの学びを<wbr>見つけよう。</p>
+        </div>
+        <a class="sec-more" href="/courses">すべてのコース<svg class="ico" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
       </header>
       <ul class="goals">
         <li>
@@ -736,13 +754,9 @@
 <path d="M48 48h7v15h8" fill="none" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/>
 <path d="M96 17 Q96 28 107 28 Q96 28 96 39 Q96 28 85 28 Q96 28 96 17Z" fill="#F76B38" stroke="#012270" stroke-width="2.4" stroke-linejoin="round"/>
 <path d="M106 44 Q106 50 112 50 Q106 50 106 56 Q106 50 100 50 Q106 50 106 44Z" fill="#0141D4" stroke="#012270" stroke-width="2.4" stroke-linejoin="round"/></svg>
-            <div class="goal__body">
-              <h3 class="goal__title">仕事を効率化したい</h3>
-              <div class="goal__foot">
-                <span class="goal__cat">生成AI・ノーコード</span>
-                <span class="goal__arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
-              </div>
-            </div>
+            <h3 class="goal__title">仕事を効率化したい</h3>
+            <p class="goal__cat">生成AI・ノーコード</p>
+            <span class="goal__arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
           </a>
         </li>
         <li>
@@ -755,13 +769,9 @@
 <path d="M38 75l4 15h9l-3-13" fill="#FFFFFF" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M85 47l8-6M87 63h10M85 79l8 6" fill="none" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M94 33c-12-7-9-18-1-13 8-5 12 6 1 13z" fill="#F76B38" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/></svg>
-            <div class="goal__body">
-              <h3 class="goal__title">発信を強みにしたい</h3>
-              <div class="goal__foot">
-                <span class="goal__cat">マーケティング</span>
-                <span class="goal__arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
-              </div>
-            </div>
+            <h3 class="goal__title">発信を強みにしたい</h3>
+            <p class="goal__cat">マーケティング</p>
+            <span class="goal__arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
           </a>
         </li>
         <li>
@@ -775,17 +785,13 @@
 <ellipse cx="81" cy="70" rx="4.2" ry="10" fill="none" stroke="#FFFFFF" stroke-width="2.4"/>
 <path d="M71 70h20" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"/>
 <path d="M100 22 Q100 30 108 30 Q100 30 100 38 Q100 30 92 30 Q100 30 100 22Z" fill="#F76B38" stroke="#012270" stroke-width="2.4" stroke-linejoin="round"/></svg>
-            <div class="goal__body">
-              <h3 class="goal__title">英語で選択肢を広げたい</h3>
-              <div class="goal__foot">
-                <span class="goal__cat">英語・TOEIC</span>
-                <span class="goal__arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
-              </div>
-            </div>
+            <h3 class="goal__title">英語で選択肢を広げたい</h3>
+            <p class="goal__cat">英語・TOEIC</p>
+            <span class="goal__arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
           </a>
         </li>
         <li>
-          <a class="goal goal--consult" href="/consultation">
+          <a class="goal" href="/consultation">
             <svg class="goal__illust" viewBox="0 0 120 120" aria-hidden="true"><path d="M60 14c24 0 48 13 48 43s-20 51-50 51S12 92 12 63s24-49 48-49z" fill="#EEF2FC"/>
 <path d="M86 98H36" fill="none" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 <rect x="62" y="46" width="9" height="51" rx="2" fill="#B3C7F4"/>
@@ -796,13 +802,9 @@
 <circle cx="88" cy="25" r="13" fill="#F76B38" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M83.5 21.5a4.6 4.6 0 1 1 6.6 4.2c-1.4.8-2.1 1.7-2.1 3.3" fill="none" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round"/>
 <circle cx="88" cy="34" r="1.7" fill="#FFFFFF"/></svg>
-            <div class="goal__body">
-              <h3 class="goal__title">まだ決まっていない</h3>
-              <div class="goal__foot">
-                <span class="goal__cat">相談して一緒に整理</span>
-                <span class="goal__arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
-              </div>
-            </div>
+            <h3 class="goal__title">まだ決まっていない</h3>
+            <p class="goal__cat">相談して一緒に整理</p>
+            <span class="goal__arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
           </a>
         </li>
       </ul>

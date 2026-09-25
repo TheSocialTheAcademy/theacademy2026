@@ -155,6 +155,10 @@
   .curr--plain { counter-reset: none; }
   .curr--plain li { grid-template-columns: 1fr; }
   .curr--plain li::before { content: none; }
+  .feature { display: grid; gap: 32px; align-items: center; padding: 28px; }
+  .feature--l { grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); }
+  .feature--r { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); }
+  @media (max-width: 760px) { .feature--l, .feature--r { grid-template-columns: minmax(0, 1fr); gap: 20px; padding: 20px; } .feature--r .ph { order: -1; } }
   .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
   .chipb { padding: 6px 14px; border-radius: 999px; border: 0; background: var(--card); box-shadow: inset 0 0 0 1px var(--line); color: var(--ink); font-size: 13px; cursor: pointer; }
   .chipb[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); box-shadow: none; }
@@ -478,9 +482,35 @@
 
 <!-- ═════════════ コースを探す ═════════════ -->
 <div data-page="courses">
-  <div class="pagehead" data-note="コースを探す：何を学べる？いくら？を比べて選ぶ。LP 01のカードから来たら、その目的で絞り込み済みで着地"><div class="wrap"><p class="crumb"><a href="#top">トップ</a> / コースを探す</p><h1>コースを探す</h1><p>目的やカテゴリから、あなたに合うコースを選べます。<span class="meta" style="display:inline-flex;margin-left:8px">全12件（見本）</span></p></div></div>
-  <section class="sec"><div class="wrap">
-    <p class="sh__kick" style="margin-bottom:10px">目的から探す（LP 01と同じ）</p>
+  <div class="pagehead" data-note="コースを探す：特集2つ → コース一覧 → LINE → 迷ったら。LP 01のカードから来たら、一覧が目的で絞り込み済み"><div class="wrap"><p class="crumb"><a href="#top">トップ</a> / コースを探す</p><h1>コースを探す</h1><p>目的やカテゴリから、あなたに合うコースを選べます。</p></div></div>
+
+  <section class="sec" data-note="特集1：業務効率化ツール（Slack×GAS）"><div class="wrap">
+    <div class="card feature feature--l">
+      <div class="ph" style="min-height:240px">画面：タスク管理（Slack×ガントチャート）</div>
+      <div>
+        <p class="sh__kick" style="margin:0;color:var(--accent)">プロジェクト進行のズレやムダを防ぐ!</p>
+        <h2 style="margin-top:8px;font-size:clamp(22px,2.6vw,30px)">Slackだけで完結する<br>次世代のタスク管理システム</h2>
+        <p style="margin-top:12px;color:var(--sub)">Slack×GASベースで動く、タスク・F&amp;Q・ガントチャート連携の業務効率化ツールです。分かりやすい仕様書も付いていますのでセットアップも簡単です。今すぐ導入し、タスクのズレを無くしましょう！</p>
+        <div class="hero__cta"><a class="btn" href="#course">詳しくはこちら</a></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="sec sec--alt" data-note="特集2：TOEIC L&amp;R 700点突破プログラム"><div class="wrap">
+    <div class="card feature feature--r">
+      <div>
+        <p class="sh__kick" style="margin:0;color:var(--accent)">苦手を得意に変える、3ヶ月で自信の持てる英語力を！</p>
+        <h2 style="margin-top:8px;font-size:clamp(22px,2.6vw,30px)">TOEIC L&amp;R 700点突破<br>プログラム</h2>
+        <p style="margin-top:12px;color:var(--sub)">海外経験豊富な英語コーチとマンツーマンで学ぶ、TOEIC® L&amp;R テスト700点以上を目指す特別プログラムです。3ヶ月間、週2回のクラスで全24回のセッションを通じて、文法、リスニング、リーディング、英会話をバランスよく強化します。生きた英語を学び、日常やビジネスで通用する力を身につけましょう。</p>
+        <div class="meta" style="margin-top:12px"><span>3ヶ月</span><span>週2回</span><span>全24回</span><span>マンツーマン</span></div>
+        <div class="hero__cta"><a class="btn" href="#course">詳しくはこちら</a></div>
+      </div>
+      <div class="ph" style="min-height:260px">写真：コーチとのオンラインレッスン</div>
+    </div>
+  </div></section>
+
+  <section class="sec" id="course-list" data-note="コース一覧：目的の絞り込みはLP 01と同じ名前"><div class="wrap">
+    <div class="sh"><div><p class="sh__kick">ALL COURSES</p><h2>コース一覧</h2></div></div>
     <div class="filters" role="group" aria-label="目的で絞り込み">
       <button class="chipb" aria-pressed="true" data-f="all">すべて</button>
       <button class="chipb" aria-pressed="false" data-f="it">仕事を効率化したい</button>
@@ -490,7 +520,6 @@
       <button class="chipb" aria-pressed="false" data-f="cr">クリエイティブ</button>
     </div>
     <div class="meta" style="margin-bottom:24px;gap:8px 20px"><span>レベル：ベーシック／プロ／プレミア</span><span>並び替え：人気／新着／価格</span></div>
-    <div class="card" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:24px;align-items:center;margin-bottom:28px" data-note="特集：TOEIC（高単価・相談して決めたい人向け）"><div class="ph" style="min-height:150px">特集画像</div><div><span class="tag">特集・英語</span><h3 style="margin-top:8px;font-size:20px">TOEIC L&amp;R 700点突破プログラム</h3><p>海外経験豊富なコーチとマンツーマン。3か月・週2回・全24回。</p><div class="hero__cta" style="margin-top:14px"><a class="btn btn--sm" href="#course">詳しく見る</a><a class="btn btn--sm btn--ghost" href="#contact">相談して決める</a></div></div></div>
     <div class="grid g4" id="courseGrid"><a class="card course" data-c="mk" href="#course" style="text-decoration:none"><div class="ph">コース画像</div><span class="tag">マーケティング</span><div class="meta" style="margin-top:8px"><span>8週間</span><span>週2〜3時間</span></div><h3>SNSマーケティング実践</h3><p>顧客理解から数値改善までを一つのキャンペーンとして実践します。</p><p class="price">¥— <span class="todo">価格を入れる</span></p><p class="tl" style="margin-top:8px">詳しく見る →</p></a><a class="card course" data-c="it" href="#course" style="text-decoration:none"><div class="ph">コース画像</div><span class="tag">IT・デジタル</span><div class="meta" style="margin-top:8px"><span>6週間</span><span>週2時間</span></div><h3>生成AI 業務改善</h3><p>生成AIとノーコードで、調査・資料作成・定型業務を効率化します。</p><p class="price">¥— <span class="todo">価格を入れる</span></p><p class="tl" style="margin-top:8px">詳しく見る →</p></a><a class="card course" data-c="en" href="#course" style="text-decoration:none"><div class="ph">コース画像</div><span class="tag">英語・TOEIC</span><div class="meta" style="margin-top:8px"><span>3か月</span><span>週2回・全24回</span></div><h3>TOEIC L&amp;R 700点突破</h3><p>海外経験豊富なコーチと、4技能をバランスよく強化します。</p><p class="price">¥— <span class="todo">価格を入れる</span></p><p class="tl" style="margin-top:8px">詳しく見る →</p></a><a class="card course" data-c="biz" href="#course" style="text-decoration:none"><div class="ph">コース画像</div><span class="tag">ビジネス</span><div class="meta" style="margin-top:8px"><span>5週間</span><span>週2時間</span></div><h3>イベントデザイン</h3><p>目的設定から当日運営まで、成果につながるイベントづくりを学びます。</p><p class="price">¥9,800</p><p class="tl" style="margin-top:8px">詳しく見る →</p></a><a class="card course" data-c="mk" href="#course" style="text-decoration:none"><div class="ph">コース画像</div><span class="tag">マーケティング</span><h3>マーケティング戦略基礎</h3><p>市場分析から戦略立案・実行・検証までを体系的に学びます。</p><p class="price">¥11,800</p><p class="tl" style="margin-top:8px">詳しく見る →</p></a><a class="card course" data-c="mk" href="#course" style="text-decoration:none"><div class="ph">コース画像</div><span class="tag">マーケティング</span><h3>インスタグラム</h3><p>インスタグラムで個人やビジネスを効果的にプロモーションします。</p><p class="price">¥7,900</p><p class="tl" style="margin-top:8px">詳しく見る →</p></a><a class="card course" data-c="it" href="#course" style="text-decoration:none"><div class="ph">コース画像</div><span class="tag">IT・デジタル</span><h3>自動化ツール開発</h3><p>JavaScriptの基礎から、仕様に基づいた自動化ツールを開発します。</p><p class="price">¥12,800</p><p class="tl" style="margin-top:8px">詳しく見る →</p></a><a class="card course" data-c="it" href="#course" style="text-decoration:none"><div class="ph">コース画像</div><span class="tag">IT・デジタル</span><h3>初級編 ChatGPT</h3><p>ChatGPTの概要から活用方法までを総合的に学びます。</p><p class="price">¥2,980</p><p class="tl" style="margin-top:8px">詳しく見る →</p></a><a class="card course" data-c="it" href="#course" style="text-decoration:none"><div class="ph">コース画像</div><span class="tag">IT・デジタル</span><h3>公式LINE運用</h3><p>資料請求・予約受付などを公式LINEで自分で構築します。</p><p class="price">¥3,980</p><p class="tl" style="margin-top:8px">詳しく見る →</p></a><a class="card course" data-c="en" href="#course" style="text-decoration:none"><div class="ph">コース画像</div><span class="tag">語学</span><h3>ビジネス英語初級</h3><p>ビジネス英語の基本表現を実践的に学びます。</p><p class="price">¥3,000</p><p class="tl" style="margin-top:8px">詳しく見る →</p></a><a class="card course" data-c="biz" href="#course" style="text-decoration:none"><div class="ph">コース画像</div><span class="tag">ビジネス</span><h3>プロジェクトマネジメント</h3><p>プロジェクト管理の知識を実務に活かせる形で身につけます。</p><p class="price">¥4,980</p><p class="tl" style="margin-top:8px">詳しく見る →</p></a><a class="card course" data-c="cr" href="#course" style="text-decoration:none"><div class="ph">コース画像</div><span class="tag">クリエイティブ</span><h3>Canva初級</h3><p>Canva無料版で「自分らしさ」を伝えるデザインを学びます。</p><p class="price">¥6,400</p><p class="tl" style="margin-top:8px">詳しく見る →</p></a></div>
     <p style="margin-top:14px;font-size:12px;color:var(--sub)">※一部の価格は現行サイトの掲載価格。評価はレビューがあるコースのみ表示します。</p>
     <div class="band" data-note="部品：LINE帯"><span><b>LINE登録で全コース500円OFF</b>　クーポンはLINEからのみ配信しています</span><a class="btn btn--sm" href="#beginners" style="background:var(--ok)">LINEを追加する</a></div>
@@ -648,7 +677,10 @@
       links.forEach(a => a.getAttribute('href') === '#' + cur ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current'));
       hdr.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false');
       window.scrollTo(0, 0);
-      if (cur === 'courses') applyFilter(filter || 'all');
+      if (cur === 'courses') {
+        applyFilter(filter || 'all');
+        if (filter) document.getElementById('course-list')?.scrollIntoView({ block: 'start' });
+      }
     }
     window.addEventListener('hashchange', show);
 

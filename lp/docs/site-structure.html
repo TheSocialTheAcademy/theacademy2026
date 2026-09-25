@@ -141,9 +141,9 @@
 </style>
 
 <div class="page">
-  <p class="eyebrow">Wireframe review · 2026.09 · v2</p>
+  <p class="eyebrow">Wireframe review · 2026.09 · v3</p>
   <h1>The Academy サイト構成案</h1>
-  <p class="lead">現行サイト（theacademyjapan.org トップ）と新LP案を突き合わせ、ヘッダー・LP・各ページへの振り分けとLPの流れを組み直しました。v2では、プロトタイプへのフィードバック（コミュニティーは申し込みフォームのみ、受講生の声・無料体験なし など）を反映しています。</p>
+  <p class="lead">現行サイト（theacademyjapan.org トップ）と新LP案を突き合わせ、ヘッダー・LP・各ページへの振り分けとLPの流れを組み直しました。v2でプロトタイプへのフィードバックを反映し、v3で下層ページ（コースを探す・学び方・ポートフォリオ・学びのヒント・はじめての方へ）の項目とページ間のつながりを決めました（6章）。</p>
 
   <div class="verdict">
     <h3>結論</h3>
@@ -397,26 +397,164 @@
   </div>
 
   <!-- ─────────────────────────────── -->
-  <h2>6. 各ページに書く項目</h2>
-  <div class="pages">
-    <div class="pg"><p class="pg__url">/beginners</p><h3>はじめての方へ</h3><ol>
-      <li>The Academyとは（3つの仕組み）</li><li>こんな方に選ばれています（お悩み3つ）<span class="src">現行</span></li><li>受講までの流れ（横スライド）<span class="src">現行</span></li><li>料金・お支払い（クレジットカード）<span class="src">現行</span></li><li>よくある不安（相談は必須？続けられる？）</li><li>公式LINE（特典・横スライド）<span class="src">現行</span></li><li>無料相談／資料請求</li></ol></div>
-    <div class="pg"><p class="pg__url">/how-to-learn</p><h3>学び方・受講成果</h3><ol>
-      <li>HOW TO LEARN：INPUT→PRACTICE→OUTPUT</li><li>1週間の学び方の例（平日夜・週末）<span class="src">現行</span></li><li>講師のフィードバックとサポート</li><li>受講成果：成果物の例（コース別）</li></ol></div>
-    <div class="pg"><p class="pg__url">/courses</p><h3>コースを探す</h3><ol>
-      <li>目的から探す（01と同じカード）</li><li>カテゴリ・レベルで絞り込み<span class="src">現行</span></li><li>コースカード：期間・時間・価格・評価<span class="src">現行</span></li><li>TOEIC 700点突破プログラム（特集枠）<span class="src">現行</span></li><li>迷ったら無料相談</li></ol></div>
-    <div class="pg"><p class="pg__url">/courses/[slug]</p><h3>コース詳細</h3><ol>
-      <li>概要・対象者</li><li>期間・学習時間・形式</li><li>カリキュラム</li><li>できるようになること・成果物（ポートフォリオに残せる）</li><li>講師</li><li>価格＋LINEクーポン案内<span class="src">現行</span></li><li>コース別FAQ<span class="src">現行</span></li><li>購入／相談</li></ol></div>
-    <div class="pg"><p class="pg__url">/portfolio</p><h3>ポートフォリオ</h3><ol>
-      <li>ポートフォリオとは（学びの歩み・実績公開）</li><li>公開ポートフォリオ一覧（分野で絞り込み）</li><li>作り方の3ステップ</li><li>ポートフォリオを作る（要ログイン）</li></ol></div>
-    <div class="pg"><p class="pg__url">/blog</p><h3>学びのヒント</h3><ol>
-      <li>カテゴリ（キャリア／生成AI／マーケティングなど）</li><li>記事一覧<span class="src">現行</span></li><li>お役立ち資料（ホワイトペーパー）<span class="src">現行</span></li><li>記事末尾：関連コース＋LINE登録</li></ol></div>
-    <div class="pg"><p class="pg__url">/faq</p><h3>よくある質問</h3><ol>
-      <li>カテゴリ6つ<span class="src">現行</span></li><li>お支払い・クーポン<span class="src">現行</span></li><li>B層向け：相談は必須？続けられなかったら？</li></ol></div>
-    <div class="pg"><p class="pg__url">/consultation</p><h3>無料相談・資料請求</h3><ol>
-      <li>相談で話せること3つ</li><li>予約（TimeRex）<span class="src">現行</span></li><li>資料請求フォーム→すぐDL<span class="src">現行</span></li><li>「相談したら必ず受講、ではありません」</li></ol></div>
+  <h2>6. 下層ページの構成（v3）</h2>
+  <p class="lead">5つの下層ページは、それぞれ「ユーザーのどの問いに答えるか」を1つに決め、LPと役割が重ならないように分けました。どのページも最後は「次の一歩」で終え、同じ部品（目的カード・2択の行動ボタン・LINE帯）を使い回して、サイト全体で迷わないようにしています。</p>
+
+  <h3 class="mt">6-1. 役割分担：1ページ1つの問い</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>ページ</th><th>答える問い</th><th>主な対象</th><th>主な入口</th><th>次の一歩（出口）</th><th>置かないもの</th></tr></thead>
+      <tbody>
+        <tr><td><b>LP（トップ）</b></td><td>なぜThe Academyなのか（全体像）</td><td><span class="chip t-a">A</span> <span class="chip t-b">B</span></td><td>検索・広告・SNS</td><td>各下層ページ／相談／資料請求</td><td>細かい手続き・全コース一覧</td></tr>
+        <tr><td><b>コースを探す</b></td><td>何を学べる？いくら？どれを選ぶ？</td><td><span class="chip t-a">A</span></td><td>LP HERO・01・03、フッターのカテゴリ、記事末尾</td><td>コース詳細 → 購入</td><td>3つの仕組みの説明、手続きの詳細</td></tr>
+        <tr><td><b>学び方・受講成果</b></td><td>どう身につく？続けられる？何ができるようになる？</td><td><span class="chip t-b">B</span></td><td>ヘッダー、コース詳細、はじめての方へ</td><td>コースを探す／無料相談</td><td>価格・支払い、コース一覧</td></tr>
+        <tr><td><b>ポートフォリオ</b></td><td>学んだあと何が残る？どう見せる？</td><td><span class="chip t-a">A</span> <span class="chip t-b">B</span></td><td>LP HERO「作る」・04「見る」、コース詳細の成果物</td><td>ポートフォリオを作る（新規登録）／コースを探す</td><td>コースの中身、手続き</td></tr>
+        <tr><td><b>学びのヒント</b></td><td>今すぐ申し込まないけど、役に立つことは？</td><td><span class="chip t-b">B</span></td><td>LP 08、検索、SNS・LINE配信</td><td>記事末尾の関連コース／LINE／資料請求</td><td>サービスの売り込み</td></tr>
+        <tr><td><b>はじめての方へ</b></td><td>どう始める？費用は？不安は？</td><td><span class="chip t-b">B</span></td><td>LP 06「詳しくは」、フッター（流れ・料金・FAQ）、コース一覧の「迷ったら」</td><td>無料相談／資料請求／LINE</td><td>学び方の詳細（学び方ページへ）</td></tr>
+      </tbody>
+    </table>
   </div>
-  <p class="note mt">コミュニティーは専用ページを作らず、LP 05からGoogleフォームで申し込みます。</p>
+
+  <h3 class="mt">6-2. 使い回す部品（どこに置くか）</h3>
+  <p class="note">同じ部品を同じ見た目で置くことで、どのページからでも同じ行動が取れます。部品をそろえておけば、デザインと実装の手間も減ります。</p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>部品</th><th>中身</th><th>LP</th><th>コースを探す</th><th>コース詳細</th><th>学び方</th><th>ポートフォリオ</th><th>学びのヒント</th><th>はじめての方へ</th></tr></thead>
+      <tbody>
+        <tr><td><b>目的カード</b></td><td>効率化／発信／英語／未定</td><td>01</td><td>● 上部で絞り込み</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td><b>コースカード</b></td><td>カテゴリ・期間・時間・価格・詳しく見る</td><td>03</td><td>● 一覧</td><td>● 関連コース</td><td>—</td><td>—</td><td>● 記事末尾</td><td>—</td></tr>
+        <tr><td><b>2択の行動ボタン</b></td><td>無料相談／パンフレット</td><td>07</td><td>● 最下部</td><td>● 右の申し込み欄</td><td>● 最下部</td><td>—</td><td>● 記事末尾</td><td>● 最下部</td></tr>
+        <tr><td><b>LINE帯</b></td><td>特典3つ＋追加ボタン</td><td>03（小）・09</td><td>● 一覧の下</td><td>● 価格の近く</td><td>—</td><td>—</td><td>● 一覧・記事末尾</td><td>● 横スライド</td></tr>
+        <tr><td><b>受講までの流れ</b></td><td>選ぶ→支払う→受講→残す</td><td>06（短縮）</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>● 詳細（横スライド）</td></tr>
+        <tr><td><b>3ステップの学び</b></td><td>INPUT→PRACTICE→OUTPUT</td><td>—</td><td>—</td><td>● 要約1行</td><td>● 詳細</td><td>—</td><td>—</td><td>● 要約＋リンク</td></tr>
+        <tr><td><b>学びの歩み（画面）</b></td><td>実績公開・コース修了・学びの共有</td><td>04</td><td>—</td><td>—</td><td>● 受講成果</td><td>● 詳細</td><td>—</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="mt">6-3. 各ページの項目（上から順に）</h3>
+  <div class="pages">
+    <div class="pg"><p class="pg__url">/courses</p><h3>コースを探す</h3>
+      <p class="note">比べて選び、コース詳細へ送る。LP 01の目的カードから来た人は、その目的で絞り込んだ状態で着地させます。</p>
+      <ol>
+        <li>見出し「コースを探す」＋件数</li>
+        <li>目的から探す（LP 01と同じ4カード＋すべて）</li>
+        <li>絞り込み：カテゴリ5つ・レベル（ベーシック／プロ／プレミア）<span class="src">現行</span>・並び替え（人気／新着／価格）</li>
+        <li>特集：TOEIC L&amp;R 700点突破プログラム（相談して決めたい人向け）<span class="src">現行</span></li>
+        <li>コース一覧：カテゴリ・名前・1行説明・期間・週の学習時間・価格・評価（レビューがある場合のみ）・詳しく見る<span class="src">現行</span></li>
+        <li>LINE帯：全コース500円OFF</li>
+        <li>迷ったら：2択の行動ボタン＋「はじめての方へ（流れ・料金）」へのリンク</li>
+      </ol></div>
+
+    <div class="pg"><p class="pg__url">/courses/[slug]</p><h3>コース詳細（購入の決め手）</h3>
+      <p class="note">1ページで購入を決められるように。学び方とポートフォリオは要約だけ置き、詳しくはそれぞれのページへ。</p>
+      <ol>
+        <li>コース名・カテゴリ・1行説明・メイン画像</li>
+        <li>期間・週の学習時間・形式・価格＋購入ボタン（右に追従）</li>
+        <li>こんな方におすすめ</li>
+        <li>できるようになること</li>
+        <li>カリキュラム（週ごと）</li>
+        <li>学び方の要約（3ステップ1行）→ 学び方・受講成果へ</li>
+        <li>残せる成果物 → ポートフォリオに公開できる（ポートフォリオへ）</li>
+        <li>講師</li>
+        <li>コース別FAQ（返金・視聴期間など）<span class="src">現行</span></li>
+        <li>関連コース（コースカード3枚）</li>
+        <li>2択の行動ボタン＋LINEクーポン</li>
+      </ol></div>
+
+    <div class="pg"><p class="pg__url">/how-to-learn</p><h3>学び方・受講成果</h3>
+      <p class="note">「続けられるか」「何ができるようになるか」に答える。受講生の声は置かず、仕組みと成果物で示します。</p>
+      <ol>
+        <li>見出し「見るだけで終わらない、3ステップの学び」</li>
+        <li>3ステップ：INPUT 短時間で基礎を知る／PRACTICE 仕事を題材に試す／OUTPUT 成果物として残す</li>
+        <li>続けられる設計：1週間の学び方の例（平日夜30分×2＋週末1〜2時間）・週2h〜<span class="src">現行</span>・進捗が見える（マイラーニングステータスの画面）</li>
+        <li>ひとりにしないサポート：講師のフィードバック・質問の方法 <span class="chip s-warn">要確認</span></li>
+        <li>受講成果：コース別の成果物の例 → ポートフォリオで公開（学びの歩みの画面）</li>
+        <li>平均満足度4.2の根拠（調査時期・回答数）<span class="chip s-warn">要確認</span></li>
+        <li>次の一歩：コースを探す／2択の行動ボタン</li>
+      </ol></div>
+
+    <div class="pg"><p class="pg__url">/portfolio</p><h3>ポートフォリオ</h3>
+      <p class="note">LPヒーローの「ポートフォリオを作る」の着地先。最初の画面に「作る」ボタンを置き、見に来た人は一覧へ。</p>
+      <ol>
+        <li>見出し「学んだことも、歩んだ過程も、あなたの実績に。」＋ポートフォリオを作る（新規登録・ログイン）／みんなのポートフォリオを見る</li>
+        <li>できること3つ：成果物を公開する／学びの歩みを記録する／仲間や企業に共有する</li>
+        <li>画面で見る：学びの歩み（活動の内訳・タイムライン）</li>
+        <li>みんなのポートフォリオ（分野で絞り込み）→ 個別ページ</li>
+        <li>作り方3ステップ：コースで成果物をつくる → 記録する → 公開する</li>
+        <li>よくある質問：公開範囲は選べる？受講前でも作れる？<span class="chip s-warn">要確認</span></li>
+        <li>次の一歩：ポートフォリオを作る／コースを探す</li>
+      </ol></div>
+
+    <div class="pg"><p class="pg__url">/portfolio/[id]</p><h3>個別ポートフォリオ</h3>
+      <p class="note">他の受講生がロールモデルになる場所。見た人を「自分も」へつなげます。</p>
+      <ol>
+        <li>プロフィール（名前・学習中の分野・ひとこと）</li>
+        <li>数字：実績・資格・学習ログ</li>
+        <li>学びの歩み（タイムライン）</li>
+        <li>公開した成果物</li>
+        <li>この人が受講したコース → コース詳細</li>
+        <li>次の一歩：自分もポートフォリオを作る</li>
+      </ol></div>
+
+    <div class="pg"><p class="pg__url">/blog</p><h3>学びのヒント</h3>
+      <p class="note">まだ動かない人との関係を保つ場所。カテゴリをコースと同じ名前にして、記事から関連コースへつなげます。</p>
+      <ol>
+        <li>見出し「学びを続けるヒント」</li>
+        <li>カテゴリ：キャリア／生成AI・ノーコード／マーケティング／英語／学び方（コースのカテゴリと対応）</li>
+        <li>ピックアップ記事（大1＋小2）</li>
+        <li>新着記事の一覧<span class="src">現行</span></li>
+        <li>お役立ち資料（ホワイトペーパー・業務効率化ツール）<span class="src">現行</span></li>
+        <li>LINE帯</li>
+        <li><b>記事ページの末尾</b>：関連コース（同じカテゴリ）・LINE・資料請求・関連記事</li>
+      </ol></div>
+
+    <div class="pg"><p class="pg__url">/beginners</p><h3>はじめての方へ</h3>
+      <p class="note">始め方・費用・不安を順番に解消し、行動へつなげる。学び方の詳細は書かず、学び方ページへ送ります。</p>
+      <ol>
+        <li>見出し：The Academyとは（1文）＋3つの仕組みの要約（学ぶ・残す・飛び込む）</li>
+        <li>こんな方に選ばれています（入社3〜5年目／副業・独立志望／グローバルキャリア）<span class="src">現行</span></li>
+        <li>受講までの流れ（横スライド：選ぶ→迷ったら相談→支払う→受講→残す）<span class="src">現行</span></li>
+        <li>料金・お支払い：価格帯・クレジットカード・クーポンの使い方<span class="src">現行</span></li>
+        <li>よくある不安：相談は必須？続けられる？返金は？→ よくある質問へ</li>
+        <li>学び方をもっと知る → 学び方・受講成果へ</li>
+        <li>公式LINE（特典3つ・横スライド）<span class="src">現行</span></li>
+        <li>2択の行動ボタン（無料相談／パンフレット）</li>
+      </ol></div>
+  </div>
+
+  <h3 class="mt">6-4. ページ間のつながり</h3>
+  <p class="note">主な導線だけを示しています。A層は「コースを探す → コース詳細 → 購入」、B層は「はじめての方へ・学び方 → 相談・資料請求」が本線です。</p>
+  <div class="tbl-wrap" style="padding:16px"><pre class="mermaid">
+flowchart LR
+  LP["LP（トップ）"]
+  C["コースを探す"]
+  CD["コース詳細"]
+  H["学び方・受講成果"]
+  P["ポートフォリオ"]
+  B["学びのヒント"]
+  BG["はじめての方へ"]
+  ACT(["無料相談・資料請求"])
+  LINE(["公式LINE"])
+  BUY(["購入"])
+  LP -- "HERO・01・03" --> C
+  LP -- "HERO・04" --> P
+  LP -- "06" --> BG
+  LP -- "08" --> B
+  LP -- "07" --> ACT
+  C --> CD
+  CD --> BUY
+  CD -- "学び方の要約" --> H
+  CD -- "成果物" --> P
+  H --> C
+  H --> ACT
+  P --> C
+  B -- "記事末尾" --> C
+  B --> LINE
+  BG --> H
+  BG --> ACT
+  BG --> LINE
+  </pre></div>
 
   <!-- ─────────────────────────────── -->
   <h2>7. 公開前に直したい点</h2>

@@ -236,6 +236,29 @@
     .latest .ph { grid-column: 2; grid-row: 1 / 4; }
   }
 
+  /* ── はじめての方へ ── */
+  .voicecard h3 { margin-top: 12px; font-size: 18px; }
+  .pq { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 40px; align-items: start; }
+  .pcard { padding: 28px; }
+  .pcard__big { margin-top: 14px !important; font-size: 15px !important; color: var(--ink) !important; }
+  .pcard__big b { font-size: 26px; color: var(--accent); margin-left: 4px; }
+  .pdl { margin: 16px 0 0; border-top: 1px solid var(--line); }
+  .pdl > div { display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+  .pdl dt { font-weight: 700; }
+  .pdl dd { margin: 0; color: var(--sub); }
+  .brands { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .brands span { padding: 1px 8px; border-radius: 6px; box-shadow: inset 0 0 0 1px var(--line); font-size: 11.5px; color: var(--ink); }
+  .qa--card { border-top: 0; display: grid; gap: 10px; }
+  .qa--card details { padding: 0; border: 0; border-radius: 14px; background: var(--card); box-shadow: 0 0 0 1px var(--line); }
+  .qa--card details[open] { box-shadow: 0 0 0 1.5px var(--accent); }
+  .qa--card summary { display: grid; grid-template-columns: 28px minmax(0, 1fr) 20px; gap: 10px; align-items: center; padding: 16px 18px; list-style: none; }
+  .qa--card summary::-webkit-details-marker { display: none; }
+  .qa--card summary::before { content: "Q"; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-family: var(--mono); font-size: 13px; }
+  .qa--card summary::after { content: "+"; justify-self: end; color: var(--accent); font-size: 20px; font-weight: 400; }
+  .qa--card details[open] summary::after { content: "−"; }
+  .qa--card details p { margin: 0; padding: 0 18px 18px 56px; }
+  @media (max-width: 760px) { .pq { grid-template-columns: minmax(0, 1fr); gap: 32px; } .pcard { padding: 22px; } }
+
   /* ── 注釈モード ── */
   .notes-toggle { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 30; min-height: 40px; padding: 0 16px; border-radius: 999px; border: 0; background: var(--ink); color: var(--bg); font-size: 12.5px; font-weight: 700; cursor: pointer; box-shadow: 0 8px 20px rgba(0,0,0,.2); }
   [data-note] { position: relative; }
@@ -439,7 +462,7 @@
 
 <!-- ═════════════ はじめての方へ ═════════════ -->
 <div data-page="beginners">
-  <div class="pagehead" data-note="はじめての方へ：どう始める？費用は？不安は？に答える。学び方の詳細は学び方ページへ送る"><div class="wrap"><p class="crumb"><a href="#top">トップ</a> / はじめての方へ</p><h1>はじめての方へ</h1><p>The Academyは、平日夜・週末の短い時間で実務に直結するアウトプットが出せる、社会人向けのオンライン学習プラットフォームです。</p></div></div>
+  <div class="pagehead" data-note="はじめての方へ：何を大切にしている場所か → 3つの仕組み → 自分ごと化 → 始め方 → 費用・不安。学び方の詳細は学び方ページへ送る"><div class="wrap"><p class="crumb"><a href="#top">トップ</a> / はじめての方へ</p><p class="sh__kick" style="margin:0 0 10px;color:var(--accent)">ABOUT THE ACADEMY</p><h1>学びは、もっと自由で、実践的でいい。</h1><p>学校でも職場でもない。挑戦したい人が立ち寄り、試し、仲間と次の一歩を見つけられる。私たちは、そんな学びのサードプレイスをつくります。</p></div></div>
   <section class="sec" data-note="① 3つの仕組みの要約（LP 02の要約版）"><div class="wrap">
     <div class="sh"><div><p class="sh__kick">ABOUT</p><h2>学ぶ、残す、飛び込む。</h2><p class="lead">3つの仕組みで、忙しくても学びを「できる」に変えます。</p></div></div>
     <div class="grid g3">
@@ -448,12 +471,12 @@
       <div class="card"><p class="point__n">03</p><h3>コミュニティーに飛び込む</h3><p>興味のある場で、体験しながら学ぶ。</p></div>
     </div>
   </div></section>
-  <section class="sec sec--alt" data-note="② こんな方に（現行サイトのお悩み3つ）"><div class="wrap">
-    <div class="sh"><div><p class="sh__kick">FOR YOU</p><h2>こんな方に選ばれています</h2></div></div>
+  <section class="sec sec--alt" data-note="② こんな方に：属性で呼びかけず、ターゲット（独立を目指す方／社内のデジタル化を担う方）の心の声と場面で自分ごと化"><div class="wrap">
+    <div class="sh"><div><p class="sh__kick">FOR YOU</p><h2>たとえば、こんな想いに。</h2><p class="lead">ひとつでも重なったら、The Academyが力になれるかもしれません。</p></div></div>
     <div class="grid g3">
-      <div class="card"><span class="tag">入社3〜5年目</span><h3 style="margin-top:10px">マーケティングスキルで次のポジションを狙いたい</h3></div>
-      <div class="card"><span class="tag">副業・独立志望</span><h3 style="margin-top:10px">ノーコードで自分でWebを作れるようになりたい</h3></div>
-      <div class="card"><span class="tag">グローバルキャリア</span><h3 style="margin-top:10px">会議で使えるビジネス英語を短期間で身につけたい</h3></div>
+      <div class="card voicecard"><span class="tag">いつか、自分の名前で働きたい</span><h3>「今度こそ、最後まで形にしたい」</h3><p>本や動画で始めた勉強が、途中で止まったまま。仕事で見せられる成果物まで、仕上げたい方に。</p></div>
+      <div class="card voicecard"><span class="tag">社内のデジタル化を任された</span><h3>「手探りを、自信に変えたい」</h3><p>詳しい人が周りにいない中で進めている。基礎から整理して、胸を張って進めたい方に。</p></div>
+      <div class="card voicecard"><span class="tag">積み重ねを、次につなげたい</span><h3>「頑張ってきたことを、伝えたい」</h3><p>資格や学びの積み重ねをポートフォリオにして、次の仕事やチャンスにつなげたい方に。</p></div>
     </div>
   </div></section>
   <section class="sec" data-note="③ 受講までの流れ（LP 06の詳細版・横スライド）"><div class="wrap">
@@ -466,24 +489,25 @@
       <div class="card"><p class="step__n">STEP 4</p><div class="ph" style="min-height:120px;margin:8px 0">イラスト</div><h3>残す・飛び込む</h3><p>成果物をポートフォリオに公開。コミュニティーにも参加できます。</p></div>
     </div>
   </div></section>
-  <section class="sec sec--alt" data-note="④ 料金・お支払い ⑤ よくある不安（→FAQ）"><div class="wrap two">
-    <div>
-      <p class="sh__kick">PRICE</p><h2 style="margin-top:6px">料金・お支払い</h2>
-      <p style="margin-top:10px;color:var(--sub)">コースごとの買い切りです。価格は各コースのページに記載しています。<span class="todo">価格帯の表記を決める</span></p>
-      <ul style="margin-top:12px;padding-left:1.2em;font-size:14px;display:grid;gap:4px">
-        <li>お支払い：クレジットカード（Visa、MasterCard、American Express、JCB、Diners Club、Discover）</li>
-        <li>クーポン：カートの「クーポンコードを入力」欄に入力。クーポンは公式LINEで配信</li>
-      </ul>
-      <a class="tl" href="#courses" style="display:inline-block;margin-top:12px">コースと価格を見る →</a>
+  <section class="sec sec--alt" data-note="④ 料金・お支払い（事実を3行の表に）⑤ よくある不安（カード型の開閉、1問目は開いた状態）→ FAQへ"><div class="wrap pq">
+    <div class="card pcard">
+      <p class="sh__kick" style="margin:0">PRICE</p><h2 style="margin-top:6px">料金・お支払い</h2>
+      <p class="pcard__big">コースごとの<b>買い切り</b></p>
+      <dl class="pdl">
+        <div><dt>価格</dt><dd>各コースのページに記載しています。<span class="todo">価格帯の表記を決める</span></dd></div>
+        <div><dt>お支払い</dt><dd>クレジットカード<span class="brands"><span>Visa</span><span>MasterCard</span><span>American Express</span><span>JCB</span><span>Diners Club</span><span>Discover</span></span></dd></div>
+        <div><dt>クーポン</dt><dd>公式LINEで配信。カートの「クーポンコードを入力」欄に入力します。</dd></div>
+      </dl>
+      <a class="btn btn--ghost" href="#courses" style="margin-top:20px">コースと価格を見る</a>
     </div>
     <div>
-      <p class="sh__kick">Q&amp;A</p><h2 style="margin-top:6px">よくある不安</h2>
-      <div class="qa" style="margin-top:12px">
-        <details><summary>無料相談は必ず受けないといけませんか？</summary><p>いいえ。希望する方のみです。コースのページから直接お申し込みいただけます。</p></details>
+      <p class="sh__kick" style="margin:0">Q&amp;A</p><h2 style="margin-top:6px">よくある不安</h2>
+      <div class="qa qa--card" style="margin-top:16px">
+        <details open><summary>無料相談は必ず受けないといけませんか？</summary><p>いいえ。希望する方のみです。コースのページから直接お申し込みいただけます。</p></details>
         <details><summary>忙しくて続けられるか不安です</summary><p>週2h〜で完結する学習設計です。学び方の詳細は「学び方・受講成果」で紹介しています。</p></details>
         <details><summary>返金はできますか？</summary><p>回答が入ります。<span class="todo">現行FAQ「返金」から</span></p></details>
       </div>
-      <p style="margin-top:12px;display:flex;flex-wrap:wrap;gap:6px 18px"><a class="tl" href="#faq">よくある質問をすべて見る →</a><a class="tl" href="#howto-how">学び方をもっと知る →</a></p>
+      <p style="margin-top:16px;display:flex;flex-wrap:wrap;gap:6px 18px"><a class="tl" href="#faq">よくある質問をすべて見る →</a><a class="tl" href="#howto-how">学び方をもっと知る →</a></p>
     </div>
   </div></section>
   <section class="line-band" data-note="⑥ 公式LINE（特典の横スライド）"><div class="wrap">

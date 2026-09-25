@@ -167,6 +167,45 @@
   .form input, .form select { min-height: 44px; padding: 0 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); font: inherit; }
   .done { padding: 14px 16px; border-radius: 12px; background: var(--ok-soft); color: var(--ok); font-weight: 700; font-size: 14px; }
 
+  /* ── ポートフォリオ ── */
+  .vs { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 20px; align-items: center; }
+  .vs__col { padding: 24px 26px; border-radius: 16px; background: var(--bg2); }
+  .vs__col--on { background: var(--accent-soft); }
+  .vs__h { font-size: 13px; font-weight: 700; color: var(--sub); letter-spacing: .06em; }
+  .vs__col--on .vs__h { color: var(--accent); }
+  .vs ul { margin-top: 10px; padding: 0; list-style: none; display: grid; gap: 6px; font-size: 17px; font-weight: 700; }
+  .vs ul li::before { content: "―  "; color: var(--sub); font-weight: 400; }
+  .vs__mid { font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--sub); }
+  .so { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; margin-top: 20px; padding: 14px 20px; border-radius: 12px; box-shadow: inset 3px 0 0 var(--accent), 0 0 0 1px var(--line); font-weight: 700; }
+  .so b { color: var(--accent); font-size: 12.5px; letter-spacing: .12em; }
+  .for { display: grid; grid-template-columns: auto minmax(0, 1fr) minmax(0, 1fr); gap: 12px 28px; align-items: baseline; margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 13.5px; color: var(--sub); }
+  .for__h { font-size: 13px; font-weight: 700; color: var(--ink); letter-spacing: .06em; }
+  .for b { display: block; color: var(--ink); font-size: 15px; }
+  .kv { margin-top: 14px; padding: 0; list-style: none; display: grid; gap: 10px; }
+  .kv li { padding-left: 14px; border-left: 2px solid var(--accent-soft); font-size: 13.5px; color: var(--sub); }
+  .kv li b { display: block; color: var(--ink); font-size: 15px; }
+  .tiles > div { display: grid; justify-items: start; gap: 2px; }
+  .tiles .ph { min-height: 48px; width: 48px; border-radius: 12px; margin-bottom: 8px; font-size: 10px; }
+  .tiles span { font-size: 13px; color: var(--sub); }
+  .sample { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 20px; align-items: start; }
+  .sample__prof .voice__who small { color: var(--sub); }
+  .sample__label { margin-top: 18px !important; font-size: 11.5px !important; font-weight: 700; letter-spacing: .12em; color: var(--accent) !important; }
+  .sample__vision { color: var(--ink) !important; font-weight: 700; }
+  .sample__tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+  .story { counter-reset: st; margin-top: 12px; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+  .story li { padding: 12px; border-radius: 10px; background: var(--bg2); font-size: 13px; color: var(--sub); }
+  .story li b { display: block; color: var(--ink); font-size: 12.5px; }
+  .tline { margin-top: 8px; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 13px; color: var(--sub); }
+  .tline time { margin-right: 6px; font-family: var(--mono); color: var(--accent); }
+  .flow--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 0; }
+  @media (max-width: 1040px) { .story { grid-template-columns: repeat(2, minmax(0, 1fr)); } .sample { grid-template-columns: minmax(0, 1fr); } }
+  @media (max-width: 760px) {
+    .vs { grid-template-columns: minmax(0, 1fr); gap: 8px; } .vs__mid { justify-self: center; }
+    .for { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+    .flow--3 { grid-template-columns: minmax(0, 1fr); }
+    .grid.tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
   /* ── 注釈モード ── */
   .notes-toggle { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 30; min-height: 40px; padding: 0 16px; border-radius: 999px; border: 0; background: var(--ink); color: var(--bg); font-size: 12.5px; font-weight: 700; cursor: pointer; box-shadow: 0 8px 20px rgba(0,0,0,.2); }
   [data-note] { position: relative; }
@@ -554,50 +593,56 @@
 
 <!-- ═════════════ ポートフォリオ ═════════════ -->
 <div data-page="portfolio">
-  <div class="pagehead" data-note="主張：AIの評価だけでは伝わらない努力の過程を、公開ポートフォリオで可視化し、人（企業HR・仲間）に直接届ける"><div class="wrap two" style="align-items:center">
+  <div class="pagehead" data-note="主張：資格やスコアでは見えない『過程』を1ページにまとめ、次のチャンスにつなげる（PPT表紙・p4の言い回しを採用）"><div class="wrap two" style="align-items:center">
     <div>
       <p class="crumb"><a href="#top">トップ</a> / ポートフォリオ</p>
       <p class="sh__kick" style="margin:0 0 10px;color:var(--accent)">LEARNING PORTFOLIO</p>
       <h1>積み重ねた努力を、<br>見える形に。</h1>
-      <p>AIによる評価だけでは、積み重ねてきた努力や頑張りの過程までは伝わりません。The Academyの公開ポートフォリオで学びの歩みを可視化し、企業や仲間に、あなたから直接届けましょう。</p>
-      <div class="hero__cta"><a class="btn" href="#portfolio">ポートフォリオを作る（無料登録）</a><button class="btn btn--ghost" data-scroll="pf-list" type="button">みんなのポートフォリオを見る ↓</button></div>
-      <p style="margin-top:10px;font-size:12px;color:var(--sub)">匿名でも公開できます。<span class="todo">無料かどうか確認</span></p>
+      <p>資格やスコアだけでは、そこまでの努力は伝わりません。<br>学びの過程と成果を1ページにまとめて公開し、次の仕事やチャンスにつなげましょう。</p>
+      <div class="hero__cta"><a class="btn" href="#portfolio">無料で登録する</a><button class="btn btn--ghost" data-scroll="pf-sample" type="button">ポートフォリオの例を見る ↓</button></div>
+      <p style="margin-top:10px;font-size:12px;color:var(--sub)">匿名で始められます。</p>
     </div>
     <div class="ph" style="min-height:320px">画面：公開ポートフォリオ（プロフィール・実績・学びの歩み）</div>
   </div></div>
 
-  <section class="sec" data-note="① なぜ今ポートフォリオか：原因と結果（AI評価の広がり→過程が見えにくい）、理想と現実"><div class="wrap">
-    <div class="sh"><div><p class="sh__kick">WHY PORTFOLIO</p><h2>結果だけでは、あなたの頑張りは伝わらない。</h2><p class="lead">AIによるスキル判定や書類選考が広がるほど、見られるのは「結果」と「肩書き」になりがちです。挑戦した過程や、続けてきた努力は、自分で見せなければ伝わりません。</p></div></div>
-    <div class="grid g3">
-      <div class="card"><p class="step__n">いま起きていること</p><h3>評価が「結果」に偏りやすい</h3><p>AIや数値による評価が広がり、プロセスや人柄が見えにくくなっています。</p></div>
-      <div class="card"><p class="step__n">多くの人の現実</p><h3>独学が続かない、頑張りが評価されない</h3><p>何度も挑戦したのに続かなかった。やってきたことが、正当に伝わっていない。</p></div>
-      <div class="card" style="box-shadow:0 0 0 1.5px var(--accent)"><p class="step__n">だから</p><h3>学びの歩みを、自分でPRする</h3><p>実績・資格・学びの積み重ねを公開ポートフォリオにまとめ、人に直接届けます。</p></div>
+  <section class="sec" data-note="① WHY：測られているもの VS 見えていないもの（PPT p4）で、原因と結果を1枚の比較に。文章を減らし箇条に"><div class="wrap">
+    <div class="sh"><div><p class="sh__kick">WHY PORTFOLIO</p><h2>結果だけでは、頑張りは伝わらない。</h2><p class="lead">評価の物差しが変わりつつある今、「過程」を伝える手段が必要です。</p></div></div>
+    <div class="vs">
+      <div class="vs__col"><p class="vs__h">今、測られているもの</p><ul><li>資格の有無</li><li>スコアや点数</li><li>AIによるスキル判定</li></ul></div>
+      <p class="vs__mid" aria-hidden="true">VS</p>
+      <div class="vs__col vs__col--on"><p class="vs__h">今、見えていないもの</p><ul><li>学びを続けてきた過程</li><li>試行錯誤の工夫</li><li>その人らしい強み</li></ul></div>
     </div>
-    <p class="sh__kick" style="margin:36px 0 12px">こんな「なりたい自分」に</p>
-    <div class="grid g2">
-      <div class="card"><span class="tag">フリーランスを目指す</span><h3 style="margin-top:10px">独学では続かなかったけれど、実績で仕事を得たい</h3><p>制作プロセスと成果を見せて、案件や次の仕事につなげる。</p></div>
-      <div class="card"><span class="tag">DXを推進する立場</span><h3 style="margin-top:10px">「デジタルに疎い」を、学びの積み重ねで変えたい</h3><p>資格と学びの歩みで、身につけてきたことを社内外に示す。</p></div>
-    </div>
-  </div></section>
-
-  <section class="sec sec--alt" data-note="② 伝えられること：主張の根拠となる機能群を『何ができるか／どう積み重ねたか／どんな人か』で整理"><div class="wrap">
-    <div class="sh"><div><p class="sh__kick">WHAT YOU CAN SHOW</p><h2>公開ポートフォリオで、伝えられること</h2><p class="lead">スキルの証拠だけでなく、積み重ねた過程と、あなたらしさまで。</p></div></div>
-    <div class="grid g3">
-      <div class="card"><p class="point__n">何ができるか</p>
-        <h3 style="margin-top:6px">実績</h3><p>背景・課題／担当範囲／制作プロセス／成果を、ひとつの事例として紹介します。</p>
-        <h3 style="margin-top:14px">資格・認定</h3><p>取得した資格と、スキルを裏付ける認定情報を紹介します。</p></div>
-      <div class="card"><p class="point__n">どう積み重ねたか</p>
-        <h3 style="margin-top:6px">学びの歩み</h3><p>学び始めた時点から現在まで、活動の積み重ねを過去から順に確認できます。</p>
-        <div class="ph" style="min-height:120px;margin-top:12px">画面：学びの歩み（タイムライン）</div></div>
-      <div class="card"><p class="point__n">どんな人か</p>
-        <h3 style="margin-top:6px">ビジョン</h3><p>実現したいこと。</p>
-        <h3 style="margin-top:10px">人物像</h3><p>診断から見える、その人らしさ。</p>
-        <h3 style="margin-top:10px">強み・働き方</h3><p>得意なことと、現在の仕事の特徴。</p>
-        <h3 style="margin-top:10px">使ってよかった書籍・サービス</h3><p>実際に使い、学びや仕事に役立ったもの。</p></div>
+    <p class="so"><b>だから</b>見えていないものを、公開ポートフォリオで自分から伝える。</p>
+    <div class="for">
+      <p class="for__h">こんな方に</p>
+      <p><b>キャリアを変えたい方</b>転職・フリーランス・社内の新しい役割へ、スキルを伝えたい</p>
+      <p><b>独学で一度立ち止まった方</b>続かなかった経験があっても、自分のペースで再挑戦したい</p>
     </div>
   </div></section>
 
-  <section class="sec" data-note="③ 疑問と回答：『自分にもできる？』『同じような人はいる？』→ ロールモデル・フォロー・フィード"><div class="wrap two" style="align-items:center">
+  <section class="sec sec--alt" data-note="② 伝えられること：PPT p7『学びを、そのまま実績に』＋p8『数字だけでは見えない、あなたらしさ』の2段。説明文は1行以内"><div class="wrap">
+    <div class="sh"><div><p class="sh__kick">WHAT YOU CAN SHOW</p><h2>公開ポートフォリオで、伝えられること</h2></div></div>
+    <div class="card feature feature--l">
+      <div class="ph" style="min-height:220px">画面：実績・資格・学びの歩み</div>
+      <div><p class="point__n">01</p><h3 style="font-size:20px;margin-top:4px">学びを、そのまま実績に</h3>
+        <ul class="kv">
+          <li><b>実績</b>背景・課題 → 担当範囲 → 制作プロセス → 成果を、ひとつのストーリーに</li>
+          <li><b>資格・認定</b>スキルを裏付ける資格と認定</li>
+          <li><b>学びの歩み</b>学び始めから現在まで、積み重ねを時系列で</li>
+        </ul></div>
+    </div>
+    <div class="card" style="margin-top:20px;padding:28px">
+      <p class="point__n">02</p><h3 style="font-size:20px;margin-top:4px"><span style="display:inline-block">数字だけでは見えない、</span><span style="display:inline-block">あなたらしさ</span></h3>
+      <div class="grid g4 tiles" style="margin-top:16px">
+        <div><div class="ph">icon</div><b>ビジョン</b><span>実現したいこと</span></div>
+        <div><div class="ph">icon</div><b>人物像診断</b><span>その人らしさ</span></div>
+        <div><div class="ph">icon</div><b>強み・働き方</b><span>得意なこと・今の仕事</span></div>
+        <div><div class="ph">icon</div><b>書籍・サービス</b><span>役立ったもの</span></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="sec" data-note="③ 疑問と回答：『自分にもできる？』『同じような人はいる？』→ ロールモデル・フォロー・フィード（現状維持）"><div class="wrap two" style="align-items:center">
     <div>
       <p class="sh__kick">YOU ARE NOT ALONE</p><h2 style="margin-top:6px">ひとりじゃないから、続けられる。</h2>
       <p style="margin-top:10px;color:var(--sub)">「自分にもできる？」「同じような人はいる？」。その答えは、先を歩く人の中にあります。</p>
@@ -610,31 +655,53 @@
     <div class="ph" style="min-height:340px">画面：学びのフィード（フォロー中の人の投稿）</div>
   </div></section>
 
-  <section class="sec sec--alt" id="pf-list" data-note="④ みんなのポートフォリオ：いちばん低いハードルの第一歩（まず見て、理想の人・仕事を見つける）"><div class="wrap">
-    <div class="sh"><div><p class="sh__kick">PUBLIC PORTFOLIOS</p><h2>まずは、理想の人を見つけてみよう。</h2><p class="lead">登録しなくても、公開ポートフォリオを見られます。<span class="todo">閲覧条件を確認</span></p></div><div class="filters" style="margin:0"><button class="chipb" aria-pressed="true">すべて</button><button class="chipb" aria-pressed="false">マーケティング</button><button class="chipb" aria-pressed="false">IT・デジタル</button><button class="chipb" aria-pressed="false">英語</button><button class="chipb" aria-pressed="false">クリエイティブ</button></div></div>
-    <div class="grid g3">
-      <div class="card"><div class="voice__who"><span class="ph" style="min-height:48px;width:48px;border-radius:50%">M</span><div><b>Mai / M.</b><small style="color:var(--sub);display:block;font-size:12px">営業企画 × データ分析を学習中</small></div></div><p>「感覚とデータの両方から、選ばれる体験をつくりたい。」</p><p class="meta" style="margin-top:10px"><span>実績 3</span><span>資格 2</span><span>学習ログ 42</span></p><div class="hero__cta" style="margin-top:12px"><span class="btn btn--sm btn--ghost">フォローする</span><span class="tl">詳しく見る →</span></div></div>
-      <div class="card"><div class="voice__who"><span class="ph" style="min-height:48px;width:48px;border-radius:50%">匿名</span><div><b>匿名ユーザー</b><small style="color:var(--sub);display:block;font-size:12px">フリーランスのデザイナーを目指して学習中</small></div></div><p>ビジョン・実績が入ります。</p><p class="meta" style="margin-top:10px"><span>実績 —</span><span>資格 —</span><span>学習ログ —</span></p></div>
-      <div class="card"><div class="ph" style="min-height:150px">公開ポートフォリオ</div></div>
+  <section class="sec sec--alt" id="pf-sample" data-note="④ 公開ポートフォリオの例：一覧・投稿は会員限定のため、架空のサンプル1件で『どんなページになるか』を見せる"><div class="wrap">
+    <div class="sh"><div><p class="sh__kick">SAMPLE</p><h2>公開ポートフォリオの例</h2><p class="lead">こんなページが、あなたの学びからできあがります。</p></div></div>
+    <div class="sample">
+      <div class="card sample__prof">
+        <div class="voice__who"><span class="ph" style="min-height:56px;width:56px;border-radius:50%">匿名</span><div><b>匿名ユーザー</b><small>営業企画 × データ分析を学習中</small></div></div>
+        <p class="sample__label">ビジョン</p><p class="sample__vision">「感覚とデータの両方から、選ばれる体験をつくりたい。」</p>
+        <p class="sample__label">強み・働き方</p><div class="sample__tags"><span class="tag">顧客理解</span><span class="tag">仮説づくり</span><span class="tag">週3リモート</span></div>
+        <p class="meta" style="margin-top:14px"><span>実績 3</span><span>資格 2</span><span>学びの記録 42</span></p>
+        <span class="btn btn--sm btn--ghost" style="margin-top:14px">フォローする</span>
+      </div>
+      <div class="card">
+        <p class="sample__label" style="margin-top:0">実績</p>
+        <h3>売上データの可視化ダッシュボード</h3>
+        <ol class="story">
+          <li><b>背景・課題</b>週次の売上報告に毎回半日かかっていた</li>
+          <li><b>担当範囲</b>データ整理・ダッシュボード設計</li>
+          <li><b>制作プロセス</b>指標の選定 → 試作 → チームの意見で改善</li>
+          <li><b>成果</b>報告の準備を短縮し、会議で次の打ち手を話せるように</li>
+        </ol>
+        <p class="sample__label">学びの歩み</p>
+        <ol class="tline"><li><time>4月</time>データ分析コースを受講開始</li><li><time>6月</time>資格を取得</li><li><time>8月</time>ダッシュボードを社内で公開</li></ol>
+      </div>
+    </div>
+    <p style="margin-top:14px;font-size:12px;color:var(--sub)">※画面・内容はイメージです。ほかのユーザーのポートフォリオやフィードは、無料登録後に見られます。</p>
+  </div></section>
+
+  <section class="sec" data-note="⑤ はじめかた（PPT p11）→ よくある質問：先に手順で安心させ、残る疑問にQ&Aで答える"><div class="wrap">
+    <div class="sh"><div><p class="sh__kick">HOW TO START</p><h2>はじめかた</h2></div></div>
+    <ol class="flow flow--3">
+      <li><b>登録する</b><span>匿名で始められます</span></li>
+      <li><b>ポートフォリオを育てる</b><span>学びや実績を少しずつ記録</span></li>
+      <li><b>PRする・つながる</b><span>フォローやフィードで学びを共有</span></li>
+    </ol>
+    <div class="qa" style="margin-top:40px">
+      <p class="sh__kick" style="margin:0 0 8px">よくある質問</p>
+      <details><summary>匿名で公開できますか？</summary><p>はい。登録から匿名で始められます。<span class="todo">公開範囲の設定を確認</span></p></details>
+      <details><summary>費用はかかりますか？</summary><p>ポートフォリオの登録は無料です。</p></details>
+      <details><summary>ほかの人のポートフォリオは見られますか？</summary><p>無料登録すると、公開ポートフォリオやフォロー中の人のフィードを見られます。</p></details>
+      <details><summary>受講前でも作れますか？</summary><p>回答が入ります。<span class="todo">要確認</span></p></details>
+      <details><summary>企業の人事担当者も見られますか？</summary><p>回答が入ります。<span class="todo">要確認</span></p></details>
     </div>
   </div></section>
 
-  <section class="sec" data-note="⑤ 使い方3ステップ＋よくある質問：始めるハードルを下げる"><div class="wrap two">
-    <div><p class="sh__kick">HOW TO START</p><h2 style="margin-top:6px">はじめ方</h2>
-      <ol class="curr curr--plain" style="margin-top:14px"><li>登録する（匿名でもOK）</li><li>学びを記録し、実績・資格を追加する</li><li>公開して、フォローや企業への共有でつながる</li></ol></div>
-    <div><p class="sh__kick">Q&amp;A</p><h2 style="margin-top:6px">よくある質問</h2>
-      <div class="qa" style="margin-top:12px">
-        <details><summary>匿名で公開できますか？</summary><p>はい、匿名で公開できます。<span class="todo">公開範囲の設定を確認</span></p></details>
-        <details><summary>受講前でも作れますか？</summary><p>回答が入ります。<span class="todo">要確認</span></p></details>
-        <details><summary>企業の人事担当者も見られますか？</summary><p>回答が入ります。<span class="todo">要確認</span></p></details>
-        <details><summary>費用はかかりますか？</summary><p>回答が入ります。<span class="todo">要確認</span></p></details>
-      </div></div>
-  </div></section>
-
-  <section class="sec sec--alt" data-note="⑥ 行動：①見てみる（低ハードル）②作る ③成果物をつくるためにコースを探す"><div class="wrap">
+  <section class="sec sec--alt" data-note="⑥ 行動：①例を見る（低ハードル）②作る ③成果物をつくるためにコースを探す"><div class="wrap">
     <div class="sh"><div><p class="sh__kick">YOUR FIRST STEP</p><h2>あなたの努力を、見える形に。</h2><p class="lead">まずは理想の人を見つけるところから。次に、あなた自身の歩みを残していきましょう。</p></div></div>
     <div class="grid g3">
-      <div class="card door"><p class="who">まずは見てみたい方</p><h3>みんなのポートフォリオを見る</h3><p>理想の人や、なりたい仕事のヒントを探せます。</p><button class="btn btn--ghost" data-scroll="pf-list" type="button">見てみる</button></div>
+      <div class="card door"><p class="who">まずは見てみたい方</p><h3>ポートフォリオの例を見る</h3><p>どんなページになるか、例で確かめられます。</p><button class="btn btn--ghost" data-scroll="pf-sample" type="button">見てみる</button></div>
       <div class="card door"><p class="who">自分の歩みを残したい方</p><h3>ポートフォリオを作る</h3><p>匿名でもOK。学びの記録から始められます。</p><a class="btn" href="#portfolio">無料で登録する</a></div>
       <div class="card door"><p class="who">載せる実績をつくりたい方</p><h3>コースを探す</h3><p>仕事で使える成果物を、コースで完成させます。</p><a class="btn btn--ghost" href="#courses">コースを探す</a></div>
     </div>

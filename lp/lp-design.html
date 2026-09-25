@@ -506,24 +506,23 @@
   .popular .line-card .lc-ill { margin: auto; padding: 12px 0; }
   .popular .line-card .lc-cta { margin-top: 0; }
 
-  /* 03：カルーセルの動き（右端まで流し、PCは矢印・スマホはスワイプ） */
+  /* 03：他のセクションと同じ幅に 4枚（コース3＋LINE）を並べる。スマホは横スワイプ */
   .popular { padding: clamp(72px, 8vw, 112px) 0; }
-  .popular .b-track { overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-right: calc(50% - 50vw); padding-right: calc(50vw - 50%); scroll-padding-left: 0; }
-  .popular .b-track::-webkit-scrollbar { display: none; }
-  .popular .b-track > * { scroll-snap-align: start; }
-  .popular .b-track:focus-visible { outline: 3px solid var(--ts-light-blue); outline-offset: 4px; }
-  .popular .nav__btn { display: grid; place-items: center; width: 48px; height: 48px; border: 0; border-radius: 50%; background: #fff; box-shadow: var(--shadow-soft); color: var(--ink); cursor: pointer; }
-  .popular .nav__btn:first-child svg { transform: scaleX(-1); }
-  .popular .nav__btn.on { background: var(--ts-primary); color: #fff; }
-  .popular .nav__btn[disabled] { opacity: .4; cursor: default; }
+  .popular .b-track { grid-auto-flow: row; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-columns: auto; gap: 20px; overflow: visible; margin-right: 0; }
+  .popular .b-ctrl { display: none; }
   .popular .line__btn { text-decoration: none; }
+  .popular .lc-t { word-break: keep-all; }
   .popular .course { transition: box-shadow .2s, transform .2s; }
   .popular .course:hover { transform: translateY(-2px); box-shadow: 0 0 0 1.5px var(--ts-primary), var(--shadow-soft); }
+  .popular .b-track:focus-visible { outline: 3px solid var(--ts-light-blue); outline-offset: 4px; }
   @media (prefers-reduced-motion: reduce) { .popular .course { transition: none; } .popular .course:hover { transform: none; } }
+  @media (max-width: 1100px) { .popular .b-track { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (max-width: 640px) {
     .popular .sec-head { flex-direction: column; align-items: flex-start; gap: 16px; }
-    .popular .b-track { grid-auto-columns: 82%; gap: 14px; }
-    .popular .b-ctrl { justify-content: center; }
+    .popular .b-track { grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: 82%; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin: 0 calc(var(--gutter) * -1); padding: 4px var(--gutter) 10px; scroll-padding: 0 var(--gutter); }
+    .popular .b-track::-webkit-scrollbar { display: none; }
+    .popular .b-track > * { scroll-snap-align: start; }
+    .popular .b-ctrl { display: flex; justify-content: center; }
     .popular .b-ctrl .nav { display: none; }
   }
 </style>
@@ -738,7 +737,7 @@
 
   <section class="popular" id="popular" aria-labelledby="popular-title"><div class="wrap"><header class="sec-head"><div><p class="sec-num">03</p><p class="sec-kicker">POPULAR COURSES</p><h2 class="sec-title" id="popular-title">人気のコース</h2><p class="sec-lead">今日から仕事に役立つ、<wbr>実践的なテーマを集めました。</p></div><a class="sec-more" href="/courses">すべてのコースを見る<span class="sec-more__arrow"><svg class="ico" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></header>
   <div class="b-track" id="popularTrack" tabindex="0" aria-label="人気のコース一覧"><a class="course" href="/courses/sns-marketing"><div class="thumb"><div class="cv cv--img"><img src="assets/courses/marketing.webp" loading="lazy" alt=""></div></div><div class="body"><span class="cat">マーケティング</span><h3>SNSマーケティング実践</h3><p class="meta"><span><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></g></svg>8週間</span><span><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></svg>週2〜3時間</span></p><p class="desc">顧客理解、企画設計、投稿制作、数値改善までを一つのキャンペーンとして実践します。</p><div class="foot"><p class="p"><b class="price">¥—</b><span class="todo">価格を入れる</span></p><span class="more">詳しく見る<i><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></i></span></div></div></a><a class="course" href="/courses/ai-efficiency"><div class="thumb"><div class="cv cv--img"><img src="assets/courses/ai.webp" loading="lazy" alt=""></div></div><div class="body"><span class="cat">IT・デジタル</span><h3>生成AI 業務改善</h3><p class="meta"><span><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></g></svg>6週間</span><span><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></svg>週2時間</span></p><p class="desc">生成AIとノーコードを組み合わせ、調査・資料作成・定型業務を効率化する仕組みを作ります。</p><div class="foot"><p class="p"><b class="price">¥—</b><span class="todo">価格を入れる</span></p><span class="more">詳しく見る<i><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></i></span></div></div></a><a class="course" href="/courses/toeic-700"><div class="thumb"><div class="cv cv--img"><img src="assets/courses/toeic.webp" loading="lazy" alt=""></div></div><div class="body"><span class="cat">英語・TOEIC</span><h3>TOEIC L&amp;R 700点突破</h3><p class="meta"><span><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></g></svg>3か月</span><span><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></svg>週2回・全24回</span></p><p class="desc">海外経験豊富なコーチと、文法・リスニング・読解・会話をバランスよく強化します。</p><div class="foot"><p class="p"><b class="price">¥—</b><span class="todo">価格を入れる</span></p><span class="more">詳しく見る<i><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></i></span></div></div></a>
-    <div class="line-card"><p class="lc-k">LINE限定クーポン</p><p class="lc-big">全コース<br><b>500<small>円OFF</small></b></p><p class="lc-t">クーポンはLINEからのみ配信しています</p><svg class="lc-ill" viewBox="0 0 200 150" aria-hidden="true">
+    <div class="line-card"><p class="lc-k">LINE限定クーポン</p><p class="lc-big">全コース<br><b>500<small>円OFF</small></b></p><p class="lc-t">クーポンは<wbr>LINEからのみ<wbr>配信しています</p><svg class="lc-ill" viewBox="0 0 200 150" aria-hidden="true">
     <ellipse cx="100" cy="80" rx="78" ry="62" fill="#FFFFFF" opacity=".16"/>
     <!-- スマホ -->
     <rect x="62" y="22" width="64" height="112" rx="12" fill="#0A9E46" opacity=".55" transform="translate(6 6)"/>
@@ -761,16 +760,7 @@
     <path d="M44 104c-10-6-8-16-1-12 7-4 9 6 1 12z" fill="#F76B38" stroke="#012270" stroke-width="2.4" stroke-linejoin="round"/>
     <circle cx="170" cy="60" r="4" fill="#FFD66B" stroke="#012270" stroke-width="2"/>
   </svg><div class="lc-cta"><a class="line__btn" href="/beginners#line">LINEを追加する</a></div></div>
-    <a class="course" href="/courses/event-design"><div class="thumb"><div class="cv">
-  <div class="pn" style="left:4%;top:9%;width:66%;height:74%">
-    <i class="ln h" style="width:28%"></i>
-    <div class="gantt"><div class="gh"></div><div class="gr"><i class="ln " style="width:14%"></i><span class="bar o" style="left:26%;width:26%"></span></div><div class="gr"><i class="ln " style="width:14%"></i><span class="bar b" style="left:48%;width:22%"></span></div><div class="gr"><i class="ln " style="width:14%"></i><span class="bar o" style="left:68%;width:18%"></span></div><div class="gr"><i class="ln " style="width:14%"></i><span class="bar b" style="left:38%;width:30%"></span></div><div class="gr"><i class="ln " style="width:14%"></i><span class="bar b" style="left:78%;width:26%"></span></div></div>
-  </div>
-  <div class="pn" style="left:58%;top:36%;width:38%;height:56%;z-index:2">
-    <i class="ln h" style="width:46%"></i>
-    <ul class="chk"><li><b class="o"></b><i class="ln " style="width:70%"></i></li><li><b></b><i class="ln " style="width:55%"></i></li><li><b class="o"></b><i class="ln " style="width:65%"></i></li></ul>
-    <div class="av-row av-row--s"><b></b><b class="o"></b><b class="g"></b><b class="p"></b></div>
-  </div></div></div><div class="body"><span class="cat">ビジネス</span><h3>イベントデザイン</h3><p class="meta"><span><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></g></svg>5週間</span><span><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></svg>週2時間</span></p><p class="desc">目的設定、体験設計、集客、当日運営まで、成果につながるイベントづくりを学びます。</p><div class="foot"><p class="p"><b class="price">¥9,800</b></p><span class="more">詳しく見る<i><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></i></span></div></div></a>
+    
   </div>
   <div class="b-ctrl"><span class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span><span class="nav"><button type="button" class="nav__btn" data-dir="-1" aria-label="前へ"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="nav__btn on" data-dir="1" aria-label="次へ"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></span></div></div></section>
 </main>

@@ -1,0 +1,670 @@
+<title>The Academy プロトタイプ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFFFFF; --bg2: #F5F7FB; --card: #FFFFFF; --ink: #1B2233; --sub: #5E6478; --line: #E2E5EC;
+    --ph: #ECEFF4; --ph-ink: #8A90A2; --accent: #0141D4; --accent-ink: #FFFFFF; --accent-soft: #E8EEFC;
+    --note: #B4541F; --note-soft: #FCEDE4; --ok: #1E7A48; --ok-soft: #E6F4EC;
+    --font: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic', Meiryo, sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+    --wrap: 1120px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #12151C; --bg2: #181C25; --card: #1E2330; --ink: #E7EAF1; --sub: #A4AABB; --line: #2D3444;
+      --ph: #262C3A; --ph-ink: #8C93A6; --accent: #7EA2FF; --accent-ink: #0B1330; --accent-soft: #1F2A48;
+      --note: #F2A374; --note-soft: #3A2619; --ok: #6FD39B; --ok-soft: #163324;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #12151C; --bg2: #181C25; --card: #1E2330; --ink: #E7EAF1; --sub: #A4AABB; --line: #2D3444;
+    --ph: #262C3A; --ph-ink: #8C93A6; --accent: #7EA2FF; --accent-ink: #0B1330; --accent-soft: #1F2A48;
+    --note: #F2A374; --note-soft: #3A2619; --ok: #6FD39B; --ok-soft: #163324;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 15px; line-height: 1.8; }
+  a { color: inherit; }
+  h1, h2, h3, h4 { margin: 0; line-height: 1.4; text-wrap: balance; }
+  p { margin: 0; }
+  ul, ol { margin: 0; }
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding-inline: 20px; }
+  button { font: inherit; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+  /* ── ヘッダー ── */
+  .hdr { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .hdr .wrap { display: flex; align-items: center; gap: 20px; height: 64px; }
+  .logo { font-weight: 700; letter-spacing: .08em; text-decoration: none; white-space: nowrap; }
+  .logo small { display: block; font-size: 9px; font-weight: 500; letter-spacing: .14em; color: var(--sub); line-height: 1; }
+  .gnav { display: flex; gap: 18px; margin-left: auto; font-size: 13px; }
+  .gnav a { text-decoration: none; white-space: nowrap; }
+  .gnav a[aria-current="page"] { color: var(--accent); font-weight: 700; }
+  .hdr__act { display: flex; align-items: center; gap: 10px; }
+  .hdr__act .login { font-size: 13px; text-decoration: none; white-space: nowrap; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 0 20px; border-radius: 999px; border: 0; background: var(--accent); color: var(--accent-ink); font-weight: 700; font-size: 14px; text-decoration: none; cursor: pointer; white-space: nowrap; }
+  .btn--sm { min-height: 36px; padding: 0 14px; font-size: 12.5px; }
+  .btn--ghost { background: transparent; color: var(--accent); box-shadow: inset 0 0 0 1.5px var(--accent); }
+  .btn--lg { min-height: 54px; padding: 0 28px; font-size: 15px; }
+  .menu-btn { display: none; }
+  .tl { color: var(--accent); font-weight: 700; font-size: 14px; text-decoration: underline; text-underline-offset: 3px; }
+
+  /* ── 共通パーツ ── */
+  .sec { padding-block: 72px; }
+  .sec--alt { background: var(--bg2); }
+  .sh { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 36px; }
+  .sh__num { font-family: var(--mono); font-size: 12px; color: var(--sub); letter-spacing: .14em; }
+  .sh__kick { margin-top: 10px; font-size: 13px; font-weight: 700; letter-spacing: .2em; color: var(--sub); }
+  .sh h2 { margin-top: 6px; font-size: clamp(24px, 3vw, 34px); }
+  .sh p.lead { margin-top: 8px; color: var(--sub); }
+  .grid { display: grid; gap: 20px; }
+  .g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .g5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .card { padding: 22px; border-radius: 16px; background: var(--card); box-shadow: 0 0 0 1px var(--line); }
+  .card h3 { font-size: 17px; }
+  .card p { margin-top: 6px; color: var(--sub); font-size: 14px; }
+  .ph { display: grid; place-items: center; min-height: 160px; padding: 12px; border-radius: 14px; background: repeating-linear-gradient(135deg, var(--ph) 0 12px, color-mix(in srgb, var(--ph) 70%, var(--bg)) 12px 24px); color: var(--ph-ink); font-size: 12.5px; font-weight: 500; text-align: center; }
+  .tag { display: inline-flex; padding: 1px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: 12px; font-weight: 700; }
+  .meta { display: flex; flex-wrap: wrap; gap: 6px 14px; color: var(--sub); font-size: 12.5px; }
+  .todo { display: inline-flex; padding: 0 8px; border-radius: 6px; background: var(--note-soft); color: var(--note); font-size: 11.5px; font-weight: 700; }
+  .crumb { font-size: 12.5px; color: var(--sub); margin-bottom: 18px; }
+  .crumb a { text-decoration: none; }
+  .pagehead { padding-block: 56px 40px; background: var(--bg2); }
+  .pagehead h1 { font-size: clamp(28px, 4vw, 40px); }
+  .pagehead p { margin-top: 10px; color: var(--sub); max-width: 40em; }
+  .steps { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(230px, 1fr); gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; }
+  .steps > * { scroll-snap-align: start; }
+  .step__n { font-family: var(--mono); font-size: 12px; color: var(--accent); }
+  .qa { border-top: 1px solid var(--line); }
+  .qa details { border-bottom: 1px solid var(--line); padding: 14px 4px; }
+  .qa summary { cursor: pointer; font-weight: 700; }
+  .qa details p { margin-top: 8px; color: var(--sub); font-size: 14px; }
+
+  /* ── ヒーロー ── */
+  .hero { padding-block: 56px 64px; background: linear-gradient(180deg, var(--accent-soft), var(--bg) 70%); }
+  .hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: center; }
+  .hero h1 { font-size: clamp(32px, 4.4vw, 52px); letter-spacing: .02em; }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero__lead { margin-top: 18px; color: var(--sub); font-size: 16px; }
+  .hero__cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin-top: 28px; }
+  .stats { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .stat { padding: 10px 16px; border-radius: 12px; background: var(--card); box-shadow: 0 0 0 1px var(--line); }
+  .stat b { display: block; font-size: 22px; color: var(--accent); line-height: 1.3; }
+  .stat span { font-size: 12px; color: var(--sub); }
+  .hero__img { width: 100%; aspect-ratio: 4 / 3.4; object-fit: cover; object-position: 60% center; border-radius: 28px; display: block; }
+
+  /* ── LP固有 ── */
+  .goal { display: flex; flex-direction: column; gap: 6px; min-height: 180px; text-decoration: none; transition: box-shadow .15s, transform .15s; }
+  .goal:hover { box-shadow: 0 0 0 1.5px var(--accent); transform: translateY(-2px); }
+  .goal .ph { min-height: 72px; width: 72px; border-radius: 50%; }
+  .goal h3 { margin-top: 8px; font-size: 15.5px; }
+  .goal p { margin-top: 0 !important; font-size: 13px !important; }
+  .goal .arrow { margin-top: auto; align-self: flex-end; color: var(--accent); font-weight: 700; }
+  .point h3 em { font-style: normal; color: var(--accent); }
+  .point .ph { min-height: 220px; margin-bottom: 18px; }
+  .point__n { font-size: 13px; font-weight: 700; color: var(--accent); letter-spacing: .14em; }
+  .course .ph { min-height: 120px; margin-bottom: 14px; }
+  .course h3 { margin-top: 8px; }
+  .course .out { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--line); font-size: 13px; }
+  .course .price { margin-top: 8px; font-weight: 700; }
+  .band { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-top: 24px; padding: 16px 22px; border-radius: 14px; background: var(--ok-soft); color: var(--ink); }
+  .band b { color: var(--ok); }
+  .feat { display: grid; gap: 12px; margin-top: 18px; }
+  .feat li { list-style: none; padding: 14px 16px; border-radius: 12px; background: var(--card); box-shadow: 0 0 0 1px var(--line); }
+  .feat li b { display: block; }
+  .voice .ph { min-height: 56px; width: 56px; border-radius: 50%; }
+  .voice__who { display: flex; gap: 12px; align-items: center; }
+  .voice__who small { color: var(--sub); font-size: 12px; display: block; }
+  .flow { counter-reset: s; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+  .flow li { list-style: none; position: relative; padding: 18px; border-radius: 14px; background: var(--card); box-shadow: 0 0 0 1px var(--line); font-size: 14px; }
+  .flow li::before { counter-increment: s; content: "STEP " counter(s); display: block; font-family: var(--mono); font-size: 11px; color: var(--accent); }
+  .flow li b { display: block; }
+  .flow li span { color: var(--sub); font-size: 13px; }
+  .door { display: flex; flex-direction: column; gap: 10px; }
+  .door .who { font-size: 12.5px; color: var(--sub); }
+  .door .btn { margin-top: auto; }
+  .line-band { padding-block: 48px; background: var(--ok-soft); }
+  .line-band .wrap { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 32px; align-items: center; }
+  .perks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 16px; }
+  .perks div { padding: 12px; border-radius: 12px; background: var(--card); font-size: 13px; }
+  .perks b { display: block; color: var(--ok); font-size: 11.5px; }
+  .line-band .ph { min-height: 140px; }
+  .article .ph { min-height: 140px; margin-bottom: 12px; }
+
+  /* ── フッター ── */
+  .ftr { padding-block: 56px 32px; background: var(--bg2); border-top: 1px solid var(--line); font-size: 13.5px; }
+  .ftr__grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 24px; }
+  .ftr h4 { font-size: 12px; color: var(--sub); font-weight: 500; margin-bottom: 8px; }
+  .ftr ul { padding: 0; list-style: none; display: grid; gap: 4px; }
+  .ftr a { text-decoration: none; }
+  .ftr a:hover { color: var(--accent); }
+  .copy { margin-top: 36px; color: var(--sub); font-size: 12px; }
+
+  /* ── 詳細ページ ── */
+  .two { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+  .aside { position: sticky; top: 88px; }
+  .aside .price { font-size: 26px; font-weight: 700; }
+  .curr { counter-reset: c; display: grid; gap: 8px; padding: 0; }
+  .curr li { list-style: none; display: grid; grid-template-columns: 64px 1fr; gap: 12px; padding: 12px 14px; border-radius: 12px; background: var(--card); box-shadow: 0 0 0 1px var(--line); font-size: 14px; }
+  .curr li::before { counter-increment: c; content: "WEEK " counter(c); font-family: var(--mono); font-size: 11px; color: var(--accent); padding-top: 3px; }
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+  .chipb { padding: 6px 14px; border-radius: 999px; border: 0; background: var(--card); box-shadow: inset 0 0 0 1px var(--line); color: var(--ink); font-size: 13px; cursor: pointer; }
+  .chipb[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); box-shadow: none; }
+  .form { display: grid; gap: 12px; }
+  .form label { display: grid; gap: 4px; font-size: 13px; font-weight: 700; }
+  .form input, .form select { min-height: 44px; padding: 0 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); font: inherit; }
+  .done { padding: 14px 16px; border-radius: 12px; background: var(--ok-soft); color: var(--ok); font-weight: 700; font-size: 14px; }
+
+  /* ── 注釈モード ── */
+  .notes-toggle { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 30; min-height: 40px; padding: 0 16px; border-radius: 999px; border: 0; background: var(--ink); color: var(--bg); font-size: 12.5px; font-weight: 700; cursor: pointer; box-shadow: 0 8px 20px rgba(0,0,0,.2); }
+  [data-note] { position: relative; }
+  body.show-notes [data-note]::before {
+    content: attr(data-note);
+    position: absolute; z-index: 5; left: 8px; top: 8px; max-width: min(440px, calc(100% - 16px));
+    padding: 6px 10px; border-radius: 8px; background: var(--note-soft); color: var(--note);
+    font-size: 12px; font-weight: 700; line-height: 1.6; box-shadow: 0 0 0 1.5px var(--note);
+  }
+  body.show-notes .sec[data-note], body.show-notes .hero[data-note], body.show-notes .line-band[data-note], body.show-notes .pagehead[data-note] { padding-top: 96px; }
+
+  /* ページ切り替え */
+  [data-page] { display: none; }
+  [data-page].is-active { display: block; }
+
+  @media (max-width: 1040px) {
+    .gnav { display: none; }
+    .hdr__act { margin-left: auto; }
+    .hdr__act .login, .hdr__act .btn--ghost { display: none; }
+    .menu-btn { display: inline-flex; min-height: 36px; padding: 0 12px; border-radius: 999px; border: 0; background: var(--accent-soft); color: var(--accent); font-weight: 700; font-size: 12.5px; cursor: pointer; }
+    .hdr.open .gnav { display: grid; position: absolute; left: 0; right: 0; top: 64px; padding: 12px 20px 20px; gap: 10px; background: var(--bg); border-bottom: 1px solid var(--line); font-size: 15px; }
+    .g5 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .ftr__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  @media (max-width: 760px) {
+    .sec { padding-block: 56px; }
+    .hero .wrap, .two, .line-band .wrap { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+    .g2, .g3, .g4 { grid-template-columns: minmax(0, 1fr); }
+    .g5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .flow { grid-template-columns: minmax(0, 1fr); }
+    .perks { grid-template-columns: minmax(0, 1fr); }
+    .ftr__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .aside { position: static; }
+    .hero__cta .btn { width: 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) { .goal { transition: none; } .goal:hover { transform: none; } }
+</style>
+
+<header class="hdr" id="hdr">
+  <div class="wrap">
+    <a class="logo" href="#top">THE ACADEMY<small>ONLINE LEARNING PLATFORM</small></a>
+    <nav class="gnav" aria-label="グローバルナビゲーション">
+      <a href="#courses">コースを探す</a>
+      <a href="#howto">学び方・受講成果</a>
+      <a href="#portfolio">ポートフォリオ</a>
+      <a href="#community">コミュニティー</a>
+      <a href="#blog">学びのヒント</a>
+      <a href="#beginners">はじめての方へ</a>
+    </nav>
+    <div class="hdr__act">
+      <a class="login" href="#top">ログイン</a>
+      <a class="btn btn--sm btn--ghost" href="#contact">資料請求</a>
+      <a class="btn btn--sm" href="#contact">無料で相談する</a>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="hdr">メニュー</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ═════════════ トップ（LP） ═════════════ -->
+<div data-page="top">
+  <section class="hero" data-note="HERO：約束を伝える。CTAは2つ＋資料請求のテキストリンクに絞る">
+    <div class="wrap">
+      <div>
+        <h1>学んで、つくって、<br><em>次のキャリア</em>へ。</h1>
+        <p class="hero__lead">平日夜・週末の短い時間で、実務に直結するアウトプットを。講師と仲間に支えられながら、自分らしいキャリアを作ろう。</p>
+        <div class="hero__cta">
+          <a class="btn btn--lg" href="#contact">無料で相談する</a>
+          <a class="btn btn--lg btn--ghost" href="#courses">コースを探す</a>
+          <a class="tl" href="#contact">資料請求（無料）</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><b>10+</b><span>実践コース</span></div>
+          <div class="stat"><b>4.2</b><span>平均満足度※ <span class="todo">根拠を確認</span></span></div>
+          <div class="stat"><b>週2〜3時間</b><span>続けやすい設計</span></div>
+        </div>
+      </div>
+      <img class="hero__img" src="hero.webp" alt="明るい部屋でノートパソコンに向かい、メモを取りながら学ぶ女性" width="1672" height="941">
+    </div>
+  </section>
+
+  <section class="sec" data-note="01 START HERE：目的からコースへ。ビジネスのカードを追加して現行5カテゴリを漏れなくカバー">
+    <div class="wrap">
+      <div class="sh">
+        <div><p class="sh__num">01</p><p class="sh__kick">START HERE</p><h2>いまの目的から探す</h2><p class="lead">やってみたいことから、ぴったりの学びを見つけよう。</p></div>
+        <a class="tl" href="#courses">すべてのコースへ →</a>
+      </div>
+      <div class="grid g5">
+        <a class="card goal" href="#courses"><span class="ph">絵</span><h3>仕事を効率化したい</h3><p>生成AI・ノーコード</p><span class="arrow">→</span></a>
+        <a class="card goal" href="#courses"><span class="ph">絵</span><h3>発信を強みにしたい</h3><p>マーケティング</p><span class="arrow">→</span></a>
+        <a class="card goal" href="#courses"><span class="ph">絵</span><h3>英語で選択肢を広げたい</h3><p>英語・TOEIC</p><span class="arrow">→</span></a>
+        <a class="card goal" href="#courses"><span class="ph">絵</span><h3>企画やチームを動かしたい <span class="todo">追加</span></h3><p>ビジネス</p><span class="arrow">→</span></a>
+        <a class="card goal" href="#contact"><span class="ph">絵</span><h3>まだ決まっていない</h3><p>相談して一緒に整理</p><span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--alt" data-note="02 WHY：LPのゴール3つと1対1。以下03〜05の目次になる">
+    <div class="wrap">
+      <div class="sh"><div><p class="sh__num">02</p><p class="sh__kick">WHY THE ACADEMY</p><h2>学ぶ、残す、飛び込む。</h2><p class="lead">3つの仕組みで、忙しくても学びを「できる」に変え、キャリアへつなげていきます。</p></div></div>
+      <div class="grid g3">
+        <div class="point"><div class="ph">画面モック：マイラーニング</div><p class="point__n">POINT 01</p><h3>コースで<em>学ぶ</em></h3><p class="card-sub" style="color:var(--sub);margin-top:6px">学びたい分野を選び、演習とテンプレートで実践的に身につける。</p><button class="tl" style="background:none;border:0;padding:0;margin-top:8px;cursor:pointer" data-scroll="s-courses">人気のコースを見る ↓</button></div>
+        <div class="point"><div class="ph">画面モック：学びの歩み</div><p class="point__n">POINT 02</p><h3>学習ポートフォリオで<em>残す</em></h3><p style="color:var(--sub);margin-top:6px">成果物と学びの歩みを記録。ロールモデルを見つけ、続ける力に。</p><button class="tl" style="background:none;border:0;padding:0;margin-top:8px;cursor:pointer" data-scroll="s-portfolio">ポートフォリオを見る ↓</button></div>
+        <div class="point"><div class="ph">画面モック：コミュニティー</div><p class="point__n">POINT 03</p><h3>コミュニティーに<em>飛び込む</em></h3><p style="color:var(--sub);margin-top:6px">興味のある場に参加して、新しいことを体験しながら学ぶ。</p><button class="tl" style="background:none;border:0;padding:0;margin-top:8px;cursor:pointer" data-scroll="s-community">コミュニティーを見る ↓</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="s-courses" data-note="03 学ぶ：価格を出して比較できるように。購入直前の後押しにLINEクーポンを隣に置く">
+    <div class="wrap">
+      <div class="sh"><div><p class="sh__num">03</p><p class="sh__kick">POPULAR COURSES</p><h2>人気のコース</h2><p class="lead">今日から仕事に役立つ、実践的なテーマを集めました。</p></div><a class="tl" href="#courses">すべてのコースを見る →</a></div>
+      <div class="grid g4">
+        <a class="card course" href="#course" style="text-decoration:none"><div class="ph">コース画像</div><span class="tag">マーケティング</span><div class="meta" style="margin-top:8px"><span>8週間</span><span>週2〜3時間</span></div><h3>SNSマーケティング実践</h3><p>顧客理解、企画設計、投稿制作、数値改善までを一つのキャンペーンとして実践します。</p><p class="out">完成：SNSキャンペーン企画書</p><p class="price">¥— <span class="todo">価格</span></p></a>
+        <a class="card course" href="#course" style="text-decoration:none"><div class="ph">コース画像</div><span class="tag">IT・デジタル</span><div class="meta" style="margin-top:8px"><span>6週間</span><span>週2時間</span></div><h3>生成AI 業務改善</h3><p>生成AIとノーコードを組み合わせ、調査・資料作成・定型業務を効率化する仕組みを作ります。</p><p class="out">完成：業務フロー設計</p><p class="price">¥— <span class="todo">価格</span></p></a>
+        <a class="card course" href="#course" style="text-decoration:none"><div class="ph">コース画像</div><span class="tag">英語・TOEIC</span><div class="meta" style="margin-top:8px"><span>3か月</span><span>週2回・全24回</span></div><h3>TOEIC L&amp;R 700点を目指す</h3><p>海外経験豊富なコーチと、文法・リスニング・読解・会話をバランスよく強化します。</p><p class="out">完成：個別学習計画 <span class="todo">見直し候補</span></p><p class="price">¥— <span class="todo">価格</span></p></a>
+        <a class="card course" href="#course" style="text-decoration:none"><div class="ph">コース画像</div><span class="tag">ビジネス</span><div class="meta" style="margin-top:8px"><span>5週間</span><span>週2時間</span></div><h3>イベントデザイン</h3><p>目的設定、体験設計、集客、当日運営まで、成果につながるイベントづくりを学びます。</p><p class="out">完成：イベント企画書</p><p class="price">¥9,800</p></a>
+      </div>
+      <div class="band"><span><b>LINE登録で全コース500円OFF</b>　クーポンはLINEからのみ配信しています</span><a class="btn btn--sm" href="#beginners" style="background:var(--ok)">LINEを追加する</a></div>
+    </div>
+  </section>
+
+  <section class="sec sec--alt" id="s-portfolio" data-note="04 残す：概念が伝わりにくいので見本を1件見せる。『ポートフォリオを作る』はヒーローからここへ移動">
+    <div class="wrap two">
+      <div>
+        <p class="sh__num">04</p><p class="sh__kick">LEARNING PORTFOLIO</p>
+        <h2 style="margin-top:6px;font-size:clamp(24px,3vw,34px)">学んだことも、歩んだ過程も、あなたの実績に。</h2>
+        <p style="margin-top:12px;color:var(--sub)">完成した成果物だけでなく、試行錯誤や学びの記録まで公開できます。あなたらしい強みを、仲間や企業へ届けましょう。</p>
+        <div class="hero__cta"><a class="btn" href="#portfolio">ポートフォリオを見る</a><a class="btn btn--ghost" href="#portfolio">ポートフォリオを作る</a></div>
+      </div>
+      <div class="ph" style="min-height:300px">見本：公開ポートフォリオ（学びの歩み／実績公開・コース修了・学びの共有）</div>
+    </div>
+  </section>
+
+  <section class="sec" id="s-community" data-note="05 飛び込む：06から移動。特徴は3つに絞り、参加条件を1行で示す">
+    <div class="wrap two">
+      <div>
+        <p class="sh__num">05</p><p class="sh__kick">COMMUNITY</p>
+        <h2 style="margin-top:6px;font-size:clamp(24px,3vw,34px)">「やってみたい」を持ち寄る実践コミュニティ</h2>
+        <p style="margin-top:12px;color:var(--sub)">「やってみたい」を、街と世界をフィールドに学ぶ。メンバーの「やってみたい」を100個かなえたら解散する、期間限定のコミュニティです。</p>
+        <ul class="feat">
+          <li><b>参加者主体でつくる</b>運営とメンバーが一緒に企画し、「やってみたい」から体験ツアーやプロジェクトが生まれます。</li>
+          <li><b>体験から学ぶ</b>地域課題の解決など、実際の行動と振り返りを通じて学びを深めます。</li>
+          <li><b>互いに支え合う</b>誰もが教え手であり学び手。安心して挑戦・失敗・相談ができる第三の居場所です。</li>
+        </ul>
+        <p style="margin-top:14px;font-size:13px">参加条件：<span class="todo">受講生限定／誰でも／費用 を決める</span></p>
+        <div class="hero__cta"><a class="btn" href="https://forms.gle/ouCw7EHp4fwjCqHR6" target="_blank" rel="noopener">申し込む（Googleフォーム）↗</a><a class="tl" href="#community">コミュニティーについて詳しく</a></div>
+      </div>
+      <div class="ph" style="min-height:360px">写真：体験ツアー・プロジェクトの様子</div>
+    </div>
+  </section>
+
+  <section class="sec sec--alt" data-note="06 受講生の声（新設）：学びが続かない層が『自分と似た人が続けられたか』で判断する材料">
+    <div class="wrap">
+      <div class="sh"><div><p class="sh__num">06</p><p class="sh__kick">VOICES</p><h2>受講生の声</h2><p class="lead">働きながら学び、成果物を残した人たちの声です。</p></div><a class="tl" href="#howto">受講成果を見る →</a></div>
+      <div class="grid g3">
+        <div class="card voice"><div class="voice__who"><span class="ph">顔</span><div><b>30代・営業企画</b><small>SNSマーケティング実践 受講</small></div></div><p>体験談の本文が入ります。<span class="todo">パンフレットの体験談から</span></p></div>
+        <div class="card voice"><div class="voice__who"><span class="ph">顔</span><div><b>40代・事務職</b><small>生成AI 業務改善 受講</small></div></div><p>体験談の本文が入ります。<span class="todo">素材待ち</span></p></div>
+        <div class="card voice"><div class="voice__who"><span class="ph">顔</span><div><b>20代・マーケター</b><small>イベントデザイン 受講</small></div></div><p>体験談の本文が入ります。<span class="todo">素材待ち</span></p></div>
+      </div>
+      <p style="margin-top:16px;font-size:12px;color:var(--sub)">※平均満足度は受講生アンケート（5段階評価）の平均値 <span class="todo">調査時期・回答数を追記</span></p>
+    </div>
+  </section>
+
+  <section class="sec" data-note="07 受講までの流れ（短縮版・新設）：相談は任意だと伝え、始めるまでのハードルを下げる">
+    <div class="wrap">
+      <div class="sh"><div><p class="sh__num">07</p><p class="sh__kick">HOW TO START</p><h2>受講までの流れ</h2></div><a class="tl" href="#beginners">詳しくは「はじめての方へ」→</a></div>
+      <ol class="flow" style="padding:0">
+        <li><b>コースを選ぶ</b><span>迷ったら無料相談で一緒に整理できます</span></li>
+        <li><b>お支払い</b><span>クレジットカード決済</span></li>
+        <li><b>受講スタート</b><span>ログイン後、ダッシュボードから</span></li>
+        <li><b>残す・飛び込む</b><span>成果物をポートフォリオへ。コミュニティーにも参加できます</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec sec--alt" data-note="08 行動（相談＋パンフレット＋無料体験）：重さの違う3つの入口を並べる">
+    <div class="wrap">
+      <div class="sh"><div><p class="sh__num">08</p><p class="sh__kick">YOUR FIRST STEP</p><h2>迷っていても、大丈夫。</h2><p class="lead">あなたに合った方法で、最初の一歩を選べます。相談したら必ず受講、ではありません。</p></div></div>
+      <div class="grid g3">
+        <div class="card door"><p class="who">話して決めたい方</p><h3>30分の無料相談</h3><p>キャリアや学びの悩みをお聞きし、合うコースや続け方をご案内します。オンライン開催・相談だけでもOK。</p><a class="btn" href="#contact">無料相談を予約する</a></div>
+        <div class="card door"><p class="who">資料でじっくり比べたい方</p><h3>パンフレット（無料）</h3><p>The Academyの特徴や受講者の体験談、今スキルを身につけるべき理由をまとめました。簡単30秒で登録、すぐにダウンロードできます。</p><a class="btn btn--ghost" href="#contact">パンフレットを請求する</a></div>
+        <div class="card door"><p class="who">まず試してみたい方</p><h3>無料体験講座 <span class="todo">継続するか確認</span></h3><p>「あなたの強みを発掘するキャリアデザイン講座」で、自分に向いている分野を知れます。</p><a class="btn btn--ghost" href="#contact">無料体験に申し込む</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" data-note="09 学びのヒント：すぐには申し込まない人が戻ってくる理由をつくる">
+    <div class="wrap">
+      <div class="sh"><div><p class="sh__num">09</p><p class="sh__kick">LEARNING JOURNAL</p><h2>学びを続けるヒント</h2></div><a class="tl" href="#blog">記事をもっと読む →</a></div>
+      <div class="grid g3">
+        <a class="card article" href="#blog" style="text-decoration:none"><div class="ph">アイキャッチ</div><div class="meta"><span>キャリア</span><span>2026.09.08</span></div><h3 style="margin-top:6px">働きながら学びを続けるための、週2時間のつくり方</h3></a>
+        <a class="card article" href="#blog" style="text-decoration:none"><div class="ph">アイキャッチ</div><div class="meta"><span>生成AI</span><span>2026.08.26</span></div><h3 style="margin-top:6px">ChatGPTを仕事の相棒にする、最初の5つの使い方</h3></a>
+        <a class="card article" href="#blog" style="text-decoration:none"><div class="ph">アイキャッチ</div><div class="meta"><span>マーケティング</span><span>2026.08.12</span></div><h3 style="margin-top:6px">顧客理解から始めるSNSキャンペーン設計</h3></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="line-band" data-note="10 LINE（新設）：最後まで読んで何もしなかった人を、いちばん軽い行動で受け止める">
+    <div class="wrap">
+      <div>
+        <p class="sh__kick" style="margin:0">OFFICIAL LINE</p>
+        <h2 style="margin-top:6px;font-size:clamp(22px,2.6vw,30px)">公式LINEで、学びのきっかけを受け取る</h2>
+        <div class="perks">
+          <div><b>特典1</b>新しいコース情報を先にお届け</div>
+          <div><b>特典2</b>全コース500円OFFクーポン</div>
+          <div><b>特典3</b>限定コミュニティーに参加できる <span class="todo">05との関係を整理</span></div>
+        </div>
+      </div>
+      <div class="ph">QRコード（PC）／「LINEを追加する」ボタン（スマホ）</div>
+    </div>
+  </section>
+</div>
+
+<!-- ═════════════ はじめての方へ ═════════════ -->
+<div data-page="beginners">
+  <div class="pagehead" data-note="はじめての方へ：学びが続かない層の不安を順に解消する。流れとLINEの横スライドはここに詳細を置く"><div class="wrap"><p class="crumb"><a href="#top">トップ</a> / はじめての方へ</p><h1>はじめての方へ</h1><p>The Academyは、平日夜・週末の短い時間で実務に直結するアウトプットが出せる、社会人向けのオンライン学習プラットフォームです。</p></div></div>
+  <section class="sec"><div class="wrap">
+    <div class="sh"><div><p class="sh__kick">FOR YOU</p><h2>こんな方に選ばれています</h2></div></div>
+    <div class="grid g3">
+      <div class="card"><span class="tag">入社3〜5年目</span><h3 style="margin-top:10px">マーケティングスキルで次のポジションを狙いたい</h3></div>
+      <div class="card"><span class="tag">副業・独立志望</span><h3 style="margin-top:10px">ノーコードで自分でWebを作れるようになりたい</h3></div>
+      <div class="card"><span class="tag">グローバルキャリア</span><h3 style="margin-top:10px">会議で使えるビジネス英語を短期間で身につけたい</h3></div>
+    </div>
+  </div></section>
+  <section class="sec sec--alt"><div class="wrap">
+    <div class="sh"><div><p class="sh__kick">HOW TO START</p><h2>受講までの流れ</h2><p class="lead">横にスクロールして、各ステップの詳細を確認できます。</p></div></div>
+    <div class="steps">
+      <div class="card"><p class="step__n">STEP 1</p><div class="ph" style="min-height:120px;margin:8px 0">イラスト</div><h3>コースを選ぶ</h3><p>コースのページから、期間・内容・成果物を確認して選べます。</p></div>
+      <div class="card"><p class="step__n">STEP 1.5（任意）</p><div class="ph" style="min-height:120px;margin:8px 0">イラスト</div><h3>迷ったら無料相談</h3><p>希望者のみ。30分・オンラインで、合うコースや続け方を一緒に整理します。</p></div>
+      <div class="card"><p class="step__n">STEP 2</p><div class="ph" style="min-height:120px;margin:8px 0">イラスト</div><h3>お支払い</h3><p>現在はクレジットカード決済のみ対応しています。</p></div>
+      <div class="card"><p class="step__n">STEP 3</p><div class="ph" style="min-height:120px;margin:8px 0">イラスト</div><h3>受講スタート</h3><p>新規登録・ログイン後、ダッシュボードから受講を始められます。</p></div>
+      <div class="card"><p class="step__n">STEP 4</p><div class="ph" style="min-height:120px;margin:8px 0">イラスト</div><h3>残す・飛び込む</h3><p>成果物をポートフォリオに公開。コミュニティーにも参加できます。</p></div>
+    </div>
+  </div></section>
+  <section class="sec"><div class="wrap two">
+    <div>
+      <p class="sh__kick">PRICE</p><h2 style="margin-top:6px">料金・お支払い</h2>
+      <p style="margin-top:10px;color:var(--sub)">コースごとの買い切りです。価格は各コースのページに記載しています。<span class="todo">「5-15万円」の表記を整理</span></p>
+      <p style="margin-top:10px;font-size:14px">お支払い方法：クレジットカード（Visa、MasterCard、American Express、JCB、Diners Club、Discover）</p>
+    </div>
+    <div>
+      <p class="sh__kick">Q&amp;A</p><h2 style="margin-top:6px">よくある不安</h2>
+      <div class="qa" style="margin-top:12px">
+        <details><summary>無料相談は必ず受けないといけませんか？</summary><p>いいえ。希望する方のみです。コースのページから直接お申し込みいただけます。</p></details>
+        <details><summary>忙しくて続けられるか不安です</summary><p>週2〜3時間で完結する学習設計です。<span class="todo">サポート内容を追記</span></p></details>
+        <details><summary>クーポンはどこでもらえますか？</summary><p>現在、クーポンの発行は公式LINEの登録を通じてのみ行っています。</p></details>
+      </div>
+      <a class="tl" href="#faq" style="display:inline-block;margin-top:12px">よくある質問をすべて見る →</a>
+    </div>
+  </div></section>
+  <section class="line-band"><div class="wrap">
+    <div><p class="sh__kick" style="margin:0">OFFICIAL LINE</p><h2 style="margin-top:6px">公式LINEのお友だち追加で、お得な情報を配信</h2>
+      <div class="steps" style="margin-top:16px">
+        <div class="card"><b style="color:var(--ok)">特典1</b><h3>コース情報を早期にお届け</h3></div>
+        <div class="card"><b style="color:var(--ok)">特典2</b><h3>全コース500円割引クーポン</h3></div>
+        <div class="card"><b style="color:var(--ok)">特典3</b><h3>限定コミュニティーに参加できる</h3></div>
+      </div>
+    </div>
+    <div class="ph">QRコード／LINEを追加する</div>
+  </div></section>
+</div>
+
+<!-- ═════════════ 学び方・受講成果 ═════════════ -->
+<div data-page="howto">
+  <div class="pagehead" data-note="学び方・受講成果：HOW TO LEARN（3ステップ）はLPからここへ。『続けられるか』に答えるページ"><div class="wrap"><p class="crumb"><a href="#top">トップ</a> / 学び方・受講成果</p><h1>学び方・受講成果</h1><p>見るだけで終わらない、3ステップの学び。短時間で知り、仕事を題材に手を動かし、フィードバックを受けて成果物にします。</p></div></div>
+  <section class="sec"><div class="wrap">
+    <div class="sh"><div><p class="sh__kick">HOW TO LEARN</p><h2>見るだけで終わらない、3ステップの学び</h2></div></div>
+    <div class="grid g3">
+      <div class="card"><p class="step__n">01 INPUT</p><h3>短時間で基礎を知る</h3><p>要点を絞った教材で、まず全体像をつかみます。</p></div>
+      <div class="card"><p class="step__n">02 PRACTICE</p><h3>仕事を題材に試す</h3><p>身近な課題を使うから、学びが実務につながります。</p></div>
+      <div class="card"><p class="step__n">03 OUTPUT</p><h3>成果物として残す</h3><p>講師のフィードバックを受け、伝わる形に整えます。</p></div>
+    </div>
+  </div></section>
+  <section class="sec sec--alt"><div class="wrap two">
+    <div><p class="sh__kick">A WEEK</p><h2 style="margin-top:6px">1週間の学び方の例</h2><p style="margin-top:10px;color:var(--sub)">平日夜・週末の2〜3時間で完結する設計です。</p>
+      <ol class="curr" style="margin-top:16px"><li>平日夜 30分：動画で基礎を知る</li><li>平日夜 30分：演習を試す</li><li>週末 1〜2時間：成果物をつくり、提出する</li></ol></div>
+    <div class="ph" style="min-height:280px">図：1週間のタイムライン</div>
+  </div></section>
+  <section class="sec"><div class="wrap">
+    <div class="sh"><div><p class="sh__kick">OUTCOMES</p><h2>受講成果</h2><p class="lead">コースごとに、仕事で使える成果物が残ります。</p></div></div>
+    <div class="grid g4">
+      <div class="card"><div class="ph" style="min-height:120px;margin-bottom:10px">成果物の画像</div><h3>SNSキャンペーン企画書</h3><p>SNSマーケティング実践</p></div>
+      <div class="card"><div class="ph" style="min-height:120px;margin-bottom:10px">成果物の画像</div><h3>業務フロー設計</h3><p>生成AI 業務改善</p></div>
+      <div class="card"><div class="ph" style="min-height:120px;margin-bottom:10px">成果物の画像</div><h3>イベント企画書</h3><p>イベントデザイン</p></div>
+      <div class="card"><div class="ph" style="min-height:120px;margin-bottom:10px">成果物の画像</div><h3>個別学習計画</h3><p>TOEIC L&amp;R 700点を目指す</p></div>
+    </div>
+    <p style="margin-top:16px;font-size:12px;color:var(--sub)">※成果物はコースによって異なります。平均満足度の根拠：<span class="todo">調査時期・回答数</span></p>
+  </div></section>
+</div>
+
+<!-- ═════════════ コースを探す ═════════════ -->
+<div data-page="courses">
+  <div class="pagehead" data-note="コースを探す：目的カードはLPの01と同じ名前にそろえ、カテゴリ・レベルで絞り込む"><div class="wrap"><p class="crumb"><a href="#top">トップ</a> / コースを探す</p><h1>コースを探す</h1><p>目的やカテゴリから、あなたに合うコースを選べます。</p></div></div>
+  <section class="sec"><div class="wrap">
+    <p class="sh__kick" style="margin-bottom:10px">目的から</p>
+    <div class="filters" role="group" aria-label="目的で絞り込み">
+      <button class="chipb" aria-pressed="true" data-f="all">すべて</button>
+      <button class="chipb" aria-pressed="false" data-f="it">仕事を効率化したい</button>
+      <button class="chipb" aria-pressed="false" data-f="mk">発信を強みにしたい</button>
+      <button class="chipb" aria-pressed="false" data-f="en">英語で選択肢を広げたい</button>
+      <button class="chipb" aria-pressed="false" data-f="biz">企画やチームを動かしたい</button>
+      <button class="chipb" aria-pressed="false" data-f="cr">クリエイティブ</button>
+    </div>
+    <p class="meta" style="margin-bottom:20px">レベル：ベーシック／プロ／プレミア <span class="todo">絞り込みUI</span></p>
+    <div class="grid g4" id="courseGrid">
+      <a class="card course" data-c="mk" href="#course" style="text-decoration:none"><div class="ph">画像</div><span class="tag">マーケティング</span><h3>マーケティング戦略基礎</h3><p class="price">¥11,800</p></a>
+      <a class="card course" data-c="mk" href="#course" style="text-decoration:none"><div class="ph">画像</div><span class="tag">マーケティング</span><h3>インスタグラム</h3><p class="price">¥7,900</p></a>
+      <a class="card course" data-c="mk" href="#course" style="text-decoration:none"><div class="ph">画像</div><span class="tag">マーケティング</span><h3>SNSマーケティング</h3><p class="price">¥3,980</p></a>
+      <a class="card course" data-c="it" href="#course" style="text-decoration:none"><div class="ph">画像</div><span class="tag">IT</span><h3>自動化ツール開発</h3><p class="price">¥12,800</p></a>
+      <a class="card course" data-c="it" href="#course" style="text-decoration:none"><div class="ph">画像</div><span class="tag">IT</span><h3>初級編 ChatGPT</h3><p class="price">¥2,980</p></a>
+      <a class="card course" data-c="it" href="#course" style="text-decoration:none"><div class="ph">画像</div><span class="tag">IT</span><h3>初級編 Excel</h3><p class="price">¥2,980</p></a>
+      <a class="card course" data-c="it" href="#course" style="text-decoration:none"><div class="ph">画像</div><span class="tag">IT</span><h3>公式LINE運用</h3><p class="price">¥3,980</p></a>
+      <a class="card course" data-c="en" href="#course" style="text-decoration:none"><div class="ph">画像</div><span class="tag">語学</span><h3>ビジネス英語初級</h3><p class="price">¥3,000</p></a>
+      <a class="card course" data-c="en" href="#course" style="text-decoration:none"><div class="ph">画像</div><span class="tag">語学・特集</span><h3>TOEIC L&amp;R 700点を目指す</h3><p class="price">¥— <span class="todo">価格</span></p></a>
+      <a class="card course" data-c="biz" href="#course" style="text-decoration:none"><div class="ph">画像</div><span class="tag">ビジネス</span><h3>イベントデザイン</h3><p class="price">¥9,800</p></a>
+      <a class="card course" data-c="biz" href="#course" style="text-decoration:none"><div class="ph">画像</div><span class="tag">ビジネス</span><h3>プロジェクトマネジメント</h3><p class="price">¥4,980</p></a>
+      <a class="card course" data-c="biz" href="#course" style="text-decoration:none"><div class="ph">画像</div><span class="tag">ビジネス</span><h3>社会起業家</h3><p class="price">¥4,480</p></a>
+      <a class="card course" data-c="biz" href="#course" style="text-decoration:none"><div class="ph">画像</div><span class="tag">ビジネス</span><h3>新商品開発</h3><p class="price">¥4,980</p></a>
+      <a class="card course" data-c="cr" href="#course" style="text-decoration:none"><div class="ph">画像</div><span class="tag">クリエイティブ</span><h3>Canva初級</h3><p class="price">¥6,400</p></a>
+      <a class="card course" data-c="cr" href="#course" style="text-decoration:none"><div class="ph">画像</div><span class="tag">クリエイティブ</span><h3>動画クリエーター</h3><p class="price">¥13,800</p></a>
+      <a class="card course" data-c="cr" href="#course" style="text-decoration:none"><div class="ph">画像</div><span class="tag">クリエイティブ</span><h3>写真・カメラ</h3><p class="price">¥4,980</p></a>
+      <a class="card course" data-c="mk" href="#course" style="text-decoration:none"><div class="ph">画像</div><span class="tag">マーケティング</span><h3>ブランディング</h3><p class="price">¥4,980</p></a>
+    </div>
+    <p style="margin-top:16px;font-size:12px;color:var(--sub)">※価格は現行サイトの掲載価格です。評価の表示方法は検討中です。</p>
+  </div></section>
+</div>
+
+<!-- ═════════════ コース詳細 ═════════════ -->
+<div data-page="course">
+  <div class="pagehead" data-note="コース詳細（例）：完成物・価格・LINEクーポン・声・FAQを1ページで。右の申し込み欄は追従"><div class="wrap"><p class="crumb"><a href="#top">トップ</a> / <a href="#courses">コースを探す</a> / SNSマーケティング実践</p><span class="tag">マーケティング</span><h1 style="margin-top:8px">SNSマーケティング実践</h1><p>顧客理解、企画設計、投稿制作、数値改善までを一つのキャンペーンとして実践します。</p></div></div>
+  <section class="sec"><div class="wrap two">
+    <div class="grid" style="gap:36px">
+      <div class="ph" style="min-height:280px">コースのメイン画像／紹介動画</div>
+      <div><h2 style="font-size:22px">こんな方におすすめ</h2><ul style="margin-top:10px;padding-left:1.2em;color:var(--sub)"><li>自社のSNSを任されたが、何から始めればいいか分からない</li><li>SNSマーケターとしてのキャリアを目指したい</li></ul></div>
+      <div><h2 style="font-size:22px">カリキュラム</h2><ol class="curr" style="margin-top:12px"><li>顧客理解とペルソナ設計</li><li>キャンペーンの企画設計</li><li>投稿の制作</li><li>運用と数値の見方</li><li>改善のサイクル</li><li>成果物の仕上げと講師フィードバック</li></ol><p style="margin-top:8px;font-size:12px;color:var(--sub)"><span class="todo">実際のカリキュラムに差し替え</span></p></div>
+      <div><h2 style="font-size:22px">完成する成果物</h2><div class="card" style="margin-top:12px;display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center"><div class="ph" style="min-height:90px">画像</div><div><h3>SNSキャンペーン企画書</h3><p>ポートフォリオに公開して、あなたの実績として残せます。</p></div></div></div>
+      <div><h2 style="font-size:22px">講師</h2><div class="card" style="margin-top:12px;display:flex;gap:16px;align-items:center"><div class="ph" style="min-height:72px;width:72px;border-radius:50%">顔</div><div><h3>講師名</h3><p>経歴・専門分野 <span class="todo">素材待ち</span></p></div></div></div>
+      <div><h2 style="font-size:22px">よくある質問</h2><div class="qa" style="margin-top:12px"><details><summary>受講期間を過ぎても見られますか？</summary><p>回答が入ります。<span class="todo">要確認</span></p></details><details><summary>返金はできますか？</summary><p>回答が入ります。<span class="todo">現行FAQ「返金」から</span></p></details></div></div>
+    </div>
+    <aside class="aside card">
+      <div class="meta"><span>8週間</span><span>週2〜3時間</span><span>オンライン</span></div>
+      <p class="price" style="margin-top:8px">¥— <span class="todo">価格</span></p>
+      <p style="font-size:12.5px;color:var(--sub);margin-top:4px">LINE登録で500円OFFクーポン</p>
+      <div style="display:grid;gap:10px;margin-top:16px"><a class="btn" href="#course">このコースを受講する</a><a class="btn btn--ghost" href="#contact">受講前に相談する</a><a class="tl" href="#beginners" style="text-align:center">LINEでクーポンを受け取る</a></div>
+    </aside>
+  </div></section>
+</div>
+
+<!-- ═════════════ ポートフォリオ ═════════════ -->
+<div data-page="portfolio">
+  <div class="pagehead" data-note="ポートフォリオ：公開ポートフォリオの一覧と作り方。作成は要ログイン"><div class="wrap"><p class="crumb"><a href="#top">トップ</a> / ポートフォリオ</p><h1>学習ポートフォリオ</h1><p>学んだことも、歩んだ過程も、あなたの実績に。完成した成果物だけでなく、試行錯誤や学びの記録まで公開できます。</p></div></div>
+  <section class="sec"><div class="wrap">
+    <div class="sh"><div><p class="sh__kick">PUBLIC PORTFOLIOS</p><h2>みんなのポートフォリオ</h2></div><div class="filters" style="margin:0"><button class="chipb" aria-pressed="true">すべて</button><button class="chipb" aria-pressed="false">マーケティング</button><button class="chipb" aria-pressed="false">IT</button><button class="chipb" aria-pressed="false">英語</button></div></div>
+    <div class="grid g3">
+      <div class="card"><div class="voice__who"><span class="ph" style="min-height:48px;width:48px;border-radius:50%">M</span><div><b>Mai / M.</b><small style="color:var(--sub);display:block;font-size:12px">営業企画 × データ分析を学習中</small></div></div><p>「感覚とデータの両方から、選ばれる体験をつくりたい。」</p><p class="meta" style="margin-top:10px"><span>実績 3</span><span>資格 2</span><span>学習ログ 42</span></p></div>
+      <div class="card"><div class="ph" style="min-height:150px">公開ポートフォリオ</div></div>
+      <div class="card"><div class="ph" style="min-height:150px">公開ポートフォリオ</div></div>
+    </div>
+  </div></section>
+  <section class="sec sec--alt"><div class="wrap">
+    <div class="sh"><div><p class="sh__kick">HOW TO</p><h2>ポートフォリオの作り方</h2></div></div>
+    <div class="grid g3"><div class="card"><p class="step__n">01</p><h3>コースで成果物をつくる</h3></div><div class="card"><p class="step__n">02</p><h3>学びの歩みを記録する</h3></div><div class="card"><p class="step__n">03</p><h3>公開して、仲間や企業へ届ける</h3></div></div>
+    <div class="hero__cta"><a class="btn" href="#top">ポートフォリオを作る（要ログイン）</a></div>
+  </div></section>
+</div>
+
+<!-- ═════════════ コミュニティー ═════════════ -->
+<div data-page="community">
+  <div class="pagehead" data-note="コミュニティー：LPでは3つに絞った特徴を、ここでは全文で。参加条件と活動例を必ず載せる"><div class="wrap"><p class="crumb"><a href="#top">トップ</a> / コミュニティー</p><h1>「やってみたい」を持ち寄る実践コミュニティ</h1><p>「やってみたい」を、街と世界をフィールドに学ぶ。100個達成したら解散。</p></div></div>
+  <section class="sec"><div class="wrap two">
+    <div>
+      <p class="sh__kick">WHAT IT IS</p><h2 style="margin-top:6px">どんな場か</h2>
+      <ul class="feat">
+        <li><b>参加者主体でつくる場</b>運営とメンバーが一緒に企画し、固定カリキュラムではなく、メンバーの「やってみたい」から体験ツアーやプロジェクトが生まれます。</li>
+        <li><b>体験から学ぶ場</b>座学中心ではなく、地域課題解決などの実行動を通じて、振り返りと対話を繰り返しながら学びを深めます。</li>
+        <li><b>サードプレイスとしての居場所</b>家でも職場でもない第三の場所として、安心して挑戦・失敗・相談ができるフラットなコミュニティです。</li>
+        <li><b>双方向・相互支援の関係</b>誰もが教え手であり学び手。経験や知識をシェアし合い、互いの挑戦を応援します。</li>
+        <li><b>共通の目的をもつ仲間</b>実践と学びを通じて、「自分と社会を少し良くする」ことを目指します。</li>
+      </ul>
+    </div>
+    <div class="grid" style="gap:16px">
+      <div class="ph" style="min-height:220px">写真：これまでの活動例</div>
+      <div class="card"><h3>参加条件</h3><p><span class="todo">受講生限定か／誰でもか／費用</span></p><div style="margin-top:14px"><a class="btn" href="https://forms.gle/ouCw7EHp4fwjCqHR6" target="_blank" rel="noopener">申し込む（Googleフォーム）↗</a></div></div>
+    </div>
+  </div></section>
+</div>
+
+<!-- ═════════════ 学びのヒント ═════════════ -->
+<div data-page="blog">
+  <div class="pagehead" data-note="学びのヒント：記事末尾に関連コースとLINE登録を置き、読み物からの受け皿にする"><div class="wrap"><p class="crumb"><a href="#top">トップ</a> / 学びのヒント</p><h1>学びを続けるヒント</h1><p>キャリア、生成AI、マーケティングなど、働きながら学ぶためのヒントを届けます。</p></div></div>
+  <section class="sec"><div class="wrap">
+    <div class="filters"><button class="chipb" aria-pressed="true">すべて</button><button class="chipb" aria-pressed="false">キャリア</button><button class="chipb" aria-pressed="false">生成AI</button><button class="chipb" aria-pressed="false">マーケティング</button></div>
+    <div class="grid g3">
+      <div class="card article"><div class="ph">アイキャッチ</div><div class="meta"><span>キャリア</span><span>2026.09.08</span></div><h3 style="margin-top:6px">働きながら学びを続けるための、週2時間のつくり方</h3></div>
+      <div class="card article"><div class="ph">アイキャッチ</div><div class="meta"><span>生成AI</span><span>2026.08.26</span></div><h3 style="margin-top:6px">ChatGPTを仕事の相棒にする、最初の5つの使い方</h3></div>
+      <div class="card article"><div class="ph">アイキャッチ</div><div class="meta"><span>マーケティング</span><span>2026.08.12</span></div><h3 style="margin-top:6px">顧客理解から始めるSNSキャンペーン設計</h3></div>
+    </div>
+    <div class="band" style="background:var(--accent-soft)"><span><b style="color:var(--accent)">お役立ち資料（ホワイトペーパー）</b>　学びとキャリアに役立つ資料を無料で公開しています</span><a class="btn btn--sm" href="#blog">資料を見る</a></div>
+  </div></section>
+</div>
+
+<!-- ═════════════ FAQ ═════════════ -->
+<div data-page="faq">
+  <div class="pagehead" data-note="FAQ：ヘッダーから外し、フッターと『はじめての方へ』から誘導。現行の6カテゴリを継承"><div class="wrap"><p class="crumb"><a href="#top">トップ</a> / よくある質問</p><h1>よくある質問</h1></div></div>
+  <section class="sec"><div class="wrap">
+    <div class="filters"><button class="chipb" aria-pressed="true">お支払い</button><button class="chipb" aria-pressed="false">サービス</button><button class="chipb" aria-pressed="false">機能・操作</button><button class="chipb" aria-pressed="false">視聴関連</button><button class="chipb" aria-pressed="false">お申し込み</button><button class="chipb" aria-pressed="false">返金</button></div>
+    <div class="qa">
+      <details open><summary>お支払い方法を教えてください。</summary><p>現時点では、クレジットカード決済のみを受け付けております。Visa、MasterCard、American Express、JCB、Diners Club、Discoverがご利用いただけます。</p></details>
+      <details><summary>クーポンコードの使い方を教えてください。</summary><p>コースを選択した後、ショッピングカートに進むと「クーポンコードを入力」という欄がございますので、指定されたクーポンコードをご入力ください。</p></details>
+      <details><summary>お得なクーポンはどこでもらえますか？</summary><p>現時点では、クーポンの発行は公式LINEの登録を通じてのみ行っております。</p></details>
+    </div>
+  </div></section>
+</div>
+
+<!-- ═════════════ 無料相談・資料請求 ═════════════ -->
+<div data-page="contact">
+  <div class="pagehead" data-note="無料相談・資料請求：3つの入口を1ページに。資料請求は送信後すぐにダウンロード"><div class="wrap"><p class="crumb"><a href="#top">トップ</a> / 無料相談・資料請求</p><h1>無料相談・資料請求</h1><p>あなたに合った方法で、最初の一歩を選べます。相談したら必ず受講、ではありません。</p></div></div>
+  <section class="sec"><div class="wrap grid g3" style="align-items:start">
+    <div class="card door"><p class="who">話して決めたい方</p><h3>30分の無料相談</h3><p>話せること：自分に向いている分野／仕事と両立できる学習計画／受講後に目指せるキャリア</p><a class="btn" href="https://timerex.net/s/theacademy_thesocial/0557138e" target="_blank" rel="noopener">日程を予約する（TimeRex）↗</a></div>
+    <div class="card door"><p class="who">資料でじっくり比べたい方</p><h3>パンフレット（無料）</h3>
+      <form class="form" id="reqForm" novalidate>
+        <label for="rq-name">お名前<input id="rq-name" required autocomplete="name"></label>
+        <label for="rq-mail">メールアドレス<input id="rq-mail" type="email" required autocomplete="email"></label>
+        <label for="rq-course">受講してみたいコース<select id="rq-course"><option>まだ決まっていない</option><option>マーケティング</option><option>IT・生成AI</option><option>英語・TOEIC</option><option>ビジネス</option></select></label>
+        <button class="btn" type="submit">送信してダウンロード</button>
+        <p class="done" id="reqDone" hidden>プロトタイプのため送信はされません。本番では送信後すぐにパンフレットをダウンロードできます。</p>
+      </form>
+    </div>
+    <div class="card door"><p class="who">まず試してみたい方</p><h3>無料体験講座</h3><p>「あなたの強みを発掘するキャリアデザイン講座」 <span class="todo">予約リンクを相談と分ける</span></p><a class="btn btn--ghost" href="https://timerex.net/s/theacademy_thesocial/0557138e" target="_blank" rel="noopener">無料体験に申し込む ↗</a></div>
+  </div></section>
+</div>
+</main>
+
+<footer class="ftr" data-note="フッター：6列。特定商取引法に基づく表記を追加し、Wixの初期SNSリンクは外す">
+  <div class="wrap">
+    <div class="ftr__grid">
+      <div><h4>コースを探す</h4><ul><li><a href="#courses">IT・デジタル</a></li><li><a href="#courses">語学・TOEIC</a></li><li><a href="#courses">ビジネス</a></li><li><a href="#courses">マーケティング</a></li><li><a href="#courses">クリエイティブ</a></li></ul></div>
+      <div><h4>学び方</h4><ul><li><a href="#howto">学び方・受講成果</a></li><li><a href="#portfolio">ポートフォリオ</a></li><li><a href="#community">コミュニティー</a></li></ul></div>
+      <div><h4>はじめての方へ</h4><ul><li><a href="#beginners">受講までの流れ</a></li><li><a href="#beginners">料金・お支払い</a></li><li><a href="#faq">よくある質問</a></li><li><a href="#contact">無料相談・無料体験</a></li><li><a href="#contact">資料請求</a></li></ul></div>
+      <div><h4>お役立ち</h4><ul><li><a href="#blog">学びのヒント</a></li><li><a href="#blog">お役立ち資料</a></li><li><a href="#blog">業務効率化ツール</a></li><li><a href="#beginners">公式LINE</a></li></ul></div>
+      <div><h4>The Academy</h4><ul><li><a href="#top">About</a></li><li><a href="https://www.thesocialjapan.org/" target="_blank" rel="noopener">運営会社 ↗</a></li><li><a href="#contact">お問い合わせ・法人</a></li><li><a href="#top">プライバシーポリシー</a></li><li><a href="#top">特定商取引法に基づく表記</a></li><li><a href="#top">利用規約</a></li></ul></div>
+      <div><h4>SNS</h4><ul><li>LINE／Instagram</li><li>Threads／X</li><li>Facebook／LinkedIn</li><li>note／YouTube</li></ul></div>
+    </div>
+    <p class="copy">© 2026 The Social All Rights Reserved.　※これはワイヤーフレームのプロトタイプです。</p>
+  </div>
+</footer>
+
+<button class="notes-toggle" id="notesBtn" aria-pressed="false">注釈を表示</button>
+
+<script>
+  (() => {
+    const pages = [...document.querySelectorAll('[data-page]')];
+    const links = [...document.querySelectorAll('.gnav a')];
+    const valid = new Set(pages.map(p => p.dataset.page));
+    const hdr = document.getElementById('hdr');
+    const menuBtn = document.getElementById('menuBtn');
+
+    function show() {
+      const id = (location.hash || '#top').slice(1);
+      const cur = valid.has(id) ? id : 'top';
+      pages.forEach(p => p.classList.toggle('is-active', p.dataset.page === cur));
+      links.forEach(a => a.getAttribute('href') === '#' + cur ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current'));
+      hdr.classList.remove('open'); menuBtn.setAttribute('aria-expanded', 'false');
+      window.scrollTo(0, 0);
+    }
+    window.addEventListener('hashchange', show);
+    show();
+
+    menuBtn.addEventListener('click', () => {
+      const open = hdr.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(open));
+    });
+
+    // LP内のページ内スクロール（ハッシュはページ切り替えに使うため、ボタンで移動）
+    document.querySelectorAll('[data-scroll]').forEach(b => b.addEventListener('click', () => {
+      document.getElementById(b.dataset.scroll)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }));
+
+    // コース一覧の目的フィルター
+    const grid = document.getElementById('courseGrid');
+    document.querySelectorAll('[data-f]').forEach(btn => btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-f]').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+      grid.querySelectorAll('[data-c]').forEach(c => { c.hidden = !(btn.dataset.f === 'all' || c.dataset.c === btn.dataset.f); });
+    }));
+    // 見た目だけの絞り込みチップ（コース一覧以外）
+    document.querySelectorAll('.chipb:not([data-f])').forEach(btn => btn.addEventListener('click', () => {
+      btn.parentElement.querySelectorAll('.chipb').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+    }));
+
+    // 資料請求フォーム（プロトタイプ：送信しない）
+    const form = document.getElementById('reqForm');
+    form.addEventListener('submit', e => { e.preventDefault(); document.getElementById('reqDone').hidden = false; });
+
+    // 注釈モード
+    const notesBtn = document.getElementById('notesBtn');
+    function setNotes(on) {
+      document.body.classList.toggle('show-notes', on);
+      notesBtn.setAttribute('aria-pressed', String(on));
+      notesBtn.textContent = on ? '注釈を隠す' : '注釈を表示';
+      try { localStorage.setItem('ta-proto-notes', on ? '1' : '0'); } catch (_) {}
+    }
+    let saved = false;
+    try { saved = localStorage.getItem('ta-proto-notes') === '1'; } catch (_) {}
+    setNotes(saved);
+    notesBtn.addEventListener('click', () => setNotes(!document.body.classList.contains('show-notes')));
+  })();
+</script>

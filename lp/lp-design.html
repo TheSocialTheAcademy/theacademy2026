@@ -25,7 +25,7 @@
     --tint-16: rgba(1,65,212,.16);
     --line:    rgba(15,27,69,.10);
     --shadow-soft: 0 10px 30px rgba(15,27,69,.08), 0 1px 3px rgba(15,27,69,.05);
-    --font: Arial, 'Helvetica Neue', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', Meiryo, sans-serif;
+    --font: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
     --gutter: clamp(16px, 4vw, 50px);
     --maxw: 1280px;
   }
@@ -119,14 +119,6 @@
       linear-gradient(90deg, rgba(255,255,255,.97) 0%, rgba(255,255,255,.93) 30%, rgba(255,255,255,.55) 50%, rgba(255,255,255,0) 68%),
       linear-gradient(0deg, rgba(255,255,255,.55) 0%, rgba(255,255,255,0) 30%);
   }
-  .hero__word {                            /* 右上の大きな透かし文字 */
-    position: absolute; z-index: -1; right: -2vw; top: -1.5vw;
-    margin: 0;
-    color: rgba(255,255,255,.55);
-    font-family: Arial, 'Helvetica Neue', sans-serif; font-size: clamp(120px, 19vw, 280px); font-weight: 800;
-    letter-spacing: -.02em; line-height: .9;
-    pointer-events: none; user-select: none;
-  }
   .hero .wrap { position: relative; width: 100%; padding-top: 56px; padding-bottom: 64px; }
   .hero__copy { max-width: 640px; }
   .eyebrow { margin: 0; color: var(--ts-primary); font-size: 12.5px; font-weight: 700; letter-spacing: .18em; }
@@ -177,7 +169,7 @@
   .hero__note { margin: 10px 0 0; color: var(--ts-mid); font-size: 11.5px; }
 
   .scroll {
-    position: absolute; right: 26px; bottom: 0;
+    position: absolute; right: 32px; bottom: 36px;
     display: grid; justify-items: center; gap: 10px;
     color: var(--ink); font-size: 10px; font-weight: 700; letter-spacing: .24em;
     writing-mode: vertical-rl;
@@ -210,7 +202,6 @@
     .hero::before {
       background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 170px, rgba(255,255,255,1) 300px);
     }
-    .hero__word { display: none; }
     .hero .wrap { margin-top: -40px; padding-top: 0; padding-bottom: 48px; }
     .hero__title { margin-top: 14px; }
     .cta-row { grid-template-columns: minmax(0, 1fr); }
@@ -258,7 +249,7 @@
     transition: box-shadow .2s, transform .2s;
   }
   .goal:hover { box-shadow: 0 0 0 1.5px var(--ts-primary), var(--shadow-soft); transform: translateY(-2px); }
-  .goal__illust { position: absolute; left: 12px; top: 10px; width: 112px; height: 112px; }
+  .goal__illust { position: absolute; left: 50%; top: 10px; width: 112px; height: 112px; transform: translateX(-50%); }
   .goal__title { grid-column: 1; margin: 0; font-size: 17px; font-weight: 700; line-height: 1.5; word-break: keep-all; overflow-wrap: anywhere; }
   .goal__cat { grid-column: 1; margin: 4px 0 0; color: var(--ts-mid); font-size: 13px; line-height: 1.5; }
   .goal__arrow {
@@ -274,7 +265,7 @@
     .sec-head { flex-direction: column; align-items: flex-start; gap: 16px; }
     .goals { grid-template-columns: minmax(0, 1fr); gap: 12px; }
     .goal { min-height: 0; padding: 20px 16px 20px 96px; align-content: center; }
-    .goal__illust { left: 8px; top: 50%; width: 80px; height: 80px; margin-top: -40px; }
+    .goal__illust { left: 8px; top: 50%; width: 80px; height: 80px; margin-top: -40px; transform: none; }
     .goal__title { font-size: 15px; }
   }
 
@@ -427,7 +418,6 @@
 <main>
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero__bg"><img src="assets/hero.webp" alt="明るい部屋でノートパソコンに向かい、メモを取りながら学ぶ女性" width="1672" height="941" fetchpriority="high"></div>
-    <p class="hero__word" aria-hidden="true">LEARN</p>
     <div class="wrap">
       <div class="hero__copy">
         <p class="eyebrow">THE ACADEMY · ONLINE LEARNING</p>

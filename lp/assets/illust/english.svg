@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+<path d="M60 14c24 0 48 13 48 43s-20 51-50 51S12 92 12 63s24-49 48-49z" fill="#EEF2FC"/>
+<path d="M22 44a10 10 0 0 1 10-10h34a10 10 0 0 1 10 10v18a10 10 0 0 1-10 10H40l-10 9 1-9a10 10 0 0 1-9-10z" fill="#B3C7F4"/>
+<path d="M16 38a10 10 0 0 1 10-10h34a10 10 0 0 1 10 10v18a10 10 0 0 1-10 10H34l-10 9 1-9a10 10 0 0 1-9-10z" fill="#FFFFFF" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M34 58 43 37l9 21M37.5 50h11" fill="none" stroke="#0141D4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M58 62a10 10 0 0 1 10-10h26a10 10 0 0 1 10 10v16a10 10 0 0 1-10 10h-2l1 9-10-9H68a10 10 0 0 1-10-10z" fill="#0141D4" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="81" cy="70" r="10" fill="none" stroke="#FFFFFF" stroke-width="2.4"/>
+<ellipse cx="81" cy="70" rx="4.2" ry="10" fill="none" stroke="#FFFFFF" stroke-width="2.4"/>
+<path d="M71 70h20" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M100 22 Q100 30 108 30 Q100 30 100 38 Q100 30 92 30 Q100 30 100 22Z" fill="#F76B38" stroke="#012270" stroke-width="2.4" stroke-linejoin="round"/>
+</svg>

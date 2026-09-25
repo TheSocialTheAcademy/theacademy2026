@@ -1,0 +1,594 @@
+<title>The Academy サイト構成案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F6F7FA;
+    --card: #FFFFFF;
+    --ink: #1B2233;
+    --sub: #5E6478;
+    --line: #E1E4EC;
+    --accent: #0141D4;
+    --accent-soft: #E8EEFC;
+    --a: #0141D4;          /* ターゲットA */
+    --a-soft: #E8EEFC;
+    --b: #B4541F;          /* ターゲットB（オレンジを文字でも読める濃さに） */
+    --b-soft: #FCEDE4;
+    --new: #1E7A48;
+    --new-soft: #E6F4EC;
+    --move: #7A4DB8;
+    --move-soft: #F0EAFA;
+    --warn: #A33A2A;
+    --warn-soft: #FBE9E6;
+    --font: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Yu Gothic', Meiryo, sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --paper: #11141B; --card: #1A1F29; --ink: #E8EBF2; --sub: #A3A9BA; --line: #2C3342;
+      --accent: #7EA2FF; --accent-soft: #1E2A48;
+      --a: #7EA2FF; --a-soft: #1E2A48; --b: #F2A374; --b-soft: #3A2619;
+      --new: #6FD39B; --new-soft: #163324; --move: #C4A6F2; --move-soft: #2A2140; --warn: #F29A8A; --warn-soft: #3A1E1A;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --paper: #11141B; --card: #1A1F29; --ink: #E8EBF2; --sub: #A3A9BA; --line: #2C3342;
+    --accent: #7EA2FF; --accent-soft: #1E2A48;
+    --a: #7EA2FF; --a-soft: #1E2A48; --b: #F2A374; --b-soft: #3A2619;
+    --new: #6FD39B; --new-soft: #163324; --move: #C4A6F2; --move-soft: #2A2140; --warn: #F29A8A; --warn-soft: #3A1E1A;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font); font-size: 15px; line-height: 1.8; }
+  .page { max-width: 1080px; margin: 0 auto; padding-inline: 20px; padding-block: 40px 96px; }
+  h1, h2, h3 { text-wrap: balance; line-height: 1.4; margin: 0; }
+  h1 { font-size: clamp(26px, 4vw, 36px); }
+  h2 { font-size: 22px; margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--line); }
+  h3 { font-size: 16px; }
+  p { margin: 0; }
+  .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; color: var(--accent); text-transform: uppercase; }
+  .lead { margin-top: 12px; color: var(--sub); max-width: 46em; }
+  .note { color: var(--sub); font-size: 13px; }
+  .stack { display: grid; gap: 12px; }
+  .mt { margin-top: 20px; }
+
+  /* 結論ボックス */
+  .verdict { margin-top: 28px; padding: 24px; border-radius: 16px; background: var(--card); box-shadow: 0 0 0 1px var(--line); }
+  .verdict ol { margin: 12px 0 0; padding-left: 1.4em; display: grid; gap: 8px; }
+  .verdict b { color: var(--accent); }
+
+  /* チップ */
+  .chips { display: inline-flex; flex-wrap: wrap; gap: 6px; vertical-align: middle; }
+  .chip { display: inline-flex; align-items: center; padding: 1px 9px; border-radius: 999px; font-size: 11.5px; font-weight: 700; line-height: 1.7; white-space: nowrap; }
+  .t-a { background: var(--a-soft); color: var(--a); }
+  .t-b { background: var(--b-soft); color: var(--b); }
+  .s-new { background: var(--new-soft); color: var(--new); }
+  .s-move { background: var(--move-soft); color: var(--move); }
+  .s-edit { background: var(--accent-soft); color: var(--accent); }
+  .s-keep { background: transparent; color: var(--sub); box-shadow: inset 0 0 0 1px var(--line); }
+  .s-warn { background: var(--warn-soft); color: var(--warn); }
+
+  /* ターゲット */
+  .targets { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 20px; }
+  .target { padding: 20px; border-radius: 14px; background: var(--card); box-shadow: 0 0 0 1px var(--line); }
+  .target h3 { display: flex; align-items: center; gap: 8px; }
+  .target dl { margin: 12px 0 0; display: grid; grid-template-columns: 5.5em 1fr; gap: 6px 12px; font-size: 14px; }
+  .target dt { color: var(--sub); }
+  .target dd { margin: 0; }
+
+  /* LP ワイヤーフレーム */
+  .wf { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; margin-top: 24px; }
+  .blk { display: grid; grid-template-columns: 64px minmax(0, 1fr) minmax(0, 1.1fr); gap: 16px; align-items: start; padding: 16px 18px; border-radius: 12px; background: var(--card); box-shadow: 0 0 0 1px var(--line); }
+  .blk__no { font-family: var(--mono); font-size: 13px; color: var(--sub); padding-top: 2px; }
+  .blk__main h3 { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .blk__main p { margin-top: 6px; font-size: 13.5px; color: var(--sub); }
+  .blk__cta { margin-top: 8px; font-size: 13px; }
+  .blk__cta b { font-weight: 700; color: var(--ink); }
+  .blk__why { font-size: 13.5px; padding-left: 16px; border-left: 2px solid var(--line); }
+  .blk--hero { background: linear-gradient(180deg, var(--accent-soft), var(--card)); }
+  .blk--proof { box-shadow: inset 3px 0 0 var(--accent), 0 0 0 1px var(--line); }
+  .phase { margin-top: 18px; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; color: var(--sub); }
+
+  /* テーブル */
+  .tbl-wrap { overflow-x: auto; margin-top: 20px; border-radius: 12px; box-shadow: 0 0 0 1px var(--line); background: var(--card); }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; min-width: 720px; }
+  th, td { padding: 10px 14px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+  th { font-size: 12px; color: var(--sub); font-weight: 500; background: var(--paper); position: sticky; top: 0; }
+  tr:last-child td { border-bottom: 0; }
+  td b { font-weight: 700; }
+
+  /* 相談への回答 */
+  .qa { display: grid; gap: 16px; margin-top: 20px; }
+  .qa__item { padding: 20px 22px; border-radius: 14px; background: var(--card); box-shadow: 0 0 0 1px var(--line); }
+  .qa__q { font-size: 13px; color: var(--sub); }
+  .qa__a { margin-top: 6px; font-size: 17px; font-weight: 700; }
+  .qa__body { margin-top: 10px; font-size: 14px; }
+  .qa__body ul { margin: 6px 0 0; padding-left: 1.3em; display: grid; gap: 4px; }
+
+  /* ナビ・フッター */
+  .navbar { margin-top: 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; padding: 14px 18px; border-radius: 12px; background: var(--card); box-shadow: 0 0 0 1px var(--line); font-size: 14px; }
+  .navbar .logo { font-weight: 700; margin-right: 8px; }
+  .navbar .sp { flex: 1; }
+  .btn { display: inline-flex; padding: 4px 14px; border-radius: 999px; font-size: 13px; font-weight: 700; }
+  .btn--p { background: var(--accent); color: var(--card); }
+  .btn--g { box-shadow: inset 0 0 0 1.5px var(--accent); color: var(--accent); }
+  .foot { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 20px; margin-top: 16px; padding: 22px; border-radius: 12px; background: var(--card); box-shadow: 0 0 0 1px var(--line); font-size: 13.5px; }
+  .foot h3 { font-size: 13px; color: var(--sub); font-weight: 500; margin-bottom: 6px; }
+  .foot ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 3px; }
+
+  /* ページ別 */
+  .pages { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 20px; }
+  .pg { padding: 20px; border-radius: 14px; background: var(--card); box-shadow: 0 0 0 1px var(--line); }
+  .pg__url { font-family: var(--mono); font-size: 12px; color: var(--sub); }
+  .pg h3 { margin-top: 4px; }
+  .pg ol { margin: 10px 0 0; padding-left: 1.3em; font-size: 13.5px; display: grid; gap: 3px; }
+  .pg .src { font-size: 11.5px; color: var(--move); font-weight: 700; margin-left: 4px; }
+
+  /* 指摘 */
+  .issues { display: grid; gap: 10px; margin-top: 20px; }
+  .issue { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 14px; padding: 14px 18px; border-radius: 12px; background: var(--card); box-shadow: 0 0 0 1px var(--line); font-size: 14px; }
+  .issue p + p { margin-top: 4px; color: var(--sub); font-size: 13.5px; }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 14px; font-size: 12.5px; color: var(--sub); }
+
+  @media (max-width: 760px) {
+    .blk { grid-template-columns: 1fr; gap: 8px; }
+    .blk__why { padding-left: 0; border-left: 0; padding-top: 8px; border-top: 1px dashed var(--line); }
+    .issue { grid-template-columns: 1fr; gap: 6px; }
+  }
+</style>
+
+<div class="page">
+  <p class="eyebrow">Wireframe review · 2026.09 · v3</p>
+  <h1>The Academy サイト構成案</h1>
+  <p class="lead">現行サイト（theacademyjapan.org トップ）と新LP案を突き合わせ、ヘッダー・LP・各ページへの振り分けとLPの流れを組み直しました。v2でプロトタイプへのフィードバックを反映し、v3で下層ページ（コースを探す・学び方・ポートフォリオ・学びのヒント・はじめての方へ）の項目とページ間のつながりを決めました（6章）。</p>
+
+  <div class="verdict">
+    <h3>結論</h3>
+    <ol>
+      <li><b>LPは「約束 → 入口 → 3つの仕組み（学ぶ・残す・飛び込む） → 中身 → 不安の解消 → 行動 → 受け皿」の順。</b> 02 WHY を目次にして、03コース・04ポートフォリオ・05コミュニティーを同じ順で続け、LPの3つのゴールすべてに導線を通します。</li>
+      <li><b>行動の入口を重さ別に3段にします。</b> 重い順に「無料相談」「資料請求（パンフレット）」「LINE登録」。迷っている人（ターゲットB）でも、どこかの段で接点を残せます。</li>
+      <li><b>02は「強み（学ぶ・残す・飛び込む）」を採用。</b> HOW TO LEARN（3ステップ）は「学び方・受講成果」ページへ。</li>
+      <li><b>コミュニティーは、まずGoogleフォームで人を集めて方向性を固める段階。</b> LPの05セクションと申し込みボタンだけを置き、専用ページとヘッダーのリンクは作りません。</li>
+    </ol>
+  </div>
+
+  <!-- ─────────────────────────────── -->
+  <h2>1. ターゲットと、LPで満たすこと</h2>
+  <p class="lead">同じLPで2つのターゲットを受け止めるため、各セクションが「どちらの、どの疑問に答えるか」を決めてから並べています。</p>
+  <div class="targets">
+    <div class="target">
+      <h3><span class="chip t-a">A</span>意識が高い20・30代</h3>
+      <dl>
+        <dt>状態</dt><dd>学ぶ意欲は高い。比べて選び、早く成果を出したい</dd>
+        <dt>知りたい</dt><dd>何が身につくか／価格／何が残るか／仲間や機会があるか</dd>
+        <dt>効く要素</dt><dd>START HERE、コースと価格、ポートフォリオ、コミュニティー、LINEクーポン</dd>
+        <dt>主な行動</dt><dd>コースを探す → 購入、ポートフォリオ作成、コミュニティーへ申し込み</dd>
+      </dl>
+    </div>
+    <div class="target">
+      <h3><span class="chip t-b">B</span>学びが続かない30・40代</h3>
+      <dl>
+        <dt>状態</dt><dd>過去に挫折した経験がある。時間と自信が不安</dd>
+        <dt>知りたい</dt><dd>本当に続けられるか／ひとりにならないか／費用と始め方</dd>
+        <dt>効く要素</dt><dd>3つの仕組み、受講までの流れ、無料相談、パンフレット、LINE</dd>
+        <dt>主な行動</dt><dd>資料請求・LINE登録 → 無料相談 → コース受講</dd>
+      </dl>
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────── -->
+  <h2>2. LPの流れ（確定版）</h2>
+  <p class="lead">左：セクション名と置くもの、右：そこに置く理由。番号は新しい並び順です。</p>
+  <div class="legend">
+    <span><span class="chip s-keep">維持</span> いただいた案のまま</span>
+    <span><span class="chip s-edit">変更</span> 中身を調整</span>
+    <span><span class="chip s-move">移動</span> 並び順を変更</span>
+    <span><span class="chip s-new">新設</span> 追加するセクション</span>
+  </div>
+
+  <div class="wf">
+    <p class="phase">ATTENTION ─ 約束する</p>
+    <div class="blk blk--hero">
+      <span class="blk__no">HERO</span>
+      <div class="blk__main">
+        <h3>学んで、つくって、次のキャリアへ。<span class="chips"><span class="chip s-keep">維持</span><span class="chip t-a">A</span><span class="chip t-b">B</span></span></h3>
+        <p>THE ACADEMY · ONLINE LEARNING／AI画像／リード文／実績3つ（実践コース 10+・平均満足度 4.2・続けやすい設計 週2h〜）</p>
+        <p class="blk__cta">CTA：<b>無料で相談する</b>（塗り）／<b>コースを探す</b>・<b>ポートフォリオを作る</b>（枠線）</p>
+      </div>
+      <p class="blk__why">ボタンが3つあるので、「無料で相談する」だけを塗りつぶし、残り2つは枠線にして優先度をはっきりさせます。</p>
+    </div>
+
+    <p class="phase">INTEREST ─ 自分ごと化する</p>
+    <div class="blk">
+      <span class="blk__no">01</span>
+      <div class="blk__main">
+        <h3>START HERE いまの目的から探す<span class="chips"><span class="chip s-keep">維持</span><span class="chip t-a">A</span></span></h3>
+        <p>仕事を効率化したい／発信を強みにしたい／英語で選択肢を広げたい／まだ決まっていない＋全てのコースへ</p>
+        <p class="blk__cta">CTA：各カード → コースを探す、未定 → 無料相談</p>
+      </div>
+      <p class="blk__why">目的から入れるのでA層の近道になります。ビジネス・クリエイティブのコースは「全てのコースへ」から辿ります。</p>
+    </div>
+
+    <p class="phase">REASON ─ 選ぶ理由を示す</p>
+    <div class="blk">
+      <span class="blk__no">02</span>
+      <div class="blk__main">
+        <h3>WHY 学ぶ、残す、飛び込む。<span class="chips"><span class="chip s-keep">維持</span><span class="chip t-a">A</span><span class="chip t-b">B</span></span></h3>
+        <p>POINT 01 コースで学ぶ／02 学習ポートフォリオで残す／03 コミュニティーに飛び込む</p>
+        <p class="blk__cta">各POINTの「〜を見る ↓」から、下の03・04・05へページ内で移動</p>
+      </div>
+      <p class="blk__why">LPのゴール（コース・ポートフォリオ・コミュニティー）と1対1で対応するセクションです。ここを目次にして、続く3セクションを同じ順に並べます。</p>
+    </div>
+
+    <p class="phase">CONTENTS ─ 3つの仕組みの中身</p>
+    <div class="blk blk--proof">
+      <span class="blk__no">03</span>
+      <div class="blk__main">
+        <h3>人気のコース（学ぶ）<span class="chips"><span class="chip s-edit">変更</span><span class="chip t-a">A</span></span></h3>
+        <p>4コース（カテゴリ・期間・時間・説明・<b>価格</b>・詳しく見る）／すべてのコースを見る／LINE追加で500円OFFの小バナー</p>
+        <p class="blk__cta">CTA：詳しく見る → コース詳細</p>
+      </div>
+      <p class="blk__why">「完成」の表記は削除し、価格を追加。現行サイトは価格とカート購入が前提なので、価格があるとA層が比較のために離脱しません。LINEクーポンは購入直前の後押しとしてコースの隣に置きます。</p>
+    </div>
+    <div class="blk blk--proof">
+      <span class="blk__no">04</span>
+      <div class="blk__main">
+        <h3>ポートフォリオ（残す）<span class="chips"><span class="chip s-edit">変更</span><span class="chip t-a">A</span><span class="chip t-b">B</span></span></h3>
+        <p>学んだことも、歩んだ過程も、あなたの実績に。＋公開ポートフォリオの見本（画面）</p>
+        <p class="blk__cta">CTA：ポートフォリオを見る</p>
+      </div>
+      <p class="blk__why">「ポートフォリオを作る」はヒーローに置くので、ここは「見る」だけにします。見本の画面で、B層にも「続けた記録が残る」が伝わります。</p>
+    </div>
+    <div class="blk blk--proof">
+      <span class="blk__no">05</span>
+      <div class="blk__main">
+        <h3>コミュニティー（飛び込む）<span class="chips"><span class="chip s-move">移動 06→05</span><span class="chip s-edit">変更</span><span class="chip t-a">A</span><span class="chip t-b">B</span></span></h3>
+        <p>「やってみたい」を持ち寄る実践コミュニティ／コンセプト（100個かなえたら解散）／特徴3つ（参加者主体でつくる・体験から学ぶ・互いに支え合う）</p>
+        <p class="blk__cta">CTA：<b>申し込む</b>（Googleフォーム）＋ ＊参加条件・費用は小さな注記で</p>
+      </div>
+      <p class="blk__why">方向性をGoogleフォームで集まった人と固める段階なので、専用ページは作らず、ここで完結させます。02の順（学ぶ→残す→飛び込む）に合わせて、相談ブロックより前に置きます。</p>
+    </div>
+
+    <p class="phase">ANXIETY ─ 不安をなくす</p>
+    <div class="blk">
+      <span class="blk__no">06</span>
+      <div class="blk__main">
+        <h3>受講までの流れ（短縮版）<span class="chips"><span class="chip s-new">新設</span><span class="chip t-b">B</span></span></h3>
+        <p>①コースを選ぶ（迷ったら無料相談）②お支払い ③受講スタート ④残す・飛び込む</p>
+        <p class="blk__cta">CTA：詳しくは「はじめての方へ」</p>
+      </div>
+      <p class="blk__why">行動ブロックの直前に置くと「相談は任意」「始めるまで3ステップ」が伝わり、ハードルが下がります。現行の流れは「①無料相談会」から始まり、相談が必須に見えるため順番を変えています。</p>
+    </div>
+
+    <p class="phase">ACTION ─ 行動してもらう</p>
+    <div class="blk">
+      <span class="blk__no">07</span>
+      <div class="blk__main">
+        <h3>迷っていても、大丈夫。<span class="chips"><span class="chip s-edit">変更</span><span class="chip t-a">A</span><span class="chip t-b">B</span></span></h3>
+        <p>2つの入口を横並びに：<b>話して決めたい → 30分の無料相談</b>／<b>資料でじっくり比べたい → パンフレット（30秒で登録・すぐDL）</b></p>
+        <p class="blk__cta">CTA：無料相談を予約する／パンフレットを請求する</p>
+      </div>
+      <p class="blk__why">相談だけでは重いと感じる人の受け皿としてパンフレットを並べます。パンフレットは個人情報と引き換えなので、見込み客リストの主な入口になります。無料体験は置きません。</p>
+    </div>
+
+    <p class="phase">NURTURE ─ まだ動かない人の受け皿</p>
+    <div class="blk">
+      <span class="blk__no">08</span>
+      <div class="blk__main">
+        <h3>学びを続けるヒント（ブログ3件）<span class="chips"><span class="chip s-keep">維持</span><span class="chip t-b">B</span></span></h3>
+        <p>記事3件＋記事をもっと読む</p>
+      </div>
+      <p class="blk__why">すぐ申し込まない人が戻ってくる理由をつくる場所です。</p>
+    </div>
+    <div class="blk">
+      <span class="blk__no">09</span>
+      <div class="blk__main">
+        <h3>公式LINE（帯）<span class="chips"><span class="chip s-new">新設</span><span class="chip t-a">A</span><span class="chip t-b">B</span></span></h3>
+        <p>特典3つ（新コース情報を先に／全コース500円OFFクーポン／限定コミュニティー）＋QR（PC）／追加ボタン（スマホ）</p>
+      </div>
+      <p class="blk__why">最後まで読んで何もしなかった人を、最も軽い行動で受け止めます。ニュースレターの役割もここで担えます。</p>
+    </div>
+    <div class="blk">
+      <span class="blk__no">FOOT</span>
+      <div class="blk__main"><h3>フッター<span class="chips"><span class="chip s-edit">変更</span></span></h3><p>下の「4. ヘッダー・フッター」を参照</p></div>
+      <p class="blk__why">現行サイトのお問い合わせフォームはLPから外し、フッターからお問い合わせページへ誘導します。</p>
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────── -->
+  <h2>3. 【相談】への回答</h2>
+  <div class="qa">
+    <div class="qa__item">
+      <p class="qa__q">02　強みを出すか、HOW TO LEARN（3ステップ）を出すか</p>
+      <p class="qa__a">LPは強み（学ぶ・残す・飛び込む）。3ステップは「学び方・受講成果」ページへ。</p>
+      <div class="qa__body">
+        <ul>
+          <li>LPの役割は「なぜThe Academyか」を示すこと。3つの仕組みはLPの3つのゴールと直接つながりますが、3ステップはコースの中の話で、ゴールの一部しか説明できません。</li>
+          <li>「INPUT→PRACTICE→OUTPUT」は「続けられるか」を確かめたいB層に効くので、「学び方・受講成果」ページの冒頭に置きます。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="qa__item">
+      <p class="qa__q">05　相談だけでなく、パンフレットも入れたい</p>
+      <p class="qa__a">入れます。LPの07で、相談とパンフレットを横に並べます。</p>
+      <div class="qa__body">
+        <ul>
+          <li>相談は心理的に重い行動です。B層の多くは「まず資料で比べたい」段階にいるので、パンフレットがその受け皿になります。</li>
+          <li>配置：LPの07、ヘッダーの「資料請求」ボタン、「はじめての方へ」、フッター。</li>
+          <li>入力フォームは送信後すぐにダウンロードできる現行の仕組みを活かします。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="qa__item">
+      <p class="qa__q">08　受講までの流れを「はじめての方へ」に入れるべきか</p>
+      <p class="qa__a">両方に入れます。LPは短縮版（06）、「はじめての方へ」は横スライドの詳細版。</p>
+      <div class="qa__body">
+        <ul>
+          <li>流れは、申し込み直前の不安（何をすればいいか、相談は必須か）を消すための情報です。「はじめての方へ」だけに置くと、LPから申し込む人の目に入りません。</li>
+          <li>現行は「①無料相談会」が最初で必須に見えるため、「①コースを選ぶ（迷ったら相談）」から始め、最後に「残す・飛び込む」を加えます。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="qa__item">
+      <p class="qa__q">09　LINE登録の説明を「はじめての方へ」に入れるべきか</p>
+      <p class="qa__a">「はじめての方へ」には横スライドの詳細を。LPにも2か所置きます。</p>
+      <div class="qa__body">
+        <ul>
+          <li>LINEの役割は3つ（潜在層の受け皿、購入の後押しになる500円クーポン、ニュースレター）。どれも「すぐには申し込まない人」が相手なので、そういう人が離れる場所に置きます。</li>
+          <li>配置：LPの03（コース横の小バナー）と09（最後の帯）、ブログ記事の末尾、コース詳細の価格の近く、フッター。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────────────────────────── -->
+  <h2>4. ヘッダー・フッター（確定版）</h2>
+  <h3 class="mt">ヘッダー</h3>
+  <div class="navbar">
+    <span class="logo">THE ACADEMY</span>
+    <span>コースを探す</span><span>学び方・受講成果</span><span>ポートフォリオ</span><span>学びのヒント</span><span>はじめての方へ</span>
+    <span class="sp"></span>
+    <span>ログイン</span><span class="btn btn--g">資料請求</span><span class="btn btn--p">無料で相談する</span>
+  </div>
+  <div class="stack mt note">
+    <p>・<b>コミュニティーは載せません</b>：方向性をGoogleフォームで集まった人と固める段階のため。LPの05から申し込めます。</p>
+    <p>・<b>FAQはヘッダーから外し</b>、「はじめての方へ」とフッターに置きます。</p>
+    <p>・<b>資料請求・無料相談をボタンで常時表示</b>し、どのページからでも行動できるようにします。</p>
+    <p>・スマホは「ロゴ／無料で相談する／メニュー」の3つに絞ります。</p>
+  </div>
+
+  <h3 class="mt">フッター</h3>
+  <div class="foot">
+    <div><h3>コースを探す</h3><ul><li>IT・デジタル</li><li>語学・TOEIC</li><li>ビジネス</li><li>マーケティング</li><li>クリエイティブ</li></ul></div>
+    <div><h3>学び方</h3><ul><li>学び方・受講成果</li><li>ポートフォリオ</li></ul></div>
+    <div><h3>はじめての方へ</h3><ul><li>受講までの流れ</li><li>料金・お支払い</li><li>よくある質問</li><li>無料相談</li><li>資料請求</li></ul></div>
+    <div><h3>お役立ち</h3><ul><li>学びのヒント</li><li>お役立ち資料</li><li>公式LINE</li></ul></div>
+    <div><h3>The Academy</h3><ul><li>About</li><li>運営会社 ↗</li><li>お問い合わせ</li><li>プライバシーポリシー</li><li>特定商取引法に基づく表記</li><li>利用規約</li></ul></div>
+    <div><h3>SNS</h3><ul><li>LINE／Instagram</li><li>Threads／X</li><li>Facebook／LinkedIn</li><li>note／YouTube</li></ul></div>
+  </div>
+
+  <!-- ─────────────────────────────── -->
+  <h2>5. 現行サイトの内容の振り分け</h2>
+  <p class="lead">現行トップページの要素ごとに、新サイトでの置き場所を決めました。</p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>現行サイトの要素</th><th>新しい置き場所</th><th>扱い</th></tr></thead>
+      <tbody>
+        <tr><td>ヒーロー「自分らしく成長できる学びのサードプレイス」</td><td>About、LP 05コミュニティーの説明</td><td>「サードプレイス」はコミュニティーの特徴と重なる</td></tr>
+        <tr><td>「平日夜・週末でアウトプットが出せる社会人向けオンライン学習」＋20-40代特化</td><td>LPヒーローのリード文、はじめての方へ</td><td>新LPのリード文と同じ主旨</td></tr>
+        <tr><td>お悩み3つ（入社3〜5年目／副業・独立志望／グローバルキャリア）</td><td>はじめての方へ「たとえば、こんな想いに。」</td><td>属性の呼びかけはやめ、ターゲット（独立を目指す方／社内のデジタル化を担う方）の心の声と場面に書き換え</td></tr>
+        <tr><td>注目のコース4件（評価・価格・カート追加）</td><td>LP 03 人気のコース、コース詳細</td><td>価格は残す。評価の表示方法は指摘①</td></tr>
+        <tr><td>コース一覧16件＋カテゴリ／レベル絞り込み</td><td>コースを探す（一覧）</td><td>LPには載せない。絞り込みの名前は01の目的カードとそろえる</td></tr>
+        <tr><td>TOEIC L&amp;R 700点突破プログラム</td><td>LP 03（1枠）、専用ページ</td><td>単価が高いので無料相談の主な対象</td></tr>
+        <tr><td>Slack×GAS タスク管理ツール</td><td>コースを探す（特集1）、お役立ち資料</td><td>LP本編・フッターからは外し、コースを探すの特集枠で紹介</td></tr>
+        <tr><td>選ばれる理由3つ</td><td>LP 02・06・09に分解、はじめての方へ</td><td>「5-15万円」は現行価格と合わないため要確認</td></tr>
+        <tr><td>LINE特典3つ＋追加ボタン</td><td>LP 03小バナー・09帯、はじめての方へ（横スライド）、ブログ末尾、フッター</td><td>「限定コミュニティー」と05の関係を整理</td></tr>
+        <tr><td>FAQ（お支払い／サービス／機能・操作／視聴関連／お申し込み／返金）</td><td>FAQページ、はじめての方へ（抜粋）、コース詳細（抜粋）</td><td>LPからは外す。「相談は必須？」などB層向けを追加</td></tr>
+        <tr><td>キャリアの3分岐（無料体験講座／無料相談会／パンフレット）</td><td>LP 07、無料相談・資料請求ページ</td><td>無料体験は廃止し、相談とパンフレットの2択に</td></tr>
+        <tr><td>お問い合わせフォーム（法人含む）</td><td>お問い合わせページ（フッターから）</td><td>LPから外す</td></tr>
+        <tr><td>資料請求フォーム＋パンフレットDL</td><td>LP 07、無料相談・資料請求ページ</td><td>「30秒で登録・すぐDL」を維持</td></tr>
+        <tr><td>受講までの流れ（4ステップ横スライド）</td><td>LP 06（短縮）、はじめての方へ（横スライド）</td><td>最初のステップを「コースを選ぶ」に変更</td></tr>
+        <tr><td>フッター（FAQ／Blog／Contact／About／Privacy／White Paper／運営会社／SNS8種）</td><td>新フッター</td><td>Wixの初期SNSリンクが残っている（指摘③）</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ─────────────────────────────── -->
+  <h2>6. 下層ページの構成（v3）</h2>
+  <p class="lead">5つの下層ページは、それぞれ「ユーザーのどの問いに答えるか」を1つに決め、LPと役割が重ならないように分けました。どのページも最後は「次の一歩」で終え、同じ部品（目的カード・2択の行動ボタン・LINE帯）を使い回して、サイト全体で迷わないようにしています。</p>
+
+  <h3 class="mt">6-1. 役割分担：1ページ1つの問い</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>ページ</th><th>答える問い</th><th>主な対象</th><th>主な入口</th><th>次の一歩（出口）</th><th>置かないもの</th></tr></thead>
+      <tbody>
+        <tr><td><b>LP（トップ）</b></td><td>なぜThe Academyなのか（全体像）</td><td><span class="chip t-a">A</span> <span class="chip t-b">B</span></td><td>検索・広告・SNS</td><td>各下層ページ／相談／資料請求</td><td>細かい手続き・全コース一覧</td></tr>
+        <tr><td><b>コースを探す</b></td><td>何を学べる？いくら？どれを選ぶ？</td><td><span class="chip t-a">A</span></td><td>LP HERO・01・03、フッターのカテゴリ、記事末尾</td><td>コース詳細 → 購入</td><td>3つの仕組みの説明、手続きの詳細</td></tr>
+        <tr><td><b>学び方・受講成果</b></td><td>どう身につく？続けられる？何ができるようになる？</td><td><span class="chip t-b">B</span></td><td>ヘッダー、コース詳細、はじめての方へ</td><td>コースを探す／無料相談</td><td>価格・支払い、コース一覧</td></tr>
+        <tr><td><b>ポートフォリオ</b></td><td>積み重ねた努力を、どう伝える？（AI評価では見えない過程を人に届ける）</td><td><span class="chip t-a">A</span> <span class="chip t-b">B</span></td><td>LP HERO「作る」・04「見る」、コース詳細の成果物</td><td>ポートフォリオを作る（新規登録）／コースを探す</td><td>コースの中身、手続き</td></tr>
+        <tr><td><b>学びのヒント</b></td><td>今すぐ申し込まないけど、役に立つことは？</td><td><span class="chip t-b">B</span></td><td>LP 08、検索、SNS・LINE配信</td><td>記事末尾の関連コース／LINE／資料請求</td><td>サービスの売り込み</td></tr>
+        <tr><td><b>お役立ち資料</b></td><td>すぐ仕事で使える資料はある？</td><td><span class="chip t-b">B</span></td><td>学びのヒントの帯、フッター</td><td>コースを探す／学びのヒント／LINE</td><td>営業色の強い案内</td></tr>
+        <tr><td><b>はじめての方へ</b></td><td>どう始める？費用は？不安は？</td><td><span class="chip t-b">B</span></td><td>LP 06「詳しくは」、フッター（流れ・料金・FAQ）、コース一覧の「迷ったら」</td><td>無料相談／資料請求／LINE</td><td>学び方の詳細（学び方ページへ）</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="mt">6-2. 使い回す部品（どこに置くか）</h3>
+  <p class="note">同じ部品を同じ見た目で置くことで、どのページからでも同じ行動が取れます。部品をそろえておけば、デザインと実装の手間も減ります。</p>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>部品</th><th>中身</th><th>LP</th><th>コースを探す</th><th>コース詳細</th><th>学び方</th><th>ポートフォリオ</th><th>学びのヒント</th><th>はじめての方へ</th></tr></thead>
+      <tbody>
+        <tr><td><b>目的カード</b></td><td>効率化／発信／英語／未定</td><td>01</td><td>● 上部で絞り込み</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td><b>コースカード</b></td><td>カテゴリ・期間・時間・価格・詳しく見る</td><td>03</td><td>● 一覧</td><td>● 関連コース</td><td>—</td><td>—</td><td>● 記事末尾</td><td>—</td></tr>
+        <tr><td><b>2択の行動ボタン</b></td><td>無料相談／パンフレット</td><td>07</td><td>● 最下部</td><td>● 右の申し込み欄</td><td>● 最下部</td><td>—</td><td>● 記事末尾</td><td>● 最下部</td></tr>
+        <tr><td><b>LINE帯</b></td><td>特典3つ＋追加ボタン</td><td>03（小）・09</td><td>● 一覧の下</td><td>● 価格の近く</td><td>—</td><td>—</td><td>● 一覧・記事末尾</td><td>● 横スライド</td></tr>
+        <tr><td><b>受講までの流れ</b></td><td>選ぶ→支払う→受講→残す</td><td>06（短縮）</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>● 詳細（横スライド）</td></tr>
+        <tr><td><b>4ステップの学び</b></td><td>知る→試す→形にする→共有する</td><td>—</td><td>—</td><td>● 要約1行</td><td>● 詳細</td><td>—</td><td>—</td><td>● 要約＋リンク</td></tr>
+        <tr><td><b>学びの歩み（画面）</b></td><td>実績公開・コース修了・学びの共有</td><td>04</td><td>—</td><td>—</td><td>● 受講成果</td><td>● 詳細</td><td>—</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="mt">6-3. 各ページの項目（上から順に）</h3>
+  <div class="pages">
+    <div class="pg"><p class="pg__url">/courses</p><h3>コースを探す</h3>
+      <p class="note">比べて選び、コース詳細へ送る。特集2つのあとに一覧を置き、LP 01の目的カードから来た人は、目的で絞り込んだ一覧の位置に着地させます。</p>
+      <ol>
+        <li>見出し「コースを探す」</li>
+        <li>特集1：Slackだけで完結する次世代のタスク管理システム（Slack×GAS）→ 詳しくはこちら<span class="src">現行</span></li>
+        <li>特集2：TOEIC L&amp;R 700点突破プログラム（3ヶ月・週2回・全24回・マンツーマン）→ 詳しくはこちら<span class="src">現行</span></li>
+        <li>コース一覧：目的の絞り込み（LP 01と同じ）・レベル・並び替え＋コースカード（カテゴリ・期間・時間・価格・詳しく見る）<span class="src">現行</span></li>
+        <li>LINE帯：全コース500円OFF</li>
+        <li>YOUR FIRST STEP 迷ったら、ここから（無料相談／パンフレット）</li>
+      </ol></div>
+
+    <div class="pg"><p class="pg__url">/courses/[slug]</p><h3>コース詳細（購入の決め手）</h3>
+      <p class="note">1ページで購入を決められるように。学び方とポートフォリオは要約だけ置き、詳しくはそれぞれのページへ。</p>
+      <ol>
+        <li>コース名・カテゴリ・1行説明・メイン画像</li>
+        <li>期間・週の学習時間・形式・価格＋購入ボタン（右に追従）</li>
+        <li>こんな方におすすめ</li>
+        <li>できるようになること</li>
+        <li>カリキュラム（週ごと）</li>
+        <li>学び方の要約（3ステップ1行）→ 学び方・受講成果へ</li>
+        <li>残せる成果物 → ポートフォリオに公開できる（ポートフォリオへ）</li>
+        <li>講師</li>
+        <li>コース別FAQ（返金・視聴期間など）<span class="src">現行</span></li>
+        <li>関連コース（コースカード3枚）</li>
+        <li>2択の行動ボタン＋LINEクーポン</li>
+      </ol></div>
+
+    <div class="pg"><p class="pg__url">/how-to-learn</p><h3>学び方・受講成果</h3>
+      <p class="note">「成果（何ができる）→ 方法（なぜ作れる）→ 続けられる理由 → 行動」の順。成果を先に見せ、「どう作れたのか」の答えとして方法を示します。「続けられるか」は行動の直前で答えます。</p>
+      <ol>
+        <li>見出し「学び方・受講成果」＋リード</li>
+        <li>LEARNING OUTCOMES：成果物6つ（マーケティング戦略／CanvaでSNS投稿デザイン／Slack×業務効率化／ブランドコンセプト設計／イベント運営計画／英語プレゼンテーション）＋コースを探す</li>
+        <li>HOW IT WORKS：知る → 試す → 形にする（資格・ポートフォリオ・テンプレートなど）→ 共有する（ポートフォリオへ）</li>
+        <li>KEEP GOING：忙しくても続けられる設計（週2h〜）／進捗が見える（マイラーニング）／ひとりにしない（仲間の学習投稿）</li>
+        <li>YOUR FIRST STEP：迷ったら、ここから（無料相談／パンフレット）</li>
+      </ol></div>
+
+    <div class="pg"><p class="pg__url">/portfolio</p><h3>ポートフォリオ</h3>
+      <p class="note">主張：資格やスコアでは見えない「過程」を1ページにまとめ、次の仕事やチャンスにつなげる。「主張 → 比較（測られているもの VS 見えていないもの） → 根拠（機能） → 疑問への回答 → 例 → はじめかた → 第一歩」の順。登録は無料・匿名で始められる。一覧・投稿は会員限定のため、ページ上では架空のサンプルで見せる。</p>
+      <ol>
+        <li>見出し「積み重ねた努力を、見える形に。」＋無料で登録する／ポートフォリオの例を見る（匿名で始められます）</li>
+        <li>WHY：測られているもの（資格・スコア・AI判定）VS 見えていないもの（過程・工夫・強み）→ だから公開ポートフォリオで伝える＋こんな方に（キャリアを変えたい／独学で一度立ち止まった）</li>
+        <li>伝えられること：01 学びを、そのまま実績に（実績＝背景・課題→担当範囲→制作プロセス→成果、資格・認定、学びの歩み）／02 数字だけでは見えない、あなたらしさ（ビジョン・人物像診断・強み・働き方・書籍・サービス）</li>
+        <li>ひとりじゃない：ロールモデル（関連ユーザー）・フォロー・学びのフィード</li>
+        <li>公開ポートフォリオの例（架空サンプル1件：プロフィール・ビジョン・実績ストーリー・学びの歩み）※一覧は無料登録後</li>
+        <li>はじめかた3ステップ（登録する／育てる／PRする・つながる）→ よくある質問（匿名／費用＝無料／他の人を見られる？／受講前でも作れる？／企業は見られる？）<span class="chip s-warn">一部要確認</span></li>
+        <li>行動3択：例を見る／作る（無料登録）／コースを探す</li>
+      </ol></div>
+
+    <div class="pg"><p class="pg__url">/portfolio/[id]</p><h3>個別ポートフォリオ</h3>
+      <p class="note">公開ポートフォリオの中身。見た人を「フォロー」と「自分も作る」へつなげます。</p>
+      <ol>
+        <li>プロフィール（名前または匿名・学習中の分野・ひとこと）＋フォロー</li>
+        <li>ビジョン（実現したいこと）</li>
+        <li>人物像（診断から見えるその人らしさ）・強み・働き方</li>
+        <li>実績（背景・課題／担当範囲／制作プロセス／成果）</li>
+        <li>資格・認定</li>
+        <li>学びの歩み（学び始めた時点から現在まで）</li>
+        <li>使ってよかった書籍・サービス</li>
+        <li>関連するユーザーのポートフォリオ</li>
+        <li>次の一歩：自分もポートフォリオを作る</li>
+      </ol></div>
+
+    <div class="pg"><p class="pg__url">/blog</p><h3>学びのヒント</h3>
+      <p class="note">まだ動かない人との関係を保つ場所。カテゴリをコースと同じ名前にして、記事から関連コースへつなげます。</p>
+      <ol>
+        <li>見出し「学びを続けるヒント」</li>
+        <li>アクセスの多い記事：1位を大きく＋2〜5位の番号付きリスト（今週／今月）</li>
+        <li>評価の高い記事：「役に立った」の多い順に3件<span class="chip s-warn">評価の指標を確認</span></li>
+        <li>最新記事：日付順のリスト（新しい順／古い順）＋カテゴリ絞り込み（IT・デジタル／マーケティング／英語・TOEIC／ビジネス／クリエイティブ＝コースの5分類＋記事だけの「キャリア・学び方」）＋もっと見る<span class="src">現行</span></li>
+        <li>お役立ち資料への帯 → /resources</li>
+        <li>LINE帯</li>
+        <li><b>記事ページの末尾</b>：関連コース（同じカテゴリ）・LINE・資料請求・関連記事</li>
+      </ol></div>
+
+    <div class="pg"><p class="pg__url">/resources</p><h3>お役立ち資料</h3>
+      <p class="note">目的から選べる資料の置き場。学びのヒント（読む）とコース（学ぶ）の間をつなぎます。入口は学びのヒントの帯とフッター。</p>
+      <ol>
+        <li>見出し「お役立ち資料」＋「仕事や学びに役立つ資料を、目的に合わせてお選びいただけます。」</li>
+        <li>資料一覧：カテゴリ絞り込み（コースの5分類＋キャリア・学び方）／種類（ホワイトペーパー・テンプレート・業務効率化ツール）・形式・料金を明記<span class="chip s-warn">掲載資料と配布条件を確認</span></li>
+        <li>次の一歩：コースを探す／学びのヒントを読む＋LINE帯</li>
+      </ol></div>
+
+    <div class="pg"><p class="pg__url">/beginners</p><h3>はじめての方へ</h3>
+      <p class="note">始め方・費用・不安を順番に解消し、行動へつなげる。学び方の詳細は書かず、学び方ページへ送ります。</p>
+      <ol>
+        <li>見出し「学びは、もっと自由で、実践的でいい。」（学びのサードプレイス）＋3つの仕組みの要約（学ぶ・残す・飛び込む）</li>
+        <li>たとえば、こんな想いに（心の声で自分ごと化：自分の名前で働きたい／社内のデジタル化を任された／積み重ねを次につなげたい）</li>
+        <li>受講までの流れ（横スライド：選ぶ→迷ったら相談→支払う→受講→残す）<span class="src">現行</span></li>
+        <li>料金・お支払い：買い切り／価格・お支払い・クーポンの3行表＋コースと価格を見る<span class="src">現行</span></li>
+        <li>よくある不安（カード型の開閉）：相談は必須？続けられる？返金は？→ よくある質問へ</li>
+        <li>学び方をもっと知る → 学び方・受講成果へ</li>
+        <li>公式LINE（特典3つ・横スライド）<span class="src">現行</span></li>
+        <li>2択の行動ボタン（無料相談／パンフレット）</li>
+      </ol></div>
+  </div>
+
+  <h3 class="mt">6-4. ページ間のつながり</h3>
+  <p class="note">主な導線だけを示しています。A層は「コースを探す → コース詳細 → 購入」、B層は「はじめての方へ・学び方 → 相談・資料請求」が本線です。</p>
+  <div class="tbl-wrap" style="padding:16px"><pre class="mermaid">
+flowchart LR
+  LP["LP（トップ）"]
+  C["コースを探す"]
+  CD["コース詳細"]
+  H["学び方・受講成果"]
+  P["ポートフォリオ"]
+  B["学びのヒント"]
+  BG["はじめての方へ"]
+  ACT(["無料相談・資料請求"])
+  LINE(["公式LINE"])
+  BUY(["購入"])
+  LP -- "HERO・01・03" --> C
+  LP -- "HERO・04" --> P
+  LP -- "06" --> BG
+  LP -- "08" --> B
+  LP -- "07" --> ACT
+  C --> CD
+  CD --> BUY
+  CD -- "学び方の要約" --> H
+  CD -- "成果物" --> P
+  H --> C
+  H --> ACT
+  P --> C
+  B -- "記事末尾" --> C
+  B --> LINE
+  BG --> H
+  BG --> ACT
+  BG --> LINE
+  </pre></div>
+
+  <!-- ─────────────────────────────── -->
+  <h2>7. 公開前に直したい点</h2>
+  <p class="lead">現行サイトと新LP案を突き合わせて見つかった食い違いです。数字と表記は、信頼に直結するため優先度を高くしています。</p>
+  <div class="issues">
+    <div class="issue"><span class="chip s-warn">① 数字</span><div><p><b>評価「3.0」のコースが9件あり、平均満足度「4.2」と食い違って見えます。</b></p><p>レビューがない状態の初期値の可能性があります。評価がないコースは星を出さず、LPの満足度は「何の平均か（調査・期間・回答数）」を確認してください。</p></div></div>
+    <div class="issue"><span class="chip s-warn">② 数字</span><div><p><b>選ばれる理由の「5-15万円」が、実際のコース価格（2,980〜13,800円）と合いません。</b></p><p>TOEICプログラムの価格帯であれば、その旨を明記するか、表現を見直してください。</p></div></div>
+    <div class="issue"><span class="chip s-warn">③ 表記</span><div><p><b>フッターにWixの初期SNSリンク（Wix公式のInstagram・Facebookなど）が残っています。</b>また、プロジェクトマネジメントコースのURLが「/products/test」のままです。</p><p>新サイト公開時に必ず外してください。</p></div></div>
+    <div class="issue"><span class="chip s-edit">④ 価格</span><div><p><b>LP 03の3コース（SNSマーケティング実践・生成AI 業務改善・TOEIC L&amp;R 700点突破）の価格が未定です。</b></p><p>新LPのコース名・期間が現行のコースと一致しないため、新しいコースとして作るのか、既存コースの名前を変えるのかを決め、コース詳細とそろえてください。</p></div></div>
+    <div class="issue"><span class="chip s-edit">⑤ 表現</span><div><p><b>「TOEIC L&amp;R 700点突破」は、結果の約束に読めます。</b></p><p>ブランドガイドラインの「根拠のない約束をしない」に合わせ、「700点を目指す」などの言い方か、実績の注記を添えることを推奨します。</p></div></div>
+    <div class="issue"><span class="chip s-edit">⑥ 表記</span><div><p><b>週あたりの学習時間の表記がばらついています（ヒーロー「週2h〜」／コース「週2〜3時間」「週2時間」／現行「2-3時間」）。</b></p><p>ヒーローは「週2h〜」で確定。コースごとの表記は「週2〜3時間」の形にそろえると読みやすくなります。</p></div></div>
+    <div class="issue"><span class="chip s-edit">⑦ 法務</span><div><p><b>オンラインでコースを販売しているのに、特定商取引法に基づく表記がフッターに見当たりません。</b></p><p>通信販売では表示が義務づけられています。新フッターに追加しています。</p></div></div>
+    <div class="issue"><span class="chip s-edit">⑧ 定義</span><div><p><b>コミュニティーの参加条件（受講生限定か／誰でもか／費用）と、LINE特典の「限定コミュニティー」との関係が未整理です。</b></p><p>決まるまでは、LP 05のボタン下に＊の注記で「決まり次第記載」と示します。</p></div></div>
+  </div>
+
+  <h2>決定済みのこと（v2）</h2>
+  <div class="stack mt">
+    <p>・ヘッダー：コースを探す／学び方・受講成果／ポートフォリオ／学びのヒント／はじめての方へ／ログイン／資料請求／無料で相談する</p>
+    <p>・ヒーローのCTAは3つ（無料で相談する／コースを探す／ポートフォリオを作る）、実績は 10+／4.2／週2h〜</p>
+    <p>・01は4枚＋全てのコースへ。03は「完成」を外して価格を表示</p>
+    <p>・04は「ポートフォリオを見る」のみ。05はGoogleフォームの「申し込む」のみで、専用ページなし</p>
+    <p>・講師フィードバック：オンラインコースはなし。プレミアムプラン・Liveコースのみコースインストラクターから受けられる（ヒーロー・コース詳細の表現をこれに合わせた）</p>
+    <p>・カテゴリ名はコースの5分類（IT・デジタル／マーケティング／英語・TOEIC／ビジネス／クリエイティブ）に統一。記事だけ「キャリア・学び方」を追加。表記は「コミュニティー」「3か月」</p>
+    <p>・受講生の声のセクションはなし。無料体験はなし（相談とパンフレットの2択）</p>
+  </div>
+
+  <p class="note mt">確認の範囲：現行サイトはトップページの内容を確認しました。About・コース詳細・ホワイトペーパー・TOEIC・ブログの各ページは、この環境では本文が表示されず、タイトルのみ確認しています。クリックで回れるプロトタイプ：<a href="https://claude.ai/artifact/N7hYgwWLFKKw7HU1hmuvHU">The Academy プロトタイプ</a></p>
+</div>

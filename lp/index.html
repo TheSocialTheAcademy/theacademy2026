@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Academy</title>
+<meta name="description" content="平日夜・週末の短い時間で、実務に直結するアウトプットを。講師と仲間に支えられながら、自分らしいキャリアを作ろう。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/hero.webp">
+<style>
+  :root {
+    --ts-primary:    #0141D4;
+    --ts-deep-navy:  #012270;
+    --ts-light-blue: #3E78FE;
+    --ts-orange:     #F76B38;
+    --ts-green:      #27AE60;
+    --ts-dark:       #222222;
+    --ts-mid:        #676688;
+    --ts-white:      #FFFFFF;
+    /* プライマリーの透過（ガイドライン外の色は足さず、#0141D4 の濃淡だけで面をつくる） */
+    --tint-04: rgba(1,65,212,.04);
+    --tint-08: rgba(1,65,212,.08);
+    --tint-16: rgba(1,65,212,.16);
+    --tint-60: rgba(1,65,212,.60); /* 白地で 3:1 以上になる濃さ（非テキストUI用） */
+    --line:    rgba(34,34,34,.10);
+    --shadow:  0 12px 32px rgba(1,34,112,.12), 0 2px 6px rgba(1,34,112,.06);
+    --font: 'Graphik', 'Inter', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+    --gutter: clamp(16px, 4.5vw, 64px);
+    --maxw: 1240px;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ts-white);
+    color: var(--ts-dark);
+    font-family: var(--font);
+    font-size: 16px;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  .ico { width: 1em; height: 1em; flex: none; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
+
+  /* ── Header ───────────────────────────── */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(255,255,255,.88);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .site-header .wrap {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    height: 68px;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; flex: none; }
+  .brand img { height: 24px; width: auto; display: block; }
+  .brand small {
+    color: var(--ts-mid);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: .08em;
+    line-height: 1.2;
+    padding-left: 10px;
+    border-left: 1px solid var(--line);
+  }
+  .gnav { display: flex; gap: 22px; margin-left: auto; }
+  .gnav a {
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color .15s;
+  }
+  .gnav a:hover { color: var(--ts-primary); }
+  .header-actions { display: flex; align-items: center; gap: 14px; flex: none; }
+  .login { font-size: 13px; font-weight: 500; text-decoration: none; }
+  .btn-sm {
+    display: inline-flex;
+    align-items: center;
+    height: 40px;
+    padding: 0 18px;
+    border-radius: 999px;
+    background: var(--ts-primary);
+    color: var(--ts-white);
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color .15s;
+  }
+  .btn-sm:hover { background: var(--ts-deep-navy); }
+  .btn-sm:focus-visible, .menu summary:focus-visible, .menu nav a:focus-visible,
+  .gnav a:focus-visible, .login:focus-visible, .brand:focus-visible { outline: 3px solid var(--ts-light-blue); outline-offset: 3px; border-radius: 6px; }
+  .menu { display: none; position: relative; }
+  .menu summary {
+    list-style: none;
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--tint-08);
+    color: var(--ts-primary);
+    cursor: pointer;
+    font-size: 20px;
+  }
+  .menu summary::-webkit-details-marker { display: none; }
+  .menu nav {
+    position: absolute;
+    right: 0;
+    top: 50px;
+    width: 220px;
+    padding: 8px;
+    border-radius: 16px;
+    background: var(--ts-white);
+    box-shadow: var(--shadow);
+  }
+  .menu nav a {
+    display: block;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    text-decoration: none;
+  }
+  .menu nav a:hover { background: var(--tint-04); color: var(--ts-primary); }
+
+  /* ── Hero ─────────────────────────────── */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(60% 70% at 88% 30%, var(--tint-08) 0%, rgba(1,65,212,0) 70%),
+      linear-gradient(180deg, var(--tint-04), rgba(1,65,212,0) 70%);
+  }
+  .hero .wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    grid-template-areas:
+      "copy   visual"
+      "cta    visual"
+      "badges visual";
+    grid-template-rows: auto auto 1fr;
+    column-gap: clamp(32px, 5vw, 80px);
+    padding-top: clamp(48px, 7vw, 88px);
+    padding-bottom: clamp(56px, 7vw, 96px);
+  }
+  .hero__copy   { grid-area: copy; }
+  .hero__cta    { grid-area: cta; }
+  .hero__badges { grid-area: badges; }
+  .hero__visual { grid-area: visual; }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 20px;
+    padding: 6px 14px 6px 10px;
+    border-radius: 999px;
+    background: var(--ts-white);
+    box-shadow: 0 0 0 1px var(--tint-16);
+    color: var(--ts-primary);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+  .eyebrow .ico { font-size: 15px; }
+  .hero__title {
+    margin: 0;
+    font-size: clamp(32px, 3.7vw, 52px);
+    font-weight: 700;
+    line-height: 1.32;
+    letter-spacing: .04em;
+  }
+  .hero__title span { display: inline-block; }
+  /* 「次のキャリア」に蛍光ペン風のマーカー（親しみ） */
+  .hero__title em {
+    font-style: normal;
+    color: var(--ts-primary);
+    background: linear-gradient(transparent 68%, rgba(62,120,254,.22) 68%, rgba(62,120,254,.22) 92%, transparent 92%);
+  }
+  .hero__lead {
+    margin: 24px 0 0;
+    max-width: 30em;
+    color: var(--ts-dark);
+    font-size: clamp(15px, 1.25vw, 17px);
+    line-height: 1.9;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+
+  /* CTA */
+  .hero__cta { margin-top: 36px; }
+  .cta-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 480px; }
+  .cta-row .btn--primary { grid-column: 1 / -1; min-height: 62px; font-size: 17px; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 56px;
+    padding: 0 26px;
+    border-radius: 999px;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-decoration: none;
+    transition: background-color .15s, color .15s, transform .15s, box-shadow .15s;
+  }
+  .btn--primary {
+    position: relative;
+    padding: 0 30px 0 34px;
+    background: var(--ts-primary);
+    color: var(--ts-white);
+    box-shadow: 0 8px 20px rgba(1,65,212,.28);
+  }
+  .btn--primary:hover { background: var(--ts-deep-navy); transform: translateY(-1px); }
+  .btn--primary .arrow {
+    display: grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--ts-white);
+    color: var(--ts-primary);
+    font-size: 14px;
+  }
+  .btn--ghost {
+    background: var(--ts-white);
+    color: var(--ts-primary);
+    box-shadow: inset 0 0 0 1.5px var(--tint-60);
+  }
+  .btn--ghost:hover { box-shadow: inset 0 0 0 2px var(--ts-primary); background: var(--tint-04); }
+  .btn--ghost { padding: 0 16px; font-size: 15px; }
+  .btn--ghost .ico { font-size: 18px; }
+  .btn:focus-visible { outline: 3px solid var(--ts-light-blue); outline-offset: 3px; }
+  .cta-note {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 12px 0 0;
+    color: var(--ts-mid);
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .cta-note .ico { color: var(--ts-green); font-size: 14px; }
+
+  /* 実績バッジ（月桂樹＋円） */
+  .hero__badges {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 40px 0 0;
+    padding: 0;
+    list-style: none;
+    align-self: start;
+  }
+  .laurel { display: flex; align-items: center; color: var(--ts-primary); }
+  .laurel__branch { width: 34px; height: 100px; flex: none; }
+  .laurel__branch--r { transform: scaleX(-1); }
+  .laurel__body { text-align: center; min-width: 100px; }
+  .b-label { display: block; color: var(--ts-mid); font-size: 12px; font-weight: 500; line-height: 1.4; letter-spacing: .06em; }
+  .b-num {
+    display: block;
+    color: var(--ts-primary);
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 1.05;
+    font-variant-numeric: tabular-nums;
+  }
+  .b-num small { font-size: .45em; margin-left: 1px; }
+  .b-sub { display: block; font-size: 12px; font-weight: 700; line-height: 1.4; }
+  .circle {
+    width: 108px;
+    height: 108px;
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--ts-white);
+    box-shadow: 0 0 0 1px var(--tint-16), 0 6px 16px rgba(1,34,112,.06);
+    text-align: center;
+  }
+  .circle .b-num { font-size: 30px; }
+  .stars { display: flex; justify-content: center; gap: 2px; color: var(--ts-orange); font-size: 13px; margin: 3px 0 0; }
+  .circle .ico-top { color: var(--ts-primary); font-size: 16px; margin-bottom: 2px; }
+
+  /* ── ビジュアル：角丸写真＋浮遊カード ───────── */
+  .hero__visual {
+    position: relative;
+    align-self: center;
+    padding: 28px 8% 36px 10%;
+  }
+  /* 写真の背後にずらした主色の面（奥行きとリズム） */
+  .hero__visual::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 72%;
+    height: 78%;
+    border-radius: 40px;
+    background: var(--ts-primary);
+  }
+  .photo {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    border-radius: 32px;
+    overflow: hidden;
+    aspect-ratio: 4 / 4.4;
+    box-shadow: var(--shadow);
+  }
+  .photo img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: 50% center;
+  }
+  .photo figcaption {
+    position: absolute;
+    right: 14px;
+    bottom: 12px;
+    padding: 2px 10px;
+    border-radius: 999px;
+    background: var(--ts-white);
+    color: var(--ts-mid);
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .float {
+    position: absolute;
+    z-index: 2;
+    background: var(--ts-white);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    animation: bob 6s ease-in-out infinite;
+  }
+  @keyframes bob { 50% { transform: translateY(-6px); } }
+  @media (prefers-reduced-motion: reduce) { .float { animation: none; } }
+
+  /* 今週の学び */
+  .f-progress {
+    left: 0;
+    top: 12%;
+    width: 232px;
+    padding: 16px 18px;
+    animation-delay: -1s;
+  }
+  .f-progress__head { display: flex; justify-content: space-between; align-items: baseline; }
+  .f-kicker { color: var(--ts-mid); font-size: 12px; font-weight: 500; letter-spacing: .06em; }
+  .f-progress__count { color: var(--ts-primary); font-size: 12px; font-weight: 700; }
+  .bar { height: 6px; margin: 8px 0 12px; border-radius: 999px; background: var(--tint-08); overflow: hidden; }
+  .bar i { display: block; width: 66%; height: 100%; border-radius: inherit; background: var(--ts-primary); }
+  .steps { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+  .steps li { display: flex; align-items: center; gap: 8px; font-size: 12px; line-height: 1.4; }
+  .steps .dot {
+    display: grid;
+    place-items: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    flex: none;
+    font-size: 10px;
+  }
+  .steps .done .dot { background: var(--ts-primary); color: var(--ts-white); }
+  .steps .done span:last-child { color: var(--ts-mid); }
+  .steps .now .dot { box-shadow: inset 0 0 0 1.5px var(--ts-primary); color: var(--ts-primary); font-weight: 700; }
+  .steps .now { font-weight: 700; }
+
+  /* できた！ */
+  .f-done {
+    left: 4%;
+    bottom: 4%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px 12px 12px;
+    border-radius: 999px;
+    animation-delay: -4.5s;
+  }
+  .f-done .check {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--ts-green);
+    color: var(--ts-white);
+    font-size: 18px;
+  }
+  .f-done strong { display: block; font-size: 14px; line-height: 1.3; }
+  .f-done span { display: block; color: var(--ts-mid); font-size: 12px; line-height: 1.4; }
+
+  .hero__note {
+    grid-column: 1 / -1;
+    margin: 28px 0 0;
+    color: var(--ts-mid);
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+
+  /* ── 01 START HERE ────────────────────── */
+  .start {
+    padding: clamp(64px, 8vw, 104px) 0;
+    background: #FAFAF8;            /* 白に近い生成り：ヒーロー（青み）との切り替えを示す */
+  }
+  .sec-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: clamp(32px, 4vw, 52px);
+  }
+  .sec-num, .sec-kicker {
+    margin: 0;
+    color: var(--ts-mid);
+    font-weight: 700;
+    line-height: 1.4;
+  }
+  .sec-num { font-size: 13px; letter-spacing: .18em; }
+  .sec-kicker { margin-top: 20px; font-size: 15px; letter-spacing: .22em; }
+  .sec-title {
+    margin: 10px 0 0;
+    color: #1B2233;
+    font-size: clamp(30px, 3.4vw, 44px);
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: .02em;
+  }
+  .sec-lead { margin: 14px 0 0; color: var(--ts-mid); font-size: 15px; line-height: 1.8; word-break: keep-all; overflow-wrap: anywhere; }
+  .sec-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 28px;
+    flex: none;
+    margin-bottom: 20px;
+    padding: 0 0 12px;
+    border-bottom: 2px solid #1B2233;
+    color: #1B2233;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .sec-more .ico { color: var(--ts-orange); font-size: 22px; transition: transform .2s; }
+  .sec-more:hover .ico { transform: translate(2px, -2px); }
+  .sec-more:focus-visible { outline: 3px solid var(--ts-light-blue); outline-offset: 4px; }
+
+  .goals {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .goals li { display: flex; }
+  .goal {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto auto;
+    align-content: start;
+    column-gap: 12px;
+    width: 100%;
+    padding: 156px 20px 24px 24px;
+    overflow: hidden;
+    border: 1.5px solid #E4E4E4;
+    border-radius: 20px;
+    background: var(--ts-white);
+    color: #1B2233;
+    text-decoration: none;
+    transition: border-color .2s, box-shadow .2s, transform .2s;
+  }
+  .goal:hover { border-color: var(--tint-60); box-shadow: 0 12px 28px rgba(1,34,112,.08); transform: translateY(-2px); }
+  .goal:focus-visible { outline: 3px solid var(--ts-light-blue); outline-offset: 3px; }
+  /* イラストは背景の面ごとカード左上に寄せ、角で少し切れる配置にする */
+  .goal__illust {
+    position: absolute;
+    left: -12px;
+    top: -12px;
+    width: 152px;
+    height: 152px;
+    transition: transform .3s;
+  }
+  .goal:hover .goal__illust { transform: rotate(-3deg); }
+  .goal__title { grid-column: 1; margin: 0; font-size: 18px; font-weight: 700; line-height: 1.5; word-break: keep-all; overflow-wrap: anywhere; }
+  .goal__cat { grid-column: 1; margin: 6px 0 0; color: var(--ts-mid); font-size: 14px; line-height: 1.5; }
+  .goal__arrow {
+    display: grid;
+    place-items: center;
+    grid-column: 2;
+    grid-row: 1 / 3;
+    align-self: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--ts-primary);
+    color: var(--ts-white);
+    font-size: 18px;
+    transition: background-color .2s;
+  }
+  .goal:hover .goal__arrow { background: var(--ts-deep-navy); }
+  @media (prefers-reduced-motion: reduce) {
+    .goal, .goal__illust, .sec-more .ico { transition: none; }
+    .goal:hover, .goal:hover .goal__illust, .sec-more:hover .ico { transform: none; }
+  }
+
+  /* ── 02 WHY THE ACADEMY（学ぶ→残す→飛び込む→また学ぶ） ───────── */
+  .why {
+    overflow: hidden;
+    padding: clamp(72px, 8vw, 112px) 0;
+    background: linear-gradient(180deg, #FFFFFF 0%, #F7F9FE 100%);
+  }
+  /* 見出しは 01 START HERE と同じ左揃え・同じ文字サイズ */
+  .why .sec-head { display: block; }
+
+  .points {
+    --gap: 48px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--gap);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .point { position: relative; text-align: left; container-type: inline-size; }
+  /* 列と列をつなぐ矢印ノード（図の中央の高さ） */
+  .point + .point::before {
+    content: "";
+    position: absolute;
+    z-index: 3;
+    left: calc(var(--gap) / -2 - 20px);
+    top: calc(190 * 100cqw / 360 - 20px);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--ts-white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6' fill='none' stroke='%230141D4' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 17px no-repeat;
+    box-shadow: 0 10px 24px rgba(27,34,51,.10), 0 0 0 1px rgba(1,65,212,.10);
+  }
+
+  /* ── 図：360×420 の座標系（--u）で組み、列幅に合わせて等倍縮小 ── */
+  .comp { container-type: inline-size; }
+  .comp__canvas {
+    --u: calc(100cqw / 360);
+    position: relative;
+    height: calc(420 * var(--u));
+    font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+    color: #1B2233;
+    text-align: left;
+  }
+  .orb { position: absolute; border-radius: 50%; }
+  /* 円の色はブランド色から派生：主色の淡色／イエロー→オレンジ／グリーン→ライトブルー */
+  .orb--base {
+    left: calc(26 * var(--u)); top: calc(22 * var(--u));
+    width: calc(316 * var(--u)); height: calc(316 * var(--u));
+    background: linear-gradient(150deg, #EEF2FD 0%, #E1E7FA 55%, #D6DEF6 100%);
+  }
+  .orb--sun {
+    left: calc(236 * var(--u)); top: 0;
+    width: calc(118 * var(--u)); height: calc(118 * var(--u));
+    background: linear-gradient(165deg, #F9E6A0 0%, #F5CE7E 60%, #EFC078 100%);
+  }
+  .orb--leaf {
+    left: 0; top: calc(262 * var(--u));
+    width: calc(92 * var(--u)); height: calc(92 * var(--u));
+    background: linear-gradient(165deg, #BFE3DA 0%, #9FD0C7 55%, #8BC2BC 100%);
+  }
+
+  .panel {
+    position: absolute;
+    left: calc(34 * var(--u)); top: calc(40 * var(--u));
+    width: calc(292 * var(--u));
+    padding: calc(24 * var(--u)) calc(20 * var(--u)) calc(20 * var(--u));
+    border-radius: calc(22 * var(--u));
+    background: var(--ts-white);
+    box-shadow: 0 calc(28 * var(--u)) calc(56 * var(--u)) rgba(27,34,51,.11), 0 calc(2 * var(--u)) calc(6 * var(--u)) rgba(27,34,51,.04);
+  }
+  .panel__head { display: flex; align-items: baseline; justify-content: space-between; }
+  .panel__kicker { color: #6B7085; font-size: calc(11.5 * var(--u)); letter-spacing: .06em; }
+  .panel__count { color: var(--ts-primary); font-size: calc(13.5 * var(--u)); font-weight: 700; letter-spacing: .12em; }
+  .bar3 { height: calc(6 * var(--u)); margin-top: calc(14 * var(--u)); border-radius: 999px; background: #EDF0F8; overflow: hidden; }
+  .bar3 i {
+    display: block; width: 66%; height: 100%; border-radius: inherit;
+    background: linear-gradient(90deg, #0141D4 0%, #3E78FE 55%, #8FA9F5 100%);
+  }
+  .panel__title {
+    margin: calc(16 * var(--u)) 0 calc(16 * var(--u));
+    font-size: calc(17.5 * var(--u));
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: .04em;
+    white-space: nowrap;
+  }
+  .rows { margin: 0; padding: 0; list-style: none; display: grid; gap: calc(7 * var(--u)); }
+  .rows li {
+    display: flex; align-items: center; justify-content: space-between; gap: 6px;
+    min-height: calc(36 * var(--u));
+    padding: 0 calc(13 * var(--u));
+    border: 1px solid #E3E6F0;
+    border-radius: calc(10 * var(--u));
+    background: var(--ts-white);
+    font-size: calc(12 * var(--u));
+    font-weight: 700;
+    letter-spacing: .03em;
+    white-space: nowrap;
+  }
+  .rows li small { color: #7A7F93; font-size: calc(10.5 * var(--u)); font-weight: 400; }
+  .rows li.is-done { border-color: #D6E9DE; background: #F1F7F3; color: #2F7550; }
+  .rows li.is-done span::before { content: "✓"; margin-right: .55em; font-weight: 400; }
+
+  .note {
+    position: absolute;
+    z-index: 2;
+    left: 0; top: calc(326 * var(--u));
+    width: calc(190 * var(--u));
+    padding: calc(14 * var(--u)) calc(16 * var(--u));
+    border-radius: calc(16 * var(--u));
+    background: var(--ts-white);
+    box-shadow: 0 calc(18 * var(--u)) calc(40 * var(--u)) rgba(27,34,51,.14);
+  }
+  .note__kicker { display: block; color: var(--ts-primary); font-size: calc(10.5 * var(--u)); font-weight: 700; letter-spacing: .08em; }
+  .note__title  { display: block; margin-top: calc(5 * var(--u)); font-size: calc(13.5 * var(--u)); font-weight: 700; line-height: 1.4; white-space: nowrap; }
+  .note__sub    { display: block; margin-top: calc(4 * var(--u)); color: #7A7F93; font-size: calc(10 * var(--u)); line-height: 1.5; white-space: nowrap; }
+
+  /* ── テキスト ── */
+  .point__num {
+    margin: 20px 0 0;
+    color: var(--ts-primary);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .16em;
+  }
+  .point__title {
+    margin: 8px 0 0;
+    color: #1B2233;
+    font-size: clamp(20px, 1.9vw, 24px);
+    font-weight: 700;
+    line-height: 1.45;
+    letter-spacing: .03em;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+  .point__title em { font-style: normal; color: var(--ts-primary); }
+  .point__text {
+    max-width: 22em;
+    margin: 10px 0 0;
+    color: #5F6479;
+    font-size: 15px;
+    line-height: 1.8;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+
+  .loop { display: flex; justify-content: flex-start; margin-top: 48px; }
+  .loop__label {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 12px 24px;
+    border-radius: 999px;
+    background: var(--ts-white);
+    box-shadow: 0 10px 24px rgba(27,34,51,.08), 0 0 0 1px rgba(1,65,212,.10);
+    color: var(--ts-primary);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .04em;
+  }
+  .loop__label .ico { font-size: 18px; }
+  .swipe-hint { display: none; }
+
+  /* ── レスポンシブ ───────────────────────── */
+  @media (max-width: 1320px) {
+    .brand small { display: none; }
+  }
+  @media (max-width: 1180px) {
+    .gnav { gap: 16px; }
+    .gnav a:nth-child(n+5) { display: none; }
+  }
+  @media (max-width: 980px) {
+    .gnav, .login { display: none; }
+    .menu { display: block; }
+    .header-actions { margin-left: auto; gap: 10px; }
+    .brand small { display: none; }
+
+    .hero .wrap {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas: "copy" "cta" "visual" "badges";
+      grid-template-rows: none;
+      padding-top: 36px;
+      padding-bottom: 48px;
+    }
+    .hero__visual { margin: 32px auto 0; width: min(100%, 520px); padding: 16px 5% 26px 7%; }
+    .photo { aspect-ratio: 5 / 4; }
+    .photo figcaption { top: 12px; bottom: auto; }
+    .hero__cta { margin-top: 28px; }
+    .cta-row { margin: 0 auto; }
+    .cta-note { justify-content: center; }
+    .hero__badges { justify-content: center; margin-top: 32px; }
+    .hero__note { text-align: center; }
+  }
+  @media (max-width: 560px) {
+    .site-header .wrap { height: 60px; }
+    .btn-sm { height: 36px; padding: 0 14px; font-size: 12px; }
+    .brand img { height: 20px; }
+    .cta-row { grid-template-columns: 1fr; max-width: none; }
+    .btn { width: 100%; }
+    .cta-note { justify-content: center; }
+    .f-progress { width: 184px; padding: 12px 14px; top: 6%; }
+    .f-progress .steps li:last-child { display: none; }
+    .f-done { padding: 8px 14px 8px 8px; gap: 10px; }
+    .f-done .check { width: 30px; height: 30px; font-size: 15px; }
+    .f-done strong { font-size: 13px; }
+    .hero__badges { gap: 8px; }
+    .laurel__branch { width: 24px; height: 74px; }
+    .laurel__body { min-width: 84px; }
+    .b-num { font-size: 32px; }
+    .circle { width: 96px; height: 96px; }
+    .circle .b-num { font-size: 26px; }
+  }
+  @media (max-width: 360px) {
+    .hero__badges { flex-wrap: wrap; }
+  }
+  @media (max-width: 980px) {
+    .goals { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 640px) {
+    .sec-head { flex-direction: column; align-items: flex-start; }
+    .sec-more { margin-bottom: 0; }
+    .goals { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+    .goal { min-height: 0; padding: 22px 16px 22px 104px; }
+    .goal__illust { left: -10px; top: 50%; width: 108px; height: 108px; margin-top: -54px; }
+    .goal__title { font-size: 15px; }
+    .goal__cat { margin-top: 4px; font-size: 13px; }
+    .goal__arrow { width: 36px; height: 36px; font-size: 16px; }
+    .goal { align-content: center; }
+  }
+  /* タブレット以下：横スワイプのカルーセル（縦に積まずスクロール量を抑える） */
+  @media (max-width: 980px) {
+    .points {
+      grid-template-columns: none;
+      grid-auto-flow: column;
+      grid-auto-columns: min(80%, 340px);
+      gap: 16px;
+      margin: 0 calc(var(--gutter) * -1);
+      padding: 4px var(--gutter) 8px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding: 0 var(--gutter);
+      scrollbar-width: none;
+    }
+    .points::-webkit-scrollbar { display: none; }
+    .point { scroll-snap-align: start; }
+    .point + .point::before { display: none; }
+    .points:focus-visible { outline: 3px solid var(--ts-light-blue); outline-offset: 2px; }
+    .swipe-hint {
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      margin: 20px 0 0;
+      color: var(--ts-mid);
+      font-size: 12px;
+    }
+    .loop { margin-top: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-laurel" viewBox="0 0 44 120">
+    <path d="M35.5,102.4 25.0,94.8 16.9,84.7 11.7,72.8 10.0,60.0 11.7,47.2 16.9,35.3 25.0,25.2 35.5,17.6" fill="none" stroke="currentColor" stroke-width="1.4"/>
+    <g fill="currentColor">
+      <ellipse cx="36.9" cy="102.4" rx="8.5" ry="3.8" transform="rotate(68 35.5 102.4)"/>
+      <ellipse cx="27.0" cy="94.8" rx="8.5" ry="3.8" transform="rotate(84 25.0 94.8)"/>
+      <ellipse cx="19.4" cy="84.7" rx="8.5" ry="3.8" transform="rotate(99 16.9 84.7)"/>
+      <ellipse cx="14.6" cy="72.8" rx="8.5" ry="3.8" transform="rotate(114 11.7 72.8)"/>
+      <ellipse cx="13.0" cy="60.0" rx="8.5" ry="3.8" transform="rotate(130 10.0 60.0)"/>
+      <ellipse cx="14.6" cy="47.2" rx="8.5" ry="3.8" transform="rotate(146 11.7 47.2)"/>
+      <ellipse cx="19.4" cy="35.3" rx="8.5" ry="3.8" transform="rotate(161 16.9 35.3)"/>
+      <ellipse cx="27.0" cy="25.2" rx="8.5" ry="3.8" transform="rotate(176 25.0 25.2)"/>
+      <ellipse cx="36.9" cy="17.6" rx="8.5" ry="3.8" transform="rotate(192 35.5 17.6)"/>
+    </g>
+  </symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></g></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></g></symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M12 11v5M9.5 13.5h5"/></g></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M2 5h6a4 4 0 0 1 4 4v12a3 3 0 0 0-3-3H2zM22 5h-6a4 4 0 0 0-4 4v12a3 3 0 0 1 3-3h7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+  <symbol id="i-laptop" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="11" rx="1.5"/><path d="M2 19h20"/></g></symbol>
+  <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-loop" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/></g></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+</svg>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="The Academy トップへ">
+      <img src="assets/academy_logo_blue.png" alt="The Academy" width="895" height="241">
+      <small>ONLINE LEARNING<br>PLATFORM</small>
+    </a>
+    <nav class="gnav" aria-label="グローバルナビゲーション">
+      <a href="/courses">コースを探す</a>
+      <a href="/about">はじめての方へ</a>
+      <a href="/results">学び方・受講成果</a>
+      <a href="/portfolio">ポートフォリオ</a>
+      <a href="/feed">学びのフィード</a>
+      <a href="/blog">学びのヒント</a>
+      <a href="/faq">FAQ</a>
+    </nav>
+    <div class="header-actions">
+      <a class="login" href="/login">ログイン</a>
+      <a class="btn-sm" href="/consultation">無料で相談する</a>
+      <details class="menu">
+        <summary aria-label="メニュー"><svg class="ico"><use href="#i-menu"/></svg></summary>
+        <nav aria-label="メニュー">
+          <a href="/courses">コースを探す</a>
+          <a href="/about">はじめての方へ</a>
+          <a href="/results">学び方・受講成果</a>
+          <a href="/portfolio">ポートフォリオ</a>
+          <a href="/feed">学びのフィード</a>
+          <a href="/blog">学びのヒント</a>
+          <a href="/faq">FAQ</a>
+          <a href="/login">ログイン</a>
+        </nav>
+      </details>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap">
+
+      <div class="hero__copy">
+        <p class="eyebrow"><svg class="ico" aria-hidden="true"><use href="#i-laptop"/></svg>平日夜・週末に、オンラインで</p>
+        <h1 class="hero__title" id="hero-title">
+          <span>学んで、</span><span>つくって、</span><br>
+          <span><em>次のキャリア</em>へ。</span>
+        </h1>
+        <p class="hero__lead">
+          平日夜・週末の短い時間で、<wbr>実務に直結する<wbr>アウトプットを。<wbr>講師と仲間に<wbr>支えられながら、<wbr>自分らしい<wbr>キャリアを作ろう。
+        </p>
+      </div>
+
+      <div class="hero__cta">
+        <div class="cta-row">
+          <a class="btn btn--primary" href="/consultation">
+            無料で相談する
+            <span class="arrow"><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+          </a>
+          <a class="btn btn--ghost" href="/courses"><svg class="ico" aria-hidden="true"><use href="#i-search"/></svg>コースを探す</a>
+          <a class="btn btn--ghost" href="/portfolio"><svg class="ico" aria-hidden="true"><use href="#i-folder"/></svg>ポートフォリオを作る</a>
+        </div>
+        <p class="cta-note"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>オンライン開催・相談だけでもOK</p>
+      </div>
+
+      <ul class="hero__badges" aria-label="The Academy の特長">
+        <li class="circle">
+          <svg class="ico ico-top" aria-hidden="true"><use href="#i-book"/></svg>
+          <span class="b-num">10<small>+</small></span>
+          <span class="b-sub">実践コース</span>
+        </li>
+        <li class="laurel">
+          <svg class="laurel__branch" aria-hidden="true"><use href="#i-laurel"/></svg>
+          <div class="laurel__body">
+            <span class="b-label">平均満足度</span>
+            <span class="b-num">4.2<small>※</small></span>
+            <span class="stars" role="img" aria-label="5点満点中4.2">
+              <svg class="ico" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg><svg class="ico" aria-hidden="true" style="opacity:.3"><use href="#i-star"/></svg>
+            </span>
+          </div>
+          <svg class="laurel__branch laurel__branch--r" aria-hidden="true"><use href="#i-laurel"/></svg>
+        </li>
+        <li class="circle">
+          <svg class="ico ico-top" aria-hidden="true"><use href="#i-calendar"/></svg>
+          <span class="b-num">週2<small>〜</small></span>
+          <span class="b-sub">続けやすい設計</span>
+        </li>
+      </ul>
+
+      <div class="hero__visual">
+        <figure class="photo">
+          <img src="assets/hero.webp" alt="明るい部屋でノートパソコンに向かい、メモを取りながら学ぶ女性" width="1672" height="941" fetchpriority="high">
+          <figcaption>画像はイメージです</figcaption>
+        </figure>
+
+        <div class="float f-progress" aria-hidden="true">
+          <div class="f-progress__head">
+            <span class="f-kicker">今週の学び</span>
+            <span class="f-progress__count">2 / 3 完了</span>
+          </div>
+          <div class="bar"><i></i></div>
+          <ul class="steps">
+            <li class="done"><span class="dot"><svg class="ico"><use href="#i-check"/></svg></span><span>基礎を知る 15分</span></li>
+            <li class="done"><span class="dot"><svg class="ico"><use href="#i-check"/></svg></span><span>一緒に試す 25分</span></li>
+            <li class="now"><span class="dot">3</span><span>仕事で使う</span></li>
+          </ul>
+        </div>
+
+
+        <div class="float f-done" aria-hidden="true">
+          <span class="check"><svg class="ico"><use href="#i-check"/></svg></span>
+          <div>
+            <strong>できた！</strong>
+            <span>業務改善テンプレート</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="hero__note">※受講生アンケート（5段階評価）の平均値</p>
+    </div>
+  </section>
+
+  <section class="start" id="start-here" aria-labelledby="start-title">
+    <div class="wrap">
+      <header class="sec-head">
+        <div>
+          <p class="sec-num">01</p>
+          <p class="sec-kicker">START HERE</p>
+          <h2 class="sec-title" id="start-title">いまの目的から探す</h2>
+          <p class="sec-lead">やってみたいことから、<wbr>ぴったりの学びを<wbr>見つけよう。</p>
+        </div>
+        <a class="sec-more" href="/courses">すべてのコース<svg class="ico" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+      </header>
+      <ul class="goals">
+        <li>
+          <a class="goal" href="/courses#digital">
+            <svg class="goal__illust" viewBox="0 0 120 120" aria-hidden="true"><path d="M60 14c24 0 48 13 48 43s-20 51-50 51S12 92 12 63s24-49 48-49z" fill="#EEF2FC"/>
+<rect x="31" y="40" width="64" height="42" rx="5" fill="#B3C7F4"/>
+<rect x="25" y="34" width="64" height="42" rx="5" fill="#FFFFFF" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M21 90h84l-6 7H27z" fill="#B3C7F4"/>
+<path d="M15 84h84l-6 8H21z" fill="#FFFFFF" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="33" y="43" width="15" height="10" rx="2.5" fill="#0141D4"/>
+<rect x="63" y="58" width="15" height="10" rx="2.5" fill="#F76B38"/>
+<path d="M48 48h7v15h8" fill="none" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/>
+<path d="M96 17 Q96 28 107 28 Q96 28 96 39 Q96 28 85 28 Q96 28 96 17Z" fill="#F76B38" stroke="#012270" stroke-width="2.4" stroke-linejoin="round"/>
+<path d="M106 44 Q106 50 112 50 Q106 50 106 56 Q106 50 100 50 Q106 50 106 44Z" fill="#0141D4" stroke="#012270" stroke-width="2.4" stroke-linejoin="round"/></svg>
+            <h3 class="goal__title">仕事を<wbr>効率化したい</h3>
+            <p class="goal__cat">生成AI・ノーコード</p>
+            <span class="goal__arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
+          </a>
+        </li>
+        <li>
+          <a class="goal" href="/courses#marketing">
+            <svg class="goal__illust" viewBox="0 0 120 120" aria-hidden="true"><path d="M60 14c24 0 48 13 48 43s-20 51-50 51S12 92 12 63s24-49 48-49z" fill="#EEF2FC"/>
+<path d="M36 62 76 42v52L36 78z" fill="#B3C7F4"/>
+<path d="M30 56 70 36v52L30 72z" fill="#FFFFFF" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="19" y="53" width="13" height="22" rx="4" fill="#0141D4" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<ellipse cx="70" cy="62" rx="7" ry="26" fill="#DCE5FA" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M38 75l4 15h9l-3-13" fill="#FFFFFF" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M85 47l8-6M87 63h10M85 79l8 6" fill="none" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M94 33c-12-7-9-18-1-13 8-5 12 6 1 13z" fill="#F76B38" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/></svg>
+            <h3 class="goal__title">発信を<wbr>強みにしたい</h3>
+            <p class="goal__cat">マーケティング</p>
+            <span class="goal__arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
+          </a>
+        </li>
+        <li>
+          <a class="goal" href="/courses#english">
+            <svg class="goal__illust" viewBox="0 0 120 120" aria-hidden="true"><path d="M60 14c24 0 48 13 48 43s-20 51-50 51S12 92 12 63s24-49 48-49z" fill="#EEF2FC"/>
+<path d="M22 44a10 10 0 0 1 10-10h34a10 10 0 0 1 10 10v18a10 10 0 0 1-10 10H40l-10 9 1-9a10 10 0 0 1-9-10z" fill="#B3C7F4"/>
+<path d="M16 38a10 10 0 0 1 10-10h34a10 10 0 0 1 10 10v18a10 10 0 0 1-10 10H34l-10 9 1-9a10 10 0 0 1-9-10z" fill="#FFFFFF" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M34 58 43 37l9 21M37.5 50h11" fill="none" stroke="#0141D4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M58 62a10 10 0 0 1 10-10h26a10 10 0 0 1 10 10v16a10 10 0 0 1-10 10h-2l1 9-10-9H68a10 10 0 0 1-10-10z" fill="#0141D4" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="81" cy="70" r="10" fill="none" stroke="#FFFFFF" stroke-width="2.4"/>
+<ellipse cx="81" cy="70" rx="4.2" ry="10" fill="none" stroke="#FFFFFF" stroke-width="2.4"/>
+<path d="M71 70h20" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M100 22 Q100 30 108 30 Q100 30 100 38 Q100 30 92 30 Q100 30 100 22Z" fill="#F76B38" stroke="#012270" stroke-width="2.4" stroke-linejoin="round"/></svg>
+            <h3 class="goal__title">英語で<wbr>選択肢を<wbr>広げたい</h3>
+            <p class="goal__cat">英語・TOEIC</p>
+            <span class="goal__arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
+          </a>
+        </li>
+        <li>
+          <a class="goal" href="/consultation">
+            <svg class="goal__illust" viewBox="0 0 120 120" aria-hidden="true"><path d="M60 14c24 0 48 13 48 43s-20 51-50 51S12 92 12 63s24-49 48-49z" fill="#EEF2FC"/>
+<path d="M86 98H36" fill="none" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="62" y="46" width="9" height="51" rx="2" fill="#B3C7F4"/>
+<rect x="56" y="40" width="9" height="57" rx="2" fill="#FFFFFF" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M28 42h36v14H28l-8-7z" fill="#B3C7F4"/>
+<path d="M22 36h36v14H22l-8-7z" fill="#FFFFFF" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M63 58h36l8 7-8 7H63z" fill="#0141D4" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="88" cy="25" r="13" fill="#F76B38" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M83.5 21.5a4.6 4.6 0 1 1 6.6 4.2c-1.4.8-2.1 1.7-2.1 3.3" fill="none" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round"/>
+<circle cx="88" cy="34" r="1.7" fill="#FFFFFF"/></svg>
+            <h3 class="goal__title">まだ<wbr>決まっていない</h3>
+            <p class="goal__cat">相談して一緒に整理</p>
+            <span class="goal__arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="why" id="why" aria-labelledby="why-title">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="sec-num">02</p>
+        <p class="sec-kicker">WHY THE ACADEMY</p>
+        <h2 class="sec-title" id="why-title">学ぶ、残す、飛び込む。</h2>
+        <p class="sec-lead">3つの仕組みで、<wbr>忙しくても学びを<wbr>「できる」に変え、<wbr>キャリアへ<wbr>つなげていきます。</p>
+      </header>
+      <ul class="points" tabindex="0" aria-label="3つの仕組み">
+        <li class="point">
+          <div class="comp" aria-hidden="true">
+            <div class="comp__canvas">
+              <span class="orb orb--base"></span><span class="orb orb--sun"></span><span class="orb orb--leaf"></span>
+              <div class="panel">
+                <div class="panel__head"><span class="panel__kicker">今週の学び</span><span class="panel__count">2 / 3</span></div>
+                <div class="bar3"><i></i></div>
+                <p class="panel__title">企画書を、テンプレートで<br>つくってみる。</p>
+                <ul class="rows"><li class="is-done"><span>基礎を知る</span><small>15分</small></li><li class="is-done"><span>一緒に試す</span><small>25分</small></li><li><span>仕事で使う</span><small>今週</small></li></ul>
+              </div>
+              <div class="note"><span class="note__kicker">できた！</span><span class="note__title">業務改善テンプレート</span><span class="note__sub">そのまま仕事で使える</span></div>
+            </div>
+          </div>
+          <div class="point__body">
+            <p class="point__num">POINT 01</p>
+            <h3 class="point__title">コースで<wbr><em>学ぶ</em></h3>
+            <p class="point__text">学びたい分野を選び、<wbr>演習とテンプレートで<wbr>実践的に身につける。</p>
+          </div>
+        </li>
+        <li class="point">
+          <div class="comp" aria-hidden="true">
+            <div class="comp__canvas">
+              <span class="orb orb--base"></span><span class="orb orb--sun"></span><span class="orb orb--leaf"></span>
+              <div class="panel">
+                <div class="panel__head"><span class="panel__kicker">今週の記録</span><span class="panel__count">2 / 3</span></div>
+                <div class="bar3"><i></i></div>
+                <p class="panel__title">学んだことも、<br>歩んだ過程も、記録に。</p>
+                <ul class="rows"><li class="is-done"><span>成果物を公開</span><small>企画書</small></li><li class="is-done"><span>学習ログを記録</span><small>今日</small></li><li><span>振り返りを書く</span><small>今週</small></li></ul>
+              </div>
+              <div class="note"><span class="note__kicker">ロールモデル</span><span class="note__title">先輩の歩みを見る</span><span class="note__sub">次の目標のヒントに</span></div>
+            </div>
+          </div>
+          <div class="point__body">
+            <p class="point__num">POINT 02</p>
+            <h3 class="point__title">ポートフォリオで<wbr><em>残す</em></h3>
+            <p class="point__text">成果物と学びの歩みを記録。<wbr>ロールモデルを見つけ、<wbr>続ける力に。</p>
+          </div>
+        </li>
+        <li class="point">
+          <div class="comp" aria-hidden="true">
+            <div class="comp__canvas">
+              <span class="orb orb--base"></span><span class="orb orb--sun"></span><span class="orb orb--leaf"></span>
+              <div class="panel">
+                <div class="panel__head"><span class="panel__kicker">今月の挑戦</span><span class="panel__count">2 / 3</span></div>
+                <div class="bar3"><i></i></div>
+                <p class="panel__title">気になる分野の場に、<br>参加してみる。</p>
+                <ul class="rows"><li class="is-done"><span>興味のある場を選ぶ</span></li><li class="is-done"><span>参加して体験する</span></li><li><span>次の学びへつなげる</span><small>今週</small></li></ul>
+              </div>
+              <div class="note"><span class="note__kicker">仲間から</span><span class="note__title">一緒にやってみよう！</span><span class="note__sub">次の場でも会いましょう</span></div>
+            </div>
+          </div>
+          <div class="point__body">
+            <p class="point__num">POINT 03</p>
+            <h3 class="point__title">コミュニティーに<wbr><em>飛び込む</em></h3>
+            <p class="point__text">興味のある場に参加して、<wbr>新しいことを<wbr>体験しながら学ぶ。</p>
+          </div>
+        </li>
+      </ul>
+      <p class="swipe-hint" aria-hidden="true">横にスワイプして3つの仕組みを見る →</p>
+      <div class="loop" aria-hidden="true">
+        <span class="loop__label"><svg class="ico"><use href="#i-loop"/></svg>体験が、次の学びへ</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+  // メニュー：Esc・外側クリックで閉じる（キーボード操作中はボタンへフォーカスを戻す）
+  (() => {
+    const menu = document.querySelector('.menu');
+    if (!menu) return;
+    const summary = menu.querySelector('summary');
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape' || !menu.open) return;
+      const inside = menu.contains(document.activeElement);
+      menu.open = false;
+      if (inside) summary.focus();
+    });
+    document.addEventListener('click', (e) => {
+      if (menu.open && !menu.contains(e.target)) menu.open = false;
+    });
+  })();
+</script>
+
+</body>
+</html>

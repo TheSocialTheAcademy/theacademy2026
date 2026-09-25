@@ -277,6 +277,110 @@
     .goal__illust { left: 8px; top: 50%; width: 80px; height: 80px; margin-top: -40px; }
     .goal__title { font-size: 15px; }
   }
+
+  /* ── 02 WHY THE ACADEMY（プロダクト画面のタイル） ── */
+  .why { padding: clamp(72px, 8vw, 112px) 0; background: linear-gradient(180deg, #FFFFFF 0%, #F7F9FE 100%); overflow: hidden; }
+  .points { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; margin: 0; padding: 0; list-style: none; }
+  .point { position: relative; }
+  .point__num { margin: 24px 0 0; color: var(--ts-primary); font-size: 13px; font-weight: 700; letter-spacing: .18em; }
+  .point__title { margin: 6px 0 0; color: var(--ink); font-size: clamp(20px, 1.9vw, 24px); font-weight: 700; line-height: 1.45; letter-spacing: .02em; word-break: keep-all; overflow-wrap: anywhere; }
+  .point__title em { font-style: normal; color: var(--ts-primary); }
+  .point__text { max-width: 24em; margin: 8px 0 0; color: var(--ts-mid); font-size: 15px; line-height: 1.8; word-break: keep-all; overflow-wrap: anywhere; }
+  .point__link { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; color: var(--ts-primary); font-size: 14px; font-weight: 700; text-decoration: none; border-bottom: 1.5px solid currentColor; padding-bottom: 2px; }
+  .point__link:hover { color: var(--ts-deep-navy); }
+  .av { display: grid; place-items: center; border-radius: 50%; background: var(--ts-primary); color: #fff; font-weight: 700; box-shadow: 0 0 0 2px #fff; }
+  .av + .av { margin-left: -6px; }
+  .av:nth-child(2) { background: #F2B874; } .av:nth-child(3) { background: #8BC2BC; }
+  .swipe-hint { display: none; }
+  /* ════════ 案B（改2）：実寸の画面を等倍縮小（スクショ品質） ════════ */
+  .t3 { container-type: inline-size; border-radius: 24px; overflow: hidden; font-family: var(--font); text-align: left; box-shadow: inset 0 0 0 1px rgba(27,34,51,.04); }
+  .t3--blue { background: radial-gradient(120% 100% at 0% 0%, #F6F8FE 0%, #E1E8FB 100%); }
+  .t3--sand { background: radial-gradient(120% 100% at 0% 0%, #FEFAF2 0%, #F6E6C8 100%); }
+  .t3--mint { background: radial-gradient(120% 100% at 0% 0%, #F3FAF7 0%, #D5ECE3 100%); }
+  .t3-canvas { --u: calc(100cqw / 400); position: relative; height: calc(404 * var(--u)); color: #1B2233; }
+  .t3-orb { position: absolute; right: calc(-60 * var(--u)); bottom: calc(-80 * var(--u)); width: calc(260 * var(--u)); height: calc(260 * var(--u)); border-radius: 50%; background: rgba(255,255,255,.5); }
+  .t3-card {
+    position: absolute; left: calc(32 * var(--u)); top: calc(34 * var(--u));
+    border: 1px solid #E3E6EE; border-radius: calc(16 * var(--u)); background: #fff;
+    box-shadow: 0 calc(30 * var(--u)) calc(60 * var(--u)) rgba(27,34,51,.12), 0 calc(2 * var(--u)) calc(6 * var(--u)) rgba(27,34,51,.04);
+  }
+  .t3-card p { margin: 0; }
+  .t3-h { font-size: calc(20 * var(--u)); font-weight: 700; letter-spacing: .02em; line-height: 1.4; }
+  .t3-meta { margin-top: calc(6 * var(--u)) !important; color: #6B7085; font-size: calc(13 * var(--u)); letter-spacing: .02em; }
+  .t3-txt { margin-top: calc(6 * var(--u)) !important; font-size: calc(14.5 * var(--u)); letter-spacing: .02em; }
+  .t3-chev { width: 1.05em; height: 1.05em; vertical-align: -.18em; margin-left: .3em; }
+  .t3-row { display: flex; align-items: center; justify-content: space-between; }
+  
+  /* 01 コース */
+  .t3-course { width: calc(336 * var(--u)); overflow: hidden; }
+  .t3-thumb { position: relative; height: calc(132 * var(--u)); background: #F5F7FB; border-bottom: 1px solid #E3E6EE; }
+  .sc { position: absolute; background: #fff; border-radius: calc(5 * var(--u)); box-shadow: 0 calc(4 * var(--u)) calc(14 * var(--u)) rgba(27,34,51,.12); overflow: hidden; }
+  .sc--back  { left: calc(172 * var(--u)); top: calc(12 * var(--u)); width: calc(150 * var(--u)); height: calc(92 * var(--u)); }
+  .sc--left  { left: calc(12 * var(--u)); top: calc(18 * var(--u)); width: calc(120 * var(--u)); height: calc(84 * var(--u)); }
+  .sc--front { left: calc(92 * var(--u)); top: calc(34 * var(--u)); width: calc(132 * var(--u)); height: calc(92 * var(--u)); z-index: 1; }
+  .sc__line { position: absolute; left: 8%; right: 8%; top: 9%; height: calc(4 * var(--u)); border-radius: 9px; background: #F4A06F; }
+  .gt { position: absolute; height: calc(4 * var(--u)); border-radius: 9px; background: #6F95F7; }
+  .gt.o { background: #F4A06F; }
+  .ph { display: inline-block; width: calc(24 * var(--u)); height: calc(20 * var(--u)); margin: calc(8 * var(--u)) 0 0 calc(6 * var(--u)); border-radius: calc(3 * var(--u)); background: url("assets/hero.webp") no-repeat; background-size: 360%; vertical-align: top; }
+  .ph--l { width: calc(38 * var(--u)); height: calc(30 * var(--u)); background-size: 280%; }
+  .dn { position: absolute; right: calc(8 * var(--u)); top: calc(8 * var(--u)); width: calc(18 * var(--u)); height: calc(18 * var(--u)); border-radius: 50%; background: radial-gradient(circle, #fff 0 42%, transparent 44%), conic-gradient(#F37A45 0 72%, #E6E9F0 72%); }
+  .dn--s { position: static; display: inline-block; width: calc(14 * var(--u)); height: calc(14 * var(--u)); }
+  .mb { position: absolute; left: calc(8 * var(--u)); bottom: calc(8 * var(--u)); display: inline-flex; align-items: flex-end; gap: calc(2 * var(--u)); height: calc(18 * var(--u)); }
+  .mb i { display: block; width: calc(3 * var(--u)); background: #5B86F6; border-radius: 1px; }
+  .mb i:nth-child(3n) { background: #F37A45; }
+  .flow { display: flex; gap: calc(4 * var(--u)); margin: calc(8 * var(--u)) calc(8 * var(--u)) 0; }
+  .flow i { flex: 1; height: calc(6 * var(--u)); border-radius: 9px; background: #DCE5FB; }
+  .flow i.o { background: #F8C9AE; }
+  .kpis { position: absolute; left: 0; right: 0; bottom: calc(6 * var(--u)); display: flex; align-items: flex-end; justify-content: space-around; padding: 0 calc(6 * var(--u)); }
+  .kpis .mb { position: static; }
+  .t3-course__body { padding: calc(18 * var(--u)) calc(22 * var(--u)) calc(16 * var(--u)); }
+  .t3-prog { display: flex; align-items: center; gap: calc(14 * var(--u)); margin-top: calc(16 * var(--u)); }
+  .t3-prog span { flex: 1; height: calc(8 * var(--u)); border-radius: 999px; background: #EEF0F5; overflow: hidden; }
+  .t3-prog i { display: block; height: 100%; border-radius: inherit; background: #1E47D8; }
+  .t3-prog b { font-size: calc(18 * var(--u)); font-weight: 500; letter-spacing: .02em; }
+  .t3-course__foot { padding: calc(14 * var(--u)) calc(22 * var(--u)); border-top: 1px solid #E3E6EE; text-align: right; color: #3F4458; font-size: calc(14 * var(--u)); font-weight: 500; }
+  
+  /* 02 学びの歩み */
+  .t3-journey { width: calc(390 * var(--u)); padding: calc(24 * var(--u)) calc(24 * var(--u)) calc(20 * var(--u)); }
+  .t3-tl { position: relative; margin: calc(18 * var(--u)) 0 0; padding: 0 0 0 calc(26 * var(--u)); list-style: none; display: grid; gap: calc(10 * var(--u)); }
+  .t3-tl::before { content: ""; position: absolute; left: calc(6 * var(--u)); top: calc(10 * var(--u)); bottom: 0; width: 1.5px; background: #C9D2E8; }
+  .t3-tl li { position: relative; }
+  .t3-tl li::before { content: ""; position: absolute; left: calc(-26 * var(--u)); top: 50%; width: calc(13 * var(--u)); height: calc(13 * var(--u)); margin-top: calc(-6.5 * var(--u)); border-radius: 50%; background: #fff; box-shadow: inset 0 0 0 calc(2.4 * var(--u)) #1E47D8; }
+  .t3-tl li.is-now::before { background: #1E47D8; }
+  .t3-tl__start { font-size: calc(13 * var(--u)); }
+  .t3-tl__start b { margin-right: calc(8 * var(--u)); font-weight: 700; }
+  .t3-tl__start span { color: #6B7085; }
+  .t3-ev { position: relative; padding: calc(14 * var(--u)) calc(16 * var(--u)); border: 1px solid #E3E6EE; border-radius: calc(10 * var(--u)); background: #fff; }
+  .t3-ev--new { background: #FAFBFD; border-color: #D9DDE7; }
+  .t3-ev__top { display: flex; align-items: center; gap: calc(8 * var(--u)); }
+  .t3-ev__top time { color: #6B7085; font-size: calc(12.5 * var(--u)); }
+  .t3-pill { display: inline-flex; align-items: center; gap: calc(5 * var(--u)); padding: calc(4 * var(--u)) calc(11 * var(--u)) calc(4 * var(--u)) calc(9 * var(--u)); border-radius: 999px; background: #1E47D8; color: #fff; font-size: calc(11.5 * var(--u)); font-weight: 700; letter-spacing: .03em; white-space: nowrap; }
+  .t3-pill svg { width: calc(13 * var(--u)); height: calc(13 * var(--u)); }
+  .t3-pill--line { background: #fff; color: #1E47D8; box-shadow: inset 0 0 0 1.4px #1E47D8; }
+  .t3-new { padding: calc(2 * var(--u)) calc(9 * var(--u)); border-radius: 999px; box-shadow: inset 0 0 0 1.4px #1E47D8; color: #1E47D8; font-size: calc(11 * var(--u)); font-weight: 700; }
+  .t3-ev__title { margin-top: calc(8 * var(--u)) !important; font-size: calc(16 * var(--u)); font-weight: 700; letter-spacing: .02em; white-space: nowrap; }
+  .t3-ev__desc { margin-top: calc(4 * var(--u)) !important; color: #6B7085; font-size: calc(12.5 * var(--u)); white-space: nowrap; }
+  .t3-more { position: absolute; right: calc(16 * var(--u)); top: calc(18 * var(--u)); color: #3F4458; font-size: calc(12.5 * var(--u)); font-weight: 700; white-space: nowrap; }
+  
+  /* 03 コミュニティー */
+  .t3-comm { display: grid; gap: calc(12 * var(--u)); width: calc(390 * var(--u)); padding: calc(24 * var(--u)) calc(24 * var(--u)) calc(20 * var(--u)); }
+  .t3-select { display: inline-flex; align-items: center; padding: calc(6 * var(--u)) calc(12 * var(--u)); border: 1px solid #E3E6EE; border-radius: calc(8 * var(--u)); font-size: calc(13 * var(--u)); }
+  .t3-tags { display: flex; gap: calc(8 * var(--u)); }
+  .t3-tags span { padding: calc(4 * var(--u)) calc(12 * var(--u)); border-radius: 999px; background: #F2F4F8; color: #4A4F63; font-size: calc(12 * var(--u)); font-weight: 700; }
+  .t3-tags .on { background: rgba(30,71,216,.08); color: #1E47D8; box-shadow: inset 0 0 0 1px rgba(30,71,216,.28); }
+  .t3-crew { display: flex; align-items: center; margin-top: calc(10 * var(--u)); }
+  .t3-crew .av { width: calc(28 * var(--u)); height: calc(28 * var(--u)); font-size: calc(11 * var(--u)); }
+  .t3-msg { margin-left: calc(12 * var(--u)); padding: calc(6 * var(--u)) calc(12 * var(--u)); border-radius: calc(12 * var(--u)) calc(12 * var(--u)) calc(12 * var(--u)) calc(4 * var(--u)); background: #F2F4F8; font-size: calc(12.5 * var(--u)); font-weight: 700; white-space: nowrap; }
+  @media (max-width: 980px) {
+    .points {
+      grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: min(82%, 340px); gap: 16px;
+      margin: 0 calc(var(--gutter) * -1); padding: 4px var(--gutter) 8px;
+      overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: 0 var(--gutter); scrollbar-width: none;
+    }
+    .points::-webkit-scrollbar { display: none; }
+    .point { scroll-snap-align: start; }
+    .swipe-hint { display: block; margin: 16px 0 0; color: var(--ts-mid); font-size: 12px; text-align: center; }
+  }
 </style>
 </head>
 <body>
@@ -423,6 +527,68 @@
           </a>
         </li>
       </ul>
+    </div>
+  </section>
+
+  <section class="why" id="why" aria-labelledby="why-title">
+    <div class="wrap">
+      <header class="sec-head">
+        <div>
+          <p class="sec-num">02</p>
+          <p class="sec-kicker">WHY THE ACADEMY</p>
+          <h2 class="sec-title" id="why-title">学ぶ、残す、飛び込む。</h2>
+          <p class="sec-lead">3つの仕組みで、<wbr>忙しくても学びを<wbr>「できる」に変え、<wbr>キャリアへ<wbr>つなげていきます。</p>
+        </div>
+      </header>
+      <ul class="points" tabindex="0" aria-label="3つの仕組み"><li class="point"><div class="t3 t3--blue" aria-hidden="true"><div class="t3-canvas">
+  <span class="t3-orb"></span>
+  <div class="t3-card t3-course">
+    <div class="t3-thumb">
+  <div class="sc sc--back">
+    <span class="sc__line o"></span>
+    <span class="gt" style="left:22%;top:34%;width:30%"></span><span class="gt o" style="left:40%;top:50%;width:34%"></span><span class="gt" style="left:30%;top:66%;width:24%"></span><span class="gt" style="left:58%;top:80%;width:22%"></span>
+  </div>
+  <div class="sc sc--left">
+    <span class="ph" style="background-position:48% 30%"></span><span class="ph" style="background-position:80% 70%"></span><span class="ph" style="background-position:20% 60%"></span>
+    <span class="dn"></span><span class="mb"><i style="height:40%"></i><i style="height:70%"></i><i style="height:55%"></i><i style="height:90%"></i><i style="height:65%"></i></span>
+  </div>
+  <div class="sc sc--front">
+    <span class="flow"><i></i><i></i><i></i><i class="o"></i><i></i></span>
+    <span class="ph ph--l" style="background-position:52% 28%"></span><span class="ph ph--l" style="background-position:88% 72%"></span>
+    <span class="kpis"><span class="mb"><i style="height:30%"></i><i style="height:55%"></i><i style="height:40%"></i><i style="height:80%"></i></span><span class="mb"><i style="height:50%"></i><i style="height:35%"></i><i style="height:70%"></i><i style="height:60%"></i></span><span class="dn dn--s"></span></span>
+  </div>
+</div>
+    <div class="t3-course__body">
+      <p class="t3-h">SNSマーケティング実践</p>
+      <p class="t3-meta">受講期限 2026/10/15</p>
+      <p class="t3-txt">第4章 運用と数値の見方</p>
+      <div class="t3-prog"><span><i style="width:30%"></i></span><b>30%</b></div>
+    </div>
+    <div class="t3-course__foot">続きから学ぶ<svg class="t3-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  </div>
+</div></div><p class="point__num">POINT 01</p><h3 class="point__title">コースで<wbr><em>学ぶ</em></h3><p class="point__text">学びたい分野を選び、<wbr>演習とテンプレートで<wbr>実践的に身につける。</p><a class="point__link" href="#popular">人気のコースを見る<span aria-hidden="true">↓</span></a></li><li class="point"><div class="t3 t3--sand" aria-hidden="true"><div class="t3-canvas">
+  <span class="t3-orb"></span>
+  <div class="t3-card t3-journey">
+    <p class="t3-h">学びの歩み</p>
+    <p class="t3-meta">活動の積み重ねを、過去から順に確認できます。</p>
+    <ol class="t3-tl">
+      <li class="t3-tl__start"><b>学びのスタート</b><span>2026年8月9日</span></li>
+      <li><div class="t3-ev"><p class="t3-ev__top"><span class="t3-pill"><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></g></svg>実績を公開しました</span><time>12:00</time></p><p class="t3-ev__title">SNSキャンペーン企画書</p><p class="t3-ev__desc">顧客理解からKPIまでを1枚に</p><span class="t3-more">詳細を見る<svg class="t3-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></li>
+      <li class="is-now"><div class="t3-ev t3-ev--new"><p class="t3-ev__top"><span class="t3-pill"><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5"/></g></svg>コースを修了しました</span><span class="t3-new">最新</span></p><p class="t3-ev__title">SNSマーケティング実践</p><p class="t3-ev__desc">企画から数値改善までを実践した</p></div></li>
+    </ol>
+  </div>
+</div></div><p class="point__num">POINT 02</p><h3 class="point__title">学習ポートフォリオで<wbr><em>残す</em></h3><p class="point__text">成果物と学びの歩みを記録。<wbr>ロールモデルを見つけ、<wbr>続ける力に。</p><a class="point__link" href="#portfolio">ポートフォリオを見る<span aria-hidden="true">↓</span></a></li><li class="point"><div class="t3 t3--mint" aria-hidden="true"><div class="t3-canvas">
+  <span class="t3-orb"></span>
+  <div class="t3-card t3-comm">
+    <div class="t3-row"><p class="t3-h">コミュニティー</p><span class="t3-select">すべて<svg class="t3-chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    <div class="t3-tags"><span class="on">IT・デジタル</span><span class="on">マーケティング</span><span>英語・TOEIC</span></div>
+    <div class="t3-ev"><p class="t3-ev__top"><span class="t3-pill"><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 19a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.6"/><path d="M15.5 14.2A5 5 0 0 1 21 19"/></g></svg>イベントに参加しました</span><time>19:00</time></p><p class="t3-ev__title">はじめての勉強会</p><p class="t3-ev__desc">気になる分野の場に、飛び込んだ</p><span class="t3-more">詳細を見る<svg class="t3-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    <div class="t3-ev t3-ev--new"><p class="t3-ev__top"><span class="t3-pill t3-pill--line"><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 19a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.6"/><path d="M15.5 14.2A5 5 0 0 1 21 19"/></g></svg>仲間とつながりました</span><span class="t3-new">最新</span></p>
+      <div class="t3-crew"><span class="av">A</span><span class="av">K</span><span class="av">Y</span><span class="t3-msg">一緒にやってみよう！</span></div>
+    </div>
+  </div>
+</div></div><p class="point__num">POINT 03</p><h3 class="point__title">コミュニティーに<wbr><em>飛び込む</em></h3><p class="point__text">興味のある場に参加して、<wbr>新しいことを<wbr>体験しながら学ぶ。</p><a class="point__link" href="#community">コミュニティーを見る<span aria-hidden="true">↓</span></a></li></ul>
+      <p class="swipe-hint" aria-hidden="true">横にスワイプして3つの仕組みを見る →</p>
     </div>
   </section>
 </main>

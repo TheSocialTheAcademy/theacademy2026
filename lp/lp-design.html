@@ -880,15 +880,17 @@
   @media (max-width: 640px) { .nxC__cta { grid-template-columns: 1fr; } .nxC__pam { transform: scale(.75); right: -20px; bottom: -20px; } .nxC__vis { padding: 24px 8px 90px; } }
   @media (max-width: 640px) { .nxC .nx-card__t { font-size: 22px; } .nx-pts li { font-size: 13px; } .nx-call { padding: 10px; } .nx-call__tiles { gap: 6px; } .nx-call__bar { font-size: 11px; } }
 
-  /* ── 背景のリズム：強調したい 03 コース／04 ポートフォリオ／05 コミュニティーを
-        淡い青の角丸パネルでひとまとまりに。その他は白と淡いグレーで交互に ─ */
-  .popular, .pf, .cmty {
-    margin: 0 var(--panel-inset); border-radius: clamp(24px, 3vw, 40px); overflow: hidden;
-  }
-  .popular { background: linear-gradient(160deg, #EEF3FF 0%, #E2EAFD 100%); }
-  .pf, .pfC { margin-top: 14px; background: linear-gradient(200deg, #EEF3FF 0%, #E2EAFD 100%); }
-  .cmty { margin-top: 14px; margin-bottom: clamp(24px, 3vw, 40px); }
-  .pfC .cc__v { background: #fff; box-shadow: 0 10px 28px rgba(15,27,69,.07); }
+  /* ── 背景のリズム（Apple型）：白と淡いグレーを交互に全面で敷く。
+        カードは背景と逆の色にしてコントラストを出し、強調は面の色ではなく見出しの大きさで ─ */
+  :root { --bg-gray: #F5F6F8; }
+  .start, .popular, .cmty, .next { background: var(--bg-gray); }
+  .why, .pf, .pfC, .flow6 { background: #fff; }
+  .cmty { margin: 0; border-radius: 0; }
+  .cmty .cmty__blob { background: rgba(255,255,255,.9); }
+  .nxC__bg { background: #fff; box-shadow: var(--shadow-soft); }
+  /* 強調したい 03 コース／04 ポートフォリオ／05 コミュニティーは見出しを一段大きく、余白もゆったり */
+  .popular, .pf, .cmty { padding-top: clamp(88px, 10vw, 140px); padding-bottom: clamp(88px, 10vw, 140px); }
+  .popular .sec-title, .pf .sec-title, .cmty .sec-title { font-size: clamp(32px, 4vw, 48px); line-height: 1.3; }
 </style>
 </head>
 <body>

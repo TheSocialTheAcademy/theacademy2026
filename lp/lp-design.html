@@ -824,42 +824,90 @@
   .aP__t { display: none; align-items: center; justify-content: center; gap: 8px; margin: 16px 0 0; color: var(--ts-primary); font-size: 16px; font-weight: 700; }
   .aP__t span { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; box-shadow: inset 0 0 0 1.8px var(--ts-primary); font-size: 12px; }
 
-  /* ── 07 NEXT STEP（無料相談＋パンフレット） ─ */
+  /* ── 07 NEXT STEP（無料相談＝主役の横長カード／パンフレット＝帯） ─ */
   .next { padding: clamp(72px, 8vw, 112px) 0; background: #F7F8FB; }
-  .nx-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 24px; margin: 0; padding: 0; list-style: none; }
-  .nx-card { position: relative; display: flex; flex-direction: column; border-radius: 24px; background: #fff; box-shadow: var(--shadow-soft); overflow: hidden; }
-  .nx-card--main { box-shadow: 0 0 0 2px var(--ts-primary), 0 18px 40px rgba(1,65,212,.12); }
+  .nx-grid { display: grid; gap: 20px; margin: 0; padding: 0; list-style: none; }
+  .nx-card { position: relative; display: grid; border-radius: 28px; background: #fff; box-shadow: var(--shadow-soft); overflow: hidden; }
+  .nx-card--main { grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr); box-shadow: 0 0 0 2px var(--ts-primary), 0 18px 40px rgba(1,65,212,.12); }
+  .nx-card__v { position: relative; display: grid; place-items: center; background: linear-gradient(160deg, #F7F9FE 0%, #E6EDFD 100%); overflow: hidden; }
+  .nx-card--main .nx-card__v { padding: 40px 36px; }
+  .nx-card__b { display: flex; flex-direction: column; justify-content: center; padding: 44px 48px; }
   .nx-flag { display: inline-block; margin-right: 8px; padding: 3px 10px; border-radius: 99px; background: var(--ts-primary); color: #fff; font-size: 11.5px; font-weight: 700; letter-spacing: .06em; vertical-align: 1px; }
-  .nx-card__v { position: relative; display: grid; place-items: center; height: 270px; padding: 16px 20px 0; background: linear-gradient(160deg, #F7F9FE 0%, #EAF0FD 100%); overflow: hidden; }
-  .nx-scene { width: min(100%, 440px); height: 100%; }
-  .nx-scene text { font-family: var(--font); }
-  .nx-card__b { display: flex; flex-direction: column; flex: 1; padding: 26px 30px 30px; }
   .nx-who { margin: 0; color: var(--ts-primary); font-size: 13px; font-weight: 700; word-break: keep-all; overflow-wrap: anywhere; }
-  .nx-card__t { margin: 6px 0 0; color: var(--ink); font-size: 24px; font-weight: 700; letter-spacing: .02em; }
+  .nx-card__t { margin: 8px 0 0; color: var(--ink); font-size: 28px; font-weight: 700; letter-spacing: .02em; }
   .nx-card__d { margin: 10px 0 0; color: var(--ts-mid); font-size: 14px; line-height: 1.8; }
-  .nx-meta { display: flex; align-items: center; gap: 8px; margin: auto 0 0; padding-top: 18px; color: var(--ink); font-size: 12.5px; font-weight: 700; }
+  .nx-pts { display: grid; gap: 8px; margin: 18px 0 0; padding: 0; list-style: none; }
+  .nx-pts li { display: flex; align-items: center; gap: 10px; color: var(--ink); font-size: 14px; font-weight: 700; }
+  .nx-pts i { display: grid; place-items: center; flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--tint-08); color: var(--ts-primary); }
+  .nx-pts svg { width: 13px; height: 13px; }
+  .nx-meta { display: flex; align-items: center; gap: 8px; margin: 22px 0 0; color: var(--ink); font-size: 12.5px; font-weight: 700; }
   .nx-meta span { padding: 3px 8px; border-radius: 6px; background: #FFF1E9; color: #E4572E; font-size: 11.5px; }
   .nx-btn { width: 100%; margin-top: 12px; }
   .nx-btn .ico { width: 16px; height: 16px; }
   .nx-btn--line { background: #fff; color: var(--ts-primary); box-shadow: inset 0 0 0 1.5px var(--ts-primary); }
   .nx-btn--line:hover { background: var(--ts-primary); color: #fff; }
+
+  /* オンライン相談の画面 */
+  .nx-call { width: min(100%, 540px); padding: 14px; border-radius: 20px; background: #0F1B45; box-shadow: 0 20px 40px rgba(15,27,69,.22); }
+  .nx-call__bar { display: flex; align-items: center; gap: 6px; padding: 2px 4px 12px; color: rgba(255,255,255,.8); font-size: 12px; white-space: nowrap; }
+  .nx-call__bar b { margin-left: auto; color: #fff; font-weight: 700; }
+  .nx-live { width: 8px; height: 8px; border-radius: 50%; background: #FF5A5F; }
+  .nx-call__tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .nx-call__tile { position: relative; aspect-ratio: 4 / 3.4; border-radius: 12px; overflow: hidden; }
+  .nx-call__tile svg { display: block; width: 100%; height: 100%; }
+  .nx-call__tile--on { box-shadow: 0 0 0 2.5px #5DD39E; }
+  .nx-call__tile small { position: absolute; left: 8px; bottom: 8px; padding: 2px 8px; border-radius: 4px; background: rgba(15,27,69,.6); color: #fff; font-size: 11px; }
+  .nx-call__ctl { display: flex; justify-content: center; gap: 10px; padding-top: 12px; }
+  .nx-call__ctl i { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: #26336B; color: #fff; }
+  .nx-call__ctl i svg { width: 15px; height: 15px; }
+  .nx-call__ctl i.end { width: 48px; border-radius: 99px; background: #FF5A5F; }
+
+  /* パンフレット：横長の帯 */
+  .nx-card--sub { grid-template-columns: 240px minmax(0, 1fr) 300px; align-items: center; }
+  .nx-card--sub .nx-card__v { align-self: stretch; padding: 22px 16px 0; place-items: end center; }
+  .nx-card--sub .nx-card__b { display: contents; }
+  .nx-card--sub .nx-who, .nx-card--sub .nx-card__t, .nx-card--sub .nx-card__d { grid-column: 2; padding: 0 20px 0 36px; }
+  .nx-card--sub .nx-who { grid-row: 1; align-self: end; padding-top: 30px; }
+  .nx-card--sub .nx-card__t { grid-row: 2; font-size: 22px; margin-top: 4px; }
+  .nx-card--sub .nx-card__d { grid-row: 3; align-self: start; padding-bottom: 30px; }
+  .nx-card--sub .nx-meta, .nx-card--sub .nx-btn { grid-column: 3; margin-right: 40px; }
+  .nx-card--sub .nx-card__v { grid-row: 1 / 4; }
+  .nx-card--sub .nx-meta { grid-row: 1 / 3; align-self: end; margin-top: 0; }
+  .nx-card--sub .nx-btn { grid-row: 3; align-self: start; width: auto; }
+  .nx-pam { position: relative; width: 190px; height: 150px; }
+  .nx-pam__p { position: absolute; top: 0; width: 104px; aspect-ratio: 520 / 735; border-radius: 4px; box-shadow: 0 10px 22px rgba(15,27,69,.16); object-fit: cover; object-position: top; background: #fff; }
+  .nx-pam__p--1 { left: 42px; top: 4px; z-index: 3; }
+  .nx-pam__p--2 { left: 74px; top: 12px; z-index: 2; transform: rotate(7deg); }
+  .nx-pam__p--3 { left: 12px; top: 14px; z-index: 1; transform: rotate(-8deg); }
+  .nx-pam__badge { position: absolute; right: 4px; bottom: 12px; z-index: 4; padding: 4px 10px; border-radius: 6px; background: #E4572E; color: #fff; font-size: 11px; font-weight: 700; letter-spacing: .08em; }
+
   .nx-foot { margin: 28px 0 0; color: var(--ts-mid); font-size: 13.5px; text-align: center; }
   .nx-foot a { display: inline-flex; align-items: center; gap: 4px; margin-left: 10px; color: var(--ts-primary); font-weight: 700; text-decoration: none; border-bottom: 1px solid rgba(1,65,212,.3); }
   .nx-foot .ico { width: 14px; height: 14px; }
 
-  /* パンフレット：冊子を重ねる */
-  .nx-pam { position: relative; width: 220px; height: 200px; margin-top: 10px; }
-  .nx-pam__p { position: absolute; top: 0; width: 132px; aspect-ratio: 520 / 735; border-radius: 4px; box-shadow: 0 10px 22px rgba(15,27,69,.16); object-fit: cover; background: #fff; }
-  .nx-pam__p--1 { left: 44px; top: 4px; z-index: 3; }
-  .nx-pam__p--2 { left: 80px; top: 12px; z-index: 2; transform: rotate(7deg); }
-  .nx-pam__p--3 { left: 10px; top: 14px; z-index: 1; transform: rotate(-8deg); }
-  .nx-pam__badge { position: absolute; right: 0; bottom: 10px; z-index: 4; padding: 4px 10px; border-radius: 6px; background: #E4572E; color: #fff; font-size: 11px; font-weight: 700; letter-spacing: .08em; }
-
-  @media (max-width: 760px) {
-    .nx-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
-    .nx-card__v { height: 230px; }
-    .nx-card__b { padding: 22px 20px 24px; }
-    .nx-card__t { font-size: 21px; }
+  @media (max-width: 1100px) {
+    .nx-card--main { grid-template-columns: minmax(0, 1fr); }
+    .nx-card--main .nx-card__v { padding: 32px 24px; }
+    .nx-card__b { padding: 32px 36px 36px; }
+    .nx-card--sub { grid-template-columns: 200px minmax(0, 1fr); }
+    .nx-card--sub .nx-card__v { grid-row: 1 / 6; }
+    .nx-card--sub .nx-who { padding-top: 26px; }
+    .nx-card--sub .nx-card__d { padding-bottom: 0; }
+    .nx-card--sub .nx-meta, .nx-card--sub .nx-btn { grid-column: 2; margin: 0 28px 0 36px; }
+    .nx-card--sub .nx-meta { grid-row: 4; margin-top: 16px; }
+    .nx-card--sub .nx-btn { grid-row: 5; margin-top: 10px; margin-bottom: 26px; }
+  }
+  @media (max-width: 640px) {
+    .nx-card--main .nx-card__v { padding: 20px 14px; }
+    .nx-call { padding: 10px; } .nx-call__tiles { gap: 6px; } .nx-call__bar { font-size: 11px; }
+    .nx-card__b { padding: 24px 20px 26px; }
+    .nx-card__t { font-size: 22px; }
+    .nx-pts li { font-size: 13px; }
+    .nx-card--sub { grid-template-columns: minmax(0, 1fr); }
+    .nx-card--sub .nx-card__v { grid-row: auto; height: 170px; }
+    .nx-card--sub .nx-who, .nx-card--sub .nx-card__t, .nx-card--sub .nx-card__d, .nx-card--sub .nx-meta, .nx-card--sub .nx-btn { grid-column: 1; grid-row: auto; margin-left: 20px; margin-right: 20px; padding-left: 0; padding-right: 0; }
+    .nx-card--sub .nx-who { padding-top: 22px; }
+    .nx-card--sub .nx-btn { margin-bottom: 24px; width: auto; }
   }
 </style>
 </head>
@@ -1158,65 +1206,47 @@
 <header class="sec-head nx-head"><div><p class="sec-num">07</p><p class="sec-kicker">NEXT STEP</p>
 <h2 class="sec-title" id="next-title">迷っていても、大丈夫。</h2>
 <p class="sec-lead">キャリアの悩みや今の状況に合わせて、<wbr>選べます。<wbr>どちらも無料です。</p></div></header>
-<ul class="nx-grid"><li class="nx-card nx-card--main"><div class="nx-card__v"><svg class="nx-scene" viewBox="0 0 360 240" role="img" aria-label="オンラインでスタッフに相談している様子">
-  <circle cx="118" cy="120" r="92" fill="#E6EDFD"/>
-  <circle cx="300" cy="200" r="46" fill="#EEF3FF"/>
-  <!-- 観葉植物 -->
-  <path d="M34 206 h26 l-4 -26 h-18z" fill="#D9C4A7"/>
-  <ellipse cx="40" cy="166" rx="8" ry="16" fill="#7CC49A" transform="rotate(-24 40 166)"/>
-  <ellipse cx="54" cy="160" rx="8" ry="18" fill="#5DB585" transform="rotate(16 54 160)"/>
-  <ellipse cx="47" cy="150" rx="6" ry="15" fill="#8ED3AA"/>
-  <!-- 相談する人（あなた） -->
-  <path d="M90 104 C88 70 150 70 150 104 L152 132 C140 138 100 138 88 132Z" fill="#3B2A22"/>
-  <rect x="112" y="116" width="16" height="18" rx="6" fill="#EDC1A8"/>
-  <path d="M74 206 C74 158 92 136 120 136 C148 136 166 158 166 206Z" fill="#F7A072"/>
-  <path d="M106 136 L120 150 L134 136Z" fill="#fff" opacity=".85"/>
-  <ellipse cx="120" cy="100" rx="24" ry="27" fill="#F6D5C2"/>
-  <path d="M95 100 C92 58 148 58 145 100 C138 86 124 82 110 84 C104 90 99 95 95 100Z" fill="#3B2A22"/>
-  <circle cx="111" cy="104" r="2.3" fill="#3B2A22"/><circle cx="129" cy="104" r="2.3" fill="#3B2A22"/>
-  <path d="M115 113 Q120 117 125 113" fill="none" stroke="#C0735A" stroke-width="2" stroke-linecap="round"/>
-  <ellipse cx="105" cy="111" rx="4" ry="2.4" fill="#F4A9A0" opacity=".6"/><ellipse cx="135" cy="111" rx="4" ry="2.4" fill="#F4A9A0" opacity=".6"/>
-  <!-- 手とノートPC -->
-  <path d="M84 176 C88 186 98 192 108 190" fill="none" stroke="#F7A072" stroke-width="14" stroke-linecap="round"/>
-  <path d="M156 176 C152 186 142 192 132 190" fill="none" stroke="#F7A072" stroke-width="14" stroke-linecap="round"/>
-  <circle cx="108" cy="190" r="6" fill="#F6D5C2"/><circle cx="132" cy="190" r="6" fill="#F6D5C2"/>
-  <rect x="72" y="158" width="96" height="50" rx="6" fill="#C8D3EC"/>
-  <circle cx="120" cy="183" r="5" fill="#fff" opacity=".8"/>
-  <!-- 机 -->
-  <rect x="14" y="206" width="332" height="10" rx="5" fill="#D9C4A7"/>
-  <path d="M188 206 v-14 a4 4 0 0 1 4 -4 h14 a4 4 0 0 1 4 4 v14z" fill="#0F1B45"/>
-  <path d="M210 194 a6 6 0 0 1 0 10" fill="none" stroke="#0F1B45" stroke-width="3"/>
-  <!-- オンライン通話の画面（スタッフ） -->
-  <rect x="204" y="34" width="144" height="126" rx="14" fill="#0F1B45" opacity=".08" transform="translate(3 6)"/>
-  <rect x="204" y="34" width="144" height="126" rx="14" fill="#fff"/>
-  <circle cx="218" cy="47" r="3" fill="#FF8A80"/><circle cx="228" cy="47" r="3" fill="#FFD66B"/><circle cx="238" cy="47" r="3" fill="#7CC49A"/>
-  <clipPath id="nxv"><rect x="212" y="58" width="128" height="94" rx="9"/></clipPath>
-  <g clip-path="url(#nxv)">
-    <rect x="212" y="58" width="128" height="94" fill="#DCE6FC"/>
-    <rect x="300" y="68" width="28" height="22" rx="3" fill="#fff" opacity=".7"/>
-    <path d="M246 156 C246 126 258 116 276 116 C294 116 306 126 306 156Z" fill="#0141D4"/>
-    <path d="M268 116 L276 126 L284 116Z" fill="#fff"/>
-    <rect x="270" y="104" width="12" height="14" rx="5" fill="#EDC1A8"/>
-    <path d="M300 128 C308 118 312 106 314 96" fill="none" stroke="#0141D4" stroke-width="10" stroke-linecap="round"/>
-    <circle cx="315" cy="92" r="6" fill="#F6D5C2"/>
-    <ellipse cx="276" cy="92" rx="18" ry="20" fill="#F6D5C2"/>
-    <path d="M257 92 C255 66 297 66 295 90 C288 80 272 76 260 84Z" fill="#1E2A55"/>
-    <path d="M258 94 C258 70 294 70 294 94" fill="none" stroke="#0F1B45" stroke-width="3"/>
-    <rect x="253" y="88" width="7" height="12" rx="3" fill="#0F1B45"/>
-    <path d="M257 100 C257 108 262 110 268 110" fill="none" stroke="#0F1B45" stroke-width="2.4" stroke-linecap="round"/>
-    <circle cx="269" cy="95" r="2" fill="#1E2A55"/><circle cx="283" cy="95" r="2" fill="#1E2A55"/>
-    <path d="M271 102 Q276 106 281 102" fill="none" stroke="#C0735A" stroke-width="1.8" stroke-linecap="round"/>
-  </g>
-  <rect x="218" y="136" width="44" height="12" rx="4" fill="#0F1B45" opacity=".55"/>
-  <text x="240" y="145" text-anchor="middle" font-size="7.5" fill="#fff" font-weight="700">スタッフ</text>
-  <!-- 吹き出し -->
-  <g class="nx-bub"><rect x="14" y="18" width="120" height="28" rx="14" fill="#fff"/><path d="M92 44 l10 10 l2 -12z" fill="#fff"/>
-  <text x="74" y="36" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0F1B45">何から始めたらいい？</text></g>
-  <g class="nx-bub"><rect x="210" y="170" width="136" height="28" rx="14" fill="#0141D4"/><path d="M290 172 l8 -10 l6 12z" fill="#0141D4"/>
-  <text x="278" y="188" text-anchor="middle" font-size="10.5" font-weight="700" fill="#fff">一緒に整理しましょう！</text></g>
-</svg></div>
-<div class="nx-card__b"><p class="nx-who"><span class="nx-flag">おすすめ</span>何から始めればいいか、<wbr>迷っている方</p><h3 class="nx-card__t">30分の無料相談</h3><p class="nx-card__d">スタッフがオンラインで相談に乗ります。今のキャリアの不安や、学びたいことを一緒に整理しましょう。</p>
-<p class="nx-meta"><span>無料</span>簡単30秒で登録</p><a class="btn btn--primary nx-btn" href="/contact">無料相談に申し込む<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></li><li class="nx-card "><div class="nx-card__v"><div class="nx-pam" aria-hidden="true">
+<ul class="nx-grid"><li class="nx-card nx-card--main"><div class="nx-card__v"><div class="nx-call" aria-hidden="true">
+  <div class="nx-call__bar"><span class="nx-live"></span>無料相談・オンライン<b>30:00</b></div>
+  <div class="nx-call__tiles">
+    <div class="nx-call__tile nx-call__tile--on"><svg viewBox="12 10 136 110" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+  <defs><pattern id="dtBs" width="4" height="4" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".55" fill="#2B2F3A" opacity=".45"/></pattern></defs>
+  <rect width="160" height="120" fill="#F4F7FE"/>
+  <path d="M134 32 l6 7 l-2 -7" fill="#6F97F7" stroke="#2B2F3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="112" y="18" width="32" height="16" rx="7" fill="#6F97F7" stroke="#2B2F3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="122" cy="26" r="1.4" fill="#fff"/><circle cx="128" cy="26" r="1.4" fill="#fff"/><circle cx="134" cy="26" r="1.4" fill="#fff"/><path d="M40 26 l-3 -5 M46 24 l1 -6 M52 27 l4 -4" fill="none" stroke="#6F97F7" stroke-width="2" stroke-linecap="round"/>
+  <path d="M56 74 C50 54 54 24 76 23 C98 24 101 54 95 74 C89 77 84 75 82 70 L70 70 C67 76 61 77 56 74Z" fill="#6F97F7" stroke="#2B2F3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M72 66 V76 M80 66 V76" fill="none" stroke="#2B2F3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M42 124 C44 96 56 80 76 78 C96 80 108 96 110 124Z" fill="#fff" stroke="#2B2F3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M42 124 C44 96 56 80 76 78 C96 80 108 96 110 124Z" fill="url(#dtBs)"/>
+  <path d="M68 78 L76 88 L84 78" fill="#fff" stroke="#2B2F3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M62 42 C61 58 67 67 76 67 C85 67 90 58 89 42 C84 33 68 33 62 42Z" fill="#fff" stroke="#2B2F3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M60 47 C57 30 69 23 77 23 C88 23 95 31 92 47 C86 43 81 37 79 32 C74 40 67 44 60 47Z" fill="#6F97F7" stroke="#2B2F3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="70" cy="51" r="1.7" fill="#2B2F3A"/><circle cx="82" cy="51" r="1.7" fill="#2B2F3A"/>
+  <path d="M76.5 53 l-1.6 3.4 l2.4 .4" fill="none" stroke="#2B2F3A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M71 59 Q76 63.5 81 59 Z" fill="#fff" stroke="#2B2F3A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <ellipse cx="61" cy="52" rx="3.2" ry="4.6" fill="#fff" stroke="#2B2F3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M62 57 C63 63 67 65 71 64" fill="none" stroke="#2B2F3A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg><small>スタッフ</small></div>
+    <div class="nx-call__tile"><svg viewBox="12 10 136 110" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+  <defs><pattern id="dtBy" width="4" height="4" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".55" fill="#2B2F3A" opacity=".45"/></pattern></defs>
+  <rect width="160" height="120" fill="#FFF7F0"/>
+  <path d="M26 32 l-4 7 l10 -7" fill="#6F97F7" stroke="#2B2F3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="18" y="18" width="32" height="16" rx="7" fill="#6F97F7" stroke="#2B2F3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="28" cy="26" r="1.4" fill="#fff"/><circle cx="34" cy="26" r="1.4" fill="#fff"/><circle cx="40" cy="26" r="1.4" fill="#fff"/><path d="M118 30 l-3 -5 M124 28 l1 -6 M130 31 l4 -4" fill="none" stroke="#6F97F7" stroke-width="2" stroke-linecap="round"/>
+  <path d="M76 66 V78 M86 66 V78" fill="none" stroke="#2B2F3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M48 124 C50 96 62 82 81 80 C100 82 112 96 114 124Z" fill="#fff" stroke="#2B2F3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M48 124 C50 96 62 82 81 80 C100 82 112 96 114 124Z" fill="url(#dtBy)"/>
+  <path d="M72 79 L77 90 L81 83 L85 90 L90 79" fill="#fff" stroke="#2B2F3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M81 83 V124" fill="none" stroke="#2B2F3A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M66 50 q-5 -1 -5 4 q0 5 6 5 M96 50 q5 -1 5 4 q0 5 -6 5" fill="#fff" stroke="#2B2F3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M67 42 C66 60 72 69 81 69 C90 69 96 60 95 42 C90 33 72 33 67 42Z" fill="#fff" stroke="#2B2F3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M65 48 C60 28 74 20 84 21 C96 22 101 32 97 48 C95 40 91 36 87 34 C80 40 72 42 67 42 C66 44 65 46 65 48Z" fill="#6F97F7" stroke="#2B2F3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="75" cy="52" r="1.7" fill="#2B2F3A"/><circle cx="87" cy="52" r="1.7" fill="#2B2F3A"/>
+  <path d="M81.5 54 l-1.6 3.4 l2.4 .4" fill="none" stroke="#2B2F3A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M76 61 Q81 65.5 86 61" fill="none" stroke="#2B2F3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg><small>あなた</small></div>
+  </div>
+  <div class="nx-call__ctl"><i><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></g></svg></i><i><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="7" width="12" height="10" rx="2"/><path d="M15 11l6-3v8l-6-3z"/></g></svg></i><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></i><i class="end"></i></div>
+</div></div>
+<div class="nx-card__b"><p class="nx-who"><span class="nx-flag">おすすめ</span>何から始めればいいか、<wbr>迷っている方</p><h3 class="nx-card__t">30分の無料相談</h3><p class="nx-card__d">スタッフがオンラインで相談に乗ります。今のキャリアの不安や、学びたいことを一緒に整理しましょう。</p><ul class="nx-pts"><li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i>今のキャリアの不安や悩みを整理できる</li><li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i>自分に合うコースや学び方がわかる</li><li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i>受講前の疑問や不安にすべてお答えします</li></ul>
+<p class="nx-meta"><span>無料</span>簡単30秒で登録</p><a class="btn btn--primary nx-btn" href="/contact">無料相談に申し込む<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></li><li class="nx-card nx-card--sub"><div class="nx-card__v"><div class="nx-pam" aria-hidden="true">
   <img class="nx-pam__p nx-pam__p--3" src="assets/pamphlet/p12.webp" alt="" loading="lazy">
   <img class="nx-pam__p nx-pam__p--2" src="assets/pamphlet/p04.webp" alt="" loading="lazy">
   <img class="nx-pam__p nx-pam__p--1" src="assets/pamphlet/cover.webp" alt="" loading="lazy">

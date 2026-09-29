@@ -535,6 +535,75 @@
     .popular .b-ctrl { display: flex; justify-content: center; }
     .popular .b-ctrl .nav { display: none; }
   }
+
+  /* ── 04 LEARNING PORTFOLIO ─────────────── */
+  .pf { padding: clamp(72px, 8vw, 112px) 0; background: #fff; overflow: hidden; }
+  .pf__grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.25fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+  .pf__list { display: grid; gap: 14px; margin: 28px 0 0; padding: 0; list-style: none; }
+  .pf__list li { display: flex; gap: 12px; align-items: flex-start; color: var(--ts-mid); font-size: 14px; line-height: 1.7; }
+  .pf__list b { display: block; color: var(--ink); font-size: 15px; }
+  .pf__ic { display: grid; place-items: center; flex: none; width: 24px; height: 24px; margin-top: 2px; border-radius: 50%; background: var(--tint-08); color: var(--ts-primary); }
+  .pf__ic svg { width: 14px; height: 14px; }
+  .pf__more { margin-top: 32px; }
+
+  .pf__visual { position: relative; padding: 0 0 72px; }
+  .pf__visual::before { content: ""; position: absolute; inset: 8% -20% 0 12%; border-radius: 40px; background: linear-gradient(160deg, #F4F7FE 0%, #E3EAFB 100%); z-index: 0; }
+  .pfw { position: relative; z-index: 1; border-radius: 16px; background: #fff; box-shadow: 0 1px 2px rgba(15,27,69,.05), 0 24px 56px rgba(15,27,69,.12); color: var(--ink); overflow: hidden; }
+  .pfw--main { width: 88%; }
+  .pfw--works { position: absolute; right: 0; bottom: 0; width: 46%; z-index: 2; }
+  .pfw__bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 18px; border-bottom: 1px solid #EEF0F5; font-size: 13px; }
+  .pfw__lv { display: grid; gap: 3px; width: 40%; }
+  .pfw__lv em { font-style: normal; color: var(--ts-primary); font-size: 12px; font-weight: 700; }
+  .pfw__lv i, .pfw__mix i { display: block; height: 5px; border-radius: 9px; background: #E6EAF2; overflow: hidden; }
+  .pfw__lv s { display: block; width: 26%; height: 100%; background: var(--ts-primary); }
+  .pfw__body { padding: 18px 20px 20px; }
+  .pfw__h { margin: 0; font-size: 17px; font-weight: 700; }
+  .pfw__sub { margin: 4px 0 0; color: var(--ts-mid); font-size: 11.5px; }
+  .pfw__mix { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; margin-top: 12px; font-size: 11px; color: var(--ts-mid); }
+  .pfw__mix i { flex: 0 0 140px; }
+  .pfw__mix s { display: block; width: 33%; height: 100%; margin-left: 67%; background: var(--ts-light-blue); }
+  .pfw__mix b { display: inline-block; width: 7px; height: 7px; margin-right: 4px; border-radius: 50%; }
+  .pfw__mix .d1 { background: #CDD3DE; } .pfw__mix .d2 { background: var(--ts-light-blue); }
+  .tl { position: relative; margin: 14px 0 0; padding: 0 0 0 22px; list-style: none; display: grid; gap: 8px; }
+  .tl::before { content: ""; position: absolute; left: 5px; top: 8px; bottom: 8px; width: 1.5px; background: #C9D2E8; }
+  .tl li { position: relative; }
+  .tl li::before { content: ""; position: absolute; left: -22px; top: 50%; width: 11px; height: 11px; margin-top: -5.5px; border-radius: 50%; background: #fff; box-shadow: inset 0 0 0 2px var(--ts-primary); }
+  .tl li.is-now::before { background: var(--ts-primary); }
+  .tl__start { font-size: 11.5px; } .tl__start b { margin-right: 8px; } .tl__start span { color: var(--ts-mid); }
+  .ev { position: relative; padding: 10px 12px; border: 1px solid #E6E9F0; border-radius: 10px; }
+  .ev--new { background: #FAFBFD; }
+  .ev p { margin: 0; }
+  .ev__top { display: flex; align-items: center; gap: 8px; }
+  .ev__top time { color: var(--ts-mid); font-size: 10.5px; }
+  .pf .evp { display: inline-flex; align-items: center; gap: 4px; padding: 2px 9px 2px 7px; border-radius: 999px; background: var(--ts-primary); color: #fff; font-size: 10px; font-weight: 700; white-space: nowrap; }
+  .pf .evp svg { width: 11px; height: 11px; }
+  .new { padding: 0 7px; border-radius: 999px; box-shadow: inset 0 0 0 1.2px var(--ts-primary); color: var(--ts-primary); font-size: 9.5px; font-weight: 700; }
+  .ev__t { margin-top: 5px !important; font-size: 13px; font-weight: 700; }
+  .ev__d { margin-top: 1px !important; color: var(--ts-mid); font-size: 11px; }
+  .ev__more { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); display: inline-flex; align-items: center; gap: 2px; font-size: 10.5px; font-weight: 700; color: #3F4458; }
+  .ev__more svg { width: 11px; height: 11px; }
+  .pfw__row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .sel { padding: 4px 10px; border: 1px solid #E3E6EE; border-radius: 8px; font-size: 10.5px; color: var(--ink); white-space: nowrap; }
+  .wk { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .wk__c { border: 1px solid #E6E9F0; border-radius: 10px; overflow: hidden; }
+  .wk__c img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+  .wk__c p { margin: 0; padding: 7px 9px 0; font-size: 11px; font-weight: 700; line-height: 1.4; }
+  .wk__c span { display: flex; align-items: center; gap: 3px; padding: 4px 9px 8px; color: var(--ts-mid); font-size: 10px; }
+  .wk__c svg { width: 11px; height: 11px; }
+
+  @media (max-width: 980px) {
+    .pf__grid { grid-template-columns: minmax(0, 1fr); }
+    .pf__visual { max-width: 620px; }
+  }
+  @media (max-width: 640px) {
+    .pf__visual { padding-bottom: 96px; }
+    .pf__visual::before { inset: 6% -12% 0 8%; }
+    .pfw--main { width: 100%; }
+    .pfw--works { width: 72%; }
+    .ev__more { display: none; }
+    .tl li.is-now { display: none; }
+    .pfw__mix i { flex-basis: 100px; }
+  }
 </style>
 </head>
 <body>
@@ -779,6 +848,50 @@
     
   </div>
   <div class="b-ctrl"><span class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span><span class="nav"><button type="button" class="nav__btn" data-dir="-1" aria-label="前へ"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="nav__btn on" data-dir="1" aria-label="次へ"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></span></div></div></section>
+
+  <section class="pf" id="portfolio" aria-labelledby="pf-title">
+    <div class="wrap pf__grid">
+      <div class="pf__copy">
+        <p class="sec-num">04</p>
+        <p class="sec-kicker">LEARNING PORTFOLIO</p>
+        <h2 class="sec-title" id="pf-title">学んだことも、<br>歩んだ過程も、<br>あなたの実績に。</h2>
+        <p class="sec-lead">完成した成果物だけでなく、<wbr>試行錯誤や学びの記録まで<wbr>公開できます。<wbr>あなたらしい強みを、<wbr>仲間や企業へ届けましょう。</p>
+        <ul class="pf__list">
+          <li><span class="pf__ic"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><b>実績</b>背景・課題から成果までを、ひとつの事例として紹介</div></li>
+          <li><span class="pf__ic"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><b>学びの歩み</b>学び始めから現在までの積み重ねを、時系列で</div></li>
+          <li><span class="pf__ic"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><b>匿名で公開</b>名前を出さずに、学びの記録から始められる</div></li>
+        </ul>
+        <a class="sec-more pf__more" href="/portfolio">ポートフォリオを見る<span class="sec-more__arrow"><svg class="ico" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      </div>
+
+      <div class="pf__visual" aria-hidden="true">
+        <div class="pfw pfw--main">
+          <div class="pfw__bar"><b>公開ポートフォリオ</b><span class="pfw__lv"><em>Level 4</em><i><s></s></i></span></div>
+          <div class="pfw__body">
+            <p class="pfw__h">学びの歩み</p>
+            <p class="pfw__sub">学び始めた時点から現在まで、活動の積み重ねを過去から順に確認できます。</p>
+            <div class="pfw__mix"><i><s></s></i><span><b class="d1"></b>その他</span><span><b class="d2"></b>実績公開</span></div>
+            <ol class="tl">
+              <li class="tl__start"><b>学びのスタート</b><span>2026年8月10日</span></li>
+              <li><div class="ev"><p class="ev__top"><span class="evp"><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></g></svg>実績を公開しました</span><time>12:00</time></p><p class="ev__t">学習ダッシュボード改善</p><p class="ev__d">迷わず次の学習へ進めるダッシュボードを設計</p><span class="ev__more">詳細を見る<svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></li>
+              <li><div class="ev"><p class="ev__top"><span class="evp"><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5"/></g></svg>コースを修了しました</span><time>13:00</time></p><p class="ev__t">UI改善実践コース</p><p class="ev__d">課題を小さく分け、検証結果を次の改善へつなげた</p><span class="ev__more">詳細を見る<svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></li>
+              <li class="is-now"><div class="ev ev--new"><p class="ev__top"><span class="evp"><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5"/></g></svg>学びを共有しました</span><span class="new">最新</span></p><p class="ev__t">制作レビューで学んだこと</p><p class="ev__d">フィードバックを次の制作に生かすコツ</p><span class="ev__more">詳細を見る<svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="pfw pfw--works">
+          <div class="pfw__body">
+            <div class="pfw__row"><p class="pfw__h">実績一覧</p><span class="sel">すべて（2件）</span></div>
+            <div class="wk">
+              <div class="wk__c"><img src="assets/courses/marketing.webp" alt=""><p>申込み導線の再設計</p><span><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>1</span></div>
+              <div class="wk__c"><img src="assets/courses/ai.webp" alt=""><p>学習ダッシュボード改善</p><span><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>1</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 
 <script>

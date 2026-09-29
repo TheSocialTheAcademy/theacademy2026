@@ -27,7 +27,9 @@
     --shadow-soft: 0 10px 30px rgba(15,27,69,.08), 0 1px 3px rgba(15,27,69,.05);
     --font: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
     --gutter: clamp(16px, 4vw, 50px);
-    --maxw: 1280px;
+    --maxw: 1280px;                          /* 広い幅：写真・カードが主役のセクション（中身 1180px） */
+    --maxw-narrow: calc(1080px + 2 * var(--gutter));  /* 狭い幅：文章が主役のセクション（中身 1080px） */
+    --panel-inset: clamp(12px, 2.2vw, 32px); /* 角丸の面を画面端から離す距離 */
   }
   *, *::before, *::after { box-sizing: border-box; }
   body {
@@ -42,6 +44,7 @@
   a { color: inherit; }
   .ico { width: 1em; height: 1em; flex: none; }
   .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
+  .start .wrap, .why .wrap, .flow6 .wrap { max-width: var(--maxw-narrow); }   /* 幅を2段階にしてリズムを出す */
   :focus-visible { outline: 3px solid var(--ts-light-blue); outline-offset: 3px; border-radius: 6px; }
 
   /* ── お知らせバー ─────────────────────── */
@@ -624,7 +627,10 @@
   }
 
   /* ── 05 COMMUNITY ───────────────────────── */
-  .cmty { padding: clamp(72px, 8vw, 112px) 0; background: #F7F8FB; overflow: hidden; }
+  .cmty {                                  /* 角丸の淡い青の面で区切る */
+    margin: 0 var(--panel-inset); padding: clamp(72px, 8vw, 112px) 0; border-radius: clamp(24px, 3vw, 40px);
+    background: linear-gradient(160deg, #EEF3FF 0%, #DDE7FC 100%); overflow: hidden;
+  }
   .cmty__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
   .cmty .nw { display: inline-block; }
   .cf { display: grid; gap: 16px; margin: 28px 0 0; padding: 0; list-style: none; }
@@ -639,7 +645,7 @@
   .cmty__note { margin: 12px 0 0; color: var(--ts-mid); font-size: 12px; }
 
   .cmty__visual { position: relative; display: grid; justify-items: center; padding: 8px 0 0; }
-  .cmty__blob { position: absolute; left: 50%; top: 42%; width: 118%; aspect-ratio: 1.25; transform: translate(-50%, -50%); border-radius: 48% 52% 46% 54% / 50% 44% 56% 50%; background: linear-gradient(160deg, #E8EEFD 0%, #D8E3FB 100%); }
+  .cmty__blob { position: absolute; left: 50%; top: 42%; width: 118%; aspect-ratio: 1.25; transform: translate(-50%, -50%); border-radius: 48% 52% 46% 54% / 50% 44% 56% 50%; background: rgba(255,255,255,.55); }
   .cphone { position: relative; z-index: 1; width: min(100%, 340px); border-radius: 28px; background: #fff; box-shadow: 0 0 0 7px #fff, 0 0 0 9px #0F1B45, 0 30px 60px rgba(15,27,69,.18); overflow: hidden; }
   .cphone__bar { display: flex; align-items: center; gap: 6px; padding: 14px 14px 10px; font-size: 13.5px; color: #111; }
   .cphone__back { font-size: 20px; line-height: 1; color: #555; }

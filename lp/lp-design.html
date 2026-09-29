@@ -273,7 +273,7 @@
   }
 
   /* ── 02 WHY THE ACADEMY（プロダクト画面のタイル） ── */
-  .why { padding: clamp(72px, 8vw, 112px) 0; background: linear-gradient(180deg, #FFFFFF 0%, #F7F9FE 100%); overflow: hidden; }
+  .why { padding: clamp(72px, 8vw, 112px) 0; background: #fff; overflow: hidden; }
   .points { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; margin: 0; padding: 0; list-style: none; }
   .point { position: relative; }
   .point__num { margin: 24px 0 0; color: var(--ts-primary); font-size: 13px; font-weight: 700; letter-spacing: .18em; }
@@ -879,6 +879,16 @@
   @media (max-width: 1100px) { .nxC__grid { grid-template-columns: minmax(0, 1fr); } .nxC__vis { width: 100%; max-width: 640px; margin: 8px auto 0; } }
   @media (max-width: 640px) { .nxC__cta { grid-template-columns: 1fr; } .nxC__pam { transform: scale(.75); right: -20px; bottom: -20px; } .nxC__vis { padding: 24px 8px 90px; } }
   @media (max-width: 640px) { .nxC .nx-card__t { font-size: 22px; } .nx-pts li { font-size: 13px; } .nx-call { padding: 10px; } .nx-call__tiles { gap: 6px; } .nx-call__bar { font-size: 11px; } }
+
+  /* ── 背景のリズム：強調したい 03 コース／04 ポートフォリオ／05 コミュニティーを
+        淡い青の角丸パネルでひとまとまりに。その他は白と淡いグレーで交互に ─ */
+  .popular, .pf, .cmty {
+    margin: 0 var(--panel-inset); border-radius: clamp(24px, 3vw, 40px); overflow: hidden;
+  }
+  .popular { background: linear-gradient(160deg, #EEF3FF 0%, #E2EAFD 100%); }
+  .pf, .pfC { margin-top: 14px; background: linear-gradient(200deg, #EEF3FF 0%, #E2EAFD 100%); }
+  .cmty { margin-top: 14px; margin-bottom: clamp(24px, 3vw, 40px); }
+  .pfC .cc__v { background: #fff; box-shadow: 0 10px 28px rgba(15,27,69,.07); }
 </style>
 </head>
 <body>

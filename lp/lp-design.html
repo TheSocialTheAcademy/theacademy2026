@@ -866,19 +866,19 @@
   .nx-foot a { display: inline-flex; align-items: center; gap: 4px; margin-left: 10px; color: var(--ts-primary); font-weight: 700; text-decoration: none; border-bottom: 1px solid rgba(1,65,212,.3); }
   .nx-foot .ico { width: 14px; height: 14px; }
   .nxC .nx-card__t { margin: 8px 0 0; font-size: 26px; }
-  .nxC__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+  .nxC__grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
   .nxC__item { margin-top: 30px; padding-top: 26px; border-top: 1px solid var(--line); }
   .nxC__cta { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 28px; } .nxC__cta .nx-btn { margin: 0; }
   .nxC__meta { display: flex; align-items: center; gap: 8px; margin: 12px 0 0; color: var(--ink); font-size: 12.5px; font-weight: 700; }
   .nxC__meta span { padding: 3px 8px; border-radius: 6px; background: #FFF1E9; color: #E4572E; font-size: 11.5px; }
-  .nxC__vis { position: relative; display: grid; place-items: center; padding: 56px 24px 96px; }
-  .nxC__bg { position: absolute; inset: 0 0 20px 8%; border-radius: 40px; background: linear-gradient(160deg, #EEF3FF 0%, #DDE7FC 100%); }
-  .nxC .nx-call { position: relative; width: min(100%, 520px); }
-  .nxC__pam { position: absolute; right: 0; bottom: -48px; display: grid; justify-items: center; }
+  .nxC__vis { position: relative; display: grid; place-items: center; padding: 48px 24px 88px; }
+  .nxC__bg { position: absolute; inset: 0 0 20px 0; border-radius: 40px; background: linear-gradient(160deg, #EEF3FF 0%, #DDE7FC 100%); }
+  .nxC .nx-call { position: relative; width: min(100%, 440px); }
+  .nxC__pam { position: absolute; right: 0; bottom: -40px; transform: scale(.85); transform-origin: bottom right; display: grid; justify-items: center; }
   .nxC__pam .nx-pam { height: 178px; }
   .nxC__pam p { position: relative; z-index: 5; margin: 4px 0 0; padding: 3px 10px; border-radius: 99px; background: #fff; box-shadow: var(--shadow-soft); color: var(--ink); font-size: 12px; font-weight: 700; }
   @media (max-width: 1100px) { .nxC__grid { grid-template-columns: minmax(0, 1fr); } .nxC__vis { width: 100%; max-width: 640px; margin: 8px auto 0; } }
-  @media (max-width: 640px) { .nxC__cta { grid-template-columns: 1fr; } .nxC__pam { transform: scale(.75); right: -20px; bottom: -20px; } .nxC__vis { padding: 24px 8px 90px; } }
+  @media (max-width: 640px) { .nxC__cta { grid-template-columns: 1fr; } .nxC__pam { transform: scale(.72); right: -4px; bottom: -44px; } .nxC__vis { padding: 24px 8px 104px; margin-bottom: 44px; } }
   @media (max-width: 640px) { .nxC .nx-card__t { font-size: 22px; } .nx-pts li { font-size: 13px; } .nx-call { padding: 10px; } .nx-call__tiles { gap: 6px; } .nx-call__bar { font-size: 11px; } }
 
   /* ── 背景のリズム：今の淡いグレーと白を交互に全面で敷くだけにする。
@@ -1197,13 +1197,13 @@
     <div class="nx-call__tile nx-call__tile--on"><svg viewBox="0 0 160 120" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
   <rect width="160" height="120" fill="#EEF5FC"/>
   <path d="M14 34 l-3 -5 M20 32 l1 -6 M26 35 l4 -4" fill="none" stroke="#3E78FE" stroke-width="2" stroke-linecap="round"/>
-  <image href="assets/illust/staff.webp" x="27" y="20" width="95.2" height="100"/>
+  <image href="assets/illust/staff.webp" x="35.5" y="38" width="78.1" height="82"/>
   <rect x="114" y="12" width="30" height="20" rx="10" fill="#0141D4"/><path d="M122 30 l-3 7 l9 -5z" fill="#0141D4"/><text x="129" y="26.5" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="Helvetica Neue, Arial, sans-serif">!</text>
 </svg><small>スタッフ</small></div>
     <div class="nx-call__tile"><svg viewBox="0 0 160 120" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
   <rect width="160" height="120" fill="#FFF6EE"/>
   <rect x="14" y="12" width="30" height="20" rx="10" fill="#F29A57"/><path d="M22 30 l-3 7 l9 -5z" fill="#F29A57"/><text x="29" y="26.5" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="Helvetica Neue, Arial, sans-serif">?</text><path d="M128 34 l-3 -5 M134 32 l1 -6 M140 35 l4 -4" fill="none" stroke="#F29A57" stroke-width="2" stroke-linecap="round"/>
-  <g transform="translate(3.95 -4.2) scale(1.05)">
+  <g transform="translate(16.3 17.4) scale(.86)">
   <path d="M26 124 C30 104 46 98 66 96 C70 94 72 90 72 84 M90 84 C90 90 92 94 96 96 C116 98 132 104 136 124" fill="#fff" stroke="#231815" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M66 96 C72 104 90 104 96 96" fill="none" stroke="#231815" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M55 58 C47 56 45 66 51 70 C53 72 56 72 58 70" fill="#fff" stroke="#231815" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>

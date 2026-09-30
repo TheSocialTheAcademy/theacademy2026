@@ -1,0 +1,3 @@
+# build.js の生成物（dist/index.html と同一内容）。配布時は `node build.js` で再生成する。
+sns-ops-command-center-single.html
+sns-ops-command-center-single-fixed.html

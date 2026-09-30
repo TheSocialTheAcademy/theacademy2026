@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Academy</title>
+<title>コースを探す | The Academy</title>
 <meta name="description" content="平日夜・週末の短い時間で、実務に直結するアウトプットを。仲間の歩みを励みにしながら、自分らしいキャリアを作ろう。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -983,6 +983,116 @@
   .cmty { margin: 0; border-radius: 0; }
   .cmty .cmty__blob { background: rgba(255,255,255,.9); }
   .nxC__bg { background: #fff; box-shadow: var(--shadow-soft); }
+
+  /* ══ コースを探す（/courses）══════════════════ */
+  .phead { padding: clamp(40px, 5vw, 64px) 0 clamp(32px, 4vw, 48px); background: var(--bg-gray, #F7F8FB); }
+  .crumb { display: flex; flex-wrap: wrap; gap: 8px; color: var(--ts-mid); font-size: 12px; }
+  .crumb a { color: var(--ts-mid); text-decoration: none; } .crumb a:hover { color: var(--ts-primary); }
+  .crumb [aria-current] { color: var(--ink); font-weight: 700; }
+  .phead__t { margin: 18px 0 0; color: var(--ink); font-size: clamp(32px, 4vw, 44px); font-weight: 700; letter-spacing: .02em; }
+  .phead__lead { margin: 10px 0 0; color: var(--ts-mid); font-size: 15px; line-height: 1.8; word-break: keep-all; overflow-wrap: anywhere; }
+  .phead__jump { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 0; padding: 0; list-style: none; }
+  .phead__jump a { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 99px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); color: var(--ink); font-size: 13px; font-weight: 700; text-decoration: none; }
+  .phead__jump a::after { content: "↓"; color: var(--ts-primary); }
+  .phead__jump a:hover { box-shadow: inset 0 0 0 1.5px var(--ts-primary); color: var(--ts-primary); }
+
+  /* 特集 */
+  .cfeat { padding: clamp(64px, 7vw, 96px) 0; background: #fff; }
+  .cfeat__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+  .fz { display: flex; flex-direction: column; border-radius: 24px; background: #fff; box-shadow: 0 0 0 1px var(--line); color: inherit; text-decoration: none; overflow: hidden; transition: box-shadow .2s, transform .2s; }
+  .fz:hover { transform: translateY(-2px); box-shadow: 0 0 0 1.5px var(--ts-primary), var(--shadow-soft); }
+  .fz__v { position: relative; aspect-ratio: 16 / 9; background: linear-gradient(160deg, #F4F7FE, #E3EAFB); overflow: hidden; }
+  .fz__v img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .fz__b { display: flex; flex-direction: column; flex: 1; padding: 26px 28px 28px; }
+  .fz__k { display: flex; align-items: center; gap: 10px; margin: 0; color: var(--ts-mid); font-size: 12.5px; font-weight: 700; }
+  .fz__k span { padding: 3px 10px; border-radius: 99px; background: var(--ts-primary); color: #fff; font-size: 11.5px; letter-spacing: .06em; }
+  .fz__catch { margin: 16px 0 0; color: var(--ts-primary); font-size: 14px; font-weight: 700; }
+  .fz__t { margin: 6px 0 0; color: var(--ink); font-size: 22px; font-weight: 700; line-height: 1.5; word-break: keep-all; overflow-wrap: anywhere; }
+  .fz__d { margin: 10px 0 0; color: var(--ts-mid); font-size: 14px; line-height: 1.85; }
+  .fz__tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 16px 0 0; padding: 0; list-style: none; }
+  .fz__tags li { padding: 4px 12px; border-radius: 99px; background: var(--tint-08); color: var(--ts-primary); font-size: 12px; font-weight: 700; }
+  .fz__facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 16px 0 0; padding: 0; list-style: none; }
+  .fz__facts li { display: grid; justify-items: center; gap: 2px; padding: 10px 4px; border-radius: 12px; background: var(--bg-gray, #F7F8FB); }
+  .fz__facts b { color: var(--ts-primary); font-size: 18px; } .fz__facts span { color: var(--ts-mid); font-size: 11px; }
+  .fz__go { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; padding-top: 20px; color: var(--ts-primary); font-size: 14px; font-weight: 700; }
+  .fz__go .ico { width: 16px; height: 16px; transition: transform .2s; } .fz:hover .fz__go .ico { transform: translateX(3px); }
+  /* 特集1：Slackの画面イメージ */
+  .fz__v--slack { display: grid; place-items: center; padding: 24px; }
+  .fz-slack { display: grid; grid-template-columns: 30% 1fr; width: 100%; max-width: 440px; height: 100%; border-radius: 12px; background: #fff; box-shadow: 0 14px 30px rgba(15,27,69,.14); overflow: hidden; font-size: 11px; }
+  .fz-slack__side { display: grid; align-content: start; gap: 6px; padding: 12px 10px; background: #3F0E40; color: rgba(255,255,255,.7); }
+  .fz-slack__side b { margin-bottom: 4px; color: #fff; font-size: 11.5px; }
+  .fz-slack__side .on { margin: 0 -4px; padding: 2px 4px; border-radius: 4px; background: #1164A3; color: #fff; }
+  .fz-slack__main { display: grid; align-content: start; gap: 8px; min-width: 0; padding: 10px 12px; }
+  .fz-slack__ch { margin: 0 -12px; padding: 0 12px 8px; border-bottom: 1px solid var(--line); color: var(--ink); font-weight: 700; }
+  .fz-msg { display: flex; gap: 8px; } .fz-msg b { color: var(--ink); } .fz-msg small { margin-left: 6px; color: var(--ts-mid); font-size: 9.5px; }
+  .fz-msg p { margin: 2px 0 0; color: #333; line-height: 1.5; } .fz-msg em { font-style: normal; font-weight: 700; color: var(--ts-primary); }
+  .fz-av { display: grid; place-items: center; flex: none; width: 24px; height: 24px; border-radius: 6px; background: var(--a); color: #fff; font-weight: 800; }
+  .fz-gantt { display: grid; gap: 5px; padding: 8px 10px; border-radius: 8px; background: var(--bg-gray, #F7F8FB); }
+  .fz-gantt p { margin: 0 0 2px; color: var(--ts-mid); font-size: 9.5px; font-weight: 700; }
+  .fz-gantt i { display: block; height: 7px; margin-left: var(--s); width: var(--w); border-radius: 99px; background: #6F97F7; } .fz-gantt i.late { background: #F29A57; }
+
+  /* コース一覧 */
+  .clist { padding: clamp(64px, 7vw, 96px) 0; background: var(--bg-gray, #F7F8FB); scroll-margin-top: 96px; }
+  .cfilter { display: grid; gap: 16px; margin-bottom: 28px; }
+  .goalbar { display: flex; flex-wrap: wrap; gap: 8px; }
+  .goalf { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px 0 8px; border: 0; border-radius: 99px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); color: var(--ink); font: 700 13.5px/1 var(--font); cursor: pointer; transition: background-color .15s, box-shadow .15s, color .15s; }
+  .goalf:first-child { padding-left: 18px; }
+  .goalf__i { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--tint-08); color: var(--ts-primary); }
+  .goalf__i svg { width: 16px; height: 16px; }
+  .goalf:hover { box-shadow: inset 0 0 0 1.5px var(--ts-primary); }
+  .goalf[aria-pressed="true"] { background: var(--ts-primary); box-shadow: none; color: #fff; }
+  .goalf[aria-pressed="true"] .goalf__i { background: rgba(255,255,255,.2); color: #fff; }
+  .goalf:focus-visible, .csel select:focus-visible { outline: 2px solid var(--ts-primary); outline-offset: 2px; }
+  .cfilter__row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
+  .csel { display: inline-flex; align-items: center; gap: 8px; color: var(--ts-mid); font-size: 12.5px; font-weight: 700; }
+  .csel select { height: 40px; padding: 0 34px 0 14px; border: 0; border-radius: 10px; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 9l6 6 6-6' fill='none' stroke='%230F1B45' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 10px center / 14px; box-shadow: inset 0 0 0 1px var(--line); color: var(--ink); font: 700 13px/1 var(--font); appearance: none; -webkit-appearance: none; cursor: pointer; }
+  .ccount { margin: 0 0 0 auto; color: var(--ts-mid); font-size: 13px; } .ccount b { margin-right: 2px; color: var(--ink); font-size: 18px; font-variant-numeric: tabular-nums; }
+  .cgrid.popular { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; padding: 0; background: none; overflow: visible; }
+  .cgrid .course[hidden] { display: none; }
+  .cgrid .thumb { aspect-ratio: 16 / 10; }
+  .cgrid .cv { position: relative; width: 100%; height: 100%; }
+  .cgrid .cv--img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .cv--g { display: grid; place-items: center; align-content: center; gap: 8px; background: var(--cb); color: var(--cc); overflow: hidden; }
+  .cv__dots { position: absolute; inset: 0; background: radial-gradient(circle, var(--cc) 1px, transparent 1.4px) 0 0 / 14px 14px; opacity: .12; }
+  .cv__ic { position: relative; display: grid; place-items: center; width: 52px; height: 52px; border-radius: 16px; background: #fff; box-shadow: 0 6px 16px rgba(15,27,69,.08); }
+  .cv__ic svg { width: 26px; height: 26px; }
+  .cv--g b { position: relative; font-size: 12px; letter-spacing: .06em; }
+  .cgrid .cat { background: var(--cb) !important; color: var(--cc) !important; }
+  .cempty { display: grid; justify-items: center; gap: 12px; padding: 48px 16px; border-radius: 20px; background: #fff; color: var(--ts-mid); text-align: center; }
+  .cempty[hidden], .cgrid .course[hidden] { display: none; }
+  .cempty p { margin: 0; } .cempty button { height: 40px; padding: 0 18px; border: 0; border-radius: 99px; background: var(--ts-primary); color: #fff; font: 700 13px/1 var(--font); cursor: pointer; }
+  .cnote { margin: 20px 0 0; color: var(--ts-mid); font-size: 12px; }
+
+  /* LINE帯（一覧の下） */
+  .cline { padding: 0 0 clamp(56px, 6vw, 80px); background: var(--bg-gray, #F7F8FB); }
+  .cline__band { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 16px 22px; padding: 22px 28px; border-radius: 20px; background: #fff; box-shadow: inset 0 0 0 1.5px #06C755; }
+  .cline__ic { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 16px; background: #06C755; color: #fff; } .cline__ic svg { width: 28px; height: 28px; }
+  .cline__k { margin: 0; color: #06A847; font-size: 12px; font-weight: 700; letter-spacing: .06em; }
+  .cline__t b { display: block; margin-top: 2px; color: var(--ink); font-size: 18px; } .cline__t em { font-style: normal; color: #06A847; }
+  .cline__t p:last-child { margin: 4px 0 0; color: var(--ts-mid); font-size: 13px; }
+  .cline__btn { display: inline-flex; align-items: center; gap: 8px; height: 48px; padding: 0 22px; border-radius: 99px; background: #06C755; color: #fff; font-size: 14px; font-weight: 700; text-decoration: none; white-space: nowrap; }
+  .cline__btn:hover { background: #05B04B; } .cline__btn .ico { width: 16px; height: 16px; }
+  .cnext { background: #fff; }
+
+  @media (max-width: 1100px) { .cgrid.popular { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 900px) {
+    .cfeat__grid { grid-template-columns: minmax(0, 1fr); }
+    .cgrid.popular { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .ccount { width: 100%; margin: 0; }
+  }
+  @media (max-width: 640px) {
+    .goalbar { flex-wrap: nowrap; margin: 0 calc(var(--gutter) * -1); padding: 2px var(--gutter); overflow-x: auto; scrollbar-width: none; }
+    .goalf { flex: none; }
+    .csel { flex: 1 1 calc(50% - 8px); } .csel select { flex: 1; min-width: 0; }
+    .cgrid.popular { grid-template-columns: minmax(0, 1fr); }
+    .cgrid .course { flex-direction: row; }
+    .cgrid .thumb { flex: none; width: 116px; aspect-ratio: auto; border-bottom: 0; border-right: 1px solid var(--line); }
+    .cgrid .cv__ic { width: 40px; height: 40px; border-radius: 12px; } .cgrid .cv__ic svg { width: 20px; height: 20px; } .cgrid .cv--g b { display: none; }
+    .cgrid .desc { display: none; }
+    .fz__b { padding: 22px 20px 24px; } .fz__t { font-size: 19px; } .fz__facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .fz-slack__side { display: none; } .fz-slack { grid-template-columns: 1fr; }
+    .cline__band { grid-template-columns: auto minmax(0, 1fr); padding: 20px; } .cline__btn { grid-column: 1 / -1; justify-content: center; }
+  }
 </style>
 </head>
 <body id="top">
@@ -995,12 +1105,12 @@
 
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="/" aria-label="The Academy トップへ">
+    <a class="brand" href="lp-design.html" aria-label="The Academy トップへ">
       <img src="assets/academy_logo_blue_trim.png" alt="The Academy" width="756" height="78">
       <small>ONLINE LEARNING PLATFORM</small>
     </a>
     <nav class="gnav" aria-label="グローバルナビゲーション">
-      <a href="courses.html">コースを探す</a>
+      <a href="courses.html" aria-current="page">コースを探す</a>
       <a href="/how-to-learn">学び方・受講成果</a>
       <a href="/portfolio">ポートフォリオ</a>
       <a href="/blog">学びのヒント</a>
@@ -1013,7 +1123,7 @@
       <details class="menu">
         <summary aria-label="メニュー"><svg class="ico"><use href="#i-menu"/></svg></summary>
         <nav aria-label="メニュー">
-          <a href="courses.html">コースを探す</a>
+          <a href="courses.html" aria-current="page">コースを探す</a>
           <a href="/how-to-learn">学び方・受講成果</a>
           <a href="/portfolio">ポートフォリオ</a>
           <a href="/blog">学びのヒント</a>
@@ -1027,257 +1137,53 @@
 </header>
 
 <main>
-  <section class="hero" aria-labelledby="hero-title">
-    <div class="hero__bg"><img src="assets/hero.webp" alt="明るい部屋でノートパソコンに向かい、メモを取りながら学ぶ女性" width="1672" height="941" fetchpriority="high"></div>
-    <div class="wrap">
-      <div class="hero__copy">
-        <p class="eyebrow">THE ACADEMY · ONLINE LEARNING</p>
-        <h1 class="hero__title" id="hero-title"><span>学んで、つくって、</span><br><span>次のキャリアへ。</span></h1>
-        <p class="hero__lead">平日夜・週末の短い時間で、<wbr>実務に直結する<wbr>アウトプットを。<br>仲間の歩みを<wbr>励みにしながら、<wbr>自分らしい<wbr>キャリアを作ろう。</p>
-        <div class="cta-row">
-          <a class="btn btn--primary" href="/contact">無料で相談する</a>
-          <a class="btn btn--white" href="courses.html">コースを探す</a>
-          <a class="btn btn--white" href="/portfolio">ポートフォリオを作る</a>
-        </div>
-        <ul class="stats" aria-label="The Academy の特長">
-          <li><small>実践コース</small><b>10+</b></li>
-          <li><small>平均満足度</small><b>4.2<sup>※</sup></b></li>
-          <li><small>続けやすい設計</small><b>週2h〜</b></li>
-        </ul>
-        <p class="hero__note">※受講生アンケート（5段階評価）の平均値</p>
-      </div>
-    </div>
-    <span class="scroll" aria-hidden="true">SCROLL</span>
-  </section>
-
-  <section class="start" id="start-here" aria-labelledby="start-title">
-    <div class="wrap">
-      <header class="sec-head">
-        <div>
-          <p class="sec-num">01</p>
-          <p class="sec-kicker">START HERE</p>
-          <h2 class="sec-title" id="start-title">いまの目的から探す</h2>
-          <p class="sec-lead">やってみたいことから、<wbr>ぴったりの学びを<wbr>見つけよう。</p>
-        </div>
-        <a class="sec-more" href="courses.html">全てのコースへ<span class="sec-more__arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span></a>
-      </header>
-      <ul class="goals">
-        <li>
-          <a class="goal" href="courses.html#goal-it">
-            <svg class="goal__illust" viewBox="0 0 120 120" aria-hidden="true"><path d="M60 14c24 0 48 13 48 43s-20 51-50 51S12 92 12 63s24-49 48-49z" fill="#EEF2FC"/>
-<rect x="31" y="40" width="64" height="42" rx="5" fill="#B3C7F4"/>
-<rect x="25" y="34" width="64" height="42" rx="5" fill="#FFFFFF" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M21 90h84l-6 7H27z" fill="#B3C7F4"/>
-<path d="M15 84h84l-6 8H21z" fill="#FFFFFF" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="33" y="43" width="15" height="10" rx="2.5" fill="#0141D4"/>
-<rect x="63" y="58" width="15" height="10" rx="2.5" fill="#F76B38"/>
-<path d="M48 48h7v15h8" fill="none" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/>
-<path d="M96 17 Q96 28 107 28 Q96 28 96 39 Q96 28 85 28 Q96 28 96 17Z" fill="#F76B38" stroke="#012270" stroke-width="2.4" stroke-linejoin="round"/>
-<path d="M106 44 Q106 50 112 50 Q106 50 106 56 Q106 50 100 50 Q106 50 106 44Z" fill="#0141D4" stroke="#012270" stroke-width="2.4" stroke-linejoin="round"/></svg>
-            <h3 class="goal__title">仕事を<wbr>効率化したい</h3>
-            <p class="goal__cat">IT・デジタル</p>
-            <span class="goal__arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
-          </a>
-        </li>
-        <li>
-          <a class="goal" href="courses.html#goal-mk">
-            <svg class="goal__illust" viewBox="0 0 120 120" aria-hidden="true"><path d="M60 14c24 0 48 13 48 43s-20 51-50 51S12 92 12 63s24-49 48-49z" fill="#EEF2FC"/>
-<path d="M36 62 76 42v52L36 78z" fill="#B3C7F4"/>
-<path d="M30 56 70 36v52L30 72z" fill="#FFFFFF" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="19" y="53" width="13" height="22" rx="4" fill="#0141D4" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<ellipse cx="70" cy="62" rx="7" ry="26" fill="#DCE5FA" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M38 75l4 15h9l-3-13" fill="#FFFFFF" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M85 47l8-6M87 63h10M85 79l8 6" fill="none" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M94 33c-12-7-9-18-1-13 8-5 12 6 1 13z" fill="#F76B38" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/></svg>
-            <h3 class="goal__title">発信を<wbr>強みにしたい</h3>
-            <p class="goal__cat">マーケティング</p>
-            <span class="goal__arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
-          </a>
-        </li>
-        <li>
-          <a class="goal" href="courses.html#goal-en">
-            <svg class="goal__illust" viewBox="0 0 120 120" aria-hidden="true"><path d="M60 14c24 0 48 13 48 43s-20 51-50 51S12 92 12 63s24-49 48-49z" fill="#EEF2FC"/>
-<path d="M22 44a10 10 0 0 1 10-10h34a10 10 0 0 1 10 10v18a10 10 0 0 1-10 10H40l-10 9 1-9a10 10 0 0 1-9-10z" fill="#B3C7F4"/>
-<path d="M16 38a10 10 0 0 1 10-10h34a10 10 0 0 1 10 10v18a10 10 0 0 1-10 10H34l-10 9 1-9a10 10 0 0 1-9-10z" fill="#FFFFFF" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M34 58 43 37l9 21M37.5 50h11" fill="none" stroke="#0141D4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M58 62a10 10 0 0 1 10-10h26a10 10 0 0 1 10 10v16a10 10 0 0 1-10 10h-2l1 9-10-9H68a10 10 0 0 1-10-10z" fill="#0141D4" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="81" cy="70" r="10" fill="none" stroke="#FFFFFF" stroke-width="2.4"/>
-<ellipse cx="81" cy="70" rx="4.2" ry="10" fill="none" stroke="#FFFFFF" stroke-width="2.4"/>
-<path d="M71 70h20" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round"/>
-<path d="M100 22 Q100 30 108 30 Q100 30 100 38 Q100 30 92 30 Q100 30 100 22Z" fill="#F76B38" stroke="#012270" stroke-width="2.4" stroke-linejoin="round"/></svg>
-            <h3 class="goal__title">英語で<wbr>選択肢を<wbr>広げたい</h3>
-            <p class="goal__cat">英語・TOEIC</p>
-            <span class="goal__arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
-          </a>
-        </li>
-        <li>
-          <a class="goal" href="/contact">
-            <svg class="goal__illust" viewBox="0 0 120 120" aria-hidden="true"><path d="M60 14c24 0 48 13 48 43s-20 51-50 51S12 92 12 63s24-49 48-49z" fill="#EEF2FC"/>
-<path d="M86 98H36" fill="none" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="62" y="46" width="9" height="51" rx="2" fill="#B3C7F4"/>
-<rect x="56" y="40" width="9" height="57" rx="2" fill="#FFFFFF" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M28 42h36v14H28l-8-7z" fill="#B3C7F4"/>
-<path d="M22 36h36v14H22l-8-7z" fill="#FFFFFF" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M63 58h36l8 7-8 7H63z" fill="#0141D4" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="88" cy="25" r="13" fill="#F76B38" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M83.5 21.5a4.6 4.6 0 1 1 6.6 4.2c-1.4.8-2.1 1.7-2.1 3.3" fill="none" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round"/>
-<circle cx="88" cy="34" r="1.7" fill="#FFFFFF"/></svg>
-            <h3 class="goal__title">まだ<wbr>決まっていない</h3>
-            <p class="goal__cat">相談して一緒に整理</p>
-            <span class="goal__arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="why" id="why" aria-labelledby="why-title">
-    <div class="wrap">
-      <header class="sec-head">
-        <div>
-          <p class="sec-num">02</p>
-          <p class="sec-kicker">WHY THE ACADEMY</p>
-          <h2 class="sec-title" id="why-title">学ぶ、残す、飛び込む。</h2>
-          <p class="sec-lead">3つの仕組みで、<wbr>忙しくても学びを<wbr>「できる」に変え、<wbr>キャリアへ<wbr>つなげていきます。</p>
-        </div>
-      </header>
-      <ul class="points" tabindex="0" aria-label="3つの仕組み"><li class="point"><div class="t3 t3--blue" aria-hidden="true"><div class="t3-canvas">
-  <span class="t3-orb"></span>
-  <div class="t3-card t3-course">
-    <div class="t3-thumb">
-  <div class="sc sc--back">
-    <span class="sc__line o"></span>
-    <span class="gt" style="left:22%;top:34%;width:30%"></span><span class="gt o" style="left:40%;top:50%;width:34%"></span><span class="gt" style="left:30%;top:66%;width:24%"></span><span class="gt" style="left:58%;top:80%;width:22%"></span>
+<section class="phead" aria-labelledby="page-title"><div class="wrap">
+<nav class="crumb" aria-label="パンくずリスト"><a href="lp-design.html">トップ</a><span aria-hidden="true">/</span><span aria-current="page">コースを探す</span></nav>
+<h1 class="phead__t" id="page-title">コースを探す</h1>
+<p class="phead__lead">目的やカテゴリから、<wbr>あなたに合うコースを選べます。</p>
+<ul class="phead__jump"><li><a href="#featured">特集</a></li><li><a href="#list">コース一覧</a></li><li><a href="#next">迷ったら</a></li></ul>
+</div></section><section class="cfeat" id="featured" aria-labelledby="featured-title"><div class="wrap">
+<header class="sec-head"><div><p class="sec-kicker">FEATURED</p><h2 class="sec-title" id="featured-title">特集</h2><p class="sec-lead">いま注目のツールとプログラムを紹介します。</p></div></header>
+<div class="cfeat__grid">
+<a class="fz" href="/courses/slack-gas-task"><div class="fz__v fz__v--slack"><div class="fz-slack" aria-hidden="true">
+  <div class="fz-slack__side"><b>The Academy</b><span># general</span><span class="on"># project-a</span><span># faq</span><span># random</span></div>
+  <div class="fz-slack__main">
+    <p class="fz-slack__ch"># project-a</p>
+    <div class="fz-msg"><span class="fz-av" style="--a:#E46A1F">B</span><div><b>タスクBot</b><small>9:00</small><p>今日の期限：<em>企画書レビュー</em>（担当：さとう）</p></div></div>
+    <div class="fz-msg"><span class="fz-av" style="--a:#1E9E62">S</span><div><b>さとう</b><small>9:12</small><p>レビュー完了しました ✅</p></div></div>
+    <div class="fz-gantt"><p>ガントチャート</p><i style="--s:0;--w:45%"></i><i style="--s:30%;--w:40%"></i><i style="--s:60%;--w:35%" class="late"></i></div>
   </div>
-  <div class="sc sc--left">
-    <span class="ph" style="background-position:48% 30%"></span><span class="ph" style="background-position:80% 70%"></span><span class="ph" style="background-position:20% 60%"></span>
-    <span class="dn"></span><span class="mb"><i style="height:40%"></i><i style="height:70%"></i><i style="height:55%"></i><i style="height:90%"></i><i style="height:65%"></i></span>
-  </div>
-  <div class="sc sc--front">
-    <span class="flow"><i></i><i></i><i></i><i class="o"></i><i></i></span>
-    <span class="ph ph--l" style="background-position:52% 28%"></span><span class="ph ph--l" style="background-position:88% 72%"></span>
-    <span class="kpis"><span class="mb"><i style="height:30%"></i><i style="height:55%"></i><i style="height:40%"></i><i style="height:80%"></i></span><span class="mb"><i style="height:50%"></i><i style="height:35%"></i><i style="height:70%"></i><i style="height:60%"></i></span><span class="dn dn--s"></span></span>
-  </div>
-</div>
-    <div class="t3-course__body">
-      <p class="t3-h">SNSマーケティング実践</p>
-      <p class="t3-meta">受講期限 2026/10/15</p>
-      <p class="t3-txt">第4章 運用と数値の見方</p>
-      <div class="t3-prog"><span><i style="width:30%"></i></span><b>30%</b></div>
-    </div>
-    <div class="t3-course__foot">続きから学ぶ<svg class="t3-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-  </div>
-</div></div><p class="point__num">POINT 01</p><h3 class="point__title">コースで<wbr><em>学ぶ</em></h3><p class="point__text">学びたい分野を選び、<wbr>演習とテンプレートで<wbr>実践的に身につける。</p><a class="point__link" href="#popular">人気のコースを見る<span aria-hidden="true">↓</span></a></li><li class="point"><div class="t3 t3--sand" aria-hidden="true"><div class="t3-canvas">
-  <span class="t3-orb"></span>
-  <div class="t3-card t3-journey">
-    <p class="t3-h">学びの歩み</p>
-    <p class="t3-meta">活動の積み重ねを、過去から順に確認できます。</p>
-    <ol class="t3-tl">
-      <li class="t3-tl__start"><b>学びのスタート</b><span>2026年8月9日</span></li>
-      <li><div class="t3-ev"><p class="t3-ev__top"><span class="t3-pill"><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></g></svg>実績を公開しました</span><time>12:00</time></p><p class="t3-ev__title">SNSキャンペーン企画書</p><p class="t3-ev__desc">顧客理解からKPIまでを1枚に</p><span class="t3-more">詳細を見る<svg class="t3-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></li>
-      <li class="is-now"><div class="t3-ev t3-ev--new"><p class="t3-ev__top"><span class="t3-pill"><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5"/></g></svg>コースを修了しました</span><span class="t3-new">最新</span></p><p class="t3-ev__title">SNSマーケティング実践</p><p class="t3-ev__desc">企画から数値改善までを実践した</p></div></li>
-    </ol>
-  </div>
-</div></div><p class="point__num">POINT 02</p><h3 class="point__title">学習ポートフォリオで<wbr><em>残す</em></h3><p class="point__text">成果物と学びの歩みを記録。<wbr>ロールモデルを見つけ、<wbr>続ける力に。</p><a class="point__link" href="#portfolio">ポートフォリオを見る<span aria-hidden="true">↓</span></a></li><li class="point"><div class="t3 t3--mint" aria-hidden="true"><div class="t3-canvas">
-  <span class="t3-orb"></span>
-  <div class="t3-card t3-comm">
-    <div class="t3-row"><p class="t3-h">コミュニティー</p><span class="t3-select">すべて<svg class="t3-chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-    <div class="t3-tags"><span class="on">IT・デジタル</span><span class="on">マーケティング</span><span>英語・TOEIC</span></div>
-    <div class="t3-ev"><p class="t3-ev__top"><span class="t3-pill"><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 19a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.6"/><path d="M15.5 14.2A5 5 0 0 1 21 19"/></g></svg>イベントに参加しました</span><time>19:00</time></p><p class="t3-ev__title">はじめての勉強会</p><p class="t3-ev__desc">気になる分野の場に、飛び込んだ</p><span class="t3-more">詳細を見る<svg class="t3-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-    <div class="t3-ev t3-ev--new"><p class="t3-ev__top"><span class="t3-pill t3-pill--line"><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 19a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.6"/><path d="M15.5 14.2A5 5 0 0 1 21 19"/></g></svg>仲間とつながりました</span><span class="t3-new">最新</span></p>
-      <div class="t3-crew"><span class="av">A</span><span class="av">K</span><span class="av">Y</span><span class="t3-msg">一緒にやってみよう！</span></div>
-    </div>
-  </div>
-</div></div><p class="point__num">POINT 03</p><h3 class="point__title">コミュニティーに<wbr><em>飛び込む</em></h3><p class="point__text">興味のある場に参加して、<wbr>新しいことを<wbr>体験しながら学ぶ。</p><a class="point__link" href="#community">コミュニティーを見る<span aria-hidden="true">↓</span></a></li></ul>
-      <p class="swipe-hint" aria-hidden="true">横にスワイプして3つの仕組みを見る →</p>
-    </div>
-  </section>
-
-  <section class="popular" id="popular" aria-labelledby="popular-title"><div class="wrap"><header class="sec-head"><div><p class="sec-num">03</p><p class="sec-kicker">POPULAR COURSES</p><h2 class="sec-title" id="popular-title">人気のコース</h2><p class="sec-lead">今日から仕事に役立つ、<wbr>実践的なテーマを集めました。</p></div><a class="sec-more" href="courses.html">すべてのコースを見る<span class="sec-more__arrow"><svg class="ico" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></header>
-  <div class="b-track" id="popularTrack" tabindex="0" aria-label="人気のコース一覧"><a class="course" href="/courses/sns-marketing"><div class="thumb"><div class="cv cv--img cv--f"><img src="assets/photos/sns-phone.webp" loading="lazy" alt="">
-<span class="fpill"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" fill="currentColor"/></svg>投稿を公開しました</span>
-<div class="fchip"><span class="fchip__i"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><b>企画書を提出しました</b><small>SNSキャンペーン企画書</small></div></div></div></div><div class="body"><span class="cat">マーケティング</span><h3>SNSマーケティング実践</h3><p class="meta"><span><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></g></svg>8週間</span><span><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></svg>週2〜3時間</span></p><p class="desc">顧客理解、企画設計、投稿制作、数値改善までを一つのキャンペーンとして実践します。</p><div class="foot"><p class="p"><b class="price">¥—</b><span class="todo">価格を入れる</span></p><span class="more">詳しく見る<i><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></i></span></div></div></a><a class="course" href="/courses/ai-efficiency"><div class="thumb"><div class="cv cv--img cv--f"><img src="assets/photos/ai-laptop.webp" loading="lazy" alt="">
-<span class="fpill"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 3c.6 4.6 2.4 6.4 7 7-4.6.6-6.4 2.4-7 7-.6-4.6-2.4-6.4-7-7 4.6-.6 6.4-2.4 7-7z"/></svg>AIで下書き</span>
-<div class="fchip"><span class="fchip__i"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><b>仕組みができました</b><small>資料作成の自動化フロー</small></div></div></div></div><div class="body"><span class="cat">IT・デジタル</span><h3>生成AI 業務改善</h3><p class="meta"><span><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></g></svg>6週間</span><span><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></svg>週2時間</span></p><p class="desc">生成AIとノーコードを組み合わせ、調査・資料作成・定型業務を効率化する仕組みを作ります。</p><div class="foot"><p class="p"><b class="price">¥—</b><span class="todo">価格を入れる</span></p><span class="more">詳しく見る<i><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></i></span></div></div></a><a class="course" href="/courses/toeic-700"><div class="thumb"><div class="cv cv--img cv--f"><img src="assets/photos/toeic-study.webp" loading="lazy" alt="">
-<span class="fpill"><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/></g></svg>リスニング</span>
-<div class="fchip"><span class="fchip__i"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><b>今週のレッスン完了</b><small>週2回・コーチと実践</small></div></div></div></div><div class="body"><span class="cat">英語・TOEIC</span><h3>TOEIC L&amp;R 700点突破</h3><p class="meta"><span><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></g></svg>3か月</span><span><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></svg>週2回・全24回</span></p><p class="desc">海外経験豊富なコーチと、文法・リスニング・読解・会話をバランスよく強化します。</p><div class="foot"><p class="p"><b class="price">¥—</b><span class="todo">価格を入れる</span></p><span class="more">詳しく見る<i><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></i></span></div></div></a>
-    <div class="line-card"><p class="lc-k">LINE限定クーポン</p><p class="lc-big">全コース<br><b>500<small>円OFF</small></b></p><p class="lc-t">クーポンは<wbr>LINEからのみ<wbr>配信しています</p><svg class="lc-ill" viewBox="0 0 200 150" aria-hidden="true">
-    <ellipse cx="100" cy="80" rx="78" ry="62" fill="#FFFFFF" opacity=".16"/>
-    <!-- スマホ -->
-    <rect x="62" y="22" width="64" height="112" rx="12" fill="#0A9E46" opacity=".55" transform="translate(6 6)"/>
-    <rect x="62" y="22" width="64" height="112" rx="12" fill="#FFFFFF" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M84 30h20" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-    <!-- 吹き出し（受信メッセージ） -->
-    <path d="M72 44h36a6 6 0 0 1 6 6v10a6 6 0 0 1-6 6H84l-8 6 1-6h-5a6 6 0 0 1-6-6V50a6 6 0 0 1 6-6z" fill="#06C755" stroke="#012270" stroke-width="2.6" stroke-linejoin="round"/>
-    <circle cx="82" cy="55" r="2.6" fill="#fff"/><circle cx="91" cy="55" r="2.6" fill="#fff"/><circle cx="100" cy="55" r="2.6" fill="#fff"/>
-    <!-- クーポン券 -->
-    <g transform="rotate(-10 128 98)">
-      <path d="M92 82h72a5 5 0 0 1 5 5v6a6 6 0 0 0 0 12v6a5 5 0 0 1-5 5H92a5 5 0 0 1-5-5v-6a6 6 0 0 0 0-12v-6a5 5 0 0 1 5-5z" fill="#B7EFCF" transform="translate(5 5)"/>
-      <path d="M92 82h72a5 5 0 0 1 5 5v6a6 6 0 0 0 0 12v6a5 5 0 0 1-5 5H92a5 5 0 0 1-5-5v-6a6 6 0 0 0 0-12v-6a5 5 0 0 1 5-5z" fill="#FFFFFF" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M114 86v28" stroke="#012270" stroke-width="2.2" stroke-dasharray="3 4" stroke-linecap="round"/>
-      <text x="142" y="104" text-anchor="middle" font-family="'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif" font-weight="900" font-size="15" fill="#F76B38">500<tspan font-size="9">円</tspan></text>
-      <circle cx="100" cy="99" r="5" fill="#F76B38" stroke="#012270" stroke-width="2.4"/>
-    </g>
-    <!-- きらめき・ハート -->
-    <path d="M40 34 Q40 44 50 44 Q40 44 40 54 Q40 44 30 44 Q40 44 40 34Z" fill="#FFD66B" stroke="#012270" stroke-width="2.4" stroke-linejoin="round"/>
-    <path d="M160 22 Q160 29 167 29 Q160 29 160 36 Q160 29 153 29 Q160 29 160 22Z" fill="#FFFFFF" stroke="#012270" stroke-width="2.2" stroke-linejoin="round"/>
-    <path d="M44 104c-10-6-8-16-1-12 7-4 9 6 1 12z" fill="#F76B38" stroke="#012270" stroke-width="2.4" stroke-linejoin="round"/>
-    <circle cx="170" cy="60" r="4" fill="#FFD66B" stroke="#012270" stroke-width="2"/>
-  </svg><div class="lc-cta"><a class="line__btn" href="/beginners#line">LINEを追加する</a></div></div>
-    
-  </div>
-  <div class="b-ctrl"><span class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i></span><span class="nav"><button type="button" class="nav__btn" data-dir="-1" aria-label="前へ"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="nav__btn on" data-dir="1" aria-label="次へ"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></span></div></div></section>
-
-  <section class="pf pfC" id="portfolio" aria-labelledby="pf-title"><div class="wrap">
-<header class="sec-head"><div>
-        <p class="sec-num">04</p>
-        <p class="sec-kicker">LEARNING PORTFOLIO</p>
-        <h2 class="sec-title" id="pf-title"><span class="nw">学んだことも、</span><span class="nw">歩んだ過程も、</span><span class="nw">あなたの実績に。</span></h2>
-        <p class="sec-lead">完成した成果物だけでなく、<wbr>試行錯誤や学びの記録まで<wbr>公開できます。<wbr>あなたらしい強みを、<wbr>仲間や企業へ届けましょう。</p>
-        
-        
-      </div><a class="sec-more pf__more" href="/portfolio">ポートフォリオを見る<span class="sec-more__arrow"><svg class="ico" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></header>
-<ul class="points cc3" tabindex="0" aria-label="ポートフォリオでできること">
-<li class="cc"><div class="cc__v" aria-hidden="true"><div class="pfw cc__w"><div class="pfw__body">
-            <div class="pfw__row"><p class="pfw__h">実績一覧</p><span class="sel">すべて（2件）</span></div>
-            <div class="wk">
-              <div class="wk__c"><img src="assets/courses/marketing.webp" alt=""><p>申込み導線の再設計</p><span><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>1</span></div>
-              <div class="wk__c"><img src="assets/courses/ai.webp" alt=""><p>学習ダッシュボード改善</p><span><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>1</span></div>
-            </div>
-          </div></div></div><p class="point__num">01</p><h3 class="point__title">実績を<em>見せる</em></h3><p class="point__text">背景・課題から成果までを、ひとつの事例として紹介。</p></li>
-<li class="cc"><div class="cc__v" aria-hidden="true"><div class="pfw cc__w"><div class="pfw__body"><p class="pfw__h">学びの歩み</p><ol class="tl"><li><div class="ev"><p class="ev__top"><span class="evp"><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></g></svg>実績を公開しました</span><time>12:00</time></p><p class="ev__t">学習ダッシュボード改善</p><p class="ev__d">迷わず次の学習へ進めるダッシュボードを設計</p><span class="ev__more">詳細を見る<svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></li><li><div class="ev"><p class="ev__top"><span class="evp"><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5"/></g></svg>コースを修了しました</span><time>13:00</time></p><p class="ev__t">UI改善実践コース</p><p class="ev__d">課題を小さく分け、検証結果を次の改善へつなげた</p><span class="ev__more">詳細を見る<svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></li><li class="is-now"><div class="ev ev--new"><p class="ev__top"><span class="evp"><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5"/></g></svg>学びを共有しました</span><span class="new">最新</span></p><p class="ev__t">制作レビューで学んだこと</p><p class="ev__d">フィードバックを次の制作に生かすコツ</p><span class="ev__more">詳細を見る<svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></li></ol></div></div></div><p class="point__num">02</p><h3 class="point__title">歩みを<em>残す</em></h3><p class="point__text">学び始めから現在までの積み重ねを、時系列で。</p></li>
-<li class="cc"><div class="cc__v" aria-hidden="true"><div class="pfw cc__w"><div class="pfw__body"><div class="prof"><span class="av">匿名</span><div><b>匿名ユーザー</b><small>営業企画 × データ分析を学習中</small></div></div><p class="vis">「感覚とデータの両方から、選ばれる体験をつくりたい。」</p><div class="tags"><span>顧客理解</span><span>仮説づくり</span><span>週3リモート</span></div><div class="fol"><span>フォローする</span></div></div></div></div><p class="point__num">03</p><h3 class="point__title">あなたらしさを<em>伝える</em></h3><p class="point__text">ビジョンや強みを、匿名のまま公開できる。</p></li>
-</ul>
-      <p class="swipe-hint" aria-hidden="true">横にスワイプして見る →</p></div></section>
-
-  <section class="cmty cmtyB" id="community" aria-labelledby="cmty-title"><div class="wrap cmty__grid">
-<div class="cmty__copy"><p class="sec-num">05</p><p class="sec-kicker">COMMUNITY</p>
-<h2 class="sec-title" id="cmty-title"><span class="nw">「やってみたい」を</span><span class="nw">持ち寄る</span><br><span class="nw">実践コミュニティー</span></h2><p class="sec-lead">「やってみたい」を、<wbr>街と世界をフィールドに学ぶ。<wbr>メンバーの「やってみたい」を<wbr>100個かなえたら解散する、<wbr>期間限定のコミュニティーです。</p><ul class="chips"><li><span class="cf__ic"><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z"/></g></svg></span><b>参加者主体でつくる</b></li><li><span class="cf__ic"><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20l6-12 4 6 3-4 5 10z"/><circle cx="17" cy="6" r="2"/></g></svg></span><b>体験から学ぶ</b></li><li><span class="cf__ic"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span><b>互いに支え合う</b></li></ul><div class="cmty__cta"><a class="btn btn--primary" href="https://forms.gle/ouCw7EHp4fwjCqHR6" target="_blank" rel="noopener">申し込む<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div><p class="cmty__note">＊参加条件（受講生限定／どなたでも）・費用は、決まり次第こちらに記載します。</p></div>
-<div class="cmty__visual"><div class="cphone cphone--short" aria-hidden="true">
-  <div class="cphone__bar"><span class="cphone__back">‹</span><b>「やってみたい」部</b><span class="cphone__n">(32)</span><span class="cphone__stack"><svg class="avt" viewBox="-40 -40 80 80" width="22" height="22" aria-hidden="true"><clipPath id="av022"><circle r="38"/></clipPath><circle r="38" fill="#FFE8D9"/><g clip-path="url(#av022)"><g transform="translate(0 14) scale(1.35)"><path d="M-26 14 C-30 -22 30 -22 26 14 L20 14 C20 -2 4 -8 -6 -12 C-10 -4 -20 0 -20 14Z" fill="#3B2A22" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-30 70 C-30 40 -16 30 0 30 C16 30 30 40 30 70Z" fill="#F76B38" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-6 22 v10 h12 v-10" fill="#FDE4D6" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="0" cy="0" r="22" fill="#FDE4D6" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-21 -4 C-18 -24 18 -24 21 -4 C6 -12 -6 -12 -21 -4Z" fill="#3B2A22" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="-8" cy="2" r="2.4" fill="#012270"/><circle cx="8" cy="2" r="2.4" fill="#012270"/><path d="M-6 10 Q0 19 6 10 Z" fill="#F76B38" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/><ellipse cx="-14" cy="9" rx="4" ry="2.6" fill="#F9A98A" opacity=".7"/><ellipse cx="14" cy="9" rx="4" ry="2.6" fill="#F9A98A" opacity=".7"/></g></g><circle r="38" fill="none" stroke="#012270" stroke-width="2.5"/></svg><svg class="avt" viewBox="-40 -40 80 80" width="22" height="22" aria-hidden="true"><clipPath id="av122"><circle r="38"/></clipPath><circle r="38" fill="#E3EAFB"/><g clip-path="url(#av122)"><g transform="translate(0 14) scale(1.35)"><path d="M-30 70 C-30 40 -16 30 0 30 C16 30 30 40 30 70Z" fill="#0141D4" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-6 22 v10 h12 v-10" fill="#FDE4D6" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="0" cy="0" r="22" fill="#FDE4D6" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-23 2 C-24 -28 24 -30 23 -2 C14 -10 -4 -12 -23 2Z" fill="#012270" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="-8" cy="2" r="2.4" fill="#012270"/><circle cx="8" cy="2" r="2.4" fill="#012270"/><path d="M-5 11 Q0 16 5 11" fill="none" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/><ellipse cx="-14" cy="9" rx="4" ry="2.6" fill="#F9A98A" opacity=".7"/><ellipse cx="14" cy="9" rx="4" ry="2.6" fill="#F9A98A" opacity=".7"/></g></g><circle r="38" fill="none" stroke="#012270" stroke-width="2.5"/></svg><svg class="avt" viewBox="-40 -40 80 80" width="22" height="22" aria-hidden="true"><clipPath id="av222"><circle r="38"/></clipPath><circle r="38" fill="#E2F4EA"/><g clip-path="url(#av222)"><g transform="translate(0 14) scale(1.35)"><path d="M-30 70 C-30 40 -16 30 0 30 C16 30 30 40 30 70Z" fill="#27AE60" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-6 22 v10 h12 v-10" fill="#FDE4D6" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="0" cy="0" r="22" fill="#FDE4D6" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="0" cy="-26" r="9" fill="#5A3A28" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-23 2 C-22 -26 22 -26 23 2 C10 -8 -10 -8 -23 2Z" fill="#5A3A28" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-11 2 q3 -3 6 0" fill="none" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/><circle cx="8" cy="2" r="2.4" fill="#012270"/><path d="M-5 11 Q0 16 5 11" fill="none" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/><ellipse cx="-14" cy="9" rx="4" ry="2.6" fill="#F9A98A" opacity=".7"/><ellipse cx="14" cy="9" rx="4" ry="2.6" fill="#F9A98A" opacity=".7"/></g></g><circle r="38" fill="none" stroke="#012270" stroke-width="2.5"/></svg></span></div>
-  <div class="cphone__goal"><span>やってみたい、かなえた数</span><b>23<small> / 100</small></b><i><s></s></i></div>
-  <div class="cphone__talk">
-    <div class="cm"><div class="cm__av"><svg class="avt" viewBox="-40 -40 80 80" width="36" height="36" aria-hidden="true"><clipPath id="av036"><circle r="38"/></clipPath><circle r="38" fill="#FFE8D9"/><g clip-path="url(#av036)"><g transform="translate(0 14) scale(1.35)"><path d="M-26 14 C-30 -22 30 -22 26 14 L20 14 C20 -2 4 -8 -6 -12 C-10 -4 -20 0 -20 14Z" fill="#3B2A22" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-30 70 C-30 40 -16 30 0 30 C16 30 30 40 30 70Z" fill="#F76B38" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-6 22 v10 h12 v-10" fill="#FDE4D6" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="0" cy="0" r="22" fill="#FDE4D6" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-21 -4 C-18 -24 18 -24 21 -4 C6 -12 -6 -12 -21 -4Z" fill="#3B2A22" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="-8" cy="2" r="2.4" fill="#012270"/><circle cx="8" cy="2" r="2.4" fill="#012270"/><path d="M-6 10 Q0 19 6 10 Z" fill="#F76B38" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/><ellipse cx="-14" cy="9" rx="4" ry="2.6" fill="#F9A98A" opacity=".7"/><ellipse cx="14" cy="9" rx="4" ry="2.6" fill="#F9A98A" opacity=".7"/></g></g><circle r="38" fill="none" stroke="#012270" stroke-width="2.5"/></svg></div><div><p class="cm__name">ゆい</p><div class="cm__row"><p class="cm__b">商店街のお店のSNS、<br>みんなで手伝ってみたい！</p></div></div></div>
-    <div class="cm"><div class="cm__av"><svg class="avt" viewBox="-40 -40 80 80" width="36" height="36" aria-hidden="true"><clipPath id="av336"><circle r="38"/></clipPath><circle r="38" fill="#FFF4D1"/><g clip-path="url(#av336)"><g transform="translate(0 14) scale(1.35)"><path d="M-30 70 C-30 40 -16 30 0 30 C16 30 30 40 30 70Z" fill="#3E78FE" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-6 22 v10 h12 v-10" fill="#FDE4D6" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="0" cy="0" r="22" fill="#FDE4D6" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-22 -2 C-22 -28 22 -28 22 -2Z" fill="#FFD66B" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 -3 h14" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="-8" cy="2" r="2.4" fill="#012270"/><circle cx="8" cy="2" r="2.4" fill="#012270"/><path d="M-6 10 Q0 19 6 10 Z" fill="#F76B38" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/><ellipse cx="-14" cy="9" rx="4" ry="2.6" fill="#F9A98A" opacity=".7"/><ellipse cx="14" cy="9" rx="4" ry="2.6" fill="#F9A98A" opacity=".7"/></g></g><circle r="38" fill="none" stroke="#012270" stroke-width="2.5"/></svg></div><div><p class="cm__name">りょう</p><div class="cm__row"><p class="cm__b">やってみたい！<br>写真担当するよ📷</p></div></div></div>
-    <div class="cme"><p class="cm__b cm__b--me">週末のツアー、参加します！</p></div>
-  </div>
-</div><div class="cmty__crowd" aria-hidden="true"><svg class="crowd" viewBox="0 -30 470 170" aria-hidden="true"><path d="M30 20 Q30 30 40 30 Q30 30 30 40 Q30 30 20 30 Q30 30 30 20Z" fill="#FFD66B" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/><path d="M440 10 Q440 18 448 18 Q440 18 440 26 Q440 18 432 18 Q440 18 440 10Z" fill="#fff" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"/><path d="M198 -4c-8-5-6-13-1-10 5-3 7 5 1 10z" fill="#F76B38" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"/><circle cx="276" cy="-2" r="4" fill="#3E78FE" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/><g transform="translate(70 70) scale(0.9)"><path d="M-30 70 C-30 40 -16 30 0 30 C16 30 30 40 30 70Z" fill="#0141D4" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-6 22 v10 h12 v-10" fill="#FDE4D6" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="0" cy="0" r="22" fill="#FDE4D6" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-23 2 C-24 -28 24 -30 23 -2 C14 -10 -4 -12 -23 2Z" fill="#012270" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="-8" cy="2" r="2.4" fill="#012270"/><circle cx="8" cy="2" r="2.4" fill="#012270"/><path d="M-5 11 Q0 16 5 11" fill="none" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/><ellipse cx="-14" cy="9" rx="4" ry="2.6" fill="#F9A98A" opacity=".7"/><ellipse cx="14" cy="9" rx="4" ry="2.6" fill="#F9A98A" opacity=".7"/></g><g transform="translate(150 58) scale(1.0)"><path d="M20 40 C30 30 34 10 36 -8" fill="none" stroke="#012270" stroke-width="15" stroke-linecap="round"/><path d="M20 40 C30 30 34 10 36 -8" fill="none" stroke="#F76B38" stroke-width="9" stroke-linecap="round"/><circle cx="36" cy="-12" r="6" fill="#FDE4D6" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-20 40 C-30 30 -34 10 -36 -8" fill="none" stroke="#012270" stroke-width="15" stroke-linecap="round"/><path d="M-20 40 C-30 30 -34 10 -36 -8" fill="none" stroke="#F76B38" stroke-width="9" stroke-linecap="round"/><circle cx="-36" cy="-12" r="6" fill="#FDE4D6" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-26 14 C-30 -22 30 -22 26 14 L20 14 C20 -2 4 -8 -6 -12 C-10 -4 -20 0 -20 14Z" fill="#3B2A22" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-30 70 C-30 40 -16 30 0 30 C16 30 30 40 30 70Z" fill="#F76B38" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-6 22 v10 h12 v-10" fill="#FDE4D6" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="0" cy="0" r="22" fill="#FDE4D6" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-21 -4 C-18 -24 18 -24 21 -4 C6 -12 -6 -12 -21 -4Z" fill="#3B2A22" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="-8" cy="2" r="2.4" fill="#012270"/><circle cx="8" cy="2" r="2.4" fill="#012270"/><path d="M-6 10 Q0 19 6 10 Z" fill="#F76B38" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/><ellipse cx="-14" cy="9" rx="4" ry="2.6" fill="#F9A98A" opacity=".7"/><ellipse cx="14" cy="9" rx="4" ry="2.6" fill="#F9A98A" opacity=".7"/></g><g transform="translate(235 64) scale(0.95)"><path d="M22 44 C36 36 40 22 44 10" fill="none" stroke="#012270" stroke-width="15" stroke-linecap="round"/><path d="M22 44 C36 36 40 22 44 10" fill="none" stroke="#27AE60" stroke-width="9" stroke-linecap="round"/><circle cx="44" cy="6" r="6" fill="#FDE4D6" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-30 70 C-30 40 -16 30 0 30 C16 30 30 40 30 70Z" fill="#27AE60" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-6 22 v10 h12 v-10" fill="#FDE4D6" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="0" cy="0" r="22" fill="#FDE4D6" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="0" cy="-26" r="9" fill="#5A3A28" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-23 2 C-22 -26 22 -26 23 2 C10 -8 -10 -8 -23 2Z" fill="#5A3A28" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-11 2 q3 -3 6 0" fill="none" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/><circle cx="8" cy="2" r="2.4" fill="#012270"/><path d="M-5 11 Q0 16 5 11" fill="none" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/><ellipse cx="-14" cy="9" rx="4" ry="2.6" fill="#F9A98A" opacity=".7"/><ellipse cx="14" cy="9" rx="4" ry="2.6" fill="#F9A98A" opacity=".7"/></g><g transform="translate(315 56) scale(1.0)"><path d="M20 40 C30 30 34 10 36 -8" fill="none" stroke="#012270" stroke-width="15" stroke-linecap="round"/><path d="M20 40 C30 30 34 10 36 -8" fill="none" stroke="#3E78FE" stroke-width="9" stroke-linecap="round"/><circle cx="36" cy="-12" r="6" fill="#FDE4D6" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-30 70 C-30 40 -16 30 0 30 C16 30 30 40 30 70Z" fill="#3E78FE" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-6 22 v10 h12 v-10" fill="#FDE4D6" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="0" cy="0" r="22" fill="#FDE4D6" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-22 -2 C-22 -28 22 -28 22 -2Z" fill="#FFD66B" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 -3 h14" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="-8" cy="2" r="2.4" fill="#012270"/><circle cx="8" cy="2" r="2.4" fill="#012270"/><path d="M-6 10 Q0 19 6 10 Z" fill="#F76B38" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/><ellipse cx="-14" cy="9" rx="4" ry="2.6" fill="#F9A98A" opacity=".7"/><ellipse cx="14" cy="9" rx="4" ry="2.6" fill="#F9A98A" opacity=".7"/></g><g transform="translate(395 70) scale(0.9)"><path d="M-25 30 C-30 -22 30 -22 25 30 L18 30 C20 0 2 -10 -4 -12 C-12 -2 -18 4 -18 30Z" fill="#012270" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-30 70 C-30 40 -16 30 0 30 C16 30 30 40 30 70Z" fill="#FFD66B" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-6 22 v10 h12 v-10" fill="#FDE4D6" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="0" cy="0" r="22" fill="#FDE4D6" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-21 -4 C-18 -24 18 -24 21 -4 C6 -12 -6 -12 -21 -4Z" fill="#012270" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="-8" cy="2" r="2.4" fill="#012270"/><circle cx="8" cy="2" r="2.4" fill="#012270"/><path d="M-5 11 Q0 16 5 11" fill="none" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/><ellipse cx="-14" cy="9" rx="4" ry="2.6" fill="#F9A98A" opacity=".7"/><ellipse cx="14" cy="9" rx="4" ry="2.6" fill="#F9A98A" opacity=".7"/></g><path d="M10 138 H460" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg><p class="cmty__say" aria-hidden="true">やってみたい！</p></div></div></div></section>
-
-  <section class="flow6" id="flow" aria-labelledby="flow-title"><div class="wrap"><header class="fh"><p class="sec-num">06</p><p class="sec-kicker">HOW TO START</p>
-<h2 class="sec-title" id="flow-title">受講までの流れ</h2><p class="sec-lead">無料相談は希望者のみ。<wbr>コースを選んで、<wbr>すぐに始められます。</p></header><ol class="aBar" aria-label="受講までの4ステップ"><li><span>1</span><b>学びたいコースを選ぶ</b></li><li><span>2</span><b>決済する</b></li><li><span>3</span><b>受講をはじめる</b></li><li><span>4</span><b>残す・飛び込む</b></li></ol><ol class="aRow"><li class="aP"><div class="fl__v" aria-hidden="true"><p class="fl__cap">自分に合う<mark>コース</mark>を選ぶ</p><div class="fl__art"><div class="lt"><div class="lt__scr"><div class="m-top"><b>Courses</b><i></i><i></i></div>
-<div class="m-grid">
-  <div class="m-card"><img src="assets/photos/sns-phone.webp" alt=""><i></i><i class="s"></i></div>
-  <div class="m-card on"><img src="assets/photos/ai-laptop.webp" alt=""><i></i><i class="s"></i></div>
-  <div class="m-card"><img src="assets/photos/toeic-study.webp" alt=""><i></i><i class="s"></i></div>
-</div></div><div class="lt__base"></div></div></div></div><p class="aP__t"><span>1</span>学びたいコースを選ぶ</p><p class="aP__d">コースのページで期間・内容・価格を比べて、自分に合うコースを選びましょう。</p></li><li class="aP"><div class="fl__v" aria-hidden="true"><p class="fl__cap">支払いは<mark>各種クレジット</mark>に対応</p><div class="fl__art"><div class="pay"><div class="pay__card"><span class="pay__chip"></span><span class="pay__no">•••• •••• •••• 1234</span><span class="pay__ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-<div class="pay__brands"><span>VISA</span><span>Mastercard</span><span>JCB</span><span>AMEX</span><span>Diners</span><span>DISCOVER</span></div></div></div></div><p class="aP__t"><span>2</span>決済する</p><p class="aP__d">現在、クレジットカード決済のみ対応しています。</p></li><li class="aP"><div class="fl__v" aria-hidden="true"><p class="fl__cap"><mark>ダッシュボード</mark>から学習スタート</p><div class="fl__art"><div class="lt"><div class="lt__scr"><div class="m-top"><b>マイラーニング</b><i></i></div>
-<div class="m-dash"><div class="m-dash__card"><img src="assets/photos/sns-phone.webp" alt=""><div><b>SNSマーケティング</b><span><em style="width:30%"></em></span></div></div>
-<p class="m-dash__go">続きから学ぶ ›</p></div></div><div class="lt__base"></div></div></div></div><p class="aP__t"><span>3</span>受講をはじめる</p><p class="aP__d">新規登録・ログイン後、ダッシュボードからコース受講を始められます。</p></li><li class="aP"><div class="fl__v" aria-hidden="true"><p class="fl__cap">学びを<mark>ポートフォリオ</mark>に残す</p><div class="fl__art"><div class="pf4"><div class="pf4__card"><p class="pf4__k">学びの歩み</p>
-<p class="pf4__row"><span class="pf4__pill">実績を公開しました</span></p><p class="pf4__t">SNSキャンペーン企画書</p></div>
-<div class="pf4__crew"><svg class="avt" viewBox="-40 -40 80 80" width="34" height="34" aria-hidden="true"><clipPath id="av034"><circle r="38"/></clipPath><circle r="38" fill="#FFE8D9"/><g clip-path="url(#av034)"><g transform="translate(0 14) scale(1.35)"><path d="M-26 14 C-30 -22 30 -22 26 14 L20 14 C20 -2 4 -8 -6 -12 C-10 -4 -20 0 -20 14Z" fill="#3B2A22" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-30 70 C-30 40 -16 30 0 30 C16 30 30 40 30 70Z" fill="#F76B38" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-6 22 v10 h12 v-10" fill="#FDE4D6" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="0" cy="0" r="22" fill="#FDE4D6" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-21 -4 C-18 -24 18 -24 21 -4 C6 -12 -6 -12 -21 -4Z" fill="#3B2A22" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="-8" cy="2" r="2.4" fill="#012270"/><circle cx="8" cy="2" r="2.4" fill="#012270"/><path d="M-6 10 Q0 19 6 10 Z" fill="#F76B38" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/><ellipse cx="-14" cy="9" rx="4" ry="2.6" fill="#F9A98A" opacity=".7"/><ellipse cx="14" cy="9" rx="4" ry="2.6" fill="#F9A98A" opacity=".7"/></g></g><circle r="38" fill="none" stroke="#012270" stroke-width="2.5"/></svg><svg class="avt" viewBox="-40 -40 80 80" width="34" height="34" aria-hidden="true"><clipPath id="av134"><circle r="38"/></clipPath><circle r="38" fill="#E3EAFB"/><g clip-path="url(#av134)"><g transform="translate(0 14) scale(1.35)"><path d="M-30 70 C-30 40 -16 30 0 30 C16 30 30 40 30 70Z" fill="#0141D4" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-6 22 v10 h12 v-10" fill="#FDE4D6" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="0" cy="0" r="22" fill="#FDE4D6" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-23 2 C-24 -28 24 -30 23 -2 C14 -10 -4 -12 -23 2Z" fill="#012270" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="-8" cy="2" r="2.4" fill="#012270"/><circle cx="8" cy="2" r="2.4" fill="#012270"/><path d="M-5 11 Q0 16 5 11" fill="none" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/><ellipse cx="-14" cy="9" rx="4" ry="2.6" fill="#F9A98A" opacity=".7"/><ellipse cx="14" cy="9" rx="4" ry="2.6" fill="#F9A98A" opacity=".7"/></g></g><circle r="38" fill="none" stroke="#012270" stroke-width="2.5"/></svg><svg class="avt" viewBox="-40 -40 80 80" width="34" height="34" aria-hidden="true"><clipPath id="av234"><circle r="38"/></clipPath><circle r="38" fill="#E2F4EA"/><g clip-path="url(#av234)"><g transform="translate(0 14) scale(1.35)"><path d="M-30 70 C-30 40 -16 30 0 30 C16 30 30 40 30 70Z" fill="#27AE60" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-6 22 v10 h12 v-10" fill="#FDE4D6" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="0" cy="0" r="22" fill="#FDE4D6" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="0" cy="-26" r="9" fill="#5A3A28" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-23 2 C-22 -26 22 -26 23 2 C10 -8 -10 -8 -23 2Z" fill="#5A3A28" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-11 2 q3 -3 6 0" fill="none" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/><circle cx="8" cy="2" r="2.4" fill="#012270"/><path d="M-5 11 Q0 16 5 11" fill="none" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/><ellipse cx="-14" cy="9" rx="4" ry="2.6" fill="#F9A98A" opacity=".7"/><ellipse cx="14" cy="9" rx="4" ry="2.6" fill="#F9A98A" opacity=".7"/></g></g><circle r="38" fill="none" stroke="#012270" stroke-width="2.5"/></svg><svg class="avt" viewBox="-40 -40 80 80" width="34" height="34" aria-hidden="true"><clipPath id="av334"><circle r="38"/></clipPath><circle r="38" fill="#FFF4D1"/><g clip-path="url(#av334)"><g transform="translate(0 14) scale(1.35)"><path d="M-30 70 C-30 40 -16 30 0 30 C16 30 30 40 30 70Z" fill="#3E78FE" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-6 22 v10 h12 v-10" fill="#FDE4D6" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="0" cy="0" r="22" fill="#FDE4D6" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M-22 -2 C-22 -28 22 -28 22 -2Z" fill="#FFD66B" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 -3 h14" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="-8" cy="2" r="2.4" fill="#012270"/><circle cx="8" cy="2" r="2.4" fill="#012270"/><path d="M-6 10 Q0 19 6 10 Z" fill="#F76B38" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/><ellipse cx="-14" cy="9" rx="4" ry="2.6" fill="#F9A98A" opacity=".7"/><ellipse cx="14" cy="9" rx="4" ry="2.6" fill="#F9A98A" opacity=".7"/></g></g><circle r="38" fill="none" stroke="#012270" stroke-width="2.5"/></svg><span class="pf4__say">いいね！</span></div></div></div></div><p class="aP__t"><span>4</span>残す・飛び込む</p><p class="aP__d">成果物をポートフォリオに公開。コミュニティーにも参加できます。</p></li></ol><div class="fl__cta"><a class="fl__btn" href="courses.html">全てのコースを確認する<span><svg class="ico" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-<p class="fl__sub">迷ったら、<a href="/contact">30分の無料相談</a>で一緒に整理できます（希望者のみ）。<a href="/beginners#flow">詳しくは「はじめての方へ」</a></p></div></div></section>
-<section class="next nxC" id="next" aria-labelledby="next-title"><div class="wrap nxC__grid">
-<div class="nxC__copy"><p class="sec-num">07</p><p class="sec-kicker">NEXT STEP</p><h2 class="sec-title" id="next-title">迷っていても、大丈夫。</h2><p class="sec-lead">キャリアの悩みや今の状況に合わせて、<wbr>選べます。<wbr>どちらも無料です。</p>
+</div></div>
+<div class="fz__b"><p class="fz__k"><span>特集 1</span>業務効率化ツール</p><p class="fz__catch">プロジェクト進行のズレやムダを、減らす。</p>
+<h3 class="fz__t">Slackだけで完結する<wbr>次世代のタスク管理システム</h3>
+<p class="fz__d">Slack×GASで動く、タスク・FAQ・ガントチャート連携の業務効率化ツールです。分かりやすい仕様書付きで、セットアップも簡単。タスクの進み具合をチームで共有しやすくなります。</p>
+<ul class="fz__tags"><li>Slack × GAS</li><li>仕様書付き</li><li>チームで共有</li></ul>
+<span class="fz__go">詳しくはこちら<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></a>
+<a class="fz" href="/courses/toeic-700"><div class="fz__v"><img src="assets/courses/toeic.webp" alt="TOEIC L&amp;R 700点突破プログラムのイメージ" loading="lazy"></div>
+<div class="fz__b"><p class="fz__k"><span>特集 2</span>英語・TOEIC</p><p class="fz__catch">苦手を得意に変える、3か月で自信の持てる英語力を。</p>
+<h3 class="fz__t">TOEIC L&amp;R 700点突破<wbr>プログラム</h3>
+<p class="fz__d">海外経験豊富な英語コーチとマンツーマンで学ぶ、TOEIC® L&amp;R 700点以上を目指す特別プログラムです。文法・リスニング・リーディング・英会話をバランスよく強化します。</p>
+<ul class="fz__facts"><li><b>3</b><span>か月</span></li><li><b>週2</b><span>回</span></li><li><b>全24</b><span>回</span></li><li><b>1対1</b><span>マンツーマン</span></li></ul>
+<span class="fz__go">詳しくはこちら<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></a>
+</div></div></section><section class="clist" id="list" aria-labelledby="list-title"><div class="wrap">
+<header class="sec-head"><div><p class="sec-kicker">ALL COURSES</p><h2 class="sec-title" id="list-title">コース一覧</h2><p class="sec-lead">目的から絞り込んで、<wbr>期間・レベル・価格を比べられます。</p></div></header>
+<div class="cfilter">
+<div class="goalbar" role="group" aria-label="目的で絞り込む"><button type="button" class="goalf" id="goal-btn-all" data-goal="all" aria-pressed="true"><span>すべて</span></button><button type="button" class="goalf" id="goal-btn-it" data-goal="it" aria-pressed="false"><span class="goalf__i"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></g></svg></span><span>仕事を効率化したい</span></button><button type="button" class="goalf" id="goal-btn-mk" data-goal="mk" aria-pressed="false"><span class="goalf__i"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11v3a1 1 0 0 0 1 1h2l6 4V6L7 10H5a1 1 0 0 0-1 1z"/><path d="M17 9a4 4 0 0 1 0 6"/></g></svg></span><span>発信を強みにしたい</span></button><button type="button" class="goalf" id="goal-btn-en" data-goal="en" aria-pressed="false"><span class="goalf__i"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></g></svg></span><span>英語で選択肢を広げたい</span></button></div>
+<div class="cfilter__row">
+<label class="csel"><span>カテゴリ</span><select id="f-cat"><option value="">すべて</option><option value="it">IT・デジタル</option><option value="mk">マーケティング</option><option value="en">英語・TOEIC</option><option value="biz">ビジネス</option><option value="cr">クリエイティブ</option></select></label>
+<label class="csel"><span>レベル</span><select id="f-level"><option value="">すべて</option><option value="初級">初級</option><option value="中級">中級</option></select></label>
+<label class="csel"><span>並び替え</span><select id="f-sort"><option value="rec">おすすめ順</option><option value="low">価格が安い順</option><option value="high">価格が高い順</option></select></label>
+<p class="ccount" id="count" aria-live="polite"><b>12</b>件のコース</p>
+</div></div>
+<div class="popular cgrid" id="grid"><a class="course" href="/courses/sns-marketing" data-cat="mk" data-level="中級" data-price="" data-order="0"><div class="thumb"><div class="cv cv--img"><img src="assets/photos/sns-phone.webp" loading="lazy" alt=""></div></div><div class="body"><span class="cat" style="--cc:#E46A1F;--cb:#FFF1E7">マーケティング</span><h3>SNSマーケティング実践</h3><p class="meta"><span><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></g></svg>8週間</span><span><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></svg>週2〜3時間</span><span><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 19v-4M12 19V10M19 19V5"/></g></svg>中級</span></p><p class="desc">顧客理解から数値改善までを、一つのキャンペーンとして実践します。</p><div class="foot"><p class="p"><b class="price">¥—</b><span class="todo">価格を入れる</span></p><span class="more">詳しく見る<i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></i></span></div></div></a><a class="course" href="/courses/ai-efficiency" data-cat="it" data-level="初級" data-price="" data-order="1"><div class="thumb"><div class="cv cv--img"><img src="assets/photos/ai-laptop.webp" loading="lazy" alt=""></div></div><div class="body"><span class="cat" style="--cc:#1E9E62;--cb:#E9F7F0">IT・デジタル</span><h3>生成AI 業務改善</h3><p class="meta"><span><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></g></svg>6週間</span><span><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></svg>週2時間</span><span><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 19v-4M12 19V10M19 19V5"/></g></svg>初級</span></p><p class="desc">生成AIとノーコードで、調査・資料作成・定型業務を効率化します。</p><div class="foot"><p class="p"><b class="price">¥—</b><span class="todo">価格を入れる</span></p><span class="more">詳しく見る<i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></i></span></div></div></a><a class="course" href="/courses/toeic-700" data-cat="en" data-level="中級" data-price="" data-order="2"><div class="thumb"><div class="cv cv--img"><img src="assets/photos/toeic-study.webp" loading="lazy" alt=""></div></div><div class="body"><span class="cat" style="--cc:#0141D4;--cb:#EAF0FF">英語・TOEIC</span><h3>TOEIC L&amp;R 700点突破</h3><p class="meta"><span><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></g></svg>3か月</span><span><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></svg>週2回・全24回</span><span><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 19v-4M12 19V10M19 19V5"/></g></svg>中級</span></p><p class="desc">海外経験豊富なコーチと、4技能をバランスよく強化します。</p><div class="foot"><p class="p"><b class="price">¥—</b><span class="todo">価格を入れる</span></p><span class="more">詳しく見る<i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></i></span></div></div></a><a class="course" href="/courses/event-design" data-cat="biz" data-level="初級" data-price="9800" data-order="3"><div class="thumb"><div class="cv cv--g" style="--cc:#6B4FD8;--cb:#F0ECFF" aria-hidden="true"><span class="cv__dots"></span><span class="cv__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></g></svg></span><b>ビジネス</b></div></div><div class="body"><span class="cat" style="--cc:#6B4FD8;--cb:#F0ECFF">ビジネス</span><h3>イベントデザイン</h3><p class="meta"><span><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></g></svg>5週間</span><span><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></svg>週2時間</span><span><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 19v-4M12 19V10M19 19V5"/></g></svg>初級</span></p><p class="desc">目的設定から当日運営まで、成果につながるイベントづくりを学びます。</p><div class="foot"><p class="p"><b class="price">¥9,800</b></p><span class="more">詳しく見る<i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></i></span></div></div></a><a class="course" href="/courses/marketing-basic" data-cat="mk" data-level="初級" data-price="11800" data-order="4"><div class="thumb"><div class="cv cv--g" style="--cc:#E46A1F;--cb:#FFF1E7" aria-hidden="true"><span class="cv__dots"></span><span class="cv__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11v3a1 1 0 0 0 1 1h2l6 4V6L7 10H5a1 1 0 0 0-1 1z"/><path d="M17 9a4 4 0 0 1 0 6M19.5 6.5a8 8 0 0 1 0 11"/></g></svg></span><b>マーケティング</b></div></div><div class="body"><span class="cat" style="--cc:#E46A1F;--cb:#FFF1E7">マーケティング</span><h3>マーケティング戦略基礎</h3><p class="meta"><span><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 19v-4M12 19V10M19 19V5"/></g></svg>初級</span></p><p class="desc">市場分析から戦略立案・実行・検証までを体系的に学びます。</p><div class="foot"><p class="p"><b class="price">¥11,800</b></p><span class="more">詳しく見る<i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></i></span></div></div></a><a class="course" href="/courses/instagram" data-cat="mk" data-level="初級" data-price="7900" data-order="5"><div class="thumb"><div class="cv cv--g" style="--cc:#E46A1F;--cb:#FFF1E7" aria-hidden="true"><span class="cv__dots"></span><span class="cv__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11v3a1 1 0 0 0 1 1h2l6 4V6L7 10H5a1 1 0 0 0-1 1z"/><path d="M17 9a4 4 0 0 1 0 6M19.5 6.5a8 8 0 0 1 0 11"/></g></svg></span><b>マーケティング</b></div></div><div class="body"><span class="cat" style="--cc:#E46A1F;--cb:#FFF1E7">マーケティング</span><h3>インスタグラム</h3><p class="meta"><span><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 19v-4M12 19V10M19 19V5"/></g></svg>初級</span></p><p class="desc">インスタグラムで、個人やビジネスを効果的にプロモーションします。</p><div class="foot"><p class="p"><b class="price">¥7,900</b></p><span class="more">詳しく見る<i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></i></span></div></div></a><a class="course" href="/courses/automation" data-cat="it" data-level="中級" data-price="12800" data-order="6"><div class="thumb"><div class="cv cv--g" style="--cc:#1E9E62;--cb:#E9F7F0" aria-hidden="true"><span class="cv__dots"></span><span class="cv__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4M8 9l2 2-2 2M13 13h3"/></g></svg></span><b>IT・デジタル</b></div></div><div class="body"><span class="cat" style="--cc:#1E9E62;--cb:#E9F7F0">IT・デジタル</span><h3>自動化ツール開発</h3><p class="meta"><span><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 19v-4M12 19V10M19 19V5"/></g></svg>中級</span></p><p class="desc">JavaScriptの基礎から、仕様に基づいた自動化ツールを開発します。</p><div class="foot"><p class="p"><b class="price">¥12,800</b></p><span class="more">詳しく見る<i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></i></span></div></div></a><a class="course" href="/courses/chatgpt-basic" data-cat="it" data-level="初級" data-price="2980" data-order="7"><div class="thumb"><div class="cv cv--g" style="--cc:#1E9E62;--cb:#E9F7F0" aria-hidden="true"><span class="cv__dots"></span><span class="cv__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4M8 9l2 2-2 2M13 13h3"/></g></svg></span><b>IT・デジタル</b></div></div><div class="body"><span class="cat" style="--cc:#1E9E62;--cb:#E9F7F0">IT・デジタル</span><h3>初級編 ChatGPT</h3><p class="meta"><span><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 19v-4M12 19V10M19 19V5"/></g></svg>初級</span></p><p class="desc">ChatGPTの概要から活用方法までを総合的に学びます。</p><div class="foot"><p class="p"><b class="price">¥2,980</b></p><span class="more">詳しく見る<i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></i></span></div></div></a><a class="course" href="/courses/line-official" data-cat="it" data-level="初級" data-price="3980" data-order="8"><div class="thumb"><div class="cv cv--g" style="--cc:#1E9E62;--cb:#E9F7F0" aria-hidden="true"><span class="cv__dots"></span><span class="cv__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4M8 9l2 2-2 2M13 13h3"/></g></svg></span><b>IT・デジタル</b></div></div><div class="body"><span class="cat" style="--cc:#1E9E62;--cb:#E9F7F0">IT・デジタル</span><h3>公式LINE運用</h3><p class="meta"><span><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 19v-4M12 19V10M19 19V5"/></g></svg>初級</span></p><p class="desc">資料請求・予約受付などを、公式LINEで自分で構築します。</p><div class="foot"><p class="p"><b class="price">¥3,980</b></p><span class="more">詳しく見る<i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></i></span></div></div></a><a class="course" href="/courses/business-english" data-cat="en" data-level="初級" data-price="3000" data-order="9"><div class="thumb"><div class="cv cv--g" style="--cc:#0141D4;--cb:#EAF0FF" aria-hidden="true"><span class="cv__dots"></span><span class="cv__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h9M8.5 3v2M11 5c0 4-3 7-6.5 8.5M6 9c1.5 2.5 4 4 6.5 4.5"/><path d="M13 21l4-9 4 9M14.5 18h5"/></g></svg></span><b>英語・TOEIC</b></div></div><div class="body"><span class="cat" style="--cc:#0141D4;--cb:#EAF0FF">英語・TOEIC</span><h3>ビジネス英語初級</h3><p class="meta"><span><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 19v-4M12 19V10M19 19V5"/></g></svg>初級</span></p><p class="desc">ビジネス英語の基本表現を実践的に学びます。</p><div class="foot"><p class="p"><b class="price">¥3,000</b></p><span class="more">詳しく見る<i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></i></span></div></div></a><a class="course" href="/courses/project-management" data-cat="biz" data-level="中級" data-price="4980" data-order="10"><div class="thumb"><div class="cv cv--g" style="--cc:#6B4FD8;--cb:#F0ECFF" aria-hidden="true"><span class="cv__dots"></span><span class="cv__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></g></svg></span><b>ビジネス</b></div></div><div class="body"><span class="cat" style="--cc:#6B4FD8;--cb:#F0ECFF">ビジネス</span><h3>プロジェクトマネジメント</h3><p class="meta"><span><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 19v-4M12 19V10M19 19V5"/></g></svg>中級</span></p><p class="desc">プロジェクト管理の知識を、実務に活かせる形で身につけます。</p><div class="foot"><p class="p"><b class="price">¥4,980</b></p><span class="more">詳しく見る<i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></i></span></div></div></a><a class="course" href="/courses/canva-basic" data-cat="cr" data-level="初級" data-price="6400" data-order="11"><div class="thumb"><div class="cv cv--g" style="--cc:#D9467A;--cb:#FDECF2" aria-hidden="true"><span class="cv__dots"></span><span class="cv__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 0 0 0 18c1.2 0 1.8-.9 1.4-1.9-.4-1 .3-2.1 1.4-2.1H17a4 4 0 0 0 4-4 9 9 0 0 0-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10.5" cy="7" r="1.2"/><circle cx="15" cy="7.5" r="1.2"/></g></svg></span><b>クリエイティブ</b></div></div><div class="body"><span class="cat" style="--cc:#D9467A;--cb:#FDECF2">クリエイティブ</span><h3>Canva初級</h3><p class="meta"><span><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 19v-4M12 19V10M19 19V5"/></g></svg>初級</span></p><p class="desc">Canva無料版で「自分らしさ」を伝えるデザインを学びます。</p><div class="foot"><p class="p"><b class="price">¥6,400</b></p><span class="more">詳しく見る<i><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></i></span></div></div></a></div>
+<div class="cempty" id="empty" hidden><p>条件に合うコースが見つかりませんでした。</p><button type="button" id="reset">絞り込みをリセット</button></div>
+<p class="cnote">※一部の価格は現行サイトの掲載価格です。「¥—」は価格の確定待ち、期間・レベルは仮の表示です。</p>
+</div></section><section class="cline" aria-label="公式LINE"><div class="wrap"><div class="cline__band">
+<span class="cline__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5c5 0 9 3.2 9 7.2 0 3.9-3.8 7.1-8.6 7.2-.5.4-2.7 2.3-4.2 2.6-.4.1-.4-.3-.3-.6l.5-2.4C5.3 16.3 3 13.7 3 10.7 3 6.7 7 3.5 12 3.5z" fill="currentColor"/></svg></span>
+<div class="cline__t"><p class="cline__k">公式LINE限定</p><b>LINE登録で、全コース<em>500円OFF</em></b><p>新しいコース情報や限定イベントの案内もお届けします。</p></div>
+<a class="cline__btn" href="/beginners#line">LINEを追加する<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+</div></div></section><section class="next nxC cnext" id="next" aria-labelledby="next-title"><div class="wrap nxC__grid">
+<div class="nxC__copy"><p class="sec-kicker">NEXT STEP</p><h2 class="sec-title" id="next-title">迷ったら、ここから。</h2><p class="sec-lead">相談したら必ず受講、<wbr>ではありません。<wbr>どちらも無料です。</p>
 <div class="nxC__item"><p class="nx-who"><span class="nx-flag">おすすめ</span>何から始めればいいか、迷っている方</p><h3 class="nx-card__t">30分の無料相談</h3>
 <p class="nx-card__d">スタッフがオンラインで相談に乗ります。今のキャリアの不安や、学びたいことを一緒に整理しましょう。</p><ul class="nx-pts"><li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i>今のキャリアの不安や悩みを整理できる</li><li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i>自分に合うコースや学び方がわかる</li><li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i>受講前の疑問や不安にすべてお答えします</li></ul></div>
 <div class="nxC__cta"><a class="btn btn--primary nx-btn" href="/contact">無料相談に申し込む<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a class="btn nx-btn nx-btn--line" href="/contact#pamphlet">パンフレットを受け取る<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
@@ -1315,18 +1221,6 @@
   <span class="nx-pam__badge">PDF</span>
 </div><p>パンフレット（PDF）</p></div></div>
 </div><div class="wrap"><p class="nx-foot">法人のお客様・その他のお問い合わせは<a href="/contact#form">お問い合わせフォーム<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p></div></section>
-<section class="journal" id="journal" aria-labelledby="journal-title"><div class="wrap"><header class="sec-head"><div><p class="sec-num">08</p><p class="sec-kicker">LEARNING JOURNAL</p><h2 class="sec-title" id="journal-title">学びを続けるヒントへ</h2>
-<p class="sec-lead">キャリア、生成AI、マーケティングなど、<wbr>働きながら学ぶためのヒントを、<wbr>記事でお届けします。</p></div>
-<a class="sec-more" href="/blog">記事をもっと読む<span class="sec-more__arrow"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></header><div class="jxB"><a class="jx jxB__c" href="/blog"><div class="jx__ph"><img src="assets/journal/career.webp" alt="" loading="lazy"></div><div class="jx__b"><p class="jc__meta"><span class="jc__tag">キャリア・学び方</span><time>2026.09.08</time><span class="jc__min"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></svg>5分で読める</span></p><h3 class="jc__t">働きながら学びを続けるための、<wbr>週2時間のつくり方</h3><p class="jc__ex">忙しい平日でも学びを止めないために。スキマ時間の見つけ方と、無理なく続く習慣づくりのコツをまとめました。</p></div></a><a class="jx jxB__c" href="/blog"><div class="jx__ph"><img src="assets/journal/ai.webp" alt="" loading="lazy"></div><div class="jx__b"><p class="jc__meta"><span class="jc__tag">IT・デジタル</span><time>2026.08.26</time><span class="jc__min"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></svg>4分で読める</span></p><h3 class="jc__t">ChatGPTを<wbr>仕事の相棒にする、<wbr>最初の5つの使い方</h3><p class="jc__ex">最初のひと言の書き方から、議事録・メール・企画のたたき台づくりまで、明日から試せる使い方を紹介します。</p></div></a><a class="jx jxB__c" href="/blog"><div class="jx__ph"><img src="assets/journal/sns.webp" alt="" loading="lazy"></div><div class="jx__b"><p class="jc__meta"><span class="jc__tag">マーケティング</span><time>2026.08.12</time><span class="jc__min"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></svg>6分で読める</span></p><h3 class="jc__t">顧客理解から始める<wbr>SNSキャンペーン設計</h3><p class="jc__ex">「誰に・何を・なぜ」を先に決めると、投稿の反応が変わります。キャンペーン設計の順番を解説します。</p></div></a></div><div class="jxB__res"><a class="jres" href="/resources"><span class="jres__k">お役立ち資料</span><b>仕事や学びに役立つ資料を、<wbr>目的に合わせて選べます</b><span class="jres__go"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></div></div></section>
-<section class="lineS" id="line" aria-labelledby="line-title"><div class="wrap"><div class="lnD">
-<div class="lnD__copy"><p class="sec-num">09</p><p class="sec-kicker ln__kick">OFFICIAL LINE</p><h2 class="sec-title" id="line-title">公式LINEで、<wbr>学びのきっかけを<wbr>受け取る</h2><p class="sec-lead">まだ決めきれなくても大丈夫。<wbr>友だち追加だけで、<wbr>新しいコースやお得な情報が届きます。</p><ul class="ln__list lnD__list"><li><span class="ln__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></g></svg></span><div><b>新しいコース情報を先にお届け</b><p>公開前のコースや開講日程を、いち早くお知らせします。</p></div></li><li><span class="ln__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2a3 3 0 0 0 0 6v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a3 3 0 0 0 0-6z"/><path d="M9 15l6-6M9.5 9.5h.01M14.5 14.5h.01"/></g></svg></span><div><b>全コース500円OFFクーポン</b><p>クーポンは公式LINEからのみ配信しています。</p></div></li><li><span class="ln__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.2A5 5 0 0 1 21 19"/></g></svg></span><div><b>限定イベントの情報が届く</b><p>体験ツアーや交流イベントなど、受講生向けの案内をお届けします。</p></div></li></ul><div class="ln__cta"><a class="ln__btn" href="/beginners#line"><svg class="ln__lic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5c5 0 9 3.2 9 7.2 0 3.9-3.8 7.1-8.6 7.2-.5.4-2.7 2.3-4.2 2.6-.4.1-.4-.3-.3-.6l.5-2.4C5.3 16.3 3 13.7 3 10.7 3 6.7 7 3.5 12 3.5z" fill="currentColor"/></svg>LINEで友だち追加する<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p class="ln__note">友だち追加は無料です。配信はいつでも停止できます。</p></div></div>
-<div class="lnD__vis"><div class="lnD__phone" aria-hidden="true"><div class="lnD__bar"><span>‹</span><b>The Academy</b><i>公式</i></div>
-<div class="lnD__talk">
-<p class="lnD__day">今日</p>
-<div class="lnD__m"><span class="lnD__av">TA</span><div><p class="lnD__b">友だち追加ありがとうございます！<br>The Academyです😊</p></div></div>
-<div class="lnD__m"><span class="lnD__av">TA</span><div class="lnD__cpn"><small>LINE限定クーポン</small><b>全コース 500円OFF</b><span>クーポンを使う</span></div></div>
-<div class="lnD__m"><span class="lnD__av">TA</span><div><p class="lnD__b">新しいコースが公開されたら、<br>いち早くお知らせしますね。</p></div></div>
-</div></div></div></div></div></section>
 </main>
 <footer class="site-footer" aria-label="サイト情報">
 <div class="wrap">
@@ -1381,6 +1275,60 @@
     track.addEventListener('scroll', sync, { passive: true });
     window.addEventListener('resize', sync);
     sync();
+  })();
+</script>
+<script>
+  // コース一覧の絞り込み：目的（LP 01と同じ名前）・カテゴリ・レベル・並び替え
+  // LP 01のカードからは ?goal=it（本番）または #goal-it（このデザイン確認用）で目的を指定して着地する
+  (() => {
+    const GOALS = {"it": ["it", "biz"], "mk": ["mk", "cr"], "en": ["en"]};
+    const grid = document.getElementById('grid');
+    const cards = [...grid.querySelectorAll('.course')];
+    const goalBtns = [...document.querySelectorAll('.goalf')];
+    const fCat = document.getElementById('f-cat'), fLevel = document.getElementById('f-level'), fSort = document.getElementById('f-sort');
+    const count = document.getElementById('count'), empty = document.getElementById('empty');
+    let goal = 'all';
+    function apply() {
+      const cats = GOALS[goal] || null;
+      let n = 0;
+      cards.forEach(c => {
+        const ok = (!cats || cats.includes(c.dataset.cat)) && (!fCat.value || c.dataset.cat === fCat.value) && (!fLevel.value || c.dataset.level === fLevel.value);
+        c.hidden = !ok; if (ok) n++;
+      });
+      const val = c => c.dataset.price ? +c.dataset.price : null;
+      const sorted = [...cards].sort((a, b) => {
+        if (fSort.value === 'rec') return a.dataset.order - b.dataset.order;
+        const x = val(a), y = val(b);
+        if (x === null && y === null) return a.dataset.order - b.dataset.order;
+        if (x === null) return 1; if (y === null) return -1;       // 価格未定は最後に
+        return fSort.value === 'low' ? x - y : y - x;
+      });
+      sorted.forEach(c => grid.appendChild(c));
+      count.innerHTML = '<b>' + n + '</b>件のコース';
+      empty.hidden = n > 0;
+    }
+    function setGoal(g) {
+      goal = GOALS[g] ? g : 'all';
+      goalBtns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.goal === goal)));
+      apply();
+    }
+    goalBtns.forEach(b => b.addEventListener('click', () => setGoal(b.dataset.goal)));
+    [fCat, fLevel, fSort].forEach(el => el.addEventListener('change', apply));
+    document.getElementById('reset').addEventListener('click', () => { fCat.value = ''; fLevel.value = ''; fSort.value = 'rec'; setGoal('all'); });
+
+    // 着地：?goal= / ?c=（本番）または #goal-xx / #c-xx（デザイン確認用）
+    function land(first) {
+      const q = first ? new URLSearchParams(location.search) : new URLSearchParams();
+      const h = (location.hash || '').slice(1);
+      const g = q.get('goal') || (h.startsWith('goal-') ? h.slice(5) : '');
+      const c = q.get('c') || (h.startsWith('c-') ? h.slice(2) : '');
+      if (!g && !c) { if (first) setGoal(''); return; }
+      fCat.value = (c && [...fCat.options].some(o => o.value === c)) ? c : '';
+      setGoal(g);
+      document.getElementById('list').scrollIntoView({ block: 'start' });
+    }
+    land(true);
+    window.addEventListener('hashchange', () => land(false));   // フッターのカテゴリリンクなど、同じページ内の移動にも対応
   })();
 </script>
 </body>

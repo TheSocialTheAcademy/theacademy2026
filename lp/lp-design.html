@@ -27,8 +27,7 @@
     --shadow-soft: 0 10px 30px rgba(15,27,69,.08), 0 1px 3px rgba(15,27,69,.05);
     --font: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
     --gutter: clamp(16px, 4vw, 50px);
-    --maxw: 1280px;                          /* 広い幅：写真・カードが主役のセクション（中身 1180px） */
-    --maxw-narrow: calc(1080px + 2 * var(--gutter));  /* 狭い幅：文章が主役のセクション（中身 1080px） */
+    --maxw: 1280px;                          /* 全セクション共通の幅（中身 1180px）。見出しの左端をそろえる */
     --panel-inset: clamp(12px, 2.2vw, 32px); /* 角丸の面を画面端から離す距離 */
   }
   *, *::before, *::after { box-sizing: border-box; }
@@ -44,7 +43,6 @@
   a { color: inherit; }
   .ico { width: 1em; height: 1em; flex: none; }
   .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
-  .start .wrap, .why .wrap, .flow6 .wrap { max-width: var(--maxw-narrow); }   /* 幅を2段階にしてリズムを出す */
   :focus-visible { outline: 3px solid var(--ts-light-blue); outline-offset: 3px; border-radius: 6px; }
 
   /* ── お知らせバー ─────────────────────── */
@@ -775,8 +773,7 @@
     .fl__note { border-radius: 18px; }
   }
 
-  .flow6 .fh { max-width: 640px; margin: 0 auto clamp(36px, 4vw, 52px); text-align: center; }
-  .flow6 .fh .sec-lead { margin-left: auto; margin-right: auto; }
+  .flow6 .fh { margin: 0 0 clamp(32px, 4vw, 48px); }   /* 見出しは他のセクションと同じ左揃え */
   .flow6 .fls { gap: 18px; }
   .flow6 .fl__v { height: 230px; padding: 24px 18px 0; border-radius: 24px; background: linear-gradient(180deg, #F3F5F9 0%, #ECEFF5 100%); box-shadow: inset 0 0 0 1px rgba(15,27,69,.04); transition: transform .25s, box-shadow .25s; }
   .flow6 .fl:hover .fl__v { transform: translateY(-3px); box-shadow: inset 0 0 0 1px rgba(1,65,212,.18), 0 16px 32px rgba(15,27,69,.08); }
@@ -883,7 +880,6 @@
 
   /* ── 08 LEARNING JOURNAL ─────────────────── */
   .journal { padding: clamp(72px, 8vw, 112px) 0; background: #fff; }
-  .journal .wrap { max-width: var(--maxw-narrow); }
   .jc__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: 0; color: var(--ts-mid); font-size: 12px; }
   .jc__tag { padding: 2px 10px; border-radius: 99px; background: var(--tint-08); color: var(--ts-primary); font-weight: 700; }
   .jc__min { display: inline-flex; align-items: center; gap: 4px; }
@@ -913,8 +909,6 @@
 
   /* ── 09 OFFICIAL LINE：最後にいちばん軽い行動で受け止める ─ */
   .lineS { padding: clamp(72px, 8vw, 112px) 0; background: var(--bg-gray, #F7F8FB); }
-  .lineS .wrap { max-width: var(--maxw-narrow); }
-  .ln__kick { color: #06A847; }
   .ln__list { display: grid; gap: 16px; margin: 28px 0 0; padding: 0; list-style: none; }
   .ln__list li { display: flex; gap: 14px; align-items: flex-start; }
   .ln__ic { display: grid; place-items: center; flex: none; width: 44px; height: 44px; border-radius: 14px; background: #E8F8EF; color: #06A847; }
@@ -989,9 +983,6 @@
   .cmty { margin: 0; border-radius: 0; }
   .cmty .cmty__blob { background: rgba(255,255,255,.9); }
   .nxC__bg { background: #fff; box-shadow: var(--shadow-soft); }
-  /* 強調したい 03 コース／04 ポートフォリオ／05 コミュニティーは見出しを一段大きく、余白もゆったり */
-  .popular, .pf, .cmty { padding-top: clamp(88px, 10vw, 140px); padding-bottom: clamp(88px, 10vw, 140px); }
-  .popular .sec-title, .pf .sec-title, .cmty .sec-title { font-size: clamp(32px, 4vw, 48px); line-height: 1.3; }
 </style>
 </head>
 <body id="top">

@@ -881,6 +881,67 @@
   @media (max-width: 640px) { .nxC__cta { grid-template-columns: 1fr; } .nxC__pam { transform: scale(.72); right: -4px; bottom: -44px; } .nxC__vis { padding: 24px 8px 104px; margin-bottom: 44px; } }
   @media (max-width: 640px) { .nxC .nx-card__t { font-size: 22px; } .nx-pts li { font-size: 13px; } .nx-call { padding: 10px; } .nx-call__tiles { gap: 6px; } .nx-call__bar { font-size: 11px; } }
 
+  /* ── 08 LEARNING JOURNAL ─────────────────── */
+  .journal { padding: clamp(72px, 8vw, 112px) 0; background: #fff; }
+  .journal .wrap { max-width: var(--maxw-narrow); }
+  .jgrid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 24px; }
+  .jside { display: grid; gap: 16px; align-content: start; }
+  .jc { display: flex; color: inherit; text-decoration: none; border-radius: 20px; background: #fff; box-shadow: 0 0 0 1px var(--line); overflow: hidden; transition: box-shadow .2s, transform .2s; }
+  .jc:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px rgba(1,65,212,.25), var(--shadow-soft); }
+  .jc--main { flex-direction: column; }
+  .jc--sub { align-items: stretch; }
+  .jc__b { display: flex; flex-direction: column; padding: 18px 20px; min-width: 0; }
+  .jc--main .jc__b { flex: 1; padding: 24px 28px 26px; }
+  .jc__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: 0; color: var(--ts-mid); font-size: 12px; }
+  .jc__tag { padding: 2px 10px; border-radius: 99px; background: var(--tint-08); color: var(--ts-primary); font-weight: 700; }
+  .jc__min { display: inline-flex; align-items: center; gap: 4px; }
+  .jc__min svg { width: 13px; height: 13px; }
+  .jc__t { word-break: keep-all; overflow-wrap: anywhere; margin: 10px 0 0; color: var(--ink); font-size: 16px; font-weight: 700; line-height: 1.6; }
+  .jc--main .jc__t { font-size: 22px; line-height: 1.5; }
+  .jc__ex { margin: 10px 0 0; color: var(--ts-mid); font-size: 14px; line-height: 1.8; }
+  .jc__go { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; padding-top: 18px; color: var(--ts-primary); font-size: 14px; font-weight: 700; }
+  .jc__go .ico { width: 16px; height: 16px; transition: transform .2s; }
+  .jc:hover .jc__go .ico { transform: translateX(3px); }
+
+  /* アイキャッチ（カテゴリ色の面＋線のアイコン） */
+  .jc__eye { position: relative; flex: none; display: grid; place-items: center; align-content: center; gap: 6px; width: 150px; background: var(--eb); overflow: hidden; }
+  .jc__eye--big { width: auto; aspect-ratio: 16 / 7; gap: 12px; }
+  .jc__dots { position: absolute; inset: 0; background: radial-gradient(circle, var(--ec) 1px, transparent 1.4px) 0 0 / 14px 14px; opacity: .12; }
+  .jc__ic { position: relative; width: 44px; height: 44px; }
+  .jc__eye--big .jc__ic { width: 76px; height: 76px; }
+  .jc__eye b { position: relative; color: var(--ec); font-size: 13px; font-weight: 700; letter-spacing: .06em; }
+  .jc__eye--big b { font-size: 20px; }
+
+  /* お役立ち資料への小さな導線 */
+  .jres { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 4px 12px; padding: 18px 20px; border-radius: 20px; background: var(--bg-gray, #F7F8FB); color: var(--ink); text-decoration: none; }
+  .jres__k { grid-column: 1; color: var(--ts-primary); font-size: 12px; font-weight: 700; letter-spacing: .08em; }
+  .jres b { grid-column: 1; font-size: 14px; line-height: 1.6; word-break: keep-all; overflow-wrap: anywhere; }
+  .jres__go { grid-column: 2; grid-row: 1 / 3; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: #fff; color: var(--ts-primary); box-shadow: var(--shadow-soft); }
+  .jres__go .ico { width: 16px; height: 16px; }
+
+  /* テーマから探す */
+  .jcats { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--line); }
+  .jcats span { margin-right: 6px; color: var(--ink); font-size: 13px; font-weight: 700; }
+  .jcats a { padding: 7px 16px; border-radius: 99px; box-shadow: inset 0 0 0 1px var(--line); color: var(--ink); font-size: 13px; text-decoration: none; transition: box-shadow .15s, color .15s; }
+  .jcats a:hover { color: var(--ts-primary); box-shadow: inset 0 0 0 1.5px var(--ts-primary); }
+
+  @media (max-width: 900px) {
+    .jgrid { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .journal .sec-head { flex-direction: column; align-items: flex-start; }
+    .jc__eye { width: 104px; }
+    .jc__eye--big { width: auto; }
+    .jc__eye.jc__eye--big b { display: block; font-size: 17px; }
+    .jc__eye--big .jc__ic { width: 56px; height: 56px; }
+    .jc__eye b { display: none; }
+    .jc__ic { width: 36px; height: 36px; }
+    .jc--main .jc__t { font-size: 19px; }
+    .jc--main .jc__b { padding: 20px; }
+    .jc--sub .jc__t { font-size: 14.5px; }
+    .jcats span { width: 100%; }
+  }
+
   /* ── 背景のリズム：今の淡いグレーと白を交互に全面で敷くだけにする。
         03〜05 は連続しているため背景色では差をつけず、見出しの大きさと余白で強調する ─ */
   :root { --bg-gray: #F7F8FB; }
@@ -1224,6 +1285,15 @@
   <span class="nx-pam__badge">PDF</span>
 </div><p>パンフレット（PDF）</p></div></div>
 </div><div class="wrap"><p class="nx-foot">法人のお客様・その他のお問い合わせは<a href="/contact#form">お問い合わせフォーム<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p></div></section>
+<section class="journal" id="journal" aria-labelledby="journal-title"><div class="wrap">
+<header class="sec-head"><div><p class="sec-num">08</p><p class="sec-kicker">LEARNING JOURNAL</p>
+<h2 class="sec-title" id="journal-title">学びを続けるヒントへ</h2>
+<p class="sec-lead">キャリア、生成AI、マーケティングなど、<wbr>働きながら学ぶためのヒントを、<wbr>記事でお届けします。</p></div>
+<a class="sec-more" href="/blog">記事をもっと読む<span class="sec-more__arrow"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></header>
+<div class="jgrid"><a class="jc jc--main" href="/blog"><div class="jc__eye jc__eye--big" style="--eb:#EEF3FF;--ec:#0141D4" aria-hidden="true"><span class="jc__dots"></span><svg class="jc__ic" viewBox="0 0 64 64" aria-hidden="true"><g fill="none" stroke="#0141D4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="14" width="44" height="40" rx="6"/><path d="M10 26h44M22 8v10M42 8v10"/><path d="M22 38l6 6 14-14"/></g></svg><b>週2時間</b></div><div class="jc__b"><p class="jc__meta"><span class="jc__tag">キャリア・学び方</span><time>2026.09.08</time><span class="jc__min"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></svg>5分で読める</span></p><h3 class="jc__t">働きながら学びを続けるための、<wbr>週2時間のつくり方</h3><p class="jc__ex">忙しい平日でも学びを止めないために。スキマ時間の見つけ方と、無理なく続く習慣づくりのコツをまとめました。</p><span class="jc__go">記事を読む<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></a><div class="jside"><a class="jc jc--sub" href="/blog"><div class="jc__eye" style="--eb:#E9F7F0;--ec:#1E9E62" aria-hidden="true"><span class="jc__dots"></span><svg class="jc__ic" viewBox="0 0 64 64" aria-hidden="true"><g fill="none" stroke="#1E9E62" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16h40a4 4 0 0 1 4 4v20a4 4 0 0 1-4 4H30l-10 8v-8h-8a4 4 0 0 1-4-4V20a4 4 0 0 1 4-4z"/><path d="M22 30h.01M32 30h.01M42 30h.01" stroke-width="5"/></g></svg><b>ChatGPT</b></div><div class="jc__b"><p class="jc__meta"><span class="jc__tag">IT・デジタル</span><time>2026.08.26</time><span class="jc__min"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></svg>4分で読める</span></p><h3 class="jc__t">ChatGPTを<wbr>仕事の相棒にする、<wbr>最初の5つの使い方</h3></div></a><a class="jc jc--sub" href="/blog"><div class="jc__eye" style="--eb:#FFF3EA;--ec:#E46A1F" aria-hidden="true"><span class="jc__dots"></span><svg class="jc__ic" viewBox="0 0 64 64" aria-hidden="true"><g fill="none" stroke="#E46A1F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 28v8a3 3 0 0 0 3 3h5l16 10V15L20 25h-5a3 3 0 0 0-3 3z"/><path d="M44 24a10 10 0 0 1 0 16M50 18a18 18 0 0 1 0 28"/></g></svg><b>SNS設計</b></div><div class="jc__b"><p class="jc__meta"><span class="jc__tag">マーケティング</span><time>2026.08.12</time><span class="jc__min"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></svg>6分で読める</span></p><h3 class="jc__t">顧客理解から始める<wbr>SNSキャンペーン設計</h3></div></a>
+<a class="jres" href="/resources"><span class="jres__k">お役立ち資料</span><b>仕事や学びに役立つ資料を、<wbr>目的に合わせて選べます</b><span class="jres__go"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></div></div>
+<nav class="jcats" aria-label="テーマから記事を探す"><span>テーマから探す</span><a href="/blog">キャリア・学び方</a><a href="/blog">IT・デジタル</a><a href="/blog">マーケティング</a><a href="/blog">英語・TOEIC</a></nav>
+</div></section>
 </main>
 
 <script>

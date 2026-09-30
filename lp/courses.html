@@ -1001,19 +1001,20 @@
   .cfeat__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
   .fz { display: flex; flex-direction: column; border-radius: 24px; background: #fff; box-shadow: 0 0 0 1px var(--line); color: inherit; text-decoration: none; overflow: hidden; transition: box-shadow .2s, transform .2s; }
   .fz:hover { transform: translateY(-2px); box-shadow: 0 0 0 1.5px var(--ts-primary), var(--shadow-soft); }
-  .fz__v { position: relative; aspect-ratio: 16 / 9; background: linear-gradient(160deg, #F4F7FE, #E3EAFB); overflow: hidden; }
+  .fz__v { position: relative; aspect-ratio: 16 / 10; background: linear-gradient(160deg, #F4F7FE, #E3EAFB); overflow: hidden; }
   .fz__v img { display: block; width: 100%; height: 100%; object-fit: cover; }
   .fz__b { display: flex; flex-direction: column; flex: 1; padding: 26px 28px 28px; }
-  .fz__k { display: flex; align-items: center; gap: 10px; margin: 0; color: var(--ts-mid); font-size: 12.5px; font-weight: 700; }
-  .fz__k span { padding: 3px 10px; border-radius: 99px; background: var(--ts-primary); color: #fff; font-size: 11.5px; letter-spacing: .06em; }
+  .fz__k { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin: 0; color: var(--ink); font-size: 13px; font-weight: 700; }
+  .fz__k span { padding: 3px 10px; border-radius: 99px; background: #F2B51E; color: var(--ink); font-size: 11.5px; letter-spacing: .06em; }   /* 特集の画像（黄・オレンジ）と色をそろえる */
   .fz__catch { margin: 16px 0 0; color: var(--ts-primary); font-size: 14px; font-weight: 700; }
-  .fz__t { margin: 6px 0 0; color: var(--ink); font-size: 22px; font-weight: 700; line-height: 1.5; word-break: keep-all; overflow-wrap: anywhere; }
+  .fz__t { margin: 14px 0 0; color: var(--ink); font-size: 22px; font-weight: 700; line-height: 1.5; word-break: keep-all; overflow-wrap: anywhere; }
   .fz__d { margin: 10px 0 0; color: var(--ts-mid); font-size: 14px; line-height: 1.85; }
   .fz__tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 16px 0 0; padding: 0; list-style: none; }
   .fz__tags li { padding: 4px 12px; border-radius: 99px; background: var(--tint-08); color: var(--ts-primary); font-size: 12px; font-weight: 700; }
   .fz__facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 16px 0 0; padding: 0; list-style: none; }
   .fz__facts li { display: grid; justify-items: center; gap: 2px; padding: 10px 4px; border-radius: 12px; background: var(--bg-gray, #F7F8FB); }
-  .fz__facts b { color: var(--ts-primary); font-size: 18px; } .fz__facts span { color: var(--ts-mid); font-size: 11px; }
+  .fz__facts b { color: var(--ts-primary); font-size: 17px; white-space: nowrap; } .fz__facts span { color: var(--ts-mid); font-size: 11px; line-height: 1.4; text-align: center; }
+  .fz__v--white { background: #fff; border-bottom: 1px solid var(--line); } .fz__v--white img { object-fit: contain; padding: 8px 12px; }
   .fz__go { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; padding-top: 20px; color: var(--ts-primary); font-size: 14px; font-weight: 700; }
   .fz__go .ico { width: 16px; height: 16px; transition: transform .2s; } .fz:hover .fz__go .ico { transform: translateX(3px); }
   /* 特集1：Slackの画面イメージ */
@@ -1145,24 +1146,16 @@
 </div></section><section class="cfeat" id="featured" aria-labelledby="featured-title"><div class="wrap">
 <header class="sec-head"><div><p class="sec-kicker">FEATURED</p><h2 class="sec-title" id="featured-title">特集</h2><p class="sec-lead">いま注目のツールとプログラムを紹介します。</p></div></header>
 <div class="cfeat__grid">
-<a class="fz" href="/courses/slack-gas-task"><div class="fz__v fz__v--slack"><div class="fz-slack" aria-hidden="true">
-  <div class="fz-slack__side"><b>The Academy</b><span># general</span><span class="on"># project-a</span><span># faq</span><span># random</span></div>
-  <div class="fz-slack__main">
-    <p class="fz-slack__ch"># project-a</p>
-    <div class="fz-msg"><span class="fz-av" style="--a:#E46A1F">B</span><div><b>タスクBot</b><small>9:00</small><p>今日の期限：<em>企画書レビュー</em>（担当：さとう）</p></div></div>
-    <div class="fz-msg"><span class="fz-av" style="--a:#1E9E62">S</span><div><b>さとう</b><small>9:12</small><p>レビュー完了しました ✅</p></div></div>
-    <div class="fz-gantt"><p>ガントチャート</p><i style="--s:0;--w:45%"></i><i style="--s:30%;--w:40%"></i><i style="--s:60%;--w:35%" class="late"></i></div>
-  </div>
-</div></div>
-<div class="fz__b"><p class="fz__k"><span>特集 1</span>業務効率化ツール</p><p class="fz__catch">プロジェクト進行のズレやムダを、減らす。</p>
-<h3 class="fz__t">Slackだけで完結する<wbr>次世代のタスク管理システム</h3>
-<p class="fz__d">Slack×GASで動く、タスク・FAQ・ガントチャート連携の業務効率化ツールです。分かりやすい仕様書付きで、セットアップも簡単。タスクの進み具合をチームで共有しやすくなります。</p>
-<ul class="fz__tags"><li>Slack × GAS</li><li>仕様書付き</li><li>チームで共有</li></ul>
+<a class="fz" href="/courses/slack-gas-task"><div class="fz__v fz__v--white"><img src="assets/courses/feat-slack.webp" alt="PCのタスク一覧とスマホのSlack画面。月額サービス手数料0円、Slack内でタスク管理・FAQ・ガントチャートを確認できる" loading="lazy"></div>
+<div class="fz__b"><p class="fz__k"><span>特集 1</span>Slack×GAS タスク管理システム</p>
+<h3 class="fz__t">プロジェクト進行のズレやムダを、<wbr>減らす。</h3>
+<p class="fz__d">Slackだけで完結する、次世代のタスク管理システムです。タスク・FAQ・ガントチャートをSlackの中で確認できます。分かりやすい仕様書付きで、セットアップも簡単です。</p>
+<ul class="fz__facts"><li><b>¥0</b><span>月額サービス手数料</span></li><li><b>Slack内</b><span>で完結</span></li><li><b>FAQ・ガント</b><span>をまとめて確認</span></li><li><b>仕様書</b><span>付きで簡単設定</span></li></ul>
 <span class="fz__go">詳しくはこちら<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></a>
-<a class="fz" href="/courses/toeic-700"><div class="fz__v"><img src="assets/courses/toeic.webp" alt="TOEIC L&amp;R 700点突破プログラムのイメージ" loading="lazy"></div>
-<div class="fz__b"><p class="fz__k"><span>特集 2</span>英語・TOEIC</p><p class="fz__catch">苦手を得意に変える、3か月で自信の持てる英語力を。</p>
-<h3 class="fz__t">TOEIC L&amp;R 700点突破<wbr>プログラム</h3>
-<p class="fz__d">海外経験豊富な英語コーチとマンツーマンで学ぶ、TOEIC® L&amp;R 700点以上を目指す特別プログラムです。文法・リスニング・リーディング・英会話をバランスよく強化します。</p>
+<a class="fz" href="/courses/toeic-700"><div class="fz__v"><img src="assets/courses/feat-toeic.webp" alt="3ヶ月で結果を出すスコアアップ講座 TOEIC L&amp;R 700点突破プログラム。マンツーマントレーニング、オンラインライブ型クラス" loading="lazy"></div>
+<div class="fz__b"><p class="fz__k"><span>特集 2</span>TOEIC L&amp;R 700点突破プログラム</p>
+<h3 class="fz__t">苦手を得意に変える、<wbr>3か月で自信の持てる英語力を。</h3>
+<p class="fz__d">海外経験豊富な英語コーチとのマンツーマントレーニングで、TOEIC® L&amp;R 700点以上を目指します。オンラインライブ型のクラスで、文法・リスニング・リーディング・英会話をバランスよく強化します。</p>
 <ul class="fz__facts"><li><b>3</b><span>か月</span></li><li><b>週2</b><span>回</span></li><li><b>全24</b><span>回</span></li><li><b>1対1</b><span>マンツーマン</span></li></ul>
 <span class="fz__go">詳しくはこちら<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></a>
 </div></div></section><section class="clist" id="list" aria-labelledby="list-title"><div class="wrap">

@@ -51,6 +51,7 @@
   <div class="seg seg--page" role="group" aria-label="表示するページ">
     <button type="button" id="page-top" data-page="top" aria-pressed="true">トップ</button>
     <button type="button" id="page-courses" data-page="courses" aria-pressed="false">コースを探す</button>
+    <button type="button" id="page-howto" data-page="howto" aria-pressed="false">学び方・受講成果</button>
   </div>
   <div class="seg seg--mode" role="group" aria-label="表示する端末">
     <button type="button" id="mode-pc" data-mode="pc" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></g></svg>PC<span>1440</span></button>
@@ -74,7 +75,7 @@
     const note = document.getElementById('note');
     const buttons = [...document.querySelectorAll('.seg--mode button')];
     const pageBtns = [...document.querySelectorAll('.seg--page button')];
-    const PAGES = { top: 'lp-design.html', courses: 'courses.html' };
+    const PAGES = { top: 'lp-design.html', courses: 'courses.html', howto: 'how-to-learn.html' };
     const frame = document.getElementById('lp'), open = document.getElementById('open');
     let mode = 'pc', page = 'top';
     function setPage(pg) {

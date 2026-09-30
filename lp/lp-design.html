@@ -914,16 +914,11 @@
   /* ── 09 OFFICIAL LINE：最後にいちばん軽い行動で受け止める ─ */
   .lineS { padding: clamp(72px, 8vw, 112px) 0; background: var(--bg-gray, #F7F8FB); }
   .lineS .wrap { max-width: var(--maxw-narrow); }
-  .ln { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); border-radius: clamp(24px, 3vw, 36px); background: #fff; box-shadow: var(--shadow-soft); overflow: hidden; }
-  .ln__copy { padding: clamp(32px, 4.5vw, 56px); }
   .ln__kick { color: #06A847; }
-  .ln .sec-title { word-break: keep-all; overflow-wrap: anywhere; }
-  .ln .sec-lead { word-break: keep-all; overflow-wrap: anywhere; }
   .ln__list { display: grid; gap: 16px; margin: 28px 0 0; padding: 0; list-style: none; }
   .ln__list li { display: flex; gap: 14px; align-items: flex-start; }
   .ln__ic { display: grid; place-items: center; flex: none; width: 44px; height: 44px; border-radius: 14px; background: #E8F8EF; color: #06A847; }
   .ln__ic svg { width: 22px; height: 22px; }
-  .ln__no { margin: 0; color: #06A847; font-size: 11.5px; font-weight: 700; letter-spacing: .08em; }
   .ln__list b { display: block; margin-top: 2px; color: var(--ink); font-size: 16px; }
   .ln__list li p:last-child { margin: 2px 0 0; color: var(--ts-mid); font-size: 13.5px; line-height: 1.7; }
   .ln__cta { margin-top: 32px; }
@@ -932,25 +927,21 @@
   .ln__lic { width: 22px; height: 22px; }
   .ln__btn .ico { width: 16px; height: 16px; }
   .ln__note { margin: 10px 0 0; color: var(--ts-mid); font-size: 12px; }
-  .ln__vis { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 28px; background: linear-gradient(160deg, #06C755 0%, #04A948 100%); color: #fff; text-align: center; }
-  .ln__badge { margin: 0; padding: 5px 14px; border-radius: 99px; background: rgba(255,255,255,.2); font-size: 12.5px; font-weight: 700; letter-spacing: .06em; }
-  .ln__big { display: flex; align-items: baseline; justify-content: center; flex-wrap: wrap; gap: 0 4px; margin: 14px 0 0; line-height: 1; }
-  .ln__big small { width: 100%; margin-bottom: 8px; font-size: 16px; font-weight: 700; }
-  .ln__big b { font-size: clamp(56px, 6vw, 76px); font-weight: 800; letter-spacing: -.02em; font-family: 'Helvetica Neue', Arial, sans-serif; }
-  .ln__big span { font-size: 22px; font-weight: 800; }
-  .ln__ill { display: block; width: 100%; max-width: 250px; height: auto; margin-top: 18px; }
-  @media (max-width: 900px) {
-    .ln { grid-template-columns: minmax(0, 1fr); }
-    .ln__vis { flex-direction: row; flex-wrap: wrap; gap: 8px 20px; padding: 28px 24px; }
-    .ln__big { margin: 0; }
-    .ln__ill { width: 150px; margin: 0; }
-  }
-  @media (max-width: 640px) {
-    .ln__copy { padding: 28px 22px 30px; }
-    .ln__btn { width: 100%; min-width: 0; }
-    .ln__vis { flex-direction: column; }
-    .ln__ill { width: 170px; }
-  }
+  .lnD { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+  .lnD .sec-title, .lnD .sec-lead { word-break: keep-all; } .lnD__list li p { margin: 2px 0 0; color: var(--ts-mid); font-size: 13.5px; line-height: 1.7; } .lnD__list b { margin-top: 0; }
+  .lnD__vis { position: relative; display: grid; place-items: center; padding: 36px 0; }
+  .lnD__vis::before { content: ""; position: absolute; inset: 0 6%; border-radius: 40px; background: linear-gradient(160deg, #E8F8EF 0%, #CFF0DC 100%); }
+  .lnD__phone { position: relative; width: 300px; border-radius: 30px; background: #fff; box-shadow: 0 0 0 7px #fff, 0 0 0 9px #0F1B45, 0 30px 60px rgba(15,27,69,.18); overflow: hidden; }
+  .lnD__bar { display: flex; align-items: center; gap: 8px; padding: 14px 16px 10px; color: #111; font-size: 14px; } .lnD__bar span { font-size: 20px; color: #555; } .lnD__bar i { padding: 1px 6px; border-radius: 4px; background: #06C755; color: #fff; font-size: 10px; font-style: normal; font-weight: 700; }
+  .lnD__talk { display: grid; gap: 12px; padding: 14px 14px 22px; background: #8CABD9; }
+  .lnD__day { justify-self: center; margin: 0; padding: 2px 10px; border-radius: 99px; background: rgba(0,0,0,.18); color: #fff; font-size: 10.5px; }
+  .lnD__m { display: flex; gap: 8px; align-items: flex-start; }
+  .lnD__av { display: grid; place-items: center; flex: none; width: 32px; height: 32px; border-radius: 50%; background: #0141D4; color: #fff; font-size: 11px; font-weight: 800; }
+  .lnD__b { margin: 0; padding: 9px 12px; border-radius: 4px 16px 16px 16px; background: #fff; color: #111; font-size: 12.5px; line-height: 1.55; }
+  .lnD__cpn { display: grid; gap: 4px; width: 190px; padding: 14px; border-radius: 14px; background: linear-gradient(135deg, #06C755, #04A948); color: #fff; }
+  .lnD__cpn small { font-size: 10.5px; opacity: .9; } .lnD__cpn b { font-size: 17px; } .lnD__cpn span { margin-top: 6px; padding: 6px 0; border-radius: 99px; background: #fff; color: #06A847; font-size: 11.5px; font-weight: 700; text-align: center; }
+  @media (max-width: 900px) { .lnD { grid-template-columns: minmax(0, 1fr); } }
+  @media (max-width: 640px) { .lnD .ln__btn { width: 100%; min-width: 0; } .lnD__phone { width: 270px; } }
 
   /* ── 背景のリズム：今の淡いグレーと白を交互に全面で敷くだけにする。
         03〜05 は連続しているため背景色では差をつけず、見出しの大きさと余白で強調する ─ */
@@ -1298,45 +1289,15 @@
 <section class="journal" id="journal" aria-labelledby="journal-title"><div class="wrap"><header class="sec-head"><div><p class="sec-num">08</p><p class="sec-kicker">LEARNING JOURNAL</p><h2 class="sec-title" id="journal-title">学びを続けるヒントへ</h2>
 <p class="sec-lead">キャリア、生成AI、マーケティングなど、<wbr>働きながら学ぶためのヒントを、<wbr>記事でお届けします。</p></div>
 <a class="sec-more" href="/blog">記事をもっと読む<span class="sec-more__arrow"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></header><div class="jxB"><a class="jx jxB__c" href="/blog"><div class="jx__ph"><img src="assets/journal/career.webp" alt="" loading="lazy"></div><div class="jx__b"><p class="jc__meta"><span class="jc__tag">キャリア・学び方</span><time>2026.09.08</time><span class="jc__min"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></svg>5分で読める</span></p><h3 class="jc__t">働きながら学びを続けるための、<wbr>週2時間のつくり方</h3><p class="jc__ex">忙しい平日でも学びを止めないために。スキマ時間の見つけ方と、無理なく続く習慣づくりのコツをまとめました。</p></div></a><a class="jx jxB__c" href="/blog"><div class="jx__ph"><img src="assets/journal/ai.webp" alt="" loading="lazy"></div><div class="jx__b"><p class="jc__meta"><span class="jc__tag">IT・デジタル</span><time>2026.08.26</time><span class="jc__min"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></svg>4分で読める</span></p><h3 class="jc__t">ChatGPTを<wbr>仕事の相棒にする、<wbr>最初の5つの使い方</h3><p class="jc__ex">最初のひと言の書き方から、議事録・メール・企画のたたき台づくりまで、明日から試せる使い方を紹介します。</p></div></a><a class="jx jxB__c" href="/blog"><div class="jx__ph"><img src="assets/journal/sns.webp" alt="" loading="lazy"></div><div class="jx__b"><p class="jc__meta"><span class="jc__tag">マーケティング</span><time>2026.08.12</time><span class="jc__min"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></svg>6分で読める</span></p><h3 class="jc__t">顧客理解から始める<wbr>SNSキャンペーン設計</h3><p class="jc__ex">「誰に・何を・なぜ」を先に決めると、投稿の反応が変わります。キャンペーン設計の順番を解説します。</p></div></a></div><div class="jxB__res"><a class="jres" href="/resources"><span class="jres__k">お役立ち資料</span><b>仕事や学びに役立つ資料を、<wbr>目的に合わせて選べます</b><span class="jres__go"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></div></div></section>
-<section class="lineS" id="line" aria-labelledby="line-title"><div class="wrap">
-<div class="ln">
-<div class="ln__copy">
-<p class="sec-num">09</p><p class="sec-kicker ln__kick">OFFICIAL LINE</p>
-<h2 class="sec-title" id="line-title">公式LINEで、<wbr>学びのきっかけを<wbr>受け取る</h2>
-<p class="sec-lead">まだ決めきれなくても大丈夫。<wbr>友だち追加だけで、<wbr>新しいコースやお得な情報が届きます。</p>
-<ul class="ln__list"><li><span class="ln__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></g></svg></span><div><p class="ln__no">特典 1</p><b>新しいコース情報を先にお届け</b><p>公開前のコースや開講日程を、いち早くお知らせします。</p></div></li><li><span class="ln__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2a3 3 0 0 0 0 6v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a3 3 0 0 0 0-6z"/><path d="M9 15l6-6M9.5 9.5h.01M14.5 14.5h.01"/></g></svg></span><div><p class="ln__no">特典 2</p><b>全コース500円OFFクーポン</b><p>クーポンは公式LINEからのみ配信しています。</p></div></li><li><span class="ln__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.2A5 5 0 0 1 21 19"/></g></svg></span><div><p class="ln__no">特典 3</p><b>限定イベントの情報が届く</b><p>体験ツアーや交流イベントなど、受講生向けの案内をお届けします。</p></div></li></ul>
-<div class="ln__cta"><a class="ln__btn" href="/beginners#line"><svg class="ln__lic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5c5 0 9 3.2 9 7.2 0 3.9-3.8 7.1-8.6 7.2-.5.4-2.7 2.3-4.2 2.6-.4.1-.4-.3-.3-.6l.5-2.4C5.3 16.3 3 13.7 3 10.7 3 6.7 7 3.5 12 3.5z" fill="currentColor"/></svg>LINEで友だち追加する<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-<p class="ln__note">友だち追加は無料です。配信はいつでも停止できます。</p></div>
-</div>
-<div class="ln__vis" aria-hidden="true">
-<p class="ln__badge">LINE限定クーポン</p>
-<p class="ln__big"><small>全コース</small><b>500</b><span>円OFF</span></p>
-<svg class="ln__ill" viewBox="0 0 200 150" aria-hidden="true">
-    <ellipse cx="100" cy="80" rx="78" ry="62" fill="#FFFFFF" opacity=".16"/>
-    <!-- スマホ -->
-    <rect x="62" y="22" width="64" height="112" rx="12" fill="#0A9E46" opacity=".55" transform="translate(6 6)"/>
-    <rect x="62" y="22" width="64" height="112" rx="12" fill="#FFFFFF" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M84 30h20" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-    <!-- 吹き出し（受信メッセージ） -->
-    <path d="M72 44h36a6 6 0 0 1 6 6v10a6 6 0 0 1-6 6H84l-8 6 1-6h-5a6 6 0 0 1-6-6V50a6 6 0 0 1 6-6z" fill="#06C755" stroke="#012270" stroke-width="2.6" stroke-linejoin="round"/>
-    <circle cx="82" cy="55" r="2.6" fill="#fff"/><circle cx="91" cy="55" r="2.6" fill="#fff"/><circle cx="100" cy="55" r="2.6" fill="#fff"/>
-    <!-- クーポン券 -->
-    <g transform="rotate(-10 128 98)">
-      <path d="M92 82h72a5 5 0 0 1 5 5v6a6 6 0 0 0 0 12v6a5 5 0 0 1-5 5H92a5 5 0 0 1-5-5v-6a6 6 0 0 0 0-12v-6a5 5 0 0 1 5-5z" fill="#B7EFCF" transform="translate(5 5)"/>
-      <path d="M92 82h72a5 5 0 0 1 5 5v6a6 6 0 0 0 0 12v6a5 5 0 0 1-5 5H92a5 5 0 0 1-5-5v-6a6 6 0 0 0 0-12v-6a5 5 0 0 1 5-5z" fill="#FFFFFF" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M114 86v28" stroke="#012270" stroke-width="2.2" stroke-dasharray="3 4" stroke-linecap="round"/>
-      <text x="142" y="104" text-anchor="middle" font-family="'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif" font-weight="900" font-size="15" fill="#F76B38">500<tspan font-size="9">円</tspan></text>
-      <circle cx="100" cy="99" r="5" fill="#F76B38" stroke="#012270" stroke-width="2.4"/>
-    </g>
-    <!-- きらめき・ハート -->
-    <path d="M40 34 Q40 44 50 44 Q40 44 40 54 Q40 44 30 44 Q40 44 40 34Z" fill="#FFD66B" stroke="#012270" stroke-width="2.4" stroke-linejoin="round"/>
-    <path d="M160 22 Q160 29 167 29 Q160 29 160 36 Q160 29 153 29 Q160 29 160 22Z" fill="#FFFFFF" stroke="#012270" stroke-width="2.2" stroke-linejoin="round"/>
-    <path d="M44 104c-10-6-8-16-1-12 7-4 9 6 1 12z" fill="#F76B38" stroke="#012270" stroke-width="2.4" stroke-linejoin="round"/>
-    <circle cx="170" cy="60" r="4" fill="#FFD66B" stroke="#012270" stroke-width="2"/>
-  </svg>
-</div>
-</div>
-</div></section>
+<section class="lineS" id="line" aria-labelledby="line-title"><div class="wrap"><div class="lnD">
+<div class="lnD__copy"><p class="sec-num">09</p><p class="sec-kicker ln__kick">OFFICIAL LINE</p><h2 class="sec-title" id="line-title">公式LINEで、<wbr>学びのきっかけを<wbr>受け取る</h2><p class="sec-lead">まだ決めきれなくても大丈夫。<wbr>友だち追加だけで、<wbr>新しいコースやお得な情報が届きます。</p><ul class="ln__list lnD__list"><li><span class="ln__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></g></svg></span><div><b>新しいコース情報を先にお届け</b><p>公開前のコースや開講日程を、いち早くお知らせします。</p></div></li><li><span class="ln__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2a3 3 0 0 0 0 6v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a3 3 0 0 0 0-6z"/><path d="M9 15l6-6M9.5 9.5h.01M14.5 14.5h.01"/></g></svg></span><div><b>全コース500円OFFクーポン</b><p>クーポンは公式LINEからのみ配信しています。</p></div></li><li><span class="ln__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.2A5 5 0 0 1 21 19"/></g></svg></span><div><b>限定イベントの情報が届く</b><p>体験ツアーや交流イベントなど、受講生向けの案内をお届けします。</p></div></li></ul><div class="ln__cta"><a class="ln__btn" href="/beginners#line"><svg class="ln__lic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5c5 0 9 3.2 9 7.2 0 3.9-3.8 7.1-8.6 7.2-.5.4-2.7 2.3-4.2 2.6-.4.1-.4-.3-.3-.6l.5-2.4C5.3 16.3 3 13.7 3 10.7 3 6.7 7 3.5 12 3.5z" fill="currentColor"/></svg>LINEで友だち追加する<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a><p class="ln__note">友だち追加は無料です。配信はいつでも停止できます。</p></div></div>
+<div class="lnD__vis"><div class="lnD__phone" aria-hidden="true"><div class="lnD__bar"><span>‹</span><b>The Academy</b><i>公式</i></div>
+<div class="lnD__talk">
+<p class="lnD__day">今日</p>
+<div class="lnD__m"><span class="lnD__av">TA</span><div><p class="lnD__b">友だち追加ありがとうございます！<br>The Academyです😊</p></div></div>
+<div class="lnD__m"><span class="lnD__av">TA</span><div class="lnD__cpn"><small>LINE限定クーポン</small><b>全コース 500円OFF</b><span>クーポンを使う</span></div></div>
+<div class="lnD__m"><span class="lnD__av">TA</span><div><p class="lnD__b">新しいコースが公開されたら、<br>いち早くお知らせしますね。</p></div></div>
+</div></div></div></div></div></section>
 </main>
 
 <script>

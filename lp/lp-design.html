@@ -874,8 +874,9 @@
   .nxC__vis { position: relative; display: grid; place-items: center; padding: 56px 24px 96px; }
   .nxC__bg { position: absolute; inset: 0 0 20px 8%; border-radius: 40px; background: linear-gradient(160deg, #EEF3FF 0%, #DDE7FC 100%); }
   .nxC .nx-call { position: relative; width: min(100%, 520px); }
-  .nxC__pam { position: absolute; right: 0; bottom: -34px; display: grid; justify-items: center; }
-  .nxC__pam p { margin: 6px 0 0; color: var(--ink); font-size: 12px; font-weight: 700; }
+  .nxC__pam { position: absolute; right: 0; bottom: -48px; display: grid; justify-items: center; }
+  .nxC__pam .nx-pam { height: 178px; }
+  .nxC__pam p { position: relative; z-index: 5; margin: 4px 0 0; padding: 3px 10px; border-radius: 99px; background: #fff; box-shadow: var(--shadow-soft); color: var(--ink); font-size: 12px; font-weight: 700; }
   @media (max-width: 1100px) { .nxC__grid { grid-template-columns: minmax(0, 1fr); } .nxC__vis { width: 100%; max-width: 640px; margin: 8px auto 0; } }
   @media (max-width: 640px) { .nxC__cta { grid-template-columns: 1fr; } .nxC__pam { transform: scale(.75); right: -20px; bottom: -20px; } .nxC__vis { padding: 24px 8px 90px; } }
   @media (max-width: 640px) { .nxC .nx-card__t { font-size: 22px; } .nx-pts li { font-size: 13px; } .nx-call { padding: 10px; } .nx-call__tiles { gap: 6px; } .nx-call__bar { font-size: 11px; } }
@@ -1193,38 +1194,26 @@
 <div class="nxC__vis"><div class="nxC__bg"></div><div class="nx-call" aria-hidden="true">
   <div class="nx-call__bar"><span class="nx-live"></span>無料相談・オンライン<b>30:00</b></div>
   <div class="nx-call__tiles">
-    <div class="nx-call__tile nx-call__tile--on"><svg viewBox="12 10 136 110" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-  <defs><pattern id="dtBs" width="4" height="4" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".55" fill="#2B2F3A" opacity=".45"/></pattern></defs>
-  <rect width="160" height="120" fill="#F4F7FE"/>
-  <path d="M134 32 l6 7 l-2 -7" fill="#6F97F7" stroke="#2B2F3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="112" y="18" width="32" height="16" rx="7" fill="#6F97F7" stroke="#2B2F3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="122" cy="26" r="1.4" fill="#fff"/><circle cx="128" cy="26" r="1.4" fill="#fff"/><circle cx="134" cy="26" r="1.4" fill="#fff"/><path d="M40 26 l-3 -5 M46 24 l1 -6 M52 27 l4 -4" fill="none" stroke="#6F97F7" stroke-width="2" stroke-linecap="round"/>
-  <path d="M56 74 C50 54 54 24 76 23 C98 24 101 54 95 74 C89 77 84 75 82 70 L70 70 C67 76 61 77 56 74Z" fill="#6F97F7" stroke="#2B2F3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M72 66 V76 M80 66 V76" fill="none" stroke="#2B2F3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M42 124 C44 96 56 80 76 78 C96 80 108 96 110 124Z" fill="#fff" stroke="#2B2F3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M42 124 C44 96 56 80 76 78 C96 80 108 96 110 124Z" fill="url(#dtBs)"/>
-  <path d="M68 78 L76 88 L84 78" fill="#fff" stroke="#2B2F3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M62 42 C61 58 67 67 76 67 C85 67 90 58 89 42 C84 33 68 33 62 42Z" fill="#fff" stroke="#2B2F3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M60 47 C57 30 69 23 77 23 C88 23 95 31 92 47 C86 43 81 37 79 32 C74 40 67 44 60 47Z" fill="#6F97F7" stroke="#2B2F3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="70" cy="51" r="1.7" fill="#2B2F3A"/><circle cx="82" cy="51" r="1.7" fill="#2B2F3A"/>
-  <path d="M76.5 53 l-1.6 3.4 l2.4 .4" fill="none" stroke="#2B2F3A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M71 59 Q76 63.5 81 59 Z" fill="#fff" stroke="#2B2F3A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <ellipse cx="61" cy="52" rx="3.2" ry="4.6" fill="#fff" stroke="#2B2F3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M62 57 C63 63 67 65 71 64" fill="none" stroke="#2B2F3A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <div class="nx-call__tile nx-call__tile--on"><svg viewBox="0 0 160 120" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+  <rect width="160" height="120" fill="#EEF5FC"/>
+  <path d="M14 34 l-3 -5 M20 32 l1 -6 M26 35 l4 -4" fill="none" stroke="#3E78FE" stroke-width="2" stroke-linecap="round"/>
+  <image href="assets/illust/staff.webp" x="27" y="20" width="95.2" height="100"/>
+  <rect x="114" y="12" width="30" height="20" rx="10" fill="#0141D4"/><path d="M122 30 l-3 7 l9 -5z" fill="#0141D4"/><text x="129" y="26.5" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="Helvetica Neue, Arial, sans-serif">!</text>
 </svg><small>スタッフ</small></div>
-    <div class="nx-call__tile"><svg viewBox="12 10 136 110" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-  <defs><pattern id="dtBy" width="4" height="4" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".55" fill="#2B2F3A" opacity=".45"/></pattern></defs>
-  <rect width="160" height="120" fill="#FFF7F0"/>
-  <path d="M26 32 l-4 7 l10 -7" fill="#6F97F7" stroke="#2B2F3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="18" y="18" width="32" height="16" rx="7" fill="#6F97F7" stroke="#2B2F3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="28" cy="26" r="1.4" fill="#fff"/><circle cx="34" cy="26" r="1.4" fill="#fff"/><circle cx="40" cy="26" r="1.4" fill="#fff"/><path d="M118 30 l-3 -5 M124 28 l1 -6 M130 31 l4 -4" fill="none" stroke="#6F97F7" stroke-width="2" stroke-linecap="round"/>
-  <path d="M76 66 V78 M86 66 V78" fill="none" stroke="#2B2F3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M48 124 C50 96 62 82 81 80 C100 82 112 96 114 124Z" fill="#fff" stroke="#2B2F3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M48 124 C50 96 62 82 81 80 C100 82 112 96 114 124Z" fill="url(#dtBy)"/>
-  <path d="M72 79 L77 90 L81 83 L85 90 L90 79" fill="#fff" stroke="#2B2F3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M81 83 V124" fill="none" stroke="#2B2F3A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M66 50 q-5 -1 -5 4 q0 5 6 5 M96 50 q5 -1 5 4 q0 5 -6 5" fill="#fff" stroke="#2B2F3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M67 42 C66 60 72 69 81 69 C90 69 96 60 95 42 C90 33 72 33 67 42Z" fill="#fff" stroke="#2B2F3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M65 48 C60 28 74 20 84 21 C96 22 101 32 97 48 C95 40 91 36 87 34 C80 40 72 42 67 42 C66 44 65 46 65 48Z" fill="#6F97F7" stroke="#2B2F3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="75" cy="52" r="1.7" fill="#2B2F3A"/><circle cx="87" cy="52" r="1.7" fill="#2B2F3A"/>
-  <path d="M81.5 54 l-1.6 3.4 l2.4 .4" fill="none" stroke="#2B2F3A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M76 61 Q81 65.5 86 61" fill="none" stroke="#2B2F3A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <div class="nx-call__tile"><svg viewBox="0 0 160 120" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+  <rect width="160" height="120" fill="#FFF6EE"/>
+  <rect x="14" y="12" width="30" height="20" rx="10" fill="#F29A57"/><path d="M22 30 l-3 7 l9 -5z" fill="#F29A57"/><text x="29" y="26.5" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="Helvetica Neue, Arial, sans-serif">?</text><path d="M128 34 l-3 -5 M134 32 l1 -6 M140 35 l4 -4" fill="none" stroke="#F29A57" stroke-width="2" stroke-linecap="round"/>
+  <g transform="translate(3.95 -4.2) scale(1.05)">
+  <path d="M26 124 C30 104 46 98 66 96 C70 94 72 90 72 84 M90 84 C90 90 92 94 96 96 C116 98 132 104 136 124" fill="#fff" stroke="#231815" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M66 96 C72 104 90 104 96 96" fill="none" stroke="#231815" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M55 58 C47 56 45 66 51 70 C53 72 56 72 58 70" fill="#fff" stroke="#231815" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M107 58 C115 56 117 66 111 70 C109 72 106 72 104 70" fill="#fff" stroke="#231815" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M55 58 C55 30 107 30 107 58 C107 78 96 88 81 88 C66 88 55 78 55 58Z" fill="#fff" stroke="#231815" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M54 58 C48 28 64 12 82 12 C100 12 114 26 108 58 C106 50 104 46 100 42 C94 46 86 46 80 42 C76 48 68 50 60 46 C57 50 55 54 54 58Z" fill="#5E5957" stroke="#231815" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="71" cy="62" r="3.4" fill="#231815"/><circle cx="91" cy="62" r="3.4" fill="#231815"/>
+  <path d="M81.5 66 q-3 4 1 6" fill="none" stroke="#231815" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M75 76 Q81 80 87 76" fill="none" stroke="#231815" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
 </svg><small>あなた</small></div>
   </div>
   <div class="nx-call__ctl"><i><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></g></svg></i><i><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="7" width="12" height="10" rx="2"/><path d="M15 11l6-3v8l-6-3z"/></g></svg></i><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></i><i class="end"></i></div>

@@ -943,6 +943,44 @@
   @media (max-width: 900px) { .lnD { grid-template-columns: minmax(0, 1fr); } }
   @media (max-width: 640px) { .lnD .ln__btn { width: 100%; min-width: 0; } .lnD__phone { width: 270px; } }
 
+  /* ── フッター（紺）：確定版のリンク構成＋SNS8種＋法務リンク ─ */
+  .site-footer { padding: clamp(56px, 7vw, 88px) 0 28px; background: #0F1B45; color: rgba(255,255,255,.72); }
+  .ft__top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.4fr); gap: clamp(32px, 5vw, 72px); }
+  .ft__logo { display: inline-grid; gap: 4px; color: #fff; text-decoration: none; }
+  .ft__logo img { display: block; width: 200px; height: auto; filter: brightness(0) invert(1); }
+  .ft__logo span { font-size: 9.5px; font-weight: 700; letter-spacing: .22em; color: rgba(255,255,255,.6); }
+  .ft__desc { margin: 20px 0 0; font-size: 13px; line-height: 1.9; word-break: keep-all; overflow-wrap: anywhere; }
+  .ft__cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+  .ft__btn { display: inline-flex; align-items: center; height: 42px; padding: 0 18px; border-radius: 999px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.3); color: #fff; font-size: 13px; font-weight: 700; text-decoration: none; transition: background-color .15s; }
+  .ft__btn:hover { background: rgba(255,255,255,.08); }
+  .ft__btn--main { background: var(--ts-primary); box-shadow: none; }
+  .ft__btn--main:hover { background: #2A5FE0; }
+  .ft__sns { display: flex; flex-wrap: wrap; gap: 6px; margin: 26px 0 0; padding: 0; list-style: none; }
+  .ft__sns a { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,.08); color: #fff; transition: background-color .15s; }
+  .ft__sns a:hover { background: rgba(255,255,255,.2); }
+  .ft__sns svg { width: 16px; height: 16px; }
+  .ft__nav { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 24px; }
+  .ft__h { margin: 0 0 14px; color: #fff; font-size: 13.5px; font-weight: 700; }
+  .ft__col ul { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+  .ft__col a, .ft__legal a { display: inline-flex; align-items: center; gap: 4px; color: rgba(255,255,255,.72); font-size: 13px; text-decoration: none; transition: color .15s; }
+  .ft__col a:hover, .ft__legal a:hover { color: #fff; }
+  .ft__ext { width: 12px; height: 12px; }
+  .ft__bottom { position: relative; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; margin-top: clamp(40px, 5vw, 64px); padding: 22px 64px 0 0; border-top: 1px solid rgba(255,255,255,.12); }
+  .ft__legal { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 0; padding: 0; list-style: none; }
+  .ft__legal a { font-size: 12px; }
+  .ft__copy { margin: 0; font-size: 11.5px; color: rgba(255,255,255,.5); }
+  .ft__top-btn { position: absolute; right: 0; top: 14px; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,.1); color: #fff; }
+  .ft__top-btn:hover { background: rgba(255,255,255,.2); }
+  .ft__top-btn svg { width: 18px; height: 18px; }
+  @media (max-width: 1100px) {
+    .ft__top { grid-template-columns: minmax(0, 1fr); }
+    .ft__nav { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px 24px; }
+  }
+  @media (max-width: 640px) {
+    .ft__nav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .ft__bottom { flex-direction: column; align-items: flex-start; padding-right: 56px; }
+  }
+
   /* ── 背景のリズム：今の淡いグレーと白を交互に全面で敷くだけにする。
         03〜05 は連続しているため背景色では差をつけず、見出しの大きさと余白で強調する ─ */
   :root { --bg-gray: #F7F8FB; }
@@ -956,7 +994,7 @@
   .popular .sec-title, .pf .sec-title, .cmty .sec-title { font-size: clamp(32px, 4vw, 48px); line-height: 1.3; }
 </style>
 </head>
-<body>
+<body id="top">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
@@ -1299,6 +1337,25 @@
 <div class="lnD__m"><span class="lnD__av">TA</span><div><p class="lnD__b">新しいコースが公開されたら、<br>いち早くお知らせしますね。</p></div></div>
 </div></div></div></div></div></section>
 </main>
+<footer class="site-footer" aria-label="サイト情報">
+<div class="wrap">
+<div class="ft__top">
+<div class="ft__brand">
+<a class="ft__logo" href="/"><img src="assets/academy_logo_blue_trim.png" alt="THE ACADEMY" width="220"><span>ONLINE LEARNING PLATFORM</span></a>
+<p class="ft__desc">学んで、つくって、次のキャリアへ。<br>働きながら実践的なスキルを身につける、<wbr>オンライン学習プラットフォームです。</p>
+<div class="ft__cta"><a class="ft__btn ft__btn--main" href="/contact">無料で相談する</a><a class="ft__btn" href="/contact#pamphlet">資料請求</a></div>
+<ul class="ft__sns" aria-label="公式SNS"><li><a href="#" aria-label="LINE" data-todo="URL未設定"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="currentColor"><path d="M12 3.5c5 0 9 3.2 9 7.2 0 3.9-3.8 7.1-8.6 7.2-.5.4-2.7 2.3-4.2 2.6-.4.1-.4-.3-.3-.6l.5-2.4C5.3 16.3 3 13.7 3 10.7 3 6.7 7 3.5 12 3.5z"/></g></svg></a></li><li><a href="#" aria-label="Instagram" data-todo="URL未設定"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/></g></svg></a></li><li><a href="#" aria-label="Threads" data-todo="URL未設定"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 11.2c-.6-2.6-2.4-3.7-4.6-3.7-2.8 0-4.3 2-4.3 4.6 0 2.9 1.8 4.9 4.6 4.9 2.3 0 4-1.3 4-3.2 0-1.8-1.4-2.8-3.6-2.8-1.9 0-3 .9-3 2.1 0 1.1.9 1.8 2.1 1.8 2 0 3.3-1.6 3.3-4.6"/><path d="M19.5 8.5C18.3 5.3 15.6 3.5 12 3.5 7 3.5 3.8 7 3.8 12s3.2 8.5 8.2 8.5c3.3 0 5.9-1.6 7.1-4.3"/></g></svg></a></li><li><a href="#" aria-label="X" data-todo="URL未設定"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 4.5l15 15M19.5 4.5l-15 15"/></g></svg></a></li><li><a href="#" aria-label="Facebook" data-todo="URL未設定"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="currentColor"><path d="M14 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.6-1.5H17V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H8.3v3h2.6V21z"/></g></svg></a></li><li><a href="#" aria-label="LinkedIn" data-todo="URL未設定"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/><path d="M8 10.5V16M8 7.8v.1M11.5 16v-5.5M11.5 13c0-1.6 1-2.6 2.3-2.6s2.2.9 2.2 2.6V16"/></g></svg></a></li><li><a href="#" aria-label="note" data-todo="URL未設定"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19V6.5h9.5A4.5 4.5 0 0 1 19 11v8M9.5 19v-8M14.5 19v-8"/></g></svg></a></li><li><a href="#" aria-label="YouTube" data-todo="URL未設定"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.3v5.4l4.6-2.7z" fill="currentColor"/></g></svg></a></li></ul>
+</div>
+<nav class="ft__nav" aria-label="フッターナビゲーション"><div class="ft__col"><p class="ft__h">コースを探す</p><ul><li><a href="/courses?c=it">IT・デジタル</a></li><li><a href="/courses?c=en">英語・TOEIC</a></li><li><a href="/courses?c=biz">ビジネス</a></li><li><a href="/courses?c=mk">マーケティング</a></li><li><a href="/courses?c=cr">クリエイティブ</a></li></ul></div><div class="ft__col"><p class="ft__h">学び方</p><ul><li><a href="/learn">学び方・受講成果</a></li><li><a href="/portfolio">ポートフォリオ</a></li></ul></div><div class="ft__col"><p class="ft__h">はじめての方へ</p><ul><li><a href="/beginners#flow">受講までの流れ</a></li><li><a href="/beginners#price">料金・お支払い</a></li><li><a href="/beginners#faq">よくある質問</a></li><li><a href="/contact">無料相談</a></li><li><a href="/contact#pamphlet">資料請求</a></li></ul></div><div class="ft__col"><p class="ft__h">お役立ち</p><ul><li><a href="/blog">学びのヒント</a></li><li><a href="/resources">お役立ち資料</a></li><li><a href="/beginners#line">公式LINE</a></li></ul></div><div class="ft__col"><p class="ft__h">The Academy</p><ul><li><a href="/about">About</a></li><li><a href="https://www.thesocialjapan.com/" target="_blank" rel="noopener">運営会社<svg class="ft__ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5h5v5M19 5l-8 8M18 14v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li><li><a href="/contact#form">お問い合わせ</a></li></ul></div></nav>
+</div>
+<div class="ft__bottom">
+<ul class="ft__legal"><li><a href="/privacy">プライバシーポリシー</a></li><li><a href="/tokushoho">特定商取引法に基づく表記</a></li><li><a href="/terms">利用規約</a></li></ul>
+<p class="ft__copy">© 2026 The Social All Rights Reserved.</p>
+<a class="ft__top-btn" href="#top" aria-label="ページの先頭へ"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+</div>
+</div>
+</footer>
+
 
 <script>
   // メニュー：Esc・外側クリックで閉じる

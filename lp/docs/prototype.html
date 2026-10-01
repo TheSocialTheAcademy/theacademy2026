@@ -303,6 +303,17 @@
     .aside { position: static; }
     .hero__cta .btn { width: 100%; }
   }
+  /* 学び方・受講成果：成果物の横長カード／学び方の時間の流れ */
+  .ocard { display: grid; grid-template-columns: 52% minmax(0, 1fr); gap: 18px; align-items: center; }
+  .ocard .ph { min-height: 150px; }
+  .tline { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; padding-top: 40px; }
+  .tline::before { content: ""; position: absolute; left: 10px; right: 10px; top: 9px; height: 2px; background: linear-gradient(90deg, var(--accent) 72%, #E46A1F 80%); }
+  .tline > div { position: relative; }
+  .tline > div::before { content: ""; position: absolute; left: 2px; top: -39px; width: 16px; height: 16px; border-radius: 50%; background: var(--bg2); box-shadow: inset 0 0 0 4px var(--accent); }
+  .tline > .k::before { box-shadow: inset 0 0 0 4px #E46A1F; } .tline > .k .step__n { color: #E46A1F; }
+  @media (max-width: 1040px) { .ocard { grid-template-columns: minmax(0, 1fr); } }
+  @media (max-width: 900px) { .tline { grid-template-columns: repeat(2, minmax(0, 1fr)); padding-top: 0; } .tline::before, .tline > div::before { display: none; } }
+  @media (max-width: 640px) { .tline { grid-template-columns: minmax(0, 1fr); } }
   @media (prefers-reduced-motion: reduce) { .goal { transition: none; } .goal:hover { transform: none; } }
 </style>
 
@@ -541,24 +552,24 @@
 <div data-page="howto">
   <div class="pagehead" data-note="学び方・受講成果：成果（何ができる）→ 方法（なぜ作れる）→ 続けられる理由 → 行動 の順"><div class="wrap"><p class="crumb"><a href="#top">トップ</a> / 学び方・受講成果</p><h1>学び方・受講成果</h1><p>忙しくても、仕事で使える成果物を完成させる。その成果と、学びの仕組みをご紹介します。</p></div></div>
 
-  <section class="sec" data-note="① 成果：何ができるようになるか"><div class="wrap">
+  <section class="sec" data-note="① 成果：何ができるようになるか。画像左・文字右の横長カードを2列（タブレットは画像が上・スマホは1列）"><div class="wrap">
     <div class="sh"><div><p class="sh__kick">LEARNING OUTCOMES</p><h2>できるようになったことが、自信になる。</h2><p class="lead">課題を終えることではなく、仕事で使えるものを完成させること。受講者が生み出した成果の一部をご紹介します。</p></div></div>
-    <div class="grid g3"><div class="card"><div class="ph" style="min-height:130px;margin-bottom:12px">成果物の画像</div><p class="meta"><span>マーケティング</span><span>01</span></p><h3 style="margin-top:4px">マーケティング戦略</h3><p>市場分析から戦略立案までを、一枚の戦略シートに。 <span class="todo">一言は案</span></p></div><div class="card"><div class="ph" style="min-height:130px;margin-bottom:12px">成果物の画像</div><p class="meta"><span>クリエイティブ</span><span>02</span></p><h3 style="margin-top:4px">CanvaでSNS投稿デザイン</h3><p>伝えたいことが届く、SNS投稿のデザインセット。 <span class="todo">一言は案</span></p></div><div class="card"><div class="ph" style="min-height:130px;margin-bottom:12px">成果物の画像</div><p class="meta"><span>IT・デジタル</span><span>03</span></p><h3 style="margin-top:4px">AIプロンプト</h3><p>毎日の業務で繰り返し使える、AIへの指示のテンプレート集。 <span class="todo">一言は案</span></p></div><div class="card"><div class="ph" style="min-height:130px;margin-bottom:12px">成果物の画像</div><p class="meta"><span>マーケティング</span><span>04</span></p><h3 style="margin-top:4px">ブランドコンセプト設計</h3><p>顧客に選ばれる理由を、言葉とビジュアルに。</p></div><div class="card"><div class="ph" style="min-height:130px;margin-bottom:12px">成果物の画像</div><p class="meta"><span>ビジネス</span><span>05</span></p><h3 style="margin-top:4px">イベント運営計画</h3><p>目的から当日の進行までをつなぐ実施計画。</p></div><div class="card"><div class="ph" style="min-height:130px;margin-bottom:12px">成果物の画像</div><p class="meta"><span>英語・TOEIC</span><span>06</span></p><h3 style="margin-top:4px">英語プレゼンテーション</h3><p>自分の仕事を英語で伝える5分間のプレゼン。</p></div></div>
+    <div class="grid g2"><div class="card ocard"><div class="ph">成果物の画像</div><div><p class="meta"><span>マーケティング</span><span>01</span></p><h3 style="margin-top:4px">マーケティング戦略</h3><p>市場分析から戦略立案までを、一枚の戦略シートに。 <span class="todo">一言は案</span></p></div></div><div class="card ocard"><div class="ph">成果物の画像</div><div><p class="meta"><span>クリエイティブ</span><span>02</span></p><h3 style="margin-top:4px">CanvaでSNS投稿デザイン</h3><p>伝えたいことが届く、SNS投稿のデザインセット。 <span class="todo">一言は案</span></p></div></div><div class="card ocard"><div class="ph">成果物の画像</div><div><p class="meta"><span>IT・デジタル</span><span>03</span></p><h3 style="margin-top:4px">AIプロンプト</h3><p>毎日の業務で繰り返し使える、AIへの指示のテンプレート集。 <span class="todo">一言は案</span></p></div></div><div class="card ocard"><div class="ph">成果物の画像</div><div><p class="meta"><span>マーケティング</span><span>04</span></p><h3 style="margin-top:4px">ブランドコンセプト設計</h3><p>顧客に選ばれる理由を、言葉とビジュアルに。</p></div></div><div class="card ocard"><div class="ph">成果物の画像</div><div><p class="meta"><span>ビジネス</span><span>05</span></p><h3 style="margin-top:4px">イベント運営計画</h3><p>目的から当日の進行までをつなぐ実施計画。</p></div></div><div class="card ocard"><div class="ph">成果物の画像</div><div><p class="meta"><span>英語・TOEIC</span><span>06</span></p><h3 style="margin-top:4px">英語プレゼンテーション</h3><p>自分の仕事を英語で伝える、5分間のプレゼン。</p></div></div>
     <p style="margin-top:16px;font-size:12px;color:var(--sub)">※成果物はコースによって異なります</p>
     <div class="hero__cta"><a class="btn" href="#courses">コースを探す</a></div>
   </div></section>
 
-  <section class="sec sec--alt" id="how-it-works" data-note="② 方法：なぜ作れるのか。知る・試す・形にする＝学ぶ／共有する＝残す"><div class="wrap">
-    <div class="sh"><div><p class="sh__kick">HOW IT WORKS</p><h2>学びを、次の機会までつなぐ。</h2></div></div>
-    <div class="grid g4">
-      <div class="card"><p class="step__n">01</p><div class="ph" style="min-height:110px;margin:8px 0">画面：レッスン</div><h3>知る</h3><p>短い講義と事例から、考え方と基本を理解します。</p></div>
-      <div class="card"><p class="step__n">02</p><div class="ph" style="min-height:110px;margin:8px 0">画面：演習・テンプレート</div><h3>試す</h3><p>自分の仕事や興味に置き換え、小さく手を動かします。</p></div>
-      <div class="card"><p class="step__n">03</p><div class="ph" style="min-height:110px;margin:8px 0">画面：成果物・資格</div><h3>形にする</h3><p>コースの内容を理解した上で、資格を取る、ポートフォリオを作る、テンプレートを作成するなど、伝わる形に整えます。</p></div>
-      <div class="card"><p class="step__n">04</p><div class="ph" style="min-height:110px;margin:8px 0">画面：学びの歩み</div><h3>共有する</h3><p>制作の背景や過程も学習ポートフォリオに残し、人と仕事の機会へつなげます。</p><a class="tl" href="#portfolio" style="display:inline-block;margin-top:8px">ポートフォリオを見る →</a></div>
+  <section class="sec sec--alt" id="how-it-works" data-note="② 方法：なぜ作れるのか。1人の受講生の例で、上に1本の線と丸を通して4ステップを時間の流れで見せる（共有する＝残すはオレンジ）"><div class="wrap">
+    <div class="sh"><div><p class="sh__kick">HOW IT WORKS</p><h2>学びを、次の機会までつなぐ。</h2><p class="lead">例：カフェのSNSキャンペーンを企画した受講生の3か月。知る → 試す → 形にする → 共有する の順に、ひとつの成果ができるまで。</p></div></div>
+    <div class="tline">
+      <div><div class="ph" style="min-height:130px;margin-bottom:10px">画面：受講画面（講義動画・チャプター）</div><p class="step__n">STEP 01</p><h3>知る</h3><p>短い講義と事例で、考え方と基本をつかむ。</p></div>
+      <div><div class="ph" style="min-height:130px;margin-bottom:10px">画面：ワークシート</div><p class="step__n">STEP 02</p><h3>試す</h3><p>自分の仕事に置き換えて、小さく手を動かす。</p></div>
+      <div><div class="ph" style="min-height:130px;margin-bottom:10px">画面：デザインの編集画面</div><p class="step__n">STEP 03</p><h3>形にする</h3><p>伝わる形に整えて、使える1本を仕上げる。</p></div>
+      <div class="k"><div class="ph" style="min-height:130px;margin-bottom:10px">作品＋「実績を公開しました」</div><p class="step__n">STEP 04</p><h3>共有する</h3><p>背景や過程もポートフォリオに残し、次の機会へ。</p><a class="tl" href="#portfolio" style="display:inline-block;margin-top:8px">ポートフォリオを見る →</a></div>
     </div>
   </div></section>
 
-  <section class="sec" data-note="③ 続けられる理由：行動の直前で『続けられるか』に答える"><div class="wrap">
+  <section class="sec" style="background:var(--accent-soft)" data-note="③ 続けられる理由：行動の直前で『続けられるか』に答える。淡い青の面に白カード3枚"><div class="wrap">
     <div class="sh"><div><p class="sh__kick">KEEP GOING</p><h2>学びを、続けられる仕組み。</h2></div></div>
     <div class="grid g3">
       <div class="card"><div class="ph" style="min-height:130px;margin-bottom:12px">図：平日夜・週末の学習時間</div><h3>忙しくても、続けられる設計</h3><p>週2h〜。平日夜と週末に分けて、無理なく進められます。</p></div>

@@ -88,6 +88,8 @@
     }
     pageBtns.forEach(b => b.addEventListener('click', () => setPage(b.dataset.page)));
     // LPの中のリンクで別ページへ移ったら、上のボタンも合わせる
+    function markPage(file) { const hit = Object.keys(PAGES).find(k => file && file.endsWith(PAGES[k])); if (hit) { page = hit; pageBtns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.page === hit))); open.href = PAGES[hit]; } }
+    window.addEventListener('message', e => { if (e.source === frame.contentWindow && e.data && e.data.lpPage) markPage(e.data.lpPage); });
     frame.addEventListener('load', () => { try { const p = frame.contentWindow.location.pathname; const hit = Object.keys(PAGES).find(k => p.endsWith(PAGES[k])); if (hit) { page = hit; pageBtns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.page === hit))); open.href = PAGES[hit]; } } catch (e) {} });
 
     function fit() {

@@ -1241,33 +1241,17 @@
   .pfor__h { align-self: center; margin: 0; padding-right: 8px; color: var(--ink); font-size: 18px; font-weight: 700; writing-mode: horizontal-tb; }
   .pfor__c { display: flex; gap: 16px; align-items: flex-start; padding: 22px 24px; border-radius: 20px; box-shadow: 0 0 0 1px var(--line); }
   .pfor__c .avt { flex: none; } .pfor__c h3 { margin: 0; color: var(--ink); font-size: 17px; word-break: keep-all; overflow-wrap: anywhere; } .pfor__c p { margin: 6px 0 0; color: var(--ts-mid); font-size: 13.5px; line-height: 1.8; word-break: keep-all; overflow-wrap: anywhere; }
-  /* ③ 伝えられること */
-  .sh-row { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
-  .sh-row + .sh-row { margin-top: clamp(48px, 6vw, 80px); }
-  .sh-row--r .sh-row__v { order: 2; }
-  .sh-n { margin: 0; color: var(--ts-primary); font: 800 15px/1 'Helvetica Neue', Arial, sans-serif; letter-spacing: .14em; }
-  .sh-row__b h3 { margin: 8px 0 0; color: var(--ink); font-size: clamp(22px, 2.4vw, 28px); line-height: 1.4; word-break: keep-all; overflow-wrap: anywhere; }
-  .sh-list { display: grid; gap: 18px; margin: 24px 0 0; padding: 0; list-style: none; }
-  .sh-list li { display: flex; gap: 14px; } .sh-list b { display: block; font-size: 16px; } .sh-list p { margin: 2px 0 0; color: var(--ts-mid); font-size: 14px; line-height: 1.75; }
-  .sh-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 24px 0 0; padding: 0; list-style: none; }
-  .sh-tiles li { padding: 18px; border-radius: 16px; background: #fff; box-shadow: 0 0 0 1px var(--line); }
-  .sh-tiles b { display: block; margin-top: 10px; font-size: 15px; } .sh-tiles p { margin: 2px 0 0; color: var(--ts-mid); font-size: 13px; }
-  .sh-row__v { padding: clamp(20px, 3vw, 36px); border-radius: 28px; background: linear-gradient(160deg, #F4F7FE 0%, #E3EAFB 100%); }
-  .sh-v1__in { display: grid; grid-template-columns: 36% 1fr; gap: 16px; padding: 18px; }
-  .sh-v1__in img { width: 100%; aspect-ratio: 40 / 21; object-fit: cover; border-radius: 10px; box-shadow: 0 0 0 1px #EEF0F5; }
-  .sh-pill { display: inline-block; padding: 2px 9px; border-radius: 99px; background: #FFF1E7; color: #E46A1F; font-size: 10.5px; font-weight: 700; }
-  .sh-v1__t { margin: 6px 0 10px; font-size: 13.5px; font-weight: 700; line-height: 1.5; }
-  .sh-v1__in dl, .smp__story { display: grid; gap: 6px; margin: 0; }
-  .sh-v1__in dl div, .smp__story div { display: grid; grid-template-columns: 78px 1fr; gap: 8px; padding: 7px 10px; border-radius: 8px; background: #F6F8FB; font-size: 11.5px; }
-  .sh-v1__in dt, .smp__story dt { color: var(--ts-mid); font-weight: 700; } .sh-v1__in dd, .smp__story dd { margin: 0; font-weight: 700; }
-  .sh-v1__in dl .on, .smp__story .on { background: #FFF1E7; } .sh-v1__in dl .on dt, .smp__story .on dt { color: #E46A1F; }
-  .sh-v1__foot { display: flex; gap: 18px; padding: 12px 18px; border-top: 1px solid #EEF0F5; color: var(--ts-mid); font-size: 12px; font-weight: 700; }
-  .sh-v1__foot span { display: inline-flex; align-items: center; gap: 6px; } .sh-v1__foot svg { width: 16px; height: 16px; color: var(--ts-primary); }
-  .sh-v2__in { padding: 18px 20px 22px; } .sh-v2__vis { margin: 0; font-size: 14px; font-weight: 700; line-height: 1.6; }
-  .sh-v2__g { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-  .sh-bar { display: grid; grid-template-columns: 34px 1fr; align-items: center; gap: 8px; margin-top: 7px; font-size: 11px; font-weight: 700; }
-  .sh-bar i { height: 8px; border-radius: 99px; background: linear-gradient(90deg, var(--ts-primary) var(--w), #E6EBF5 var(--w)); }
-  .sh-v2__bk { display: flex; align-items: center; gap: 6px; margin: 0; font-size: 12px; font-weight: 700; } .sh-v2__bk svg { width: 16px; height: 16px; color: var(--ts-primary); }
+  /* ③ 伝えられること：実画面のタイル */
+  .g2__h { display: flex; align-items: baseline; gap: 12px; margin: 0 0 16px; color: var(--ink); font-size: 22px; font-weight: 700; word-break: keep-all; overflow-wrap: anywhere; }
+  .g2__h span { color: var(--ts-primary); font: 800 15px/1 'Helvetica Neue', Arial, sans-serif; letter-spacing: .14em; }
+  .g2__grid { display: grid; gap: 18px; } .g2__grid--a { margin-bottom: 48px; grid-template-columns: 1fr 1.25fr; } .g2__t--big { grid-row: span 2; }
+  .g2__grid--b { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .g2__t { padding: 16px 16px 20px; border-radius: 20px; background: #fff; box-shadow: 0 0 0 1px var(--line); }
+  .g2__img { display: grid; place-items: center; height: 170px; padding: 12px; border-radius: 12px; background: linear-gradient(160deg, #F4F7FE, #E3EAFB); overflow: hidden; }
+  .g2__img img { display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; border-radius: 6px; box-shadow: 0 8px 20px rgba(15,27,69,.1); }
+  .g2__grid--b .g2__img img { width: 100%; max-height: none; } .g2__grid--b .g2__t--fit .g2__img img { width: auto; max-height: 100%; }
+  .g2__t--big .g2__img { height: 420px; }
+  .g2__cap { margin: 12px 0 0; color: var(--ink); font-size: 16px; font-weight: 700; } .g2__cap small { display: block; margin-top: 2px; color: var(--ts-mid); font-size: 13.5px; font-weight: 500; line-height: 1.7; word-break: keep-all; overflow-wrap: anywhere; }
   /* ④ ひとりじゃない */
   .pp-alone__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
   .pp-alone .sec-head { margin-bottom: 28px; }
@@ -1336,7 +1320,7 @@
   @media (max-width: 1100px) {
     .pp-head__grid, .pp-alone__grid { grid-template-columns: minmax(0, 1fr); }
     .pv { max-width: 640px; } .fd { max-width: 620px; }
-    .sh-row, .sh-row--r { grid-template-columns: minmax(0, 1fr); } .sh-row--r .sh-row__v { order: 0; }
+    .g2__grid--a { grid-template-columns: minmax(0, 1fr); } .g2__t--big { grid-row: auto; } .g2__t--big .g2__img { height: auto; }
     .smp__grid { grid-template-columns: minmax(0, 1fr); } .smp__side { border-right: 0; border-bottom: 1px solid #EEF0F5; }
     .pfor { grid-template-columns: 1fr 1fr; } .pfor__h { grid-column: 1 / -1; }
     .r1__cols h3 { font-size: 19px; }
@@ -1351,8 +1335,7 @@
     .smp__side, .smp__main { padding: 22px; }
     .st3, .drs { grid-template-columns: minmax(0, 1fr); } .st3 li:not(:last-child)::after { right: 50%; top: auto; bottom: -16px; transform: translateX(50%) rotate(135deg); }
     .fqw { grid-template-columns: minmax(0, 1fr); gap: 16px; }
-    .sh-v1__in { grid-template-columns: minmax(0, 1fr); } .sh-v2__g { grid-template-columns: minmax(0, 1fr); }
-    .sh-tiles { grid-template-columns: 1fr 1fr; }
+    .g2__grid--b { grid-template-columns: minmax(0, 1fr); } .g2__img { height: auto; min-height: 110px; } .g2__h { font-size: 19px; }
     .pv { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; height: auto; } .pq { position: relative; left: auto; right: auto; top: auto; bottom: auto; width: auto; } .pv__prof { grid-column: 1 / -1; } .pv__feat, .pv__cert { align-self: start; } .pv__road, .pv__lab { display: none; }
     .fd { padding: 0 0 110px; } .fd__role { width: 80%; }
     .pp-cta .btn { width: 100%; }
@@ -1436,34 +1419,20 @@
 </div>
 </div></section><section class="pp-show" id="show" aria-labelledby="show-title"><div class="wrap">
 <header class="sec-head"><div><p class="sec-kicker">WHAT YOU CAN SHOW</p><h2 class="sec-title" id="show-title">公開ポートフォリオで、<wbr>伝えられること。</h2></div></header>
-<div class="sh-row">
-  <div class="sh-row__v"><div class="pw sh-v1" aria-hidden="true">
-  <div class="pw__bar"><i></i><i></i><i></i><span>実績</span></div>
-  <div class="sh-v1__in">
-    <img src="assets/outcomes/marketing-strategy.webp" alt="">
-    <div><span class="sh-pill">実績</span><p class="sh-v1__t">重点顧客の再設計と、<br>SNSを起点にした集客計画</p>
-    <dl><div><dt>背景・課題</dt><dd>来店のきっかけが分からない</dd></div><div><dt>担当範囲</dt><dd>顧客分析・戦略シート作成</dd></div><div><dt>制作プロセス</dt><dd>分析 → 仮説 → 店長と検証</dd></div><div class="on"><dt>成果</dt><dd>新規来店の導線ができた</dd></div></dl></div>
-  </div>
-  <div class="sh-v1__foot"><span><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M9 13.5 8 21l4-2 4 2-1-7.5"/></g></svg>資格・認定 2</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18" r="2.2"/><circle cx="18" cy="6" r="2.2"/><path d="M8 17c6 0 2-10 8-10"/></g></svg>学びの歩み 42件</span></div>
-</div></div>
-  <div class="sh-row__b"><p class="sh-n">01</p><h3>学びを、<wbr>そのまま実績に</h3>
-    <ul class="sh-list"><li><span class="sh-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></g></svg></span><div><b>実績</b><p>背景・課題 → 担当範囲 → 制作プロセス → 成果を、ひとつのストーリーに。</p></div></li><li><span class="sh-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5"/><path d="M9 13.5 8 21l4-2 4 2-1-7.5"/></g></svg></span><div><b>資格・認定</b><p>スキルを裏付ける資格と認定を載せられます。</p></div></li><li><span class="sh-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18" r="2.2"/><circle cx="18" cy="6" r="2.2"/><path d="M8 17c6 0 2-10 8-10"/></g></svg></span><div><b>学びの歩み</b><p>学び始めから現在まで、積み重ねを時系列で。</p></div></li></ul></div>
+<h3 class="g2__h"><span>01</span>学びを、<wbr>そのまま実績に</h3>
+<div class="g2__grid g2__grid--a">
+ <div class="g2__t g2__t--big"><div class="g2__img"><img src="assets/portfolio/show-featured-work.webp" alt="" loading="lazy"></div><p class="g2__cap">実績<small>背景・課題 → 担当範囲 → 制作プロセス → 成果を、<wbr>ひとつのストーリーに。</small></p></div>
+ <div class="g2__t"><div class="g2__img"><img src="assets/portfolio/show-certification.webp" alt="" loading="lazy"></div><p class="g2__cap">資格・認定<small>スキルを裏付ける資格と認定を載せられます。</small></p></div>
+ <div class="g2__t"><div class="g2__img"><img src="assets/portfolio/show-timeline.webp" alt="" loading="lazy"></div><p class="g2__cap">学びの歩み<small>学び始めから現在まで、<wbr>積み重ねを時系列で。</small></p></div>
 </div>
-<div class="sh-row sh-row--r">
-  <div class="sh-row__v"><div class="pw sh-v2" aria-hidden="true">
-  <div class="pw__bar"><i></i><i></i><i></i><span>プロフィール</span></div>
-  <div class="sh-v2__in"><div class="pp-prof pp-prof--m"><span class="pp-av">匿名</span><div><b>匿名ユーザー</b><small>営業企画 × データ分析を学習中</small></div><span class="pp-fol">フォローする</span></div>
-    <p class="sh-lab">ビジョン</p><p class="sh-v2__vis">「感覚とデータの両方から、<br>選ばれる体験をつくりたい。」</p>
-    <div class="sh-v2__g">
-      <div><p class="sh-lab">人物像診断</p><div class="sh-bar"><span>計画</span><i style="--w:78%"></i></div><div class="sh-bar"><span>共感</span><i style="--w:64%"></i></div><div class="sh-bar"><span>挑戦</span><i style="--w:52%"></i></div></div>
-      <div><p class="sh-lab">強み・働き方</p><div class="pp-tags"><span>顧客理解</span><span>仮説づくり</span><span>週3リモート</span></div>
-      <p class="sh-lab" style="margin-top:12px">役立った本・サービス</p><p class="sh-v2__bk"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/></g></svg>『顧客体験の教科書』</p></div>
-    </div>
-  </div>
-</div></div>
-  <div class="sh-row__b"><p class="sh-n">02</p><h3>数字だけでは見えない、<wbr>あなたらしさ</h3>
-    <ul class="sh-tiles"><li><span class="sh-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></g></svg></span><b>ビジョン</b><p>実現したいこと</p></li><li><span class="sh-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></g></svg></span><b>人物像診断</b><p>その人らしさ</p></li><li><span class="sh-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></g></svg></span><b>強み・働き方</b><p>得意なこと・今の仕事</p></li><li><span class="sh-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/></g></svg></span><b>書籍・サービス</b><p>役立ったもの</p></li></ul></div>
+<h3 class="g2__h"><span>02</span>数字だけでは見えない、<wbr>あなたらしさ</h3>
+<div class="g2__grid g2__grid--b">
+ <div class="g2__t"><div class="g2__img"><img src="assets/portfolio/show-vision.webp" alt="" loading="lazy"></div><p class="g2__cap">ビジョン<small>実現したいこと</small></p></div>
+ <div class="g2__t"><div class="g2__img"><img src="assets/portfolio/show-persona.webp" alt="" loading="lazy"></div><p class="g2__cap">人柄<small>自分らしさを、<wbr>自分の言葉で記入</small></p></div>
+ <div class="g2__t"><div class="g2__img"><img src="assets/portfolio/show-strengths.webp" alt="" loading="lazy"></div><p class="g2__cap">強み・働き方<small>得意なこと・今の仕事</small></p></div>
+ <div class="g2__t g2__t--fit"><div class="g2__img"><img src="assets/portfolio/show-books.webp" alt="" loading="lazy"></div><p class="g2__cap">書籍・サービス<small>役立ったもの</small></p></div>
 </div>
+<p class="hl-note">※画面はイメージです。</p>
 </div></section><section class="pp-alone" id="alone" aria-labelledby="alone-title"><div class="wrap pp-alone__grid">
 <div><header class="sec-head"><div><p class="sec-kicker">YOU ARE NOT ALONE</p><h2 class="sec-title" id="alone-title">ひとりじゃないから、<wbr>続けられる。</h2>
 <p class="sec-lead">「自分にもできる？」<wbr>「同じような人はいる？」。<wbr>その答えは、<wbr>先を歩く人の中にあります。</p></div></header>

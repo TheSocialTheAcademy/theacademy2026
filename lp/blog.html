@@ -1212,15 +1212,14 @@
   .lt-more { margin-top: 28px; text-align: center; } .lt-more[hidden], #ltMore[hidden] { display: none; }
   .lt-more .btn { min-width: 220px; gap: 6px; box-shadow: inset 0 0 0 1.5px var(--ts-primary); color: var(--ts-primary); } .lt-more svg { width: 16px; height: 16px; }
   /* ⑤ お役立ち資料 */
-  .bres { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 40px; align-items: center; padding: clamp(28px, 4vw, 48px); border-radius: 28px; background: linear-gradient(160deg, #F4F7FE, #E3EAFB); }
-  .bres__copy .btn { margin-top: 22px; min-width: 0; padding: 0 28px; }
-  .bres__list { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
-  .bres__list li a { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 2px 12px; padding: 16px 18px; border-radius: 16px; background: #fff; box-shadow: 0 8px 20px rgba(15,27,69,.06); color: inherit; text-decoration: none; transition: box-shadow .2s; }
-  .bres__list li a:hover { box-shadow: 0 0 0 1.5px var(--ts-primary), 0 8px 20px rgba(15,27,69,.06); }
-  .bres__k { grid-column: 1; color: var(--ts-mid); font-size: 11.5px; font-weight: 700; } .bres__list b { grid-column: 1; color: var(--ink); font-size: 15px; line-height: 1.5; word-break: keep-all; overflow-wrap: anywhere; } .bres__d { grid-column: 1; margin-top: 2px; color: var(--ts-mid); font-size: 12.5px; line-height: 1.6; } .bres__list .bl-tag { grid-column: 2; grid-row: 1 / 4; }
+  .bres { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 18px; padding: 22px 28px; border-radius: 20px; background: var(--bg-gray, #F7F8FB); color: var(--ink); text-decoration: none; transition: box-shadow .2s; }
+  .bres:hover { box-shadow: 0 0 0 1.5px var(--ts-primary); }
+  .bres__ic { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 12px; background: #fff; color: var(--ts-primary); } .bres__ic svg { width: 22px; height: 22px; }
+  .bres__k { display: block; color: var(--ts-primary); font-size: 12px; font-weight: 700; letter-spacing: .08em; } .bres__t b { display: block; margin-top: 2px; font-size: 16px; word-break: keep-all; overflow-wrap: anywhere; }
+  .bres__go { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--ts-primary); color: #fff; } .bres__go svg { width: 16px; height: 16px; }
   @media (max-width: 1000px) {
     .rk-panel { grid-template-columns: minmax(0, 1fr); } .rt { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .rt li:last-child { display: none; }
-    .lt-list { grid-template-columns: minmax(0, 1fr); } .bres { grid-template-columns: minmax(0, 1fr); }
+    .lt-list { grid-template-columns: minmax(0, 1fr); }
   }
   @media (max-width: 640px) {
     .bl-pop .sec-head, .bl-latest .sec-head { gap: 16px; }
@@ -1228,7 +1227,7 @@
     .rt { grid-template-columns: minmax(0, 1fr); } .rt li:last-child { display: block; }
     .lt a { grid-template-columns: 112px minmax(0, 1fr); gap: 14px; padding: 16px 0; } .lt__ex { display: none; } .lt__b b { font-size: 14.5px; } .lt .bl-min { display: none; }
     .bl-chips { flex-wrap: nowrap; margin-right: calc(var(--gutter) * -1); padding-right: var(--gutter); overflow-x: auto; scrollbar-width: none; } .bl-chip { flex: none; }
-    .bres__list li a { grid-template-columns: minmax(0, 1fr); } .bres__list .bl-tag { grid-column: 1; grid-row: auto; justify-self: start; margin-top: 4px; }
+    .bres { gap: 14px; padding: 18px; } .bres__ic { width: 40px; height: 40px; } .bres__t b { font-size: 14.5px; }
   }
 </style>
 </head>
@@ -1299,11 +1298,8 @@
 <p class="lt-empty" id="ltEmpty" hidden>このカテゴリの記事は準備中です。</p>
 <div class="lt-more"><button type="button" class="btn btn--white" id="ltMore">もっと見る<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></g></svg></button></div>
 <p class="hl-note">※記事タイトル・日付・評価の数は仮です。</p>
-</div></section><section class="bl-res" id="resources" aria-labelledby="res-title"><div class="wrap">
-<div class="bres"><div class="bres__copy"><p class="sec-kicker">WHITE PAPER</p><h2 class="sec-title" id="res-title">お役立ち資料</h2>
-<p class="sec-lead">仕事や学びに役立つ資料を、<wbr>目的に合わせてお選びいただけます。</p>
-<a class="btn btn--primary" href="/whitepaper">資料一覧を見る（4件）<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
-<ul class="bres__list"><li><a href="/whitepaper"><span class="bres__k">ホワイトペーパー</span><b>ChatGPTを使いこなす！<wbr>ビジネスメール作成の効率化術</b><span class="bres__d">依頼の伝え方と役割の設定から、返信・日程調整・お礼などのプロンプト例まで。</span><span class="bl-tag" style="--cc:#1E9E62;--cb:#E9F7F0">IT・デジタル</span></a></li><li><a href="/whitepaper"><span class="bres__k">ホワイトペーパー</span><b>【初心者向け】ロジックツリーと<wbr>ピラミッドストラクチャーで学ぶ<wbr>論理的思考の基本</b><span class="bres__d">問題を分解して整理し、結論から伝える。2つの考え方を具体例で解説。</span><span class="bl-tag" style="--cc:#6B4FD8;--cb:#F0ECFF">ビジネス</span></a></li><li><a href="/whitepaper"><span class="bres__k">ホワイトペーパー</span><b>キャリア実現のための<wbr>タイムトラッキングシート</b><span class="bres__d">社会人向け・大学生向けのシートで、時間の使い方を見える化。</span><span class="bl-tag" style="--cc:#0F1B45;--cb:#EEF1F6">キャリア・学び方</span></a></li><li><a href="/whitepaper"><span class="bres__k">ホワイトペーパー</span><b>知らないと損する！<wbr>SMART×WOOPで達成率アップの目標設定術</b><span class="bres__d">具体的な目標の立て方と、つまずきを先回りする計画のつくり方。</span><span class="bl-tag" style="--cc:#0F1B45;--cb:#EEF1F6">キャリア・学び方</span></a></li></ul></div>
+</div></section><section class="bl-res" id="resources" aria-label="お役立ち資料"><div class="wrap">
+<a class="bres" href="/whitepaper"><span class="bres__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 12h7M9 16h5"/></g></svg></span><span class="bres__t"><span class="bres__k">お役立ち資料</span><b>仕事や学びに役立つ資料を、<wbr>目的に合わせて選べます</b></span><span class="bres__go"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
 </div></section><section class="cline" aria-label="公式LINE"><div class="wrap"><div class="cline__band">
 <span class="cline__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5c5 0 9 3.2 9 7.2 0 3.9-3.8 7.1-8.6 7.2-.5.4-2.7 2.3-4.2 2.6-.4.1-.4-.3-.3-.6l.5-2.4C5.3 16.3 3 13.7 3 10.7 3 6.7 7 3.5 12 3.5z" fill="currentColor"/></svg></span>
 <div class="cline__t"><p class="cline__k">公式LINE限定</p><b>LINE登録で、全コース<em>500円OFF</em></b><p>新しいコース情報や限定イベントの案内もお届けします。</p></div>

@@ -1311,6 +1311,14 @@
   .smp__tl time { display: block; margin-bottom: 6px; color: var(--ts-mid); font-size: 11.5px; }
   .tg { display: inline-block; margin-right: 6px; padding: 1px 7px; border-radius: 6px; background: #EAF0FF; color: var(--ts-primary); font-size: 10.5px; vertical-align: 1px; }
   .tg--c { background: #E9F7F0; color: #1E9E62; } .tg--w { background: #FFF1E7; color: #E46A1F; }
+  /* ⑤ 例：実画面に番号の注釈 */
+  .i3 { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 40px; align-items: center; }
+  .i3__win { border-radius: 16px; } .i3__shot { position: relative; } .i3__shot img { display: block; width: 100%; height: auto; }
+  .i3__n, .i3__nn { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: #E46A1F; color: #fff; font: 800 14px/1 'Helvetica Neue', Arial, sans-serif; box-shadow: 0 0 0 4px rgba(228,106,31,.2); }
+  .i3__n { position: absolute; z-index: 2; transform: translate(-50%, -50%); }
+  .i3__list { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
+  .i3__list li { display: flex; gap: 12px; padding: 16px; border-radius: 16px; background: #fff; box-shadow: 0 0 0 1px var(--line); } .i3__nn { flex: none; }
+  .i3__list b { display: block; font-size: 16px; } .i3__list p { margin: 3px 0 0; color: var(--ts-mid); font-size: 13.5px; line-height: 1.7; word-break: keep-all; overflow-wrap: anywhere; }
   /* ⑥ はじめかた・FAQ */
   .st3 { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin: 0; padding: 0; list-style: none; counter-reset: s; }
   .st3 li { position: relative; padding: 26px 26px 28px; border-radius: 22px; background: var(--bg-gray, #F7F8FB); }
@@ -1339,7 +1347,7 @@
     .pv { max-width: 640px; }
     .pp-alone .al-list { grid-template-columns: minmax(0, 1fr); } .h2__g { grid-template-columns: 1.4fr 1fr; } .h2__g > .fx-trend { display: none; } .h2__lab { display: none; }
     .g2__grid--a { grid-template-columns: minmax(0, 1fr); } .g2__t--big { grid-row: auto; } .g2__t--big .g2__img { height: auto; }
-    .smp__grid { grid-template-columns: minmax(0, 1fr); } .smp__side { border-right: 0; border-bottom: 1px solid #EEF0F5; }
+    .i3 { grid-template-columns: minmax(0, 1fr); gap: 24px; } .i3__list { grid-template-columns: 1fr 1fr; }
     .pfor { grid-template-columns: 1fr 1fr; } .pfor__h { grid-column: 1 / -1; }
     .r1__cols h3 { font-size: 19px; }
   }
@@ -1349,8 +1357,7 @@
     .r1__k span { display: inline; margin-left: 8px; font-family: inherit; letter-spacing: .1em; } .r1__cols h3 br { display: none; }
     .vs__p { padding: 22px; } .vs__so { border-radius: 20px; font-size: 16px; }
     .pfor { grid-template-columns: minmax(0, 1fr); }
-    .smp__work { grid-template-columns: minmax(0, 1fr); } .smp__tl { grid-template-columns: minmax(0, 1fr); }
-    .smp__side, .smp__main { padding: 22px; }
+    .i3__list { grid-template-columns: minmax(0, 1fr); gap: 10px; } .i3__list li { padding: 12px 14px; } .i3__n { width: 22px; height: 22px; font-size: 11px; box-shadow: 0 0 0 3px rgba(228,106,31,.2); }
     .st3, .drs { grid-template-columns: minmax(0, 1fr); } .st3 li:not(:last-child)::after { right: 50%; top: auto; bottom: -16px; transform: translateX(50%) rotate(135deg); }
     .fqw { grid-template-columns: minmax(0, 1fr); gap: 16px; }
     .g2__grid--b { grid-template-columns: minmax(0, 1fr); } .g2__img { height: auto; min-height: 110px; } .g2__h { font-size: 19px; }
@@ -1467,26 +1474,10 @@
 </div></section><section class="pp-sample" id="sample" aria-labelledby="sample-title"><div class="wrap">
 <header class="sec-head"><div><p class="sec-kicker">SAMPLE</p><h2 class="sec-title" id="sample-title">公開ポートフォリオの例</h2>
 <p class="sec-lead">こんなページが、<wbr>あなたの学びからできあがります。</p></div></header>
-<div class="pw smp">
-  <div class="pw__bar"><i></i><i></i><i></i><span>theacademy.jp/portfolio/u/anonymous</span></div>
-  <div class="smp__grid">
-    <aside class="smp__side"><div class="pp-prof pp-prof--l"><span class="pp-av">匿名</span><div><b>匿名ユーザー</b><small>営業企画 × データ分析を学習中</small></div></div>
-      <p class="sh-lab">ビジョン</p><p class="smp__vis">「感覚とデータの両方から、選ばれる体験をつくりたい。」</p>
-      <p class="sh-lab">強み・働き方</p><div class="pp-tags"><span>顧客理解</span><span>仮説づくり</span><span>週3リモート</span></div>
-      <ul class="pp-stats"><li><b>3</b>実績</li><li><b>2</b>資格</li><li><b>42</b>学びの記録</li></ul>
-      <span class="pp-fol smp__fol">フォローする</span>
-    </aside>
-    <div class="smp__main">
-      <p class="sh-lab" style="margin-top:0">実績</p>
-      <div class="smp__work">
-        <div class="smp__dash" aria-hidden="true"><p>週次売上ダッシュボード</p><div class="smp__kpi"><span><small>売上</small><b>¥4.2M</b><em>+8%</em></span><span><small>客数</small><b>1,280</b><em>+5%</em></span><span><small>客単価</small><b>¥3,280</b><em>+3%</em></span></div><div class="smp__chart"><i style="--h:38%"></i><i style="--h:52%"></i><i style="--h:46%"></i><i style="--h:64%"></i><i style="--h:58%"></i><i style="--h:72%"></i><i style="--h:80%"></i><i style="--h:68%"></i><i style="--h:86%"></i><i style="--h:92%"></i></div></div>
-        <div><h3>売上データの可視化ダッシュボード</h3>
-        <dl class="smp__story"><div><dt>背景・課題</dt><dd>週次の売上報告に毎回半日かかっていた</dd></div><div><dt>担当範囲</dt><dd>データ整理・ダッシュボード設計</dd></div><div><dt>制作プロセス</dt><dd>指標の選定 → 試作 → チームの意見で改善</dd></div><div class="on"><dt>成果</dt><dd>報告の準備を短縮し、会議で次の打ち手を話せるように</dd></div></dl></div>
-      </div>
-      <p class="sh-lab">学びの歩み</p>
-      <ol class="smp__tl"><li><time>4月</time><span class="tg">受講</span>データ分析コースを受講開始</li><li><time>6月</time><span class="tg tg--c">資格</span>資格を取得</li><li class="now"><time>8月</time><span class="tg tg--w">実績</span>ダッシュボードを社内で公開</li></ol>
-    </div>
-  </div>
+<div class="i3">
+<div class="pw i3__win"><div class="pw__bar"><i></i><i></i><i></i><span>theacademy.jp/portfolio/u/anonymous</span></div><div class="i3__shot"><img src="assets/portfolio/sample-page.webp" alt="公開ポートフォリオの画面例。プロフィール、スコア、ビジョン、代表実績" loading="lazy">
+<span class="i3__n" style="left:45%;top:31%">1</span><span class="i3__n" style="left:26.5%;top:61%">2</span><span class="i3__n" style="left:45%;top:77%">3</span><span class="i3__n" style="left:95%;top:19%">4</span></div></div>
+<ol class="i3__list"><li><span class="i3__nn">1</span><div><b>プロフィール</b><p>肩書き・ひとこと紹介。<wbr>匿名でも公開できます</p></div></li><li><span class="i3__nn">2</span><div><b>スコア</b><p>実績・学びの活動・<wbr>フォロワーの数</p></div></li><li><span class="i3__nn">3</span><div><b>ビジョン</b><p>何年後に、<wbr>何を実現したいか</p></div></li><li><span class="i3__nn">4</span><div><b>代表実績</b><p>いちばん見てほしい成果を大きく</p></div></li></ol>
 </div>
 <p class="hl-note">※画面・内容はイメージです。<wbr>ほかのユーザーのポートフォリオやフィードは、<wbr>無料登録後に見られます。</p>
 </div></section><section class="pp-start" id="start" aria-labelledby="start-title"><div class="wrap">

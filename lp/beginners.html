@@ -1167,7 +1167,14 @@
   /* ══ はじめての方へ（/beginners）══════════════ */
   .bg-head .phead__t { margin-top: 8px; font-size: clamp(32px, 4.4vw, 52px); line-height: 1.3; word-break: keep-all; overflow-wrap: anywhere; }
   .bg-head__k { margin: 22px 0 0; } .bg-head .phead__lead { max-width: 720px; }
-  .why { background: #fff; }
+  .bg-why { padding: clamp(64px, 7vw, 96px) 0; background: #fff; }
+  .n1 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin: 0; padding: 0; list-style: none; }
+  .n1__v { display: grid; place-items: center; height: 260px; padding: 22px; border-radius: 24px; background: var(--bg); overflow: hidden; }
+  .n1__v img { display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; border-radius: 10px; box-shadow: 0 14px 32px rgba(15,27,69,.14); }
+  .nb-n { margin: 20px 0 0; color: var(--ac); font: 800 13px/1 'Helvetica Neue', Arial, sans-serif; letter-spacing: .14em; }
+  .nb-h { margin: 8px 0 0; color: var(--ink); font-size: 22px; } .nb-h em { font-style: normal; color: var(--ac); }
+  .nb-d { margin: 8px 0 0; color: var(--ts-mid); font-size: 14px; line-height: 1.85; word-break: keep-all; overflow-wrap: anywhere; }
+  .nb-a { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; color: var(--ac); font-size: 14px; font-weight: 700; text-decoration: none; } .nb-a svg { width: 16px; height: 16px; }
   .bg-for { padding: clamp(64px, 7vw, 96px) 0; background: var(--bg-gray, #F7F8FB); }
   .bg-flow { background: #fff; }
   .lineS { background: #fff; } .cnext { background: var(--bg-gray, #F7F8FB); }
@@ -1202,8 +1209,8 @@
   .fq p { margin: 0; padding: 0 0 20px 34px; color: var(--ts-mid); font-size: 14.5px; line-height: 1.8; } .fq a { color: var(--ts-primary); font-weight: 700; }
   .fq .todo { display: inline-block; padding: 1px 8px; border-radius: 6px; background: #FFF1E7; color: #E46A1F; font-size: 12px; font-weight: 700; }
   .fq-more { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 20px 0 0; } .fq-more a { display: inline-flex; align-items: center; gap: 6px; color: var(--ts-primary); font-size: 14px; font-weight: 700; text-decoration: none; } .fq-more svg { width: 16px; height: 16px; }
-  @media (max-width: 1000px) { .m1 { grid-template-columns: minmax(0, 1fr); } .m1__v { height: 220px; } .bg-price__grid { grid-template-columns: minmax(0, 1fr); } }
-  @media (max-width: 640px) { .pc__dl div { grid-template-columns: minmax(0, 1fr); gap: 6px; } .m1 h3 { font-size: 19px; } .m1 p { word-break: normal; line-break: strict; } .m1__v { height: 200px; } .m1__v img { max-height: 176px; } }
+  @media (max-width: 1000px) { .n1 { grid-template-columns: minmax(0, 1fr); } .n1__v { height: 280px; } .m1 { grid-template-columns: minmax(0, 1fr); } .m1__v { height: 220px; } .bg-price__grid { grid-template-columns: minmax(0, 1fr); } }
+  @media (max-width: 640px) { .n1__v { height: 220px; padding: 16px; } .pc__dl div { grid-template-columns: minmax(0, 1fr); gap: 6px; } .m1 h3 { font-size: 19px; } .m1 p { word-break: normal; line-break: strict; } .m1__v { height: 200px; } .m1__v img { max-height: 176px; } }
 </style>
 </head>
 <body id="top">
@@ -1254,67 +1261,11 @@
 <h1 class="phead__t" id="page-title">学びは、<wbr>もっと自由で、<wbr>実践的でいい。</h1>
 <p class="phead__lead">学校でも職場でもない。<wbr>挑戦したい人が立ち寄り、<wbr>試し、<wbr>仲間と次の一歩を見つけられる。<wbr>私たちは、<wbr>そんな学びのサードプレイスをつくります。</p>
 <ul class="phead__jump"><li><a href="#why">3つの仕組み</a></li><li><a href="#for-you">こんな方に</a></li><li><a href="#flow">受講までの流れ</a></li><li><a href="#price">料金・お支払い</a></li><li><a href="#faq">よくある不安</a></li><li><a href="#line">公式LINE</a></li></ul>
-</div></section><section class="why" id="why" aria-labelledby="why-title">
-    <div class="wrap">
-      <header class="sec-head">
-        <div>
-          
-          <p class="sec-kicker">ABOUT</p>
-          <h2 class="sec-title" id="why-title">学ぶ、残す、飛び込む。</h2>
-          <p class="sec-lead">3つの仕組みで、<wbr>忙しくても学びを<wbr>「できる」に変え、<wbr>キャリアへ<wbr>つなげていきます。</p>
-        </div>
-      </header>
-      <ul class="points" tabindex="0" aria-label="3つの仕組み"><li class="point"><div class="t3 t3--blue" aria-hidden="true"><div class="t3-canvas">
-  <span class="t3-orb"></span>
-  <div class="t3-card t3-course">
-    <div class="t3-thumb">
-  <div class="sc sc--back">
-    <span class="sc__line o"></span>
-    <span class="gt" style="left:22%;top:34%;width:30%"></span><span class="gt o" style="left:40%;top:50%;width:34%"></span><span class="gt" style="left:30%;top:66%;width:24%"></span><span class="gt" style="left:58%;top:80%;width:22%"></span>
-  </div>
-  <div class="sc sc--left">
-    <span class="ph" style="background-position:48% 30%"></span><span class="ph" style="background-position:80% 70%"></span><span class="ph" style="background-position:20% 60%"></span>
-    <span class="dn"></span><span class="mb"><i style="height:40%"></i><i style="height:70%"></i><i style="height:55%"></i><i style="height:90%"></i><i style="height:65%"></i></span>
-  </div>
-  <div class="sc sc--front">
-    <span class="flow"><i></i><i></i><i></i><i class="o"></i><i></i></span>
-    <span class="ph ph--l" style="background-position:52% 28%"></span><span class="ph ph--l" style="background-position:88% 72%"></span>
-    <span class="kpis"><span class="mb"><i style="height:30%"></i><i style="height:55%"></i><i style="height:40%"></i><i style="height:80%"></i></span><span class="mb"><i style="height:50%"></i><i style="height:35%"></i><i style="height:70%"></i><i style="height:60%"></i></span><span class="dn dn--s"></span></span>
-  </div>
-</div>
-    <div class="t3-course__body">
-      <p class="t3-h">SNSマーケティング実践</p>
-      <p class="t3-meta">受講期限 2026/10/15</p>
-      <p class="t3-txt">第4章 運用と数値の見方</p>
-      <div class="t3-prog"><span><i style="width:30%"></i></span><b>30%</b></div>
-    </div>
-    <div class="t3-course__foot">続きから学ぶ<svg class="t3-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-  </div>
-</div></div><p class="point__num">POINT 01</p><h3 class="point__title">コースで<wbr><em>学ぶ</em></h3><p class="point__text">学びたい分野を選び、<wbr>演習とテンプレートで<wbr>実践的に身につける。</p><a class="point__link" href="courses.html">コースを探す<span aria-hidden="true">→</span></a></li><li class="point"><div class="t3 t3--sand" aria-hidden="true"><div class="t3-canvas">
-  <span class="t3-orb"></span>
-  <div class="t3-card t3-journey">
-    <p class="t3-h">学びの歩み</p>
-    <p class="t3-meta">活動の積み重ねを、過去から順に確認できます。</p>
-    <ol class="t3-tl">
-      <li class="t3-tl__start"><b>学びのスタート</b><span>2026年8月9日</span></li>
-      <li><div class="t3-ev"><p class="t3-ev__top"><span class="t3-pill"><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></g></svg>実績を公開しました</span><time>12:00</time></p><p class="t3-ev__title">SNSキャンペーン企画書</p><p class="t3-ev__desc">顧客理解からKPIまでを1枚に</p><span class="t3-more">詳細を見る<svg class="t3-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></li>
-      <li class="is-now"><div class="t3-ev t3-ev--new"><p class="t3-ev__top"><span class="t3-pill"><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5"/></g></svg>コースを修了しました</span><span class="t3-new">最新</span></p><p class="t3-ev__title">SNSマーケティング実践</p><p class="t3-ev__desc">企画から数値改善までを実践した</p></div></li>
-    </ol>
-  </div>
-</div></div><p class="point__num">POINT 02</p><h3 class="point__title">学習ポートフォリオで<wbr><em>残す</em></h3><p class="point__text">成果物と学びの歩みを記録。<wbr>ロールモデルを見つけ、<wbr>続ける力に。</p><a class="point__link" href="portfolio.html">ポートフォリオを見る<span aria-hidden="true">→</span></a></li><li class="point"><div class="t3 t3--mint" aria-hidden="true"><div class="t3-canvas">
-  <span class="t3-orb"></span>
-  <div class="t3-card t3-comm">
-    <div class="t3-row"><p class="t3-h">コミュニティー</p><span class="t3-select">すべて<svg class="t3-chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-    <div class="t3-tags"><span class="on">IT・デジタル</span><span class="on">マーケティング</span><span>英語・TOEIC</span></div>
-    <div class="t3-ev"><p class="t3-ev__top"><span class="t3-pill"><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 19a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.6"/><path d="M15.5 14.2A5 5 0 0 1 21 19"/></g></svg>イベントに参加しました</span><time>19:00</time></p><p class="t3-ev__title">はじめての勉強会</p><p class="t3-ev__desc">気になる分野の場に、飛び込んだ</p><span class="t3-more">詳細を見る<svg class="t3-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-    <div class="t3-ev t3-ev--new"><p class="t3-ev__top"><span class="t3-pill t3-pill--line"><svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3.2"/><path d="M3 19a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.6"/><path d="M15.5 14.2A5 5 0 0 1 21 19"/></g></svg>仲間とつながりました</span><span class="t3-new">最新</span></p>
-      <div class="t3-crew"><span class="av">A</span><span class="av">K</span><span class="av">Y</span><span class="t3-msg">一緒にやってみよう！</span></div>
-    </div>
-  </div>
-</div></div><p class="point__num">POINT 03</p><h3 class="point__title">コミュニティーに<wbr><em>飛び込む</em></h3><p class="point__text">興味のある場に参加して、<wbr>新しいことを<wbr>体験しながら学ぶ。</p><a class="point__link" href="lp-design.html#community">コミュニティーを見る<span aria-hidden="true">→</span></a></li></ul>
-      <p class="swipe-hint" aria-hidden="true">横にスワイプして3つの仕組みを見る →</p>
-    </div>
-  </section><section class="bg-for" id="for-you" aria-labelledby="for-title"><div class="wrap">
+</div></section><section class="why bg-why" id="why" aria-labelledby="why-title"><div class="wrap">
+<header class="sec-head"><div><p class="sec-kicker">ABOUT</p><h2 class="sec-title" id="why-title">学ぶ、残す、飛び込む。</h2>
+<p class="sec-lead">3つの仕組みで、<wbr>忙しくても学びを<wbr>「できる」に変え、<wbr>キャリアへ<wbr>つなげていきます。</p></div></header>
+<ul class="n1"><li style="--ac:#0141D4;--bg:#EAF0FF"><div class="n1__v"><img src="assets/how/step-01-learn.webp" alt="受講画面。講義動画とチャプター一覧" loading="lazy"></div><p class="nb-n">POINT 01</p><h3 class="nb-h">コースで<em>学ぶ</em></h3><p class="nb-d">学びたい分野を選び、<wbr>演習とテンプレートで<wbr>実践的に身につける。</p><a class="nb-a" href="courses.html">コースを探す<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li><li style="--ac:#E07A2E;--bg:#FFF1E6"><div class="n1__v"><img src="assets/portfolio/hero-profile.webp" alt="公開ポートフォリオのプロフィール" loading="lazy"></div><p class="nb-n">POINT 02</p><h3 class="nb-h">学習ポートフォリオで<em>残す</em></h3><p class="nb-d">成果物と学びの歩みを記録。<wbr>ロールモデルを見つけ、<wbr>続ける力に。</p><a class="nb-a" href="portfolio.html">ポートフォリオを見る<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li><li style="--ac:#1E9E62;--bg:#E7F6EE"><div class="n1__v"><img src="assets/illust/about-community.webp" alt="コミュニティーのトーク画面" loading="lazy"></div><p class="nb-n">POINT 03</p><h3 class="nb-h">コミュニティーに<em>飛び込む</em></h3><p class="nb-d">興味のある場に参加して、<wbr>新しいことを<wbr>体験しながら学ぶ。</p><a class="nb-a" href="lp-design.html#community">コミュニティーを見る<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li></ul>
+</div></section><section class="bg-for" id="for-you" aria-labelledby="for-title"><div class="wrap">
 <header class="sec-head"><div><p class="sec-kicker">FOR YOU</p><h2 class="sec-title" id="for-title">たとえば、<wbr>こんな想いに。</h2>
 <p class="sec-lead">ひとつでも重なったら、<wbr>The Academyが力になれるかもしれません。</p></div></header>
 <ul class="m1"><li style="--bg:#FFF1E6;--ac:#E07A2E"><div class="m1__v"><img src="assets/illust/for-you-1.webp" alt="" loading="lazy"></div><div class="m1__b"><span class="m1__who">いつか、自分の名前で働きたい</span><h3>「今度こそ、<wbr>最後まで形にしたい」</h3><p>本や動画で始めた勉強が、<wbr>途中で止まったまま。<wbr>仕事で見せられる成果物まで、<wbr>仕上げたい方に。</p><a href="courses.html">コースを探す<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></li><li style="--bg:#E7F6EE;--ac:#1E9E62"><div class="m1__v"><img src="assets/illust/for-you-2.webp" alt="" loading="lazy"></div><div class="m1__b"><span class="m1__who">社内のデジタル化を任された</span><h3>「手探りを、<wbr>自信に変えたい」</h3><p>詳しい人が周りにいない中で進めている。<wbr>基礎から整理して、<wbr>胸を張って進めたい方に。</p><a href="courses.html#goal-it">IT・デジタルのコース<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></li><li style="--bg:#F0EDFF;--ac:#6B57D8"><div class="m1__v"><img src="assets/illust/for-you-3.webp" alt="" loading="lazy"></div><div class="m1__b"><span class="m1__who">積み重ねを、次につなげたい</span><h3>「頑張ってきたことを、<wbr>伝えたい」</h3><p>資格や学びの積み重ねをポートフォリオにして、<wbr>次の仕事やチャンスにつなげたい方に。</p><a href="portfolio.html">ポートフォリオを見る<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></li></ul>

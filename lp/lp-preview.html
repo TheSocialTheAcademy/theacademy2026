@@ -55,6 +55,8 @@
     <button type="button" id="page-portfolio" data-page="portfolio" aria-pressed="false">ポートフォリオ</button>
     <button type="button" id="page-blog" data-page="blog" aria-pressed="false">学びのヒント</button>
     <button type="button" id="page-beginners" data-page="beginners" aria-pressed="false">はじめての方へ</button>
+    <button type="button" id="page-contact" data-page="contact" aria-pressed="false">無料相談・資料請求</button>
+    <button type="button" id="page-faq" data-page="faq" aria-pressed="false">よくある質問</button>
   </div>
   <div class="seg seg--mode" role="group" aria-label="表示する端末">
     <button type="button" id="mode-pc" data-mode="pc" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></g></svg>PC<span>1440</span></button>
@@ -78,7 +80,7 @@
     const note = document.getElementById('note');
     const buttons = [...document.querySelectorAll('.seg--mode button')];
     const pageBtns = [...document.querySelectorAll('.seg--page button')];
-    const PAGES = { top: 'lp-design.html', courses: 'courses.html', howto: 'how-to-learn.html', portfolio: 'portfolio.html', blog: 'blog.html', beginners: 'beginners.html' };
+    const PAGES = { top: 'lp-design.html', courses: 'courses.html', howto: 'how-to-learn.html', portfolio: 'portfolio.html', blog: 'blog.html', beginners: 'beginners.html', contact: 'contact.html', faq: 'faq.html', article: 'article.html', course: 'course.html' };
     const frame = document.getElementById('lp'), open = document.getElementById('open');
     let mode = 'pc', page = 'top';
     function setPage(pg) {

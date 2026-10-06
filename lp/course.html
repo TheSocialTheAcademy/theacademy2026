@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>学びのヒント | The Academy</title>
+<title>SNSマーケティング実践 | The Academy</title>
 <meta name="description" content="平日夜・週末の短い時間で、実務に直結するアウトプットを。仲間の歩みを励みにしながら、自分らしいキャリアを作ろう。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1245,88 +1245,34 @@
     .cline__band { grid-template-columns: auto minmax(0, 1fr); padding: 20px; } .cline__btn { grid-column: 1 / -1; justify-content: center; }
   }
 
-  /* ══ 学びのヒント（/blog）══════════════ */
-  .bl-pop, .bl-latest { padding: clamp(64px, 7vw, 96px) 0; background: #fff; }
-  .bl-rated { padding: clamp(64px, 7vw, 96px) 0; background: var(--bg-gray, #F7F8FB); }
-  .bl-res { padding: 0 0 clamp(56px, 6vw, 80px); background: #fff; }
-  .hl-note { margin: 18px 0 0; color: var(--ts-mid); font-size: 12px; }
-  .bl-pop .sec-title, .bl-rated .sec-title, .bl-latest .sec-title, .sec-lead { word-break: keep-all; overflow-wrap: anywhere; }
-  .bl-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin: 0; color: var(--ts-mid); font-size: 12px; }
-  .bl-tag { padding: 2px 10px; border-radius: 99px; background: var(--cb); color: var(--cc); font-size: 11.5px; font-weight: 700; }
-  .bl-min { display: inline-flex; align-items: center; gap: 4px; } .bl-min svg { width: 13px; height: 13px; }
-  .bl-pop b, .bl-rated b, .bl-latest b { word-break: keep-all; overflow-wrap: anywhere; }
-  /* ② ランキング */
-  .bl-seg { display: inline-flex; gap: 4px; padding: 4px; border-radius: 99px; background: #F1F4FA; }
-  .bl-seg button { padding: 8px 20px; border: 0; border-radius: 99px; background: none; color: var(--ts-mid); font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; }
-  .bl-seg button[aria-selected="true"] { background: #fff; color: var(--ts-primary); box-shadow: 0 2px 8px rgba(15,27,69,.1); }
-  .rk-panel { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 32px; align-items: start; } .rk-panel[hidden] { display: none; }
-  .rk-top { display: block; color: inherit; text-decoration: none; }
-  .rk-top__ph { position: relative; display: block; aspect-ratio: 16 / 9; border-radius: 22px; overflow: hidden; background: #EEF1F6; } .rk-top__ph img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
-  .rk-top:hover img { transform: scale(1.03); }
-  .rk-top__b { display: block; padding: 18px 4px 0; } .rk-top__b b { display: block; margin-top: 10px; color: var(--ink); font-size: 24px; line-height: 1.5; } .rk-top__ex { display: block; margin-top: 8px; color: var(--ts-mid); font-size: 14px; line-height: 1.8; }
-  .rk__n { display: grid; place-items: center; flex: none; width: 34px; height: 34px; border-radius: 50%; background: #EEF1F6; color: var(--ink); font: 800 15px/1 'Helvetica Neue', Arial, sans-serif; }
-  .rk__n--1 { position: absolute; left: 16px; top: 16px; width: 48px; height: 48px; background: var(--ts-primary); color: #fff; font-size: 20px; box-shadow: 0 8px 20px rgba(1,65,212,.35); }
-  .rk-list { display: grid; margin: 0; padding: 0; list-style: none; }
-  .rk { display: grid; grid-template-columns: 34px 120px minmax(0, 1fr); gap: 16px; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--line); color: inherit; text-decoration: none; }
-  li:first-child > .rk { padding-top: 0; }
-  .rk:hover b { color: var(--ts-primary); }
-  .rk__ph { aspect-ratio: 16 / 10; border-radius: 12px; overflow: hidden; background: #EEF1F6; } .rk__ph img { display: block; width: 100%; height: 100%; object-fit: cover; }
-  .rk__b b { display: block; margin-top: 6px; color: var(--ink); font-size: 15.5px; line-height: 1.55; }
-  /* ③ 評価の高い記事 */
-  .rt { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin: 0; padding: 0; list-style: none; }
-  .rt__c { display: flex; flex-direction: column; height: 100%; border-radius: 20px; background: #fff; box-shadow: 0 0 0 1px var(--line); color: inherit; text-decoration: none; overflow: hidden; transition: box-shadow .2s, transform .2s; }
-  .rt__c:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px rgba(1,65,212,.25), var(--shadow-soft); }
-  .rt__ph { position: relative; display: block; aspect-ratio: 16 / 9; background: #EEF1F6; } .rt__ph img { display: block; width: 100%; height: 100%; object-fit: cover; }
-  .rt__badge { position: absolute; left: 14px; bottom: 14px; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 99px; background: #fff; color: var(--ts-mid); font-size: 12px; font-weight: 700; box-shadow: 0 6px 16px rgba(15,27,69,.14); }
-  .rt__badge svg { width: 15px; height: 15px; color: var(--ts-primary); } .rt__badge b { color: var(--ts-primary); font-size: 15px; }
-  .rt__b { display: block; padding: 18px 20px 22px; } .rt__b > b { display: block; margin-top: 10px; color: var(--ink); font-size: 17px; line-height: 1.55; } .rt__ex { display: block; margin-top: 8px; color: var(--ts-mid); font-size: 13.5px; line-height: 1.8; }
-  /* ④ 最新記事 */
-  .bl-sort { position: relative; display: inline-flex; align-items: center; gap: 10px; color: var(--ts-mid); font-size: 13px; font-weight: 700; }
-  .bl-sort select { appearance: none; padding: 10px 38px 10px 14px; border: 0; border-radius: 10px; background: #F1F4FA; color: var(--ink); font: inherit; font-size: 14px; cursor: pointer; }
-  .bl-sort svg { position: absolute; right: 12px; width: 16px; height: 16px; pointer-events: none; color: var(--ink); }
-  .bl-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; }
-  .bl-chip { padding: 8px 16px; border: 0; border-radius: 99px; background: #fff; color: var(--ink); font: inherit; font-size: 13.5px; font-weight: 700; box-shadow: inset 0 0 0 1px var(--line); cursor: pointer; }
-  .bl-chip[aria-pressed="true"] { background: var(--ts-primary); color: #fff; box-shadow: none; }
-  .lt-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 40px; margin: 0; padding: 0; list-style: none; }
-  .lt[hidden] { display: none; }
-  .lt a { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: 18px; align-items: center; padding: 20px 0; border-bottom: 1px solid var(--line); color: inherit; text-decoration: none; }
-  .lt a:hover b { color: var(--ts-primary); }
-  .lt__ph { aspect-ratio: 16 / 10; border-radius: 14px; overflow: hidden; background: #EEF1F6; } .lt__ph img { display: block; width: 100%; height: 100%; object-fit: cover; }
-  .lt__b b { display: block; margin-top: 8px; color: var(--ink); font-size: 16px; line-height: 1.55; } .lt__ex { display: block; margin-top: 4px; color: var(--ts-mid); font-size: 13px; line-height: 1.7; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-  .lt-empty { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 32px; margin-top: 8px; padding: clamp(22px, 3vw, 32px); border-radius: 22px; background: #fff; box-shadow: 0 0 0 1px var(--line); }
-  .lt-empty[hidden] { display: none; }
-  .lte__t { margin: 0; color: var(--ink); font-size: 19px; font-weight: 800; } .lte__s { margin: 8px 0 0; color: var(--ts-mid); font-size: 14px; line-height: 1.8; }
-  .lte__b { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
-  .lte__line, .lte__all { display: inline-flex; align-items: center; height: 46px; padding: 0 20px; border: 0; border-radius: 12px; font: inherit; font-size: 14px; font-weight: 700; text-decoration: none; cursor: pointer; }
-  .lte__line { background: #06C755; color: #fff; } .lte__all { background: #fff; color: var(--ink); box-shadow: inset 0 0 0 1px var(--line); }
-  .lte__k { margin: 0; color: var(--ts-mid); font-size: 12.5px; font-weight: 700; } .lte__r ol { margin: 10px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; }
-  .lte__r a { display: flex; gap: 10px; align-items: flex-start; padding: 12px 14px; border-radius: 12px; background: var(--bg-gray, #F7F8FB); color: var(--ink); font-size: 13.5px; font-weight: 700; line-height: 1.6; text-decoration: none; }
-  .lte__r a span { display: grid; place-items: center; flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--ts-primary); color: #fff; font-size: 12px; }
-  @media (max-width: 760px) { .lt-empty { grid-template-columns: minmax(0, 1fr); } }
-  .lt-more { margin-top: 28px; text-align: center; } .lt-more[hidden], #ltMore[hidden] { display: none; }
-  .lt-more .btn { min-width: 220px; gap: 6px; box-shadow: inset 0 0 0 1.5px var(--ts-primary); color: var(--ts-primary); } .lt-more svg { width: 16px; height: 16px; }
-  /* ⑤ お役立ち資料 */
-  /* お役立ち資料と公式LINE：1つの箱を2つに区切る */
-  .k2 { display: grid; grid-template-columns: 1fr 1fr; border-radius: 22px; background: var(--bg-gray, #F7F8FB); overflow: hidden; }
-  .k2__r { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 16px; padding: 24px 28px; color: var(--ink); text-decoration: none; }
-  .k2__r + .k2__r { border-left: 1px solid #E3E7EF; }
-  .k2__ic { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 12px; background: #fff; color: var(--ts-primary); } .k2__ic svg { width: 22px; height: 22px; } .k2__r--line .k2__ic { background: #06C755; color: #fff; }
-  .k2__k { display: block; color: var(--ts-primary); font-size: 12px; font-weight: 700; letter-spacing: .08em; } .k2__r--line .k2__k { color: #06A04A; }
-  .k2__t b { display: block; margin-top: 2px; font-size: 15.5px; line-height: 1.5; } .k2__t em { font-style: normal; color: #06A04A; }
-  .k2__go { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--ts-primary); color: #fff; } .k2__go svg { width: 16px; height: 16px; } .k2__r--line .k2__go { background: #06C755; }
-  .k2__r:hover b { color: var(--ts-primary); } .k2__r--line:hover b { color: #06A04A; } .k2__t b { word-break: keep-all; overflow-wrap: anywhere; }
-  @media (max-width: 1000px) {
-    .rk-panel { grid-template-columns: minmax(0, 1fr); } .rt { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .rt li:last-child { display: none; }
-    .lt-list { grid-template-columns: minmax(0, 1fr); }
-  }
-  @media (max-width: 640px) {
-    .bl-pop .sec-head, .bl-latest .sec-head { gap: 16px; }
-    .rk-top__b b { font-size: 19px; } .rk { grid-template-columns: 30px 96px minmax(0, 1fr); gap: 12px; } .rk__b b { font-size: 14px; } .rk__b .bl-min { display: none; }
-    .rt { grid-template-columns: minmax(0, 1fr); } .rt li:last-child { display: block; }
-    .lt a { grid-template-columns: 112px minmax(0, 1fr); gap: 14px; padding: 16px 0; } .lt__ex { display: none; } .lt__b b { font-size: 14.5px; } .lt .bl-min { display: none; }
-    .bl-chips { flex-wrap: nowrap; margin-right: calc(var(--gutter) * -1); padding-right: var(--gutter); overflow-x: auto; scrollbar-width: none; } .bl-chip { flex: none; }
-    .k2 { grid-template-columns: minmax(0, 1fr); } .k2__r { gap: 14px; padding: 18px; } .k2__r + .k2__r { border-left: 0; border-top: 1px solid #E3E7EF; } .k2__ic { width: 40px; height: 40px; } .k2__t b { font-size: 14.5px; }
-  }
+  .x-sec { padding: clamp(48px, 6vw, 80px) 0; } .x-sec--g { background: var(--bg-gray, #F7F8FB); } .x-sec--w { background: #fff; }
+  .x-todo { display: inline-block; padding: 1px 8px; border-radius: 6px; background: #FFF1E7; color: #E46A1F; font-size: 11.5px; font-weight: 700; vertical-align: middle; }
+  .x-card { border-radius: 22px; background: #fff; box-shadow: 0 0 0 1px var(--line); }
+  .x-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 50px; padding: 0 24px; border: 0; border-radius: 12px; background: var(--ts-primary); color: #fff; font: inherit; font-size: 15px; font-weight: 700; text-decoration: none; cursor: pointer; }
+  .x-btn svg { width: 16px; height: 16px; } .x-btn--w { background: #fff; color: var(--ink); box-shadow: inset 0 0 0 1px rgba(15,27,69,.18); } .x-btn--g { background: #06C755; } .x-btn[disabled] { opacity: .45; cursor: not-allowed; }
+  .x-note { margin: 10px 0 0; color: var(--ts-mid); font-size: 12px; line-height: 1.7; }
+  .cform [hidden], .x-sec [hidden] { display: none !important; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+  .cd-top { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 32px; align-items: start; }
+  .cd-cat { display: inline-block; margin-top: 16px; padding: 3px 12px; border-radius: 99px; background: #FFF1E7; color: #E46A1F; font-size: 12px; font-weight: 700; }
+  .cd-buy__c b { margin-left: 4px; white-space: nowrap; }
+  .cd-meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 0; padding: 0; list-style: none; } .cd-meta li { padding: 5px 12px; border-radius: 99px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); font-size: 13px; font-weight: 700; }
+  .cd-buy { padding: 24px; } .cd-buy__k { margin: 0; color: var(--ts-mid); font-size: 12.5px; font-weight: 700; } .cd-buy__p { margin: 2px 0 0; color: var(--ink); font-size: 28px; font-weight: 800; }
+  .cd-buy__c { display: flex; align-items: center; gap: 6px; margin: 8px 0 16px; padding: 8px 12px; border-radius: 10px; background: #E7F8EE; color: #06A04A; font-size: 13px; font-weight: 700; } .cd-buy__c svg { width: 16px; height: 16px; }
+  .cd-w { max-width: 960px; } .cd-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+  .cd-h { margin: 36px 0 12px; color: var(--ink); font-size: 22px; } .cd-2 .cd-h { margin-top: 0; }
+  .cd-ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; } .cd-ul li { position: relative; padding-left: 24px; font-size: 15px; line-height: 1.7; } .cd-ul li::before { content: "✓"; position: absolute; left: 0; color: var(--ts-primary); font-weight: 800; }
+  .cd-p { margin: 0; font-size: 15px; line-height: 1.8; } .cd-p a { color: var(--ts-primary); font-weight: 700; }
+  .cd-ins { display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 24px; padding: 26px; }
+  .cd-ph { display: grid; place-items: center; width: 104px; height: 104px; border-radius: 50%; background: repeating-linear-gradient(135deg, #E6EBF5 0 8px, #F1F4FA 8px 16px); color: var(--ts-mid); font-size: 11px; }
+  .cd-ins__n { margin: 0; font-size: 21px; font-weight: 800; } .cd-ins__r { margin: 2px 0 0; color: var(--ts-primary); font-size: 13.5px; font-weight: 700; }
+  .cd-ins__s { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 14px 0 0; padding: 0; list-style: none; }
+  .cd-ins__s li { padding: 12px 14px; border-radius: 12px; background: var(--bg-gray, #F7F8FB); color: var(--ts-mid); font-size: 12px; font-weight: 700; } .cd-ins__s b { display: block; color: var(--ink); font-size: 19px; }
+  .cd-ins__d { margin: 12px 0 0; color: var(--ts-mid); font-size: 14px; line-height: 1.8; }
+  .cd-ins__x { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); font-size: 13.5px; } .cd-ins__x summary { color: var(--ts-primary); font-weight: 700; cursor: pointer; } .cd-ins__x p { margin: 8px 0 0; color: var(--ts-mid); }
+  @media (max-width: 860px) { .cd-top, .cd-2 { grid-template-columns: minmax(0, 1fr); } }
+  @media (max-width: 640px) { .cd-ins { grid-template-columns: minmax(0, 1fr); } .cd-ins__s { grid-template-columns: minmax(0, 1fr); } }
 </style>
 </head>
 <body id="top">
@@ -1344,10 +1290,10 @@
       <small>ONLINE LEARNING PLATFORM</small>
     </a>
     <nav class="gnav" aria-label="グローバルナビゲーション">
-      <a href="courses.html">コースを探す</a>
+      <a href="courses.html" aria-current="page">コースを探す</a>
       <a href="how-to-learn.html">学び方・受講成果</a>
       <a href="portfolio.html">ポートフォリオ</a>
-      <a href="blog.html" aria-current="page">学びのヒント</a>
+      <a href="blog.html">学びのヒント</a>
       <a href="beginners.html">はじめての方へ</a>
     </nav>
     <div class="header-actions">
@@ -1357,10 +1303,10 @@
       <details class="menu">
         <summary aria-label="メニュー"><svg class="ico"><use href="#i-menu"/></svg></summary>
         <nav aria-label="メニュー">
-          <a href="courses.html">コースを探す</a>
+          <a href="courses.html" aria-current="page">コースを探す</a>
           <a href="how-to-learn.html">学び方・受講成果</a>
           <a href="portfolio.html">ポートフォリオ</a>
-          <a href="blog.html" aria-current="page">学びのヒント</a>
+          <a href="blog.html">学びのヒント</a>
           <a href="beginners.html">はじめての方へ</a>
           <a href="/login">ログイン</a>
           <a href="contact.html#pamphlet">資料請求</a>
@@ -1371,58 +1317,38 @@
 </header>
 
 <main>
-<section class="phead" aria-labelledby="page-title"><div class="wrap">
-<nav class="crumb" aria-label="パンくずリスト"><a href="lp-design.html">トップ</a><span aria-hidden="true">/</span><span aria-current="page">学びのヒント</span></nav>
-<h1 class="phead__t" id="page-title">学びを続けるヒント</h1>
-<p class="phead__lead">キャリア、生成AI、マーケティングなど、<wbr>働きながら学ぶためのヒントを届けます。</p>
-<ul class="phead__jump"><li><a href="#popular">アクセスの多い記事</a></li><li><a href="#rated">評価の高い記事</a></li><li><a href="#latest">最新記事</a></li><li><a href="#resources">お役立ち資料</a></li></ul>
-</div></section><section class="bl-pop" id="popular" aria-labelledby="pop-title"><div class="wrap">
-<header class="sec-head"><div><p class="sec-kicker">POPULAR</p><h2 class="sec-title" id="pop-title">アクセスの多い記事</h2></div>
-<div class="bl-seg" role="tablist" aria-label="期間"><button type="button" role="tab" aria-selected="true" data-period="week">今週</button><button type="button" role="tab" aria-selected="false" data-period="month">今月</button></div></header>
-<div class="rk-panel" data-period="week">
-<a class="rk-top" href="article.html"><span class="rk-top__ph"><img src="assets/journal/career.webp" alt="" loading="lazy"><span class="rk__n rk__n--1">1</span></span><span class="rk-top__b"><p class="bl-meta"><span class="bl-tag" style="--cc:#0F1B45;--cb:#EEF1F6">キャリア・学び方</span><time>2026.09.08</time><span class="bl-min"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></svg>5分で読める</span></p><b>働きながら学びを続けるための、<wbr>週2時間のつくり方</b><span class="rk-top__ex">忙しい平日でも学びを止めないために。スキマ時間の見つけ方と、無理なく続く習慣づくりのコツをまとめました。</span></span></a>
-<ol class="rk-list"><li><a class="rk" href="/blog/chatgpt5"><span class="rk__n">2</span><span class="rk__ph"><img src="assets/journal/ai.webp" alt="" loading="lazy"></span><span class="rk__b"><p class="bl-meta"><span class="bl-tag" style="--cc:#1E9E62;--cb:#E9F7F0">IT・デジタル</span><time>2026.08.26</time><span class="bl-min"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></svg>4分で読める</span></p><b>ChatGPTを<wbr>仕事の相棒にする、<wbr>最初の5つの使い方</b></span></a></li><li><a class="rk" href="/blog/snscamp"><span class="rk__n">3</span><span class="rk__ph"><img src="assets/journal/sns.webp" alt="" loading="lazy"></span><span class="rk__b"><p class="bl-meta"><span class="bl-tag" style="--cc:#E46A1F;--cb:#FFF1E7">マーケティング</span><time>2026.08.12</time><span class="bl-min"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></svg>6分で読める</span></p><b>顧客理解から始める<wbr>SNSキャンペーン設計</b></span></a></li><li><a class="rk" href="/blog/restart"><span class="rk__n">4</span><span class="rk__ph"><img src="assets/how/step-01-learn.webp" alt="" loading="lazy"></span><span class="rk__b"><p class="bl-meta"><span class="bl-tag" style="--cc:#0F1B45;--cb:#EEF1F6">キャリア・学び方</span><time>2026.08.01</time><span class="bl-min"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></svg>5分で読める</span></p><b>独学が続かなかった人のための、<wbr>学び直しの始め方</b></span></a></li><li><a class="rk" href="/blog/phrase20"><span class="rk__n">5</span><span class="rk__ph"><img src="assets/photos/toeic-study.webp" alt="" loading="lazy"></span><span class="rk__b"><p class="bl-meta"><span class="bl-tag" style="--cc:#0141D4;--cb:#EAF0FF">英語・TOEIC</span><time>2026.07.20</time><span class="bl-min"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></svg>3分で読める</span></p><b>会議で使える、<wbr>短い英語フレーズ20</b></span></a></li></ol></div><div class="rk-panel" data-period="month" hidden>
-<a class="rk-top" href="/blog/portfolio"><span class="rk-top__ph"><img src="assets/portfolio/show-featured-work.webp" alt="" loading="lazy"><span class="rk__n rk__n--1">1</span></span><span class="rk-top__b"><p class="bl-meta"><span class="bl-tag" style="--cc:#0F1B45;--cb:#EEF1F6">キャリア・学び方</span><time>2026.07.08</time><span class="bl-min"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></svg>6分で読める</span></p><b>未経験から実績をつくる、<wbr>ポートフォリオの育て方</b><span class="rk-top__ex">「載せるものがない」から始める人のための、実績の残し方。</span></span></a>
-<ol class="rk-list"><li><a class="rk" href="article.html"><span class="rk__n">2</span><span class="rk__ph"><img src="assets/journal/career.webp" alt="" loading="lazy"></span><span class="rk__b"><p class="bl-meta"><span class="bl-tag" style="--cc:#0F1B45;--cb:#EEF1F6">キャリア・学び方</span><time>2026.09.08</time><span class="bl-min"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></svg>5分で読める</span></p><b>働きながら学びを続けるための、<wbr>週2時間のつくり方</b></span></a></li><li><a class="rk" href="/blog/aimemo"><span class="rk__n">3</span><span class="rk__ph"><img src="assets/outcomes/ai-prompt.webp" alt="" loading="lazy"></span><span class="rk__b"><p class="bl-meta"><span class="bl-tag" style="--cc:#1E9E62;--cb:#E9F7F0">IT・デジタル</span><time>2026.06.24</time><span class="bl-min"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></svg>5分で読める</span></p><b>会議メモをAIで要約する、<wbr>実務の手順</b></span></a></li><li><a class="rk" href="/blog/chatgpt5"><span class="rk__n">4</span><span class="rk__ph"><img src="assets/journal/ai.webp" alt="" loading="lazy"></span><span class="rk__b"><p class="bl-meta"><span class="bl-tag" style="--cc:#1E9E62;--cb:#E9F7F0">IT・デジタル</span><time>2026.08.26</time><span class="bl-min"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></svg>4分で読める</span></p><b>ChatGPTを<wbr>仕事の相棒にする、<wbr>最初の5つの使い方</b></span></a></li><li><a class="rk" href="/blog/insta1"><span class="rk__n">5</span><span class="rk__ph"><img src="assets/photos/sns-phone.webp" alt="" loading="lazy"></span><span class="rk__b"><p class="bl-meta"><span class="bl-tag" style="--cc:#E46A1F;--cb:#FFF1E7">マーケティング</span><time>2026.06.10</time><span class="bl-min"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></svg>4分で読める</span></p><b>Instagramの投稿企画を、<wbr>1枚のシートで考える</b></span></a></li></ol></div>
-</div></section><section class="bl-rated" id="rated" aria-labelledby="rated-title"><div class="wrap">
-<header class="sec-head"><div><p class="sec-kicker">TOP RATED</p><h2 class="sec-title" id="rated-title">評価の高い記事</h2>
-<p class="sec-lead">読んだ人の「役に立った」が多い記事です。</p></div></header>
-<ol class="rt"><li><a class="rt__c" href="article.html"><span class="rt__ph"><img src="assets/journal/career.webp" alt="" loading="lazy"><span class="rt__badge"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11v9H4v-9zM7 11l4-7a2 2 0 0 1 3 2l-1 4h5a2 2 0 0 1 2 2.3l-1.2 6A2 2 0 0 1 16.8 20H7"/></g></svg>役に立った <b>142</b></span></span><span class="rt__b"><p class="bl-meta"><span class="bl-tag" style="--cc:#0F1B45;--cb:#EEF1F6">キャリア・学び方</span><time>2026.09.08</time><span class="bl-min"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></svg>5分で読める</span></p><b>働きながら学びを続けるための、<wbr>週2時間のつくり方</b><span class="rt__ex">忙しい平日でも学びを止めないために。スキマ時間の見つけ方と、無理なく続く習慣づくりのコツをまとめました。</span></span></a></li><li><a class="rt__c" href="/blog/portfolio"><span class="rt__ph"><img src="assets/portfolio/show-featured-work.webp" alt="" loading="lazy"><span class="rt__badge"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11v9H4v-9zM7 11l4-7a2 2 0 0 1 3 2l-1 4h5a2 2 0 0 1 2 2.3l-1.2 6A2 2 0 0 1 16.8 20H7"/></g></svg>役に立った <b>128</b></span></span><span class="rt__b"><p class="bl-meta"><span class="bl-tag" style="--cc:#0F1B45;--cb:#EEF1F6">キャリア・学び方</span><time>2026.07.08</time><span class="bl-min"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></svg>6分で読める</span></p><b>未経験から実績をつくる、<wbr>ポートフォリオの育て方</b><span class="rt__ex">「載せるものがない」から始める人のための、実績の残し方。</span></span></a></li><li><a class="rt__c" href="/blog/chatgpt5"><span class="rt__ph"><img src="assets/journal/ai.webp" alt="" loading="lazy"><span class="rt__badge"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11v9H4v-9zM7 11l4-7a2 2 0 0 1 3 2l-1 4h5a2 2 0 0 1 2 2.3l-1.2 6A2 2 0 0 1 16.8 20H7"/></g></svg>役に立った <b>118</b></span></span><span class="rt__b"><p class="bl-meta"><span class="bl-tag" style="--cc:#1E9E62;--cb:#E9F7F0">IT・デジタル</span><time>2026.08.26</time><span class="bl-min"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></svg>4分で読める</span></p><b>ChatGPTを<wbr>仕事の相棒にする、<wbr>最初の5つの使い方</b><span class="rt__ex">最初のひと言の書き方から、議事録・メール・企画のたたき台づくりまで。</span></span></a></li></ol>
-</div></section><section class="bl-latest" id="latest" aria-labelledby="latest-title"><div class="wrap">
-<header class="sec-head"><div><p class="sec-kicker">LATEST</p><h2 class="sec-title" id="latest-title">最新記事</h2></div>
-<label class="bl-sort"><span>並び替え</span><select id="ltSort"><option value="desc">新しい順</option><option value="asc">古い順</option></select><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></g></svg></label></header>
-<div class="bl-chips" role="group" aria-label="カテゴリで絞り込む"><button type="button" class="bl-chip" aria-pressed="true" data-cat="">すべて</button><button type="button" class="bl-chip" aria-pressed="false" data-cat="IT・デジタル">IT・デジタル</button><button type="button" class="bl-chip" aria-pressed="false" data-cat="マーケティング">マーケティング</button><button type="button" class="bl-chip" aria-pressed="false" data-cat="英語・TOEIC">英語・TOEIC</button><button type="button" class="bl-chip" aria-pressed="false" data-cat="ビジネス">ビジネス</button><button type="button" class="bl-chip" aria-pressed="false" data-cat="クリエイティブ">クリエイティブ</button><button type="button" class="bl-chip" aria-pressed="false" data-cat="キャリア・学び方">キャリア・学び方</button></div>
-<ol class="lt-list" id="ltList"><li class="lt" data-cat="キャリア・学び方" data-date="2026.09.08"><a href="article.html"><span class="lt__ph"><img src="assets/journal/career.webp" alt="" loading="lazy"></span><span class="lt__b"><p class="bl-meta"><span class="bl-tag" style="--cc:#0F1B45;--cb:#EEF1F6">キャリア・学び方</span><time>2026.09.08</time><span class="bl-min"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></svg>5分で読める</span></p><b>働きながら学びを続けるための、<wbr>週2時間のつくり方</b><span class="lt__ex">忙しい平日でも学びを止めないために。スキマ時間の見つけ方と、無理なく続く習慣づくりのコツをまとめました。</span></span></a></li><li class="lt" data-cat="IT・デジタル" data-date="2026.08.26"><a href="/blog/chatgpt5"><span class="lt__ph"><img src="assets/journal/ai.webp" alt="" loading="lazy"></span><span class="lt__b"><p class="bl-meta"><span class="bl-tag" style="--cc:#1E9E62;--cb:#E9F7F0">IT・デジタル</span><time>2026.08.26</time><span class="bl-min"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></svg>4分で読める</span></p><b>ChatGPTを<wbr>仕事の相棒にする、<wbr>最初の5つの使い方</b><span class="lt__ex">最初のひと言の書き方から、議事録・メール・企画のたたき台づくりまで。</span></span></a></li><li class="lt" data-cat="マーケティング" data-date="2026.08.12"><a href="/blog/snscamp"><span class="lt__ph"><img src="assets/journal/sns.webp" alt="" loading="lazy"></span><span class="lt__b"><p class="bl-meta"><span class="bl-tag" style="--cc:#E46A1F;--cb:#FFF1E7">マーケティング</span><time>2026.08.12</time><span class="bl-min"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></svg>6分で読める</span></p><b>顧客理解から始める<wbr>SNSキャンペーン設計</b><span class="lt__ex">「誰に・何を・なぜ」を先に決めると、投稿の反応が変わります。</span></span></a></li><li class="lt" data-cat="キャリア・学び方" data-date="2026.08.01"><a href="/blog/restart"><span class="lt__ph"><img src="assets/how/step-01-learn.webp" alt="" loading="lazy"></span><span class="lt__b"><p class="bl-meta"><span class="bl-tag" style="--cc:#0F1B45;--cb:#EEF1F6">キャリア・学び方</span><time>2026.08.01</time><span class="bl-min"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></svg>5分で読める</span></p><b>独学が続かなかった人のための、<wbr>学び直しの始め方</b><span class="lt__ex">三日坊主で終わった経験がある人ほど、最初の設計が大切です。</span></span></a></li><li class="lt" data-cat="英語・TOEIC" data-date="2026.07.20"><a href="/blog/phrase20"><span class="lt__ph"><img src="assets/photos/toeic-study.webp" alt="" loading="lazy"></span><span class="lt__b"><p class="bl-meta"><span class="bl-tag" style="--cc:#0141D4;--cb:#EAF0FF">英語・TOEIC</span><time>2026.07.20</time><span class="bl-min"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></svg>3分で読める</span></p><b>会議で使える、<wbr>短い英語フレーズ20</b><span class="lt__ex">相づち・確認・提案。覚えておくと会議で困らない短い表現を集めました。</span></span></a></li><li class="lt" data-cat="キャリア・学び方" data-date="2026.07.08"><a href="/blog/portfolio"><span class="lt__ph"><img src="assets/portfolio/show-featured-work.webp" alt="" loading="lazy"></span><span class="lt__b"><p class="bl-meta"><span class="bl-tag" style="--cc:#0F1B45;--cb:#EEF1F6">キャリア・学び方</span><time>2026.07.08</time><span class="bl-min"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></svg>6分で読める</span></p><b>未経験から実績をつくる、<wbr>ポートフォリオの育て方</b><span class="lt__ex">「載せるものがない」から始める人のための、実績の残し方。</span></span></a></li><li class="lt" data-cat="IT・デジタル" data-date="2026.06.24"><a href="/blog/aimemo"><span class="lt__ph"><img src="assets/outcomes/ai-prompt.webp" alt="" loading="lazy"></span><span class="lt__b"><p class="bl-meta"><span class="bl-tag" style="--cc:#1E9E62;--cb:#E9F7F0">IT・デジタル</span><time>2026.06.24</time><span class="bl-min"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></svg>5分で読める</span></p><b>会議メモをAIで要約する、<wbr>実務の手順</b><span class="lt__ex">プロンプトの型と、要約を確認するときのポイント。</span></span></a></li><li class="lt" data-cat="マーケティング" data-date="2026.06.10"><a href="/blog/insta1"><span class="lt__ph"><img src="assets/photos/sns-phone.webp" alt="" loading="lazy"></span><span class="lt__b"><p class="bl-meta"><span class="bl-tag" style="--cc:#E46A1F;--cb:#FFF1E7">マーケティング</span><time>2026.06.10</time><span class="bl-min"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></svg>4分で読める</span></p><b>Instagramの投稿企画を、<wbr>1枚のシートで考える</b><span class="lt__ex">目的・ターゲット・投稿の型を1枚に整理する方法。</span></span></a></li><li class="lt" data-cat="ビジネス" data-date="2026.05.28"><a href="/blog/event"><span class="lt__ph"><img src="assets/outcomes/event-plan.webp" alt="" loading="lazy"></span><span class="lt__b"><p class="bl-meta"><span class="bl-tag" style="--cc:#6B4FD8;--cb:#F0ECFF">ビジネス</span><time>2026.05.28</time><span class="bl-min"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></svg>5分で読める</span></p><b>小さなイベントを成功させる、<wbr>当日の進行表のつくり方</b><span class="lt__ex">目的から逆算して、当日の流れとキューを決めます。</span></span></a></li><li class="lt" data-cat="クリエイティブ" data-date="2026.05.14"><a href="/blog/canva"><span class="lt__ph"><img src="assets/outcomes/sns-design.webp" alt="" loading="lazy"></span><span class="lt__b"><p class="bl-meta"><span class="bl-tag" style="--cc:#D9467A;--cb:#FDECF2">クリエイティブ</span><time>2026.05.14</time><span class="bl-min"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></svg>4分で読める</span></p><b>Canvaで伝わる投稿をつくる、<wbr>3つの基本</b><span class="lt__ex">余白・文字の大きさ・色の数。この3つで見違えます。</span></span></a></li><li class="lt" data-cat="ビジネス" data-date="2026.04.30"><a href="/blog/brand"><span class="lt__ph"><img src="assets/outcomes/brand-concept.webp" alt="" loading="lazy"></span><span class="lt__b"><p class="bl-meta"><span class="bl-tag" style="--cc:#6B4FD8;--cb:#F0ECFF">ビジネス</span><time>2026.04.30</time><span class="bl-min"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></svg>6分で読める</span></p><b>選ばれる理由を言葉にする、<wbr>ブランドコンセプトの考え方</b><span class="lt__ex">お客様が感じている価値を、短い言葉にまとめる手順。</span></span></a></li><li class="lt" data-cat="英語・TOEIC" data-date="2026.04.16"><a href="/blog/present"><span class="lt__ph"><img src="assets/outcomes/english-presentation.webp" alt="" loading="lazy"></span><span class="lt__b"><p class="bl-meta"><span class="bl-tag" style="--cc:#0141D4;--cb:#EAF0FF">英語・TOEIC</span><time>2026.04.16</time><span class="bl-min"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></g></svg>5分で読める</span></p><b>5分で伝わる、<wbr>英語プレゼンの組み立て方</b><span class="lt__ex">結論から話す型と、緊張しても崩れない準備のしかた。</span></span></a></li></ol>
-<div class="lt-empty" id="ltEmpty" hidden><div class="lte__l"><p class="lte__t">「<span id="ltEmptyCat"></span>」の記事は準備中です</p><p class="lte__s">公開したら公式LINEでお知らせします。<wbr>ほかのカテゴリや、よく読まれている記事もどうぞ。</p>
-<div class="lte__b"><a class="lte__line" href="beginners.html#line">新着をLINEで受け取る</a><button type="button" class="lte__all" id="ltEmptyAll">すべての記事を見る</button></div></div>
-<div class="lte__r"><p class="lte__k">よく読まれている記事</p><ol><li><a href="article.html"><span>1</span>働きながら学びを続けるための、<wbr>週2時間のつくり方</a></li><li><a href="/blog/chatgpt5"><span>2</span>ChatGPTを<wbr>仕事の相棒にする、<wbr>最初の5つの使い方</a></li><li><a href="/blog/portfolio"><span>3</span>未経験から実績をつくる、<wbr>ポートフォリオの育て方</a></li></ol></div></div>
-<div class="lt-more"><button type="button" class="btn btn--white" id="ltMore">もっと見る<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></g></svg></button></div>
-<p class="hl-note">※記事タイトル・日付・評価の数は仮です。</p>
-</div></section><section class="bl-res" id="resources" aria-label="お役立ち資料と公式LINE"><div class="wrap"><div class="k2">
-<a class="k2__r" href="/whitepaper"><span class="k2__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 12h7M9 16h5"/></g></svg></span><span class="k2__t"><span class="k2__k">お役立ち資料</span><b>仕事や学びに役立つ資料を、<wbr>目的に合わせて選べます</b></span><span class="k2__go"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-<a class="k2__r k2__r--line" href="/beginners#line"><span class="k2__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5c5 0 9 3.2 9 7.2 0 3.9-3.8 7.1-8.6 7.2-.5.4-2.7 2.3-4.2 2.6-.4.1-.4-.3-.3-.6l.5-2.4C5.3 16.3 3 13.7 3 10.7 3 6.7 7 3.5 12 3.5z" fill="currentColor"/></svg></span><span class="k2__t"><span class="k2__k">公式LINE限定</span><b>LINE登録で、<wbr>全コース<em>500円OFF</em></b></span><span class="k2__go"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-</div></div></section>
-<script>
-(() => {
-  // アクセスの多い記事：今週／今月
-  const seg = document.querySelectorAll('.bl-seg button'), panels = document.querySelectorAll('.rk-panel');
-  seg.forEach(b => b.addEventListener('click', () => { seg.forEach(x => x.setAttribute('aria-selected', String(x === b))); panels.forEach(p => p.hidden = p.dataset.period !== b.dataset.period); }));
-  // 最新記事：カテゴリ・並び替え・もっと見る（6件ずつ）
-  const list = document.getElementById('ltList'), items = [...list.children], more = document.getElementById('ltMore'), empty = document.getElementById('ltEmpty'), sort = document.getElementById('ltSort');
-  const chips = document.querySelectorAll('.bl-chip'); let cat = '', shown = 6;
-  function render() {
-    const hit = items.filter(li => !cat || li.dataset.cat === cat).sort((a, b) => sort.value === 'asc' ? a.dataset.date.localeCompare(b.dataset.date) : b.dataset.date.localeCompare(a.dataset.date));
-    items.forEach(li => li.hidden = true); hit.forEach((li, i) => { list.appendChild(li); li.hidden = i >= shown; });
-    more.hidden = hit.length <= shown; empty.hidden = hit.length > 0;
-    const cn = [...chips].find(x => x.getAttribute('aria-pressed') === 'true'); document.getElementById('ltEmptyCat').textContent = cn ? cn.textContent.trim() : '';
-  }
-  chips.forEach(c => c.addEventListener('click', () => { chips.forEach(x => x.setAttribute('aria-pressed', String(x === c))); cat = c.dataset.cat; shown = 6; render(); }));
-  sort.addEventListener('change', render);
-  more.addEventListener('click', () => { shown += 6; render(); });
-  document.getElementById('ltEmptyAll').addEventListener('click', () => chips[0].click());
-  render();
-})();
-</script>
+<section class="phead" aria-labelledby="page-title"><div class="wrap cd-top">
+<div><nav class="crumb" aria-label="パンくずリスト"><a href="lp-design.html">トップ</a><span aria-hidden="true">/</span><a href="courses.html">コースを探す</a><span aria-hidden="true">/</span><span aria-current="page">SNSマーケティング実践</span></nav>
+<span class="cd-cat">マーケティング</span>
+<h1 class="phead__t" id="page-title">SNSマーケティング実践</h1>
+<p class="phead__lead">顧客理解から数値改善までを、<wbr>一つのキャンペーンとして実践します。</p>
+<ul class="cd-meta"><li>8週間</li><li>週2〜3時間</li><li>プロ</li></ul></div>
+<aside class="x-card cd-buy" aria-label="価格と申し込み"><p class="cd-buy__k">価格</p><p class="cd-buy__p">¥— <span class="x-todo">価格の確定待ち</span></p>
+<p class="cd-buy__c"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3C6.5 3 2 6.6 2 11c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.5s5.9-3.5 8-6C21.4 14.3 22 12.7 22 11c0-4.4-4.5-8-10-8z"/></svg><span>公式LINEの友だち限定クーポンで<b>500円OFF</b></span></p>
+<a class="x-btn" href="#" data-todo="カート" style="width:100%">このコースを受講する</a><a class="x-btn x-btn--w" href="contact.html?course=SNSマーケティング実践" style="width:100%;margin-top:8px">受講前に相談する</a>
+<p class="x-note">コースごとの買い切り。<wbr>クレジットカードで決済します。</p></aside>
+</div></section>
+<section class="x-sec x-sec--w"><div class="wrap cd-w">
+<p class="x-note" style="margin:0 0 18px">※コース詳細ページは見本です（講師ボックスの反映用）。各項目の中身・デザインは、今後パターンを出して決めます。</p>
+<div class="cd-2"><div><h2 class="cd-h">こんな方に</h2><ul class="cd-ul"><li>SNSを任されたが、何から始めればいいか分からない</li><li>投稿はしているが、反応や成果につながらない</li><li>企画から振り返りまで、一通り経験しておきたい</li></ul></div>
+<div><h2 class="cd-h">できるようになること</h2><ul class="cd-ul"><li>顧客理解から、伝える相手と内容を決められる</li><li>キャンペーンを企画書にまとめられる</li><li>数字を見て、次の改善を決められる</li></ul></div></div>
+<h2 class="cd-h">残せる成果</h2><p class="cd-p">SNSキャンペーン企画書を完成させ、<a href="portfolio.html">ポートフォリオ</a>に公開できます。</p>
+<h2 class="cd-h" id="instructor">このコースの講師</h2>
+<section class="x-card cd-ins" aria-label="講師の紹介"><span class="cd-ph" aria-hidden="true">写真</span><div>
+<p class="cd-ins__n">講師名（仮）</p><p class="cd-ins__r">SNSマーケティング・コンサルタント（仮）</p>
+<ul class="cd-ins__s"><li>実務経験<b>◯年</b></li><li>担当した案件<b>◯件</b></li><li>資格<b>◯◯◯</b></li></ul>
+<p class="cd-ins__d">企業のSNS運用と、キャンペーンの設計を担当。<span class="x-todo">紹介文・数字は仮</span></p>
+<details class="cd-ins__x"><summary>詳しい経歴を見る</summary><p>経歴が入ります。<span class="x-todo">講師の方から提供</span></p></details></div></section>
+<h2 class="cd-h">このコースのよくある質問</h2><p class="cd-p"><a href="faq.html#q-feedback">講師からフィードバックはもらえますか？</a>　<a href="faq.html#q-refund">返金はできますか？</a>　<a href="faq.html">すべて見る</a></p>
+</div></section>
+<section class="next nxC cnext" id="next" aria-labelledby="next-title"><div class="wrap nxC__grid">
+<div class="nxC__copy"><p class="sec-kicker">NEXT STEP</p><h2 class="sec-title" id="next-title">迷ったら、ここから。</h2><p class="sec-lead">相談したら必ず受講、<wbr>ではありません。<wbr>どちらも無料です。</p>
+<div class="nxC__item"><p class="nx-who"><span class="nx-flag">おすすめ</span>何から始めればいいか、迷っている方</p><h3 class="nx-card__t">30分の無料相談</h3>
+<p class="nx-card__d">スタッフがオンラインで相談に乗ります。今のキャリアの不安や、学びたいことを一緒に整理しましょう。</p><ul class="nx-pts"><li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i>今のキャリアの不安や悩みを整理できる</li><li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i>自分に合うコースや学び方がわかる</li><li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i>受講前の疑問や不安にすべてお答えします</li></ul></div>
+<div class="nxC__cta"><a class="btn btn--primary nx-btn" href="contact.html">無料相談に申し込む<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a class="btn nx-btn nx-btn--line" href="contact.html#pamphlet">パンフレットを受け取る<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<p class="nxC__meta"><span>無料</span>どちらも簡単30秒で登録・受け取り</p></div>
+<div class="nxC__vis nxC__vis--img"><img src="assets/illust/next-zoom.webp" alt="オンライン無料相談の画面イメージ（The Academyのスタッフとあなた）と、パンフレット（PDF）" width="1350" height="1155" loading="lazy"></div>
+</div><div class="wrap"><p class="nx-foot">法人のお客様・その他のお問い合わせは<a href="contact.html#form">お問い合わせフォーム<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p></div></section>
 </main>
 <section class="fband" aria-label="相談・資料・公式LINE"><div class="wrap"><div class="fband__g">
   <a class="fband__c fband__c--main" href="contact.html"><span class="fband__i"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4z"/></g></svg></span><span><b>無料で相談する</b><small>30分・オンライン・相談だけでもOK</small></span><em>予約する<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></em></a>

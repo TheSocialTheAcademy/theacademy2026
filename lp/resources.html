@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>プロジェクトマネジメント | The Academy</title>
+<title>お役立ち資料 | The Academy</title>
 <meta name="description" content="平日夜・週末の短い時間で、実務に直結するアウトプットを。仲間の歩みを励みにしながら、自分らしいキャリアを作ろう。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1245,63 +1245,48 @@
     .cline__band { grid-template-columns: auto minmax(0, 1fr); padding: 20px; } .cline__btn { grid-column: 1 / -1; justify-content: center; }
   }
 
-  .x-sec { padding: clamp(48px, 6vw, 80px) 0; } .x-sec--g { background: var(--bg-gray, #F7F8FB); } .x-sec--w { background: #fff; }
   .x-todo { display: inline-block; padding: 1px 8px; border-radius: 6px; background: #FFF1E7; color: #E46A1F; font-size: 11.5px; font-weight: 700; vertical-align: middle; }
-  .x-card { border-radius: 22px; background: #fff; box-shadow: 0 0 0 1px var(--line); }
+  .x-sec { padding: clamp(48px, 6vw, 80px) 0; } .x-sec--g { background: var(--bg-gray, #F7F8FB); } .x-sec--w { background: #fff; }
   .x-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 50px; padding: 0 24px; border: 0; border-radius: 12px; background: var(--ts-primary); color: #fff; font: inherit; font-size: 15px; font-weight: 700; text-decoration: none; cursor: pointer; }
-  .x-btn svg { width: 16px; height: 16px; } .x-btn--w { background: #fff; color: var(--ink); box-shadow: inset 0 0 0 1px rgba(15,27,69,.18); } .x-btn--g { background: #06C755; } .x-btn[disabled] { opacity: .45; cursor: not-allowed; }
-  .x-note { margin: 10px 0 0; color: var(--ts-mid); font-size: 12px; line-height: 1.7; }
-  .cform [hidden], .x-sec [hidden] { display: none !important; }
-  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-  .k2-hero { padding: clamp(28px, 4vw, 44px) 0 clamp(40px, 5vw, 64px); background: var(--bg-gray, #F7F8FB); }
-  .k2-top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(24px, 4vw, 48px); align-items: center; margin-top: 8px; }
-  .k-cat { display: inline-block; margin-top: 14px; padding: 3px 12px; border-radius: 99px; background: var(--cb); color: var(--cc); font-size: 12px; font-weight: 700; }
-  .k2-t { margin: 12px 0 0; color: var(--ink); font-size: clamp(26px, 3.2vw, 38px); line-height: 1.4; word-break: keep-all; overflow-wrap: anywhere; }
-  .k2-name { margin: 12px 0 0; color: var(--ts-primary); font-weight: 800; } .k2-desc { margin: 6px 0 0; color: var(--ts-mid); font-size: 14.5px; line-height: 1.8; }
-  .k-meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 0; padding: 0; list-style: none; } .k-meta li { padding: 6px 12px; border-radius: 99px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); font-size: 13px; font-weight: 700; }
-  .k2-pr { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin-top: 18px; } .k2-pr p { display: flex; align-items: baseline; gap: 8px; margin: 0; }
-  .k2-pr small { color: var(--ts-mid); font-size: 12px; font-weight: 700; } .k2-pr b { color: var(--ink); font-size: 28px; font-weight: 800; }
-  .k2-cp { align-items: center !important; padding: 6px 12px; border-radius: 99px; background: #E7F8EE; color: #06A04A; font-size: 13px; font-weight: 800; } .k2-cp svg { width: 16px; height: 16px; }
-  .k2-cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; } .k2-cta .x-btn { flex: 1 1 200px; }
-  .k2-fig { margin: 0; padding: 18px; border-radius: 24px; background: #fff; box-shadow: 0 0 0 1px var(--line), 0 22px 44px rgba(15,27,69,.12); }
-  .k2-fig img { display: block; width: 100%; height: auto; border-radius: 12px; } .k2-fig figcaption { margin-top: 10px; color: var(--ts-mid); font-size: 13px; font-weight: 700; text-align: center; }
-  .k2-ph { display: grid; place-items: center; align-content: center; gap: 10px; aspect-ratio: 40 / 21; border-radius: 12px; background: var(--cb); color: var(--cc); text-align: center; padding: 16px; }
-  .k2-ph__ic { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 18px; background: #fff; box-shadow: 0 8px 20px rgba(15,27,69,.08); } .k2-ph__ic svg { width: 32px; height: 32px; }
-  .k2-ph b { font-size: 18px; } .k2-ph small { color: var(--ts-mid); font-size: 12px; }
-  .k2-tl { position: relative; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 12px; margin: 18px 0 0; padding: 0; list-style: none; }
-  .k2-tl::before { content: ""; position: absolute; left: 13px; right: 13px; top: 12px; height: 2px; background: #D5DDF0; }
-  .k2-tl li { position: relative; display: grid; gap: 3px; align-content: start; } .k2-tl span { position: relative; z-index: 1; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--ts-primary); color: #fff; font-size: 12px; font-weight: 800; }
-  .k2-tl li:last-child span { background: var(--ts-orange); } .k2-tl__w { margin: 6px 0 0; color: var(--ts-primary); font: 800 11px/1 'Helvetica Neue', Arial, sans-serif; letter-spacing: .04em; }
-  .k2-tl b { color: var(--ink); font-size: 14.5px; line-height: 1.5; } .k2-tl small { color: var(--ts-mid); font-size: 12.5px; line-height: 1.6; }
-  .k2-goal { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 22px 0 0; padding: 10px 16px; border-radius: 99px; background: #FFF1E7; color: #C2561E; font-size: 14px; font-weight: 800; }
-  .k2-goal svg { width: 16px; height: 16px; } .k2-goal a { color: inherit; }
-  .k-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; } .k-h2 { margin: 0 0 16px; color: var(--ink); font-size: clamp(22px, 2.4vw, 28px); }
-  .k-ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; } .k-ul li { display: flex; gap: 8px; font-size: 15px; line-height: 1.7; } .k-ul svg { flex: none; width: 16px; height: 16px; margin-top: 5px; color: var(--ts-primary); }
-  .k-how { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
-  .k-how li { display: grid; gap: 2px; padding: 16px; border-radius: 14px; background: #fff; box-shadow: 0 0 0 1px var(--line); } .k-how b { color: var(--ts-primary); font-size: 11.5px; letter-spacing: .08em; } .k-how span { color: var(--ink); font-size: 17px; font-weight: 800; } .k-how small { color: var(--ts-mid); font-size: 12.5px; }
-  .k-a { display: inline-flex; align-items: center; gap: 4px; margin-top: 12px; color: var(--ts-primary); font-size: 14px; font-weight: 700; text-decoration: none; } .k-a svg { width: 15px; height: 15px; }
-  .k2-end { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 36px; align-items: start; }
-  .k-faq { padding: 4px 22px; } .k-faq a { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 16px 0; border-top: 1px solid var(--line); color: var(--ink); font-size: 15px; font-weight: 700; text-decoration: none; } .k-faq a:first-child { border-top: 0; } .k-faq svg { width: 15px; height: 15px; color: var(--ts-primary); flex: none; }
-  .k-buy { padding: 24px; border-radius: 22px; background: #fff; box-shadow: 0 0 0 1px var(--line), 0 16px 36px rgba(15,27,69,.08); }
-  .k-buy__k { margin: 0; color: var(--ts-mid); font-size: 12.5px; font-weight: 700; } .k-buy__p { margin: 2px 0 0; color: var(--ink); font-size: 30px; font-weight: 800; }
-  .k-buy__cp { display: flex; gap: 6px; margin: 10px 0 16px; padding: 10px 12px; border-radius: 12px; background: #E7F8EE; color: #06A04A; font-size: 13.5px; font-weight: 800; } .k-buy__cp svg { width: 16px; height: 16px; flex: none; margin-top: 2px; } .k-buy__cp small { display: block; color: var(--ts-mid); font-size: 11px; font-weight: 500; }
-  .k-buy .x-btn { width: 100%; } .k-buy .x-btn + .x-btn { margin-top: 8px; }
-  .k-buy__l { margin: 16px 0 0; padding: 14px 0 0; border-top: 1px solid var(--line); list-style: none; display: grid; gap: 6px; color: var(--ts-mid); font-size: 13px; } .k-buy__l li { display: flex; gap: 6px; } .k-buy__l svg { width: 15px; height: 15px; flex: none; margin-top: 2px; color: var(--ts-primary); }
-  .k-rel { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
-  .k-rc { display: grid; gap: 4px; padding: 14px; border-radius: 18px; background: #fff; box-shadow: 0 0 0 1px var(--line); color: var(--ink); text-decoration: none; } .k-rc:hover { box-shadow: 0 0 0 1.5px var(--ts-primary); }
-  .k-rc__v { display: grid; place-items: center; height: 110px; border-radius: 12px; background: var(--cb); color: var(--cc); } .k-rc__v svg { width: 34px; height: 34px; }
-  .k-rc b { margin-top: 8px; font-size: 16px; } .k-rc small { color: var(--ts-mid); font-size: 12.5px; } .k-rc__p { margin-top: 6px; color: var(--ts-mid); font-size: 12px; } .k-rc__p em { display: block; color: #06A04A; font-size: 15px; font-style: normal; font-weight: 800; }
-  .k2-bar { display: none; }
-  @media (max-width: 860px) { .k2-top, .k2-end, .k-2 { grid-template-columns: minmax(0, 1fr); } .k-rel { grid-template-columns: minmax(0, 1fr); } .k-how { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-  @media (max-width: 760px) {
-    .k2-tl { grid-template-columns: minmax(0, 1fr); gap: 14px; } .k2-tl::before { left: 12px; right: auto; top: 12px; bottom: 12px; width: 2px; height: auto; }
-    .k2-tl li { grid-template-columns: 26px minmax(0, 1fr); column-gap: 12px; } .k2-tl li > :not(span) { grid-column: 2; } .k2-tl span { grid-row: 1 / 4; }
-    .k2-cta { flex-direction: column; } .k2-cta .x-btn { flex: none; }
-    .k2-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 61; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 14px calc(10px + env(safe-area-inset-bottom)); background: #fff; box-shadow: 0 -6px 20px rgba(15,27,69,.12); }
-    .k2-bar small { display: block; max-width: 52vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--ts-mid); font-size: 11px; } .k2-bar b { color: var(--ink); font-size: 18px; } .k2-bar em { margin-left: 6px; color: #06A04A; font-size: 11px; font-style: normal; }
-    .k2-bar .x-btn { min-height: 46px; padding: 0 22px; }
-    .fcta { display: none !important; } body { padding-bottom: 70px; }
-  }
+  .x-btn svg { width: 17px; height: 17px; } .x-btn--g { background: #06C755; }
+  .x-note { margin: 10px 0 0; color: var(--ts-mid); font-size: 12.5px; line-height: 1.7; } .x-note a { color: var(--ts-primary); }
+  .rs-cv { position: relative; display: flex; flex-direction: column; justify-content: space-between; aspect-ratio: 1 / 1.3; padding: 24px; border-radius: 10px; background: var(--c); color: #fff; overflow: hidden; box-shadow: 0 10px 28px rgba(15,27,69,.16); }
+  .rs-cv::after { content: ""; position: absolute; right: -30%; bottom: -18%; width: 80%; aspect-ratio: 1; border-radius: 50%; background: rgba(255,255,255,.12); }
+  .rs-cv span { font-size: 10px; letter-spacing: .16em; opacity: .8; } .rs-cv b { position: relative; z-index: 1; font-size: 24px; line-height: 1.45; }
+  .rs-f { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 56px; align-items: center; }
+  .rs-tag { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 0; color: var(--ts-primary); font-size: 12.5px; font-weight: 700; }
+  .rs-tag em { padding: 1px 9px; border-radius: 99px; background: #FFF1E7; color: #E46A1F; font-style: normal; font-size: 11.5px; }
+  .rs-f__t { margin: 10px 0 0; color: var(--ink); font-size: clamp(24px, 2.6vw, 30px); line-height: 1.45; }
+  .rs-f__d { max-width: 52ch; margin: 12px 0 0; color: var(--ts-mid); font-size: 15px; line-height: 1.85; }
+  .rs-m { margin: 8px 0 0; color: var(--ts-mid); font-size: 12.5px; white-space: nowrap; } .rs-f .x-btn { margin-top: 20px; }
+  .rs-h2 { margin: 0 0 20px; color: var(--ink); font-size: clamp(20px, 2.2vw, 24px); }
+  .rs-l { margin: 0; padding: 0; list-style: none; border-radius: 20px; background: #fff; box-shadow: 0 0 0 1px var(--line); }
+  .rs-r { display: grid; grid-template-columns: 10px minmax(0, 1fr) auto auto; gap: 20px; align-items: center; padding: 20px 24px; border-top: 1px solid var(--line); }
+  .rs-r:first-child { border-top: 0; } .rs-dot { width: 10px; height: 10px; border-radius: 3px; background: var(--c); }
+  .rs-r h3 { margin: 4px 0 0; color: var(--ink); font-size: 16px; line-height: 1.5; } .rs-d { margin: 4px 0 0; color: var(--ts-mid); font-size: 13.5px; line-height: 1.7; } .rs-r .rs-m { margin: 0; }
+  .rs-r__btn { display: inline-flex; align-items: center; gap: 6px; height: 42px; padding: 0 16px; border: 0; border-radius: 10px; background: #EEF2FD; color: var(--ts-primary); font: inherit; font-size: 13.5px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+  .rs-r__btn svg { width: 15px; height: 15px; } .rs-r__btn:hover { background: var(--ts-primary); color: #fff; }
+  .rs-line { padding: 44px 0; background: #E9F9EF; } .rs-line__in { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; }
+  .rs-line__t { margin: 0; color: var(--ink); font-size: 20px; font-weight: 800; } .rs-line__d { margin: 6px 0 0; color: var(--ts-mid); font-size: 14px; line-height: 1.7; }
+  .rs-dlg { width: min(460px, calc(100% - 32px)); max-height: calc(100% - 32px); padding: 32px; border: 0; border-radius: 22px; color: var(--ink); box-shadow: 0 24px 60px rgba(15,27,69,.25); }
+  .rs-dlg::backdrop { background: rgba(15,27,69,.45); }
+  .rs-dlg__x { position: absolute; top: 14px; right: 14px; display: grid; place-items: center; width: 36px; height: 36px; border: 0; border-radius: 50%; background: var(--bg-gray, #F7F8FB); color: var(--ink); cursor: pointer; } .rs-dlg__x svg { width: 18px; height: 18px; }
+  .rs-dlg form { display: flex; flex-direction: column; gap: 14px; }
+  .rs-dlg__k { margin: 0; color: var(--ts-primary); font-size: 12.5px; font-weight: 700; } .rs-dlg__t { margin: 0; padding-right: 36px; font-size: 19px; font-weight: 800; line-height: 1.5; }
+  .rs-fl { display: flex; flex-direction: column; gap: 6px; font-size: 13.5px; font-weight: 700; }
+  .rs-fl input { height: 48px; padding: 0 14px; border: 1px solid rgba(15,27,69,.2); border-radius: 10px; font: inherit; font-size: 16px; font-weight: 400; color: var(--ink); }
+  .rs-fl input:focus { outline: 2px solid var(--ts-primary); outline-offset: 1px; } .rs-fl input[aria-invalid="true"] { border-color: #D93025; }
+  .rs-err { margin: -4px 0 0; color: #D93025; font-size: 13px; font-weight: 700; }
+  .rs-ck { display: flex; align-items: center; gap: 8px; font-size: 13.5px; } .rs-ck input { width: 18px; height: 18px; accent-color: var(--ts-primary); }
+  .rs-sub { width: 100%; margin-top: 4px; } .rs-dlg .x-note { margin: 0; }
+  .rs-done { display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; } .rs-done .rs-dlg__t { padding: 0; }
+  .rs-done__ic { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: #E9F9EF; color: #06A04A; } .rs-done__ic svg { width: 30px; height: 30px; }
+  .rs-done__d { margin: 0; color: var(--ts-mid); font-size: 14px; line-height: 1.8; } .rs-done .x-btn { width: 100%; } .rs-done .x-btn[aria-disabled="true"] { opacity: .45; pointer-events: none; }
+  .rs-dlg [hidden] { display: none !important; }
+  @media (max-width: 900px) { .rs-f { grid-template-columns: minmax(0, 1fr); gap: 28px; } .rs-cv--b { max-width: 220px; } .rs-cv--b b { font-size: 20px; }
+    .rs-r { grid-template-columns: 10px minmax(0, 1fr); gap: 6px 14px; padding: 18px; } .rs-dot { grid-row: 1 / 4; align-self: start; margin-top: 6px; } .rs-r .rs-m, .rs-r__btn { grid-column: 2; } .rs-r__btn { justify-self: start; margin-top: 6px; }
+    .rs-line__in .x-btn { width: 100%; } .rs-f .x-btn { width: 100%; } }
+  @media (max-width: 480px) { .rs-dlg { padding: 26px 20px; } }
 </style>
 </head>
 <body id="top">
@@ -1319,7 +1304,7 @@
       <small>ONLINE LEARNING PLATFORM</small>
     </a>
     <nav class="gnav" aria-label="グローバルナビゲーション">
-      <a href="courses.html" aria-current="page">コースを探す</a>
+      <a href="courses.html">コースを探す</a>
       <a href="how-to-learn.html">学び方・受講成果</a>
       <a href="portfolio.html">ポートフォリオ</a>
       <a href="blog.html">学びのヒント</a>
@@ -1332,7 +1317,7 @@
       <details class="menu">
         <summary aria-label="メニュー"><svg class="ico"><use href="#i-menu"/></svg></summary>
         <nav aria-label="メニュー">
-          <a href="courses.html" aria-current="page">コースを探す</a>
+          <a href="courses.html">コースを探す</a>
           <a href="how-to-learn.html">学び方・受講成果</a>
           <a href="portfolio.html">ポートフォリオ</a>
           <a href="blog.html">学びのヒント</a>
@@ -1346,21 +1331,41 @@
 </header>
 
 <main>
-<section class="k2-hero" id="course-head" aria-labelledby="page-title"><div class="wrap"><nav class="crumb" aria-label="パンくずリスト"><a href="lp-design.html">トップ</a><span aria-hidden="true">/</span><a href="courses.html">コースを探す</a><span aria-hidden="true">/</span><span aria-current="page">プロジェクトマネジメント</span></nav><div class="k2-top"><div><span class="k-cat" style="--cc:#6B4FD8;--cb:#F0ECFF">ビジネス</span><h1 class="k2-t" id="page-title">プロジェクト計画書を、<br>自分の手で<br>仕上げる。</h1><p class="k2-name">プロジェクトマネジメント</p><p class="k2-desc">プロジェクト管理の知識を、実務に活かせる形で身につけます。</p><ul class="k-meta"><li>ベーシック</li><li>動画＋演習</li></ul><div class="k2-pr"><p><small>価格（買い切り）</small><b>¥4,980</b></p><p class="k2-cp"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3C6.5 3 2 6.6 2 11c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.5s5.9-3.5 8-6C21.4 14.3 22 12.7 22 11c0-4.4-4.5-8-10-8z"/></svg>LINEクーポンで ¥4,480</p></div><div class="k2-cta"><a class="x-btn" href="#" data-todo="カート">このコースを受講する</a><a class="x-btn x-btn--w" href="contact.html?course=プロジェクトマネジメント">受講前に無料相談する</a></div></div><figure class="k2-fig"><div class="k2-ph" style="--cc:#6B4FD8;--cb:#F0ECFF" role="img" aria-label="ビジネスの成果物（仮の画像）"><span class="k2-ph__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></g></svg></span><b>プロジェクト計画書</b><small>成果物の画像（準備中）</small></div><figcaption>完成する成果物：プロジェクト計画書（例）<span class="x-todo">成果物の名前・画像は仮</span></figcaption></figure></div></div></section>
-<section class="x-sec x-sec--w" id="course-flow" aria-labelledby="flow-title"><div class="wrap"><p class="sec-kicker">FLOW</p><h2 class="sec-title" id="flow-title">受講の流れ <span class="x-todo">内容は仮</span></h2><ol class="k2-tl" style="--n:4"><li><span>1</span><p class="k2-tl__w">STEP 1</p><b>基礎を知る</b><small>短い講義と事例で、考え方をつかむ</small></li><li><span>2</span><p class="k2-tl__w">STEP 2</p><b>自分の仕事で試す</b><small>小さく手を動かして、使い方を身につける</small></li><li><span>3</span><p class="k2-tl__w">STEP 3</p><b>プロジェクト計画書を仕上げる</b><small>仕事で使える形に整える</small></li><li><span>4</span><p class="k2-tl__w">STEP 4</p><b>ポートフォリオに公開</b><small>背景や過程も残して、次の機会へ</small></li></ol><p class="k2-goal"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></g></svg>STEP 4でプロジェクト計画書が完成 → <a href="portfolio.html">ポートフォリオ</a>に公開</p></div></section>
-<section class="x-sec x-sec--g" id="course-for" aria-label="こんな方に・できるようになること"><div class="wrap k-2"><div><h2 class="k-h2">こんな方に</h2><ul class="k-ul"><li><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></g></svg>仕事の進め方を、体系的に身につけたい</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></g></svg>チームをまとめる役割を任された</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></g></svg>計画から振り返りまで、型を持っておきたい</li></ul></div><div><h2 class="k-h2">できるようになること</h2><ul class="k-ul"><li><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></g></svg>プロジェクト計画書を、自分の仕事に合わせて仕上げられる</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></g></svg>学んだ考え方を、ほかの仕事にも応用できる</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></g></svg>成果物をポートフォリオに公開して、伝えられる</li></ul></div></div></section>
-<section class="x-sec x-sec--w" id="course-how" aria-labelledby="how-title"><div class="wrap"><h2 class="k-h2" id="how-title">学び方</h2><ol class="k-how"><li><b>STEP 1</b><span>知る</span><small>短い講義と事例</small></li><li><b>STEP 2</b><span>試す</span><small>自分の仕事で小さく</small></li><li><b>STEP 3</b><span>形にする</span><small>成果物に仕上げる</small></li><li><b>STEP 4</b><span>共有する</span><small>ポートフォリオへ</small></li></ol><a class="k-a" href="how-to-learn.html#how">学び方をもっと知る<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></section>
-<section class="x-sec x-sec--g" id="course-faq" aria-labelledby="cfaq-title"><div class="wrap k2-end"><div><h2 class="k-h2" id="cfaq-title">よくある質問</h2><div class="x-card k-faq"><a href="faq.html#q-period">受講できる期間はありますか？<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a href="faq.html#q-refund">返金はできますか？<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a href="faq.html#q-pc">パソコンがなくても受講できますか？<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div><a class="k-a" href="faq.html">よくある質問をすべて見る<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div><aside class="k-buy" aria-label="価格と申し込み"><p class="k-buy__k">価格（買い切り）</p><p class="k-buy__p">¥4,980 </p><p class="k-buy__cp"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3C6.5 3 2 6.6 2 11c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.5s5.9-3.5 8-6C21.4 14.3 22 12.7 22 11c0-4.4-4.5-8-10-8z"/></svg><span>LINEクーポンで ¥4,480<small>公式LINEの友だち限定・カートでコード入力</small></span></p><a class="x-btn" href="#" data-todo="カート">このコースを受講する</a><a class="x-btn x-btn--w" href="contact.html?course=プロジェクトマネジメント">受講前に無料相談する</a><ul class="k-buy__l"><li><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></g></svg>動画と演習で、自分のペースで進める</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></g></svg>成果物をポートフォリオに公開できる</li><li><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></g></svg>クレジットカードで決済</li></ul></aside></div></section>
-<section class="x-sec x-sec--w" id="course-related" aria-labelledby="rel-title"><div class="wrap"><h2 class="k-h2" id="rel-title">関連するコース</h2><div class="k-rel"><a class="k-rc" href="course-event-design.html"><span class="k-rc__v" style="--cc:#6B4FD8;--cb:#F0ECFF"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></g></svg></span><b>イベントデザイン</b><small>ビジネス・プロ</small><span class="k-rc__p">通常 ¥9,800<em>LINEクーポン適用 ¥9,300</em></span></a><a class="k-rc" href="course-sns-marketing.html"><span class="k-rc__v" style="--cc:#E46A1F;--cb:#FFF1E7"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11v3a1 1 0 0 0 1 1h2l6 4V6L7 10H5a1 1 0 0 0-1 1z"/><path d="M17 9a4 4 0 0 1 0 6M19.5 6.5a8 8 0 0 1 0 11"/></g></svg></span><b>SNSマーケティング実践</b><small>マーケティング・プロ</small><span class="k-rc__p">¥—（価格の確定待ち）</span></a><a class="k-rc" href="course-ai-efficiency.html"><span class="k-rc__v" style="--cc:#1E9E62;--cb:#E9F7F0"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4M8 9l2 2-2 2M13 13h3"/></g></svg></span><b>生成AI 業務改善</b><small>IT・デジタル・プロ</small><span class="k-rc__p">¥—（価格の確定待ち）</span></a></div></div></section>
-<div class="k2-bar" aria-label="価格と申し込み"><div><small>プロジェクトマネジメント</small><b>¥4,980 <em>LINEで500円OFF</em></b></div><a class="x-btn" href="#" data-todo="カート">受講する</a></div>
-<section class="next nxC cnext" id="next" aria-labelledby="next-title"><div class="wrap nxC__grid">
-<div class="nxC__copy"><p class="sec-kicker">NEXT STEP</p><h2 class="sec-title" id="next-title">迷ったら、ここから。</h2><p class="sec-lead">相談したら必ず受講、<wbr>ではありません。<wbr>どちらも無料です。</p>
-<div class="nxC__item"><p class="nx-who"><span class="nx-flag">おすすめ</span>何から始めればいいか、迷っている方</p><h3 class="nx-card__t">30分の無料相談</h3>
-<p class="nx-card__d">スタッフがオンラインで相談に乗ります。今のキャリアの不安や、学びたいことを一緒に整理しましょう。</p><ul class="nx-pts"><li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i>今のキャリアの不安や悩みを整理できる</li><li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i>自分に合うコースや学び方がわかる</li><li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i>受講前の疑問や不安にすべてお答えします</li></ul></div>
-<div class="nxC__cta"><a class="btn btn--primary nx-btn" href="contact.html">無料相談に申し込む<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a class="btn nx-btn nx-btn--line" href="contact.html#pamphlet">パンフレットを受け取る<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
-<p class="nxC__meta"><span>無料</span>どちらも簡単30秒で登録・受け取り</p></div>
-<div class="nxC__vis nxC__vis--img"><img src="assets/illust/next-zoom.webp" alt="オンライン無料相談の画面イメージ（The Academyのスタッフとあなた）と、パンフレット（PDF）" width="1350" height="1155" loading="lazy"></div>
-</div><div class="wrap"><p class="nx-foot">法人のお客様・その他のお問い合わせは<a href="contact.html#form">お問い合わせフォーム<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p></div></section>
+<section class="phead" aria-labelledby="page-title"><div class="wrap">
+<nav class="crumb" aria-label="パンくずリスト"><a href="lp-design.html">トップ</a><span aria-hidden="true">/</span><span aria-current="page">お役立ち資料</span></nav>
+<h1 class="phead__t" id="page-title">お役立ち資料</h1>
+<p class="phead__lead">学びや仕事に役立つ資料を、<wbr>無料で配布しています。<wbr>内容は随時更新します。</p>
+</div></section>
+<section class="x-sec x-sec--w" id="featured" aria-labelledby="rs-new"><div class="wrap rs-f">
+<div class="rs-cv rs-cv--b" style="--c:#0141D4" aria-hidden="true"><span>THE ACADEMY</span><b>SNS投稿 企画シート</b></div>
+<div class="rs-f__b"><p class="rs-tag">新着の資料<em>SNS・マーケ</em></p><h2 class="rs-f__t" id="rs-new">SNS投稿 企画シート</h2><p class="rs-f__d">投稿のねらい・ターゲット・内容を1枚に整理できるシートです。投稿を始める前に、何を誰に届けるかを決めておくと、迷わず続けられます。</p><p class="rs-m">PDF・4ページ</p>
+<button type="button" class="x-btn" data-dl="sns-plan" data-title="SNS投稿 企画シート" data-pdf=""><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></g></svg>無料でダウンロード</button>
+<p class="x-note">お名前とメールアドレスを入力すると、すぐにダウンロードできます。 <span class="x-todo">資料は見本</span></p></div>
+</div></section>
+<section class="x-sec x-sec--g" id="list" aria-labelledby="rs-list"><div class="wrap">
+<h2 class="rs-h2" id="rs-list">資料の一覧</h2>
+<ul class="rs-l"><li class="rs-r"><span class="rs-dot" style="--c:#0F1B45" aria-hidden="true"></span><div class="rs-r__b"><p class="rs-tag">AI・IT</p><h3>ChatGPT 指示文の型 20選</h3><p class="rs-d">仕事でそのまま使える指示文を、目的別にまとめました。</p></div><span class="rs-m">PDF・18ページ</span><button type="button" class="rs-r__btn" data-dl="gpt-prompt" data-title="ChatGPT 指示文の型 20選" data-pdf=""><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></g></svg>ダウンロード</button></li><li class="rs-r"><span class="rs-dot" style="--c:#E46A1F" aria-hidden="true"></span><div class="rs-r__b"><p class="rs-tag">キャリア</p><h3>ポートフォリオ作成チェックリスト</h3><p class="rs-d">採用担当に伝わる作品の見せ方を、10項目で確認できます。</p></div><span class="rs-m">PDF・6ページ</span><button type="button" class="rs-r__btn" data-dl="pf-check" data-title="ポートフォリオ作成チェックリスト" data-pdf=""><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></g></svg>ダウンロード</button></li><li class="rs-r"><span class="rs-dot" style="--c:#2F6BFF" aria-hidden="true"></span><div class="rs-r__b"><p class="rs-tag">英語</p><h3>TOEIC 8週間 学習スケジュール表</h3><p class="rs-d">週2時間から始められる、書き込み式の計画表です。</p></div><span class="rs-m">PDF・3ページ</span><button type="button" class="rs-r__btn" data-dl="toeic-plan" data-title="TOEIC 8週間 学習スケジュール表" data-pdf=""><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></g></svg>ダウンロード</button></li><li class="rs-r"><span class="rs-dot" style="--c:#0141D4" aria-hidden="true"></span><div class="rs-r__b"><p class="rs-tag">SNS・マーケ</p><h3>Instagram 分析の見方ガイド</h3><p class="rs-d">インサイトのどの数字を見ればいいかを解説します。</p></div><span class="rs-m">PDF・12ページ</span><button type="button" class="rs-r__btn" data-dl="ig-insight" data-title="Instagram 分析の見方ガイド" data-pdf=""><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></g></svg>ダウンロード</button></li><li class="rs-r"><span class="rs-dot" style="--c:#0F1B45" aria-hidden="true"></span><div class="rs-r__b"><p class="rs-tag">AI・IT</p><h3>Googleスプレッドシート 時短関数まとめ</h3><p class="rs-d">よく使う関数を、使う場面ごとに整理しました。</p></div><span class="rs-m">PDF・10ページ</span><button type="button" class="rs-r__btn" data-dl="sheet-func" data-title="Googleスプレッドシート 時短関数まとめ" data-pdf=""><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></g></svg>ダウンロード</button></li></ul>
+</div></section>
+<section class="rs-line" aria-labelledby="rs-line"><div class="wrap rs-line__in"><div><p class="rs-line__t" id="rs-line">新しい資料のお知らせは、公式LINEで</p><p class="rs-line__d">資料が増えたときにお知らせします。<wbr>全コース500円OFFのクーポンもお届けします。</p></div>
+<a class="x-btn x-btn--g" href="beginners.html#line"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3C6.5 3 2 6.6 2 11c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.5s5.9-3.5 8-6C21.4 14.3 22 12.7 22 11c0-4.4-4.5-8-10-8z"/></svg>友だち追加する</a></div></section>
+<dialog class="rs-dlg" id="rsDlg" aria-labelledby="rsDlgT">
+<button type="button" class="rs-dlg__x" id="rsX" aria-label="閉じる"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></g></svg></button>
+<form id="rsForm" novalidate>
+<p class="rs-dlg__k">無料でダウンロード</p><h2 class="rs-dlg__t" id="rsDlgT"></h2>
+<label class="rs-fl" for="rsName">お名前<input id="rsName" name="name" autocomplete="name" placeholder="例：山田 花子" required></label>
+<label class="rs-fl" for="rsMail">メールアドレス<input id="rsMail" name="email" type="email" autocomplete="email" inputmode="email" placeholder="例：hanako@example.com" required></label>
+<p class="rs-err" id="rsErr" role="alert" hidden></p>
+<label class="rs-ck" for="rsNews"><input type="checkbox" id="rsNews" name="news" checked>新しい資料やコースのお知らせを受け取る</label>
+<button type="submit" class="x-btn rs-sub"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></g></svg>ダウンロードする</button>
+<p class="x-note"><a href="privacy.html">プライバシーポリシー</a>に同意のうえ、送信してください。 <span class="x-todo">送信先（フォームの保存先）を設定</span></p>
+</form>
+<div class="rs-done" id="rsDone" hidden>
+<span class="rs-done__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></g></svg></span><p class="rs-dlg__t">ダウンロードを開始しました</p>
+<p class="rs-done__d">始まらないときは、下のボタンからダウンロードしてください。<wbr>次回からは入力なしでダウンロードできます。</p>
+<a class="x-btn" id="rsAgain" download><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></g></svg>もう一度ダウンロード</a>
+<p class="x-note" id="rsNoPdf" hidden><span class="x-todo">PDFのURLを設定</span>（見本のため、ファイルはまだありません）</p>
+</div>
+</dialog>
 </main>
 <section class="fband" aria-label="相談・資料・公式LINE"><div class="wrap"><div class="fband__g">
   <a class="fband__c fband__c--main" href="contact.html"><span class="fband__i"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4z"/></g></svg></span><span><b>無料で相談する</b><small>30分・オンライン・相談だけでもOK</small></span><em>予約する<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></em></a>
@@ -1445,5 +1450,31 @@
   })();
 </script>
 <script>/* プレビュー（lp-preview.html）の中で開いたとき、今のページを上のボタンに知らせる */try{if(parent!==window)parent.postMessage({lpPage:location.pathname.split("/").pop()},"*")}catch(e){}</script>
-</body>
+<script>
+(() => {
+  const dlg = document.getElementById('rsDlg'), form = document.getElementById('rsForm'), done = document.getElementById('rsDone');
+  const tEl = document.getElementById('rsDlgT'), err = document.getElementById('rsErr'), name = document.getElementById('rsName'), mail = document.getElementById('rsMail');
+  const again = document.getElementById('rsAgain'), noPdf = document.getElementById('rsNoPdf');
+  const KEY = 'ta-res-lead'; let cur = null;
+  const known = () => { try { return !!localStorage.getItem(KEY); } catch (e) { return false; } };
+  // ダウンロード：PDF の URL があればすぐに保存を始める（未設定の見本では案内だけ出す）
+  const start = r => { const has = !!r.pdf; again.toggleAttribute('hidden', false); noPdf.hidden = has;
+    if (has) { again.href = r.pdf; again.removeAttribute('aria-disabled'); again.click(); } else { again.removeAttribute('href'); again.setAttribute('aria-disabled', 'true'); } };
+  const showDone = () => { form.hidden = true; done.hidden = false; };
+  document.querySelectorAll('[data-dl]').forEach(b => b.addEventListener('click', () => {
+    cur = { id: b.dataset.dl, title: b.dataset.title, pdf: b.dataset.pdf };
+    tEl.textContent = cur.title; err.hidden = true; [name, mail].forEach(x => x.removeAttribute('aria-invalid'));
+    if (known()) { showDone(); dlg.showModal(); start(cur); return; }   // 2回目からは入力なし
+    form.hidden = false; done.hidden = true; dlg.showModal(); name.focus(); }));
+  form.addEventListener('submit', e => { e.preventDefault();
+    const bad = [!name.value.trim() && [name, 'お名前を入力してください'], !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail.value.trim()) && [mail, 'メールアドレスを正しく入力してください（例：hanako@example.com）']].filter(Boolean);
+    [name, mail].forEach(x => x.setAttribute('aria-invalid', String(bad.some(([el]) => el === x))));
+    if (bad.length) { err.textContent = bad[0][1]; err.hidden = false; bad[0][0].focus(); return; }
+    // TODO：送信先（フォームサービス・CRM）へ { name, email, news, resource: cur.id } を送る
+    try { localStorage.setItem(KEY, '1'); } catch (e) {}
+    showDone(); start(cur); });
+  document.getElementById('rsX').addEventListener('click', () => dlg.close());
+  dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+})();
+</script></body>
 </html>

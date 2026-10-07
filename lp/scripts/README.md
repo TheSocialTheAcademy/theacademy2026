@@ -1,0 +1,27 @@
+# lp/scripts
+
+サイト（`lp/`）の各ページを作るスクリプトです。
+
+## 使い方
+
+```bash
+bash lp/scripts/build.sh
+```
+
+- **トップページ `lp/lp-design.html` は手で編集します。** ヘッダー・フッター・共通の CSS はトップから取り出して、ほかの全ページに使います。そのため、トップを直したら `build.sh` を実行して全ページを作り直してください。
+- 必要なのは Python 3 だけです（追加のライブラリは不要）。どのフォルダから実行しても動きます。
+
+## ファイルと作るページ
+
+| スクリプト | 作るページ |
+|---|---|
+| `gen_courses.py` | コースを探す（courses.html）。ほかのスクリプトが共通部品を取り出すときにも使う |
+| `gen_howto.py` | 学び方・受講成果（how-to-learn.html） |
+| `gen_portfolio.py` | ポートフォリオ（portfolio.html） |
+| `gen_blog.py` | 学びのヒント（blog.html） |
+| `gen_beginners.py` | はじめての方へ（beginners.html） |
+| `gen_extra.py` ＋ `k2block.py`・`k2.css` | 無料相談・資料請求（contact.html）、よくある質問（faq.html）、記事の見本（article.html）、コース詳細13ページ（course-*.html） |
+| `gen_resources.py` | お役立ち資料（resources.html） |
+| `gen_legal.py` | 特定商取引法に基づく表記・プライバシーポリシー・利用規約（`LEGAL_SITE=1` のときだけ書き出す） |
+| `gen_legal_review.py` | 法務ページの文面レビュー用ページ（一時フォルダに legal-draft.html を書き出す） |
+| `slim_zips.py` | `downloads/` の素材 ZIP を、中身を変えずに軽くする（`pip install pyoxipng` が必要） |

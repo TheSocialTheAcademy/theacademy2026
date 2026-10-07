@@ -1,0 +1,257 @@
+<title>The Academy Wix実装ガイド</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Josefin+Sans:wght@600&display=swap">
+<style>
+/* レイアウト：左に目次（PC）、右に1カラムの本文。表は横にはみ出すときだけ枠の中でスクロール */
+:root {
+  --bg: #FFFFFF; --surface: #F5F6FA; --ink: #0F1B45; --mid: #5E6182; --line: #DFE2EC; --accent: #0141D4; --warn-bg: #FFF1E7; --warn: #C2560F; --ok-bg: #E9F9EF; --ok: #13804A;
+  --f-body: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif; --f-en: "Josefin Sans", "Noto Sans JP", sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #0E1430; --surface: #161E40; --ink: #E8EBF7; --mid: #A3A8C8; --line: #2A3462; --accent: #7EA2FF; --warn-bg: #3A2614; --warn: #FFB27A; --ok-bg: #12301F; --ok: #7BE0A6; color-scheme: dark; } }
+:root[data-theme="dark"] { --bg: #0E1430; --surface: #161E40; --ink: #E8EBF7; --mid: #A3A8C8; --line: #2A3462; --accent: #7EA2FF; --warn-bg: #3A2614; --warn: #FFB27A; --ok-bg: #12301F; --ok: #7BE0A6; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.85; padding-inline: 16px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-block: 40px 96px; }
+.eyebrow { margin: 0; color: var(--accent); font-family: var(--f-en); font-size: 12px; letter-spacing: .14em; }
+h1 { margin: 6px 0 8px; font-size: clamp(26px, 4vw, 34px); line-height: 1.4; text-wrap: balance; }
+.lead { margin: 0; color: var(--mid); max-width: 66ch; }
+h2 { margin: 0 0 14px; padding-top: 8px; font-size: 22px; line-height: 1.5; scroll-margin-top: 16px; text-wrap: balance; }
+h3 { margin: 26px 0 8px; font-size: 16.5px; line-height: 1.6; }
+p { margin: 8px 0 0; max-width: 72ch; }
+ul, ol { margin: 8px 0 0; padding-left: 1.4em; max-width: 72ch; } li { margin: 4px 0; }
+a { color: var(--accent); }
+code { padding: 1px 6px; border-radius: 5px; background: var(--surface); font-size: 13px; overflow-wrap: anywhere; word-break: break-all; }
+.grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; margin-top: 36px; }
+@media (min-width: 980px) { .grid { grid-template-columns: 220px minmax(0, 1fr); gap: 56px; } .toc { position: sticky; top: 24px; align-self: start; } }
+.toc { display: flex; flex-direction: column; gap: 2px; font-size: 13.5px; }
+.toc a { padding: 6px 12px; border-radius: 8px; color: var(--ink); text-decoration: none; } .toc a:hover { background: var(--surface); }
+@media (max-width: 979px) { .toc { flex-direction: row; flex-wrap: wrap; gap: 6px; } .toc a { background: var(--surface); } }
+main { min-width: 0; display: flex; flex-direction: column; gap: 64px; }
+.key { padding: 20px 22px; border-radius: 14px; background: var(--surface); }
+.key p:first-child { margin-top: 0; } .key b { color: var(--accent); }
+.tbl { overflow-x: auto; margin-top: 12px; }
+table { width: 100%; min-width: 620px; border-collapse: collapse; font-size: 13.5px; line-height: 1.7; }
+th, td { padding: 10px 14px 10px 0; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+thead th { color: var(--mid); font-size: 12px; font-weight: 500; white-space: nowrap; }
+tbody th { font-weight: 700; white-space: nowrap; }
+.pill { display: inline-block; padding: 1px 8px; border-radius: 99px; font-size: 11.5px; font-weight: 700; white-space: nowrap; }
+.pill--w { background: var(--warn-bg); color: var(--warn); } .pill--o { background: var(--ok-bg); color: var(--ok); }
+.note { padding: 14px 18px; border-left: 3px solid var(--warn); border-radius: 0 12px 12px 0; background: var(--warn-bg); font-size: 14px; }
+.note p:first-child { margin-top: 0; }
+.cl td:first-child { white-space: nowrap; font-weight: 700; color: var(--mid); font-variant-numeric: tabular-nums; }
+.who { white-space: nowrap; }
+</style>
+<div class="wrap">
+<p class="eyebrow">HANDOFF FOR WIX</p>
+<h1>The Academy サイトを Wix で作るときの実装ガイド</h1>
+<p class="lead">エンジニア・Webデザイナー向けの引き継ぎ資料です。いまのデザイン見本（HTML）を Wix に移すときの作り方、データとフォームの扱い、法務・個人情報の注意点、決まっていない確認項目をまとめています。</p>
+
+<div class="grid">
+<nav class="toc" aria-label="目次">
+<a href="#s0">結論と前提</a>
+<a href="#s1">渡すもの</a>
+<a href="#s2">ページごとの作り方</a>
+<a href="#s3">データ（CMS）の設計</a>
+<a href="#s4">フォーム</a>
+<a href="#s5">動きのある部品</a>
+<a href="#s6">法務・個人情報</a>
+<a href="#s7">URL・SEO・計測</a>
+<a href="#s8">デザインの再現</a>
+<a href="#s9">運用</a>
+<a href="#s10">確認項目の一覧</a>
+</nav>
+<main>
+
+<section id="s0"><h2>結論と前提</h2>
+<div class="key">
+<p><b>1. いまの HTML は「完成見本（仕様書）」です。Wix にそのまま貼り付けるものではありません。</b><br>Wix の「HTML を埋め込む」機能は枠（iframe）の中に表示するだけなので、検索エンジンに読まれにくく、高さの自動調整やスマホ表示も崩れやすくなります。見た目と動きは Wix のエディタで作り直してください。</p>
+<p><b>2. エディタは Wix Studio をおすすめします。</b><br>PC・タブレット・スマホでレイアウトを細かく分けられ、CSS とコード（Velo）も使えます。今のデザインの再現度がいちばん高くなります。</p>
+<p><b>3. 増えていくもの（コース・記事・資料・FAQ）は CMS で管理します。</b><br>コース詳細13ページを1枚ずつ作るのではなく、1つのテンプレートと CMS のデータからページを作ります（動的ページ）。追加・修正がデータの入力だけで済みます。</p>
+<p><b>4. 個人情報は Wix（海外の事業者）に保存されます。</b><br>プライバシーポリシーへの追記が必要です（<a href="#s6">法務・個人情報</a>）。</p>
+</div>
+</section>
+
+<section id="s1"><h2>渡すもの</h2>
+<div class="tbl"><table><thead><tr><th>もの</th><th>場所</th><th>使いみち</th></tr></thead><tbody>
+<tr><th>デザイン見本（全ページ）</th><td><code>lp/*.html</code>、プレビュー</td><td>見た目・文言・動きの正解。ブラウザで開いて幅を変えながら確認できる</td></tr>
+<tr><th>サイト構成図</th><td><code>lp/docs/site-structure.html</code></td><td>ページ一覧・導線・各セクションの目的</td></tr>
+<tr><th>プロトタイプ</th><td><code>lp/docs/prototype.html</code></td><td>セクションごとの注釈（なぜこの形にしたか）</td></tr>
+<tr><th>素材（画像・イラスト・アイコン）</th><td><code>lp/assets/</code>、素材 ZIP</td><td>Wix のメディアにアップロードして使う。<code>downloads/</code> の ZIP は10/1時点の版なので、最新は一式 ZIP を使う</td></tr>
+<tr><th>生成スクリプト</th><td><code>lp/scripts/</code></td><td>見本を作ったもの。Wix では使わないが、文言やデータ（コース一覧・FAQ）の元データとして参照できる</td></tr>
+<tr><th>残作業リスト</th><td><code>lp/docs/TODO.md</code></td><td>決定済みの方針と、未完了の作業</td></tr>
+</tbody></table></div>
+</section>
+
+<section id="s2"><h2>ページごとの作り方</h2>
+<div class="tbl"><table><thead><tr><th>ページ</th><th>Wix での作り方</th><th>注意点</th></tr></thead><tbody>
+<tr><th>トップ</th><td>通常ページ</td><td>ヒーローの数字は根拠ページへリンク（数字の根拠ページを新しく作る予定）</td></tr>
+<tr><th>コースを探す</th><td>通常ページ＋CMS（コース）のリピーター</td><td>カテゴリの絞り込み・比較表・コース診断は<a href="#s5">動きのある部品</a>を参照</td></tr>
+<tr><th>コース詳細（13）</th><td><b>動的ページ</b>（コースの CMS から自動生成）</td><td>URL は <code>/courses/コース名</code> の形にそろえる。購入ボタンの行き先（カート）は<a href="#s10">確認項目</a></td></tr>
+<tr><th>学び方・受講成果／ポートフォリオ</th><td>通常ページ</td><td>実画面の画像は匿名化済みのものだけを使う</td></tr>
+<tr><th>学びのヒント（一覧）・記事（11本〜）</th><td><b>Wix ブログ</b></td><td>記事は今の Wix ブログを続けて使う。カテゴリ・「◯分で読める」・著者欄・シェアボタンを記事テンプレートに入れる</td></tr>
+<tr><th>はじめての方へ</th><td>通常ページ</td><td>告知バーは LINE クーポンの文言に出し分け</td></tr>
+<tr><th>無料相談・資料請求</th><td><b>Wix ブッキング</b>（相談の予約）＋ Wix フォーム（パンフレット・お問い合わせ）</td><td>ブッキングは Zoom と連携でき、予約確認メールも自動で送れる。<a href="#s4">フォーム</a>を参照</td></tr>
+<tr><th>よくある質問</th><td>通常ページ＋CMS（FAQ）</td><td>Wix 標準の FAQ アプリでもよいが、カテゴリ見出し型と検索を再現するなら CMS＋コード</td></tr>
+<tr><th>お役立ち資料</th><td>通常ページ＋CMS（資料）＋ Wix フォーム</td><td>受け取り方法はエンジニアと相談して決定（<a href="#s4">フォーム</a>）</td></tr>
+<tr><th>法務3ページ</th><td>通常ページ</td><td>文面は確定版（レビュー済み）。<a href="#s6">Wix 利用に伴う追記</a>が必要</td></tr>
+<tr><th>ログイン</th><td>Wix の会員エリア、または外部の受講システム</td><td>どちらを使うかは<a href="#s10">確認項目</a></td></tr>
+</tbody></table></div>
+</section>
+
+<section id="s3"><h2>データ（CMS）の設計</h2>
+<p>見本の元データ（<code>lp/scripts/</code> の中のリスト）をそのまま CMS の項目にできます。最低限、次の4つのコレクションを作ります。</p>
+<h3>コース</h3>
+<p>スラッグ（URL用）、コース名、カテゴリ（IT・デジタル／英語・TOEIC／ビジネス／マーケティング／クリエイティブ）、一言説明、レベル（ベーシック／プロ／プレミア）、学習の目安（例：8週間）、週の時間、価格（税込）、カード画像、成果物の名前・画像、学習の流れ（ステップの一覧）、こんな方に（3つ）、できること（3つ）、関連コース（参照）、表示順、公開／非公開</p>
+<h3>資料（お役立ち資料）</h3>
+<p>資料名、カテゴリ、説明、形式とページ数（例：PDF・4ページ）、表紙の色または表紙画像、PDF ファイル、新着フラグ、公開日、公開／非公開</p>
+<h3>FAQ</h3>
+<p>カテゴリ（お申し込み／お支払い／返金／視聴関連／機能・操作／サービス）、質問、回答（リンク可のリッチテキスト）、検索用キーワード、アンカー ID（例：<code>q-refund</code>。ほかのページから直接開くため固定にする）、表示順</p>
+<h3>記事</h3>
+<p>Wix ブログの標準項目に加えて、読了時間、著者、カテゴリをそろえる。</p>
+<div class="note"><p><b>入力ルールを決めておく</b>：価格は「税込・数字のみ」、学習の目安は「◯週間」で統一、のように書き方をそろえると、比較表や診断の計算が壊れません。</p></div>
+</section>
+
+<section id="s4"><h2>フォーム</h2>
+<div class="tbl"><table><thead><tr><th>フォーム</th><th>集める項目</th><th>送信後</th><th>保存先</th></tr></thead><tbody>
+<tr><th>無料相談の予約</th><td>日時、お名前、メール、相談したいこと（任意）</td><td>確認メール、前日リマインド、Zoom の URL</td><td>Wix ブッキング（予約）＋ Wix の連絡先</td></tr>
+<tr><th>パンフレット</th><td>お名前、メール、お知らせ希望</td><td>完了画面で PDF をダウンロード</td><td>Wix フォーム → 連絡先（ラベル「パンフレット」）</td></tr>
+<tr><th>お役立ち資料</th><td>お名前、メール、お知らせ希望、どの資料か</td><td>すぐにダウンロード（2回目からは入力なし）<span class="pill pill--w">方式は相談して決定</span></td><td>同上（ラベル「資料：資料名」）</td></tr>
+<tr><th>お問い合わせ</th><td>お名前、メール、種類（個人／法人）、内容</td><td>受付メール（自動返信）</td><td>Wix フォーム → 担当者に通知</td></tr>
+</tbody></table></div>
+<h3>お役立ち資料の受け取り方：決めるときの比較</h3>
+<div class="tbl"><table><thead><tr><th>方式</th><th>しくみ</th><th>長所</th><th>短所</th></tr></thead><tbody>
+<tr><th>A. 送信後すぐダウンロード</th><td>送信後にコードで PDF の URL を開く。2回目以降はブラウザの記録で入力を省く</td><td>待ち時間なし。見本どおり</td><td>実在しないメールでも受け取れる。PDF の URL を知っていれば誰でも開ける</td></tr>
+<tr><th>B. メールで送る</th><td>送信をきっかけに自動メールで PDF のリンクを送る（Wix のオートメーション）</td><td>実在するメールアドレスだけが集まる</td><td>メールを開く手間がある。迷惑メールに入ることがある</td></tr>
+<tr><th>C. A と B を両方</th><td>その場でダウンロードし、同じリンクをメールでも送る</td><td>すぐ手に入り、メールの確認にもなる</td><td>設定がいちばん多い</td></tr>
+</tbody></table></div>
+<p>おすすめは C です。資料の目的がメールアドレス集めなら、送ったメールが届くことを確かめられる方式が必要です。</p>
+<h3>どの方式でも必要なこと</h3>
+<ul>
+<li><b>迷惑な送信を防ぐ</b>：Wix フォームの reCAPTCHA を有効にする。</li>
+<li><b>お知らせメールの同意</b>：特定電子メール法により、広告・お知らせメールは同意した人にだけ送れます。同意の記録（いつ・どのフォームで）を残し、メールには送信者名と配信停止の方法を必ず入れます。チェックボックスを最初からオンにする場合は、文字を小さくせず、はっきり見えるようにします。迷うならオフが安全です。</li>
+<li><b>送信元メールの設定</b>：自動メールを <code>@thesocialjapan.com</code> から送るなら、ドメインの送信設定（SPF・DKIM）をして迷惑メール扱いを防ぐ。</li>
+<li><b>PDF の置き場</b>：Wix のメディアに置いた PDF は、URL を知っていれば誰でも開けます。限定したい資料だけは、会員専用ページに置くか、メールで期限付きのリンクを送る方式にします。</li>
+<li><b>入力の誤り</b>：未入力・メール形式の誤りは、送信前にその場で知らせる（見本と同じ文言）。</li>
+</ul>
+</section>
+
+<section id="s5"><h2>動きのある部品（コードが必要なもの）</h2>
+<p>見本ではブラウザの JavaScript で動かしています。Wix では標準機能か Velo（Wix のコード機能）に置き換えます。</p>
+<div class="tbl"><table><thead><tr><th>部品</th><th>場所</th><th>Wix での置き換え</th></tr></thead><tbody>
+<tr><th>告知バー（× で閉じる・期限表示）</th><td>全ページ上部</td><td>Velo＋ブラウザ保存（wix-storage）。告知を変えたら ID を変えて、閉じた人にも新しい告知を出す</td></tr>
+<tr><th>スマホの浮かぶ相談ボタン</th><td>全ページ</td><td>固定表示の要素。ヒーロー・最後の CTA・フッターが見えている間は隠す（Velo の「画面に入った／出た」イベント）</td></tr>
+<tr><th>コースの絞り込み・比較表</th><td>コースを探す</td><td>CMS のフィルター＋リピーター。比較表はスマホでカード表示に切り替える</td></tr>
+<tr><th>コース診断（3問）</th><td>コースを探す</td><td>Velo。点数の付け方（レベルの近さ・時間・価格）は見本の <code>gen_courses.py</code> の診断部分をそのまま移せる。結果から無料相談へ回答を引き継ぐ</td></tr>
+<tr><th>FAQ の検索・カテゴリ見出し・回答の評価</th><td>よくある質問</td><td>CMS＋Velo。<code>#q-○○</code> で開くと、その質問を開いた状態にする</td></tr>
+<tr><th>記事0件時の案内</th><td>学びのヒント</td><td>リピーターが空のときに案内ブロックを表示</td></tr>
+<tr><th>資料の受け取り（2回目は入力なし）</th><td>お役立ち資料</td><td>Velo＋ブラウザ保存</td></tr>
+<tr><th>法務ページの目次の現在地表示</th><td>法務3ページ</td><td>なくても困らない。手間なら省略可</td></tr>
+</tbody></table></div>
+</section>
+
+<section id="s6"><h2>法務・個人情報で気を付けること</h2>
+<div class="note"><p>法務3ページの文面は、自社サイトで管理する前提で作りました。<b>Wix を使うことによる追記</b>が必要なので、公開前に専門家の確認を受けてください。</p></div>
+<ol>
+<li><b>Wix に個人情報を預けることを書く</b>：フォーム・予約・会員の情報は Wix（海外の事業者）のサーバーに保存されます。プライバシーポリシーの「業務の委託」に Wix を含め、外国で個人データを扱う場合に必要な記載（その国の制度を把握していること＝外的環境の把握、など）を足します。</li>
+<li><b>Cookie の送信先を足す</b>：今は「Google アナリティクスのみ」と書いています。Wix 自体も Cookie を使い、ブッキング・会員機能・埋め込んだ動画なども情報を送ります。実際に入れた機能を一覧にして、P7 に追記します。Wix の Cookie 同意バナーを使うかどうかも決めます。</li>
+<li><b>お知らせメールの同意</b>：上の<a href="#s4">フォーム</a>のとおり（特定電子メール法）。</li>
+<li><b>月額プランを始めるとき</b>：Wix の料金プラン機能を使う場合も、特商法の表記に「契約期間・自動更新・解約方法」を足し、申し込みの最終確認画面に同じ内容を出す必要があります。</li>
+<li><b>購入画面の表示</b>：コースの購入画面（カート）でも、価格（税込）・支払い時期・提供時期・返金の条件が確認できるようにする（特商法の最終確認画面のルール）。</li>
+</ol>
+</section>
+
+<section id="s7"><h2>URL・SEO・計測</h2>
+<ul>
+<li><b>URL をそろえる</b>：見本は確認しやすいように <code>courses.html</code> のような名前ですが、Wix では <code>/courses</code>、<code>/courses/sns-marketing</code>、<code>/faq</code>、<code>/resources</code>、<code>/privacy</code>、<code>/tokushoho</code>、<code>/terms</code> のように拡張子なしにします（サイト構成図の URL どおり）。</li>
+<li><b>今の URL からの転送</b>：今の Wix サイトで URL が変わるページは、Wix の「URL リダイレクト」で 301 転送を設定します。外部から来た人・検索順位を失わないためです。</li>
+<li><b>ページ内リンク</b>：FAQ の <code>#q-refund</code>、はじめての方への <code>#line</code>・<code>#price</code>、無料相談の <code>#pamphlet</code>・<code>#form</code> は、ほかのページから直接飛んでくるので、アンカーを同じ名前で作ります。</li>
+<li><b>ページごとの設定</b>：タイトル、説明文、SNS で共有したときの画像（OGP）。見本には OGP 画像がないので、新しく用意します。</li>
+<li><b>計測</b>：Google アナリティクス（GA4）は Wix のマーケティング連携から入れます。次の操作をイベントとして記録すると、どこから申し込みにつながったか分かります。
+<ul><li>無料相談の予約完了、パンフレット・資料のダウンロード、LINE 友だち追加ボタンのクリック、コース詳細の購入ボタンのクリック、コース診断の完了</li></ul></li>
+<li><b>受講システムが別ドメインの場合</b>：カートやログインが Wix の外なら、GA4 のクロスドメイン設定をして、サイトから購入までを1人の流れとして追えるようにします。</li>
+</ul>
+</section>
+
+<section id="s8"><h2>デザインの再現</h2>
+<div class="tbl"><table><thead><tr><th>項目</th><th>値</th></tr></thead><tbody>
+<tr><th>主色</th><td>#0141D4（ボタン・リンク・強調）</td></tr>
+<tr><th>見出しの文字色</th><td>#0F1B45（主色を深く沈めた紺）</td></tr>
+<tr><th>補助の文字色</th><td>#676688</td></tr>
+<tr><th>そのほかの色</th><td>濃紺 #012270、明るい青 #3E78FE、オレンジ #F76B38（要確認・新着などの印）、緑 #27AE60、LINE の緑 #06C755、背景のグレー #F7F8FB、線 rgba(15,27,69,.10)</td></tr>
+<tr><th>文字</th><td>Noto Sans JP（400・500・700・900）。Mac ではヒラギノを優先。Wix で Noto Sans JP が選べなければ、フォントをアップロードする</td></tr>
+<tr><th>幅</th><td>セクションの最大幅 1280px（中身 1180px）。左右の余白は画面幅に合わせて 16〜50px</td></tr>
+<tr><th>確認した画面幅</th><td>1440px（PC）、1024px（小さめの PC）、834px（タブレット）、390px（スマホ）。Wix Studio のブレークポイントもこの4つを目安に</td></tr>
+<tr><th>画像</th><td>WebP（Wix がアップロード時に最適化するので、元の PNG・JPG を渡してもよい）。イラスト・アイコンは SVG があればそちらを使う</td></tr>
+</tbody></table></div>
+<p>角丸・影・余白の細かい値は、見本の HTML をブラウザの開発ツールで開くと確認できます。</p>
+</section>
+
+<section id="s9"><h2>運用</h2>
+<ul>
+<li><b>更新の担当と手順を決める</b>：コースの追加、記事の公開、資料の差し替え、FAQ の追加を、誰が CMS に入力するか。</li>
+<li><b>資料の差し替え</b>：資料は随時入れ替わる前提です。CMS で非公開にすれば一覧から消え、新着フラグで先頭の大きな枠に出ます。特定の資料を固定でおすすめする書き方はしない方針です。</li>
+<li><b>告知バー</b>：内容を変えるたびに ID を変える（閉じた人にも新しい告知を出すため）。</li>
+<li><b>公開前のチェック</b>：4つの画面幅で横にはみ出していないか、全リンクが開くか、フォームの送信と自動メールが届くか。</li>
+<li><b>戻せるようにする</b>：大きな変更の前に、Wix のサイト履歴で戻せる版を確認しておく。</li>
+</ul>
+</section>
+
+<section id="s10"><h2>確認項目の一覧</h2>
+<p>決まっていないこと・情報が必要なことを、すべて書き出しました。<span class="pill pill--w">要決定</span> は決める必要があること、<span class="pill pill--o">情報待ち</span> は値や素材を受け取れば反映できることです。</p>
+
+<h3>A. 事業・サービス</h3>
+<div class="tbl"><table class="cl"><thead><tr><th>#</th><th>確認すること</th><th>関係する箇所</th><th>種類</th></tr></thead><tbody>
+<tr><td>A1</td><td>コースの販売・受講に使うシステムは何か（Wix のオンラインプログラム／ストア、または外部の受講システム）</td><td>カート、ログイン、ダッシュボード</td><td><span class="pill pill--w">要決定</span></td></tr>
+<tr><td>A2</td><td>各コースの価格（税込）</td><td>コース詳細13ページ、コースを探す、比較表、診断</td><td><span class="pill pill--o">情報待ち</span></td></tr>
+<tr><td>A3</td><td>各コースの成果物の名前・画像、学習の流れ、学習の目安（週数・週の時間）</td><td>コース詳細13ページ（SNS 以外は仮）</td><td><span class="pill pill--o">情報待ち</span></td></tr>
+<tr><td>A4</td><td>いちばん安いコースの価格が ¥2,980 で正しいか（「¥2,980〜」の表記）</td><td>はじめての方への料金の帯</td><td><span class="pill pill--o">情報待ち</span></td></tr>
+<tr><td>A5</td><td>無料相談でカメラをオフにできるか</td><td>無料相談ページの FAQ、はじめての方への説明</td><td><span class="pill pill--o">情報待ち</span></td></tr>
+<tr><td>A6</td><td>無料相談の予約枠（曜日・時間帯・1日の枠数）と担当</td><td>Wix ブッキングの設定</td><td><span class="pill pill--o">情報待ち</span></td></tr>
+<tr><td>A7</td><td>コミュニティーの参加条件と費用</td><td>トップ05、将来の月額プラン</td><td><span class="pill pill--w">要決定</span></td></tr>
+</tbody></table></div>
+
+<h3>B. 数字・根拠</h3>
+<div class="tbl"><table class="cl"><thead><tr><th>#</th><th>確認すること</th><th>関係する箇所</th><th>種類</th></tr></thead><tbody>
+<tr><td>B1</td><td>満足度アンケートの実施時期・回答数・質問項目と各項目の平均点</td><td>ヒーローの「平均満足度4.2」、FAQ、新しく作る根拠ページ</td><td><span class="pill pill--o">情報待ち</span></td></tr>
+<tr><td>B2</td><td>「実践コース10+」の数え方と時点</td><td>ヒーロー、根拠ページ</td><td><span class="pill pill--o">情報待ち</span></td></tr>
+<tr><td>B3</td><td>学びのヒントの「いいね」「役に立った」の数、トレンドのキーワード（今は見本の数字）</td><td>学びのヒント</td><td><span class="pill pill--o">情報待ち</span></td></tr>
+</tbody></table></div>
+
+<h3>C. URL・外部サービス</h3>
+<div class="tbl"><table class="cl"><thead><tr><th>#</th><th>確認すること</th><th>関係する箇所</th><th>種類</th></tr></thead><tbody>
+<tr><td>C1</td><td>ログインの URL</td><td>全ページのヘッダー</td><td><span class="pill pill--o">情報待ち</span></td></tr>
+<tr><td>C2</td><td>各コースのカート（購入）の URL</td><td>コース詳細の購入ボタン</td><td><span class="pill pill--o">情報待ち</span></td></tr>
+<tr><td>C3</td><td>ポートフォリオの無料登録の URL</td><td>ポートフォリオの「無料で登録する」（2か所）</td><td><span class="pill pill--o">情報待ち</span></td></tr>
+<tr><td>C4</td><td>公式LINE の友だち追加 URL</td><td>浮かぶボタン、LINE の各ボタン、告知バー</td><td><span class="pill pill--o">情報待ち</span></td></tr>
+<tr><td>C5</td><td>SNS 8つの URL（LINE・Instagram・Threads・X・Facebook・LinkedIn・note・YouTube）。使っていないものは外す</td><td>全ページのフッター</td><td><span class="pill pill--o">情報待ち</span></td></tr>
+<tr><td>C6</td><td>パンフレットの PDF</td><td>無料相談・資料請求の完了画面</td><td><span class="pill pill--o">情報待ち</span></td></tr>
+<tr><td>C7</td><td>お役立ち資料の PDF（実際の資料と表紙）</td><td>お役立ち資料（今の6件は見本）</td><td><span class="pill pill--o">情報待ち</span></td></tr>
+</tbody></table></div>
+
+<h3>D. フォーム・データ</h3>
+<div class="tbl"><table class="cl"><thead><tr><th>#</th><th>確認すること</th><th>関係する箇所</th><th>種類</th></tr></thead><tbody>
+<tr><td>D1</td><td>お役立ち資料の受け取り方（A：すぐダウンロード／B：メール／C：両方）</td><td>お役立ち資料</td><td><span class="pill pill--w">要決定</span>（エンジニアと相談）</td></tr>
+<tr><td>D2</td><td>フォームの送信先（Wix の連絡先だけか、ほかの CRM・メール配信ツールにも送るか）</td><td>すべてのフォーム</td><td><span class="pill pill--w">要決定</span>（エンジニアと相談）</td></tr>
+<tr><td>D3</td><td>お知らせメールの同意チェックを、最初からオンにするか</td><td>パンフレット・資料のフォーム</td><td><span class="pill pill--w">要決定</span></td></tr>
+<tr><td>D4</td><td>自動メールの送信元アドレスと、ドメインの送信設定（SPF・DKIM）</td><td>予約確認・資料・自動返信メール</td><td><span class="pill pill--w">要決定</span></td></tr>
+<tr><td>D5</td><td>CMS の更新担当（コース・記事・資料・FAQ）</td><td>運用</td><td><span class="pill pill--w">要決定</span></td></tr>
+</tbody></table></div>
+
+<h3>E. 法務</h3>
+<div class="tbl"><table class="cl"><thead><tr><th>#</th><th>確認すること</th><th>関係する箇所</th><th>種類</th></tr></thead><tbody>
+<tr><td>E1</td><td>制定日・最終更新日</td><td>法務3ページ</td><td><span class="pill pill--o">情報待ち</span></td></tr>
+<tr><td>E2</td><td>Wix 利用に伴う追記（委託先・外国での取り扱い・Cookie の送信先）</td><td>プライバシーポリシー P6・P7・P8</td><td><span class="pill pill--w">要決定</span></td></tr>
+<tr><td>E3</td><td>Cookie 同意バナーを出すか</td><td>全ページ</td><td><span class="pill pill--w">要決定</span></td></tr>
+<tr><td>E4</td><td>公開前の専門家の確認</td><td>法務3ページ</td><td><span class="pill pill--w">要決定</span></td></tr>
+<tr><td>E5</td><td>購入画面（カート）に価格・支払い時期・返金条件が出るか</td><td>A1 のシステム</td><td><span class="pill pill--o">情報待ち</span></td></tr>
+</tbody></table></div>
+
+<h3>F. 記事・コンテンツ</h3>
+<div class="tbl"><table class="cl"><thead><tr><th>#</th><th>確認すること</th><th>関係する箇所</th><th>種類</th></tr></thead><tbody>
+<tr><td>F1</td><td>記事11本の本文と、Wix ブログの今の URL（見本のリンク先を合わせるため）</td><td>学びのヒント、記事の関連記事</td><td><span class="pill pill--o">情報待ち</span></td></tr>
+<tr><td>F2</td><td>記事の著者名と紹介文</td><td>記事ページの著者欄</td><td><span class="pill pill--o">情報待ち</span></td></tr>
+<tr><td>F3</td><td>OGP 画像（SNS で共有したときの画像）</td><td>全ページ</td><td><span class="pill pill--o">情報待ち</span></td></tr>
+</tbody></table></div>
+</section>
+
+</main></div></div>

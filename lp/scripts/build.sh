@@ -3,7 +3,7 @@
 # 使い方：bash lp/scripts/build.sh（どこから実行してもよい）
 set -euo pipefail
 cd "$(dirname "$0")"
-for f in gen_courses gen_howto gen_portfolio gen_blog gen_beginners gen_extra gen_resources; do
+for f in gen_courses gen_howto gen_portfolio gen_blog gen_beginners gen_extra gen_resources gen_evidence; do
   python3 "$f.py" > /dev/null
   echo "ok $f"
 done

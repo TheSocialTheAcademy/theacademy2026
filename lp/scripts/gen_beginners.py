@@ -60,8 +60,8 @@ YEN = ic('<path d="M6 4l6 8 6-8M12 12v8M8 13h8M8 17h8"/>')
 brands = ''.join(f'<span>{b}</span>' for b in ['VISA', 'Mastercard', 'AMEX', 'JCB', 'Diners', 'DISCOVER'])
 FAQ = [('無料相談は必ず受けないといけませんか？', 'いいえ。希望する方のみです。<wbr>コースのページから直接お申し込みいただけます。'),
        ('忙しくて続けられるか不安です', '週2h〜で完結する学習設計です。<wbr>学び方の詳細は<a href="how-to-learn.html">「学び方・受講成果」</a>で紹介しています。'),
-       ('返金はできますか？', '<span class="todo">回答が入ります（現行FAQ「返金」から）</span>'),
-       ('パソコンがなくても受講できますか？', '<span class="todo">回答が入ります（要確認）</span>')]
+       ('返金はできますか？', 'コースはデジタルコンテンツのため、決済の完了後の返金はお受けしていません。ただし、当社の責任によりコースを受講できない場合は、個別に対応します。<a href="faq.html#q-refund">よくある質問</a>'),
+       ('パソコンがなくても受講できますか？', 'はい。スマートフォン・タブレットでも動画を受講できます。スライド資料も含まれるため大きな画面がおすすめで、課題の作成などはパソコンのほうが進めやすい場合があります。')]
 price = f'''<section class="bg-price" id="price" aria-label="料金・お支払いとよくある不安"><div class="wrap">
 <div class="q3"><p class="sec-kicker">PRICE</p><h2 class="sec-title">料金・お支払い</h2>
 <div class="q3__band">

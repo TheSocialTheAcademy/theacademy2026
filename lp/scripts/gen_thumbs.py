@@ -13,6 +13,11 @@ CAT, C, DELIV = g['CAT'], g['C'], g['DELIV']
 # カテゴリごとのグラデーション（カテゴリ色 → ブランドの青系、3つ目は形の差し色）
 GR = {'it': ('#1E9E62', '#3E78FE', '#BFEAD3'), 'mk': ('#E46A1F', '#F29A50', '#FFD9C2'), 'en': ('#0141D4', '#3E78FE', '#B9CCFF'),
       'biz': ('#6B4FD8', '#3E78FE', '#D5CCFF'), 'cr': ('#D9467A', '#F76B38', '#F9C8D8')}
+# カテゴリの単色グラデーション（同じ色相の濃→淡）。TA_THUMBS_MODE=mono／mono-cat のときに使う
+GR_MONO = {'it': ('#1E9E62', '#4CC38A', '#BFEAD3'), 'mk': ('#E46A1F', '#F29A50', '#FFD9C2'), 'en': ('#0141D4', '#3E78FE', '#B9CCFF'),
+           'biz': ('#6B4FD8', '#9A83F0', '#D5CCFF'), 'cr': ('#D9467A', '#F07AA3', '#F9C8D8')}
+CAT_SHAPE = {'it': 2, 'mk': 1, 'en': 3, 'biz': 4, 'cr': 5}  # mono-cat：形もカテゴリで固定
+MODE = os.environ.get('TA_THUMBS_MODE', 'mix')  # mix＝カテゴリ色→ブランドの青（いま）
 ORDER = {}  # slug → 一覧での並び順（背景の形の割り当てに使う）
 def rnd(slug): return random.Random(int(hashlib.md5(slug.encode()).hexdigest()[:8], 16))
 P = {  # 線アイコン（24×24）
@@ -59,7 +64,7 @@ def shapes_of(v, r, c3):
     return (f'<path d="M{300 + dx} -30 C{420 + dx} -10, {520} 80, {470} 170 C{430} 250, {330 + dx} 240, {280 + dx} 170 C{230 + dx} 100, {220 + dx} -40, {300 + dx} -30Z" {W(.15)}/>'
             f'<circle cx="{420 + dx}" cy="270" r="70" fill="{c3}" opacity=".22"/><g transform="translate(260 0)">{dots}</g>')
 def tile(slug, title, cat, lv, dur, time):
-    c1, c2, c3 = GR[cat]; r = rnd(slug); v = ORDER[slug] % 6
+    c1, c2, c3 = (GR if MODE == 'mix' else GR_MONO)[cat]; r = rnd(slug); v = CAT_SHAPE[cat] if MODE == 'mono-cat' else ORDER[slug] % 6
     ang = r.randint(110, 160) if v % 2 == 0 else r.randint(200, 250)
     shapes = f'<svg class="bg" viewBox="0 0 480 300">{shapes_of(v, r, c3)}</svg>'
     icon = f'<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">{P[ICON[slug]]}</svg>'

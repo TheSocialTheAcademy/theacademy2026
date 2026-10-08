@@ -26,21 +26,22 @@ CAT = {'IT・デジタル': ('#1E9E62', '#E9F7F0'), 'マーケティング': ('#
        'ビジネス': ('#6B4FD8', '#F0ECFF'), 'クリエイティブ': ('#D9467A', '#FDECF2'), 'キャリア・学び方': ('#0F1B45', '#EEF1F6')}
 def tag(c): fg, bg = CAT[c]; return f'<span class="bl-tag" style="--cc:{fg};--cb:{bg}">{c}</span>'
 
-# 記事（タイトル・日付・読了時間・評価は仮）
+# 記事（タイトル・日付・読了時間・評価は仮）。画像は記事のアイキャッチ（gen_eyecatch.py で作る N-2：写真＋大見出し）
 A = {
- 'weekly2h':  ('キャリア・学び方', '2026.09.08', 5, '働きながら学びを続けるための、<wbr>週2時間のつくり方', '忙しい平日でも学びを止めないために。スキマ時間の見つけ方と、無理なく続く習慣づくりのコツをまとめました。', 'assets/journal/career.webp', 142),
- 'chatgpt5':  ('IT・デジタル', '2026.08.26', 4, 'ChatGPTを<wbr>仕事の相棒にする、<wbr>最初の5つの使い方', '最初のひと言の書き方から、議事録・メール・企画のたたき台づくりまで。', 'assets/journal/ai.webp', 118),
- 'snscamp':   ('マーケティング', '2026.08.12', 6, '顧客理解から始める<wbr>SNSキャンペーン設計', '「誰に・何を・なぜ」を先に決めると、投稿の反応が変わります。', 'assets/journal/sns.webp', 101),
- 'restart':   ('キャリア・学び方', '2026.08.01', 5, '独学が続かなかった人のための、<wbr>学び直しの始め方', '三日坊主で終わった経験がある人ほど、最初の設計が大切です。', 'assets/how/step-01-learn.webp', 77),
- 'phrase20':  ('英語・TOEIC', '2026.07.20', 3, '会議で使える、<wbr>短い英語フレーズ20', '相づち・確認・提案。覚えておくと会議で困らない短い表現を集めました。', 'assets/photos/toeic-study.webp', 64),
- 'portfolio': ('キャリア・学び方', '2026.07.08', 6, '未経験から実績をつくる、<wbr>ポートフォリオの育て方', '「載せるものがない」から始める人のための、実績の残し方。', 'assets/portfolio/show-featured-work.webp', 128),
- 'aimemo':    ('IT・デジタル', '2026.06.24', 5, '会議メモをAIで要約する、<wbr>実務の手順', 'プロンプトの型と、要約を確認するときのポイント。', 'assets/outcomes/ai-prompt.webp', 96),
- 'insta1':    ('マーケティング', '2026.06.10', 4, 'Instagramの投稿企画を、<wbr>1枚のシートで考える', '目的・ターゲット・投稿の型を1枚に整理する方法。', 'assets/photos/sns-phone.webp', 84),
- 'event':     ('ビジネス', '2026.05.28', 5, '小さなイベントを成功させる、<wbr>当日の進行表のつくり方', '目的から逆算して、当日の流れとキューを決めます。', 'assets/outcomes/event-plan.webp', 52),
- 'canva':     ('クリエイティブ', '2026.05.14', 4, 'Canvaで伝わる投稿をつくる、<wbr>3つの基本', '余白・文字の大きさ・色の数。この3つで見違えます。', 'assets/outcomes/sns-design.webp', 71),
- 'brand':     ('ビジネス', '2026.04.30', 6, '選ばれる理由を言葉にする、<wbr>ブランドコンセプトの考え方', 'お客様が感じている価値を、短い言葉にまとめる手順。', 'assets/outcomes/brand-concept.webp', 45),
- 'present':   ('英語・TOEIC', '2026.04.16', 5, '5分で伝わる、<wbr>英語プレゼンの組み立て方', '結論から話す型と、緊張しても崩れない準備のしかた。', 'assets/outcomes/english-presentation.webp', 58),
+ 'weekly2h':  ('キャリア・学び方', '2026.09.08', 5, '働きながら学びを続けるための、<wbr>週2時間のつくり方', '忙しい平日でも学びを止めないために。スキマ時間の見つけ方と、無理なく続く習慣づくりのコツをまとめました。', 'assets/journal/weekly2h.webp', 142),
+ 'chatgpt5':  ('IT・デジタル', '2026.08.26', 4, 'ChatGPTを<wbr>仕事の相棒にする、<wbr>最初の5つの使い方', '最初のひと言の書き方から、議事録・メール・企画のたたき台づくりまで。', 'assets/journal/chatgpt5.webp', 118),
+ 'snscamp':   ('マーケティング', '2026.08.12', 6, '顧客理解から始める<wbr>SNSキャンペーン設計', '「誰に・何を・なぜ」を先に決めると、投稿の反応が変わります。', 'assets/journal/snscamp.webp', 101),
+ 'restart':   ('キャリア・学び方', '2026.08.01', 5, '独学が続かなかった人のための、<wbr>学び直しの始め方', '三日坊主で終わった経験がある人ほど、最初の設計が大切です。', 'assets/journal/restart.webp', 77),
+ 'phrase20':  ('英語・TOEIC', '2026.07.20', 3, '会議で使える、<wbr>短い英語フレーズ20', '相づち・確認・提案。覚えておくと会議で困らない短い表現を集めました。', 'assets/journal/phrase20.webp', 64),
+ 'portfolio': ('キャリア・学び方', '2026.07.08', 6, '未経験から実績をつくる、<wbr>ポートフォリオの育て方', '「載せるものがない」から始める人のための、実績の残し方。', 'assets/journal/portfolio.webp', 128),
+ 'aimemo':    ('IT・デジタル', '2026.06.24', 5, '会議メモをAIで要約する、<wbr>実務の手順', 'プロンプトの型と、要約を確認するときのポイント。', 'assets/journal/aimemo.webp', 96),
+ 'insta1':    ('マーケティング', '2026.06.10', 4, 'Instagramの投稿企画を、<wbr>1枚のシートで考える', '目的・ターゲット・投稿の型を1枚に整理する方法。', 'assets/journal/insta1.webp', 84),
+ 'event':     ('ビジネス', '2026.05.28', 5, '小さなイベントを成功させる、<wbr>当日の進行表のつくり方', '目的から逆算して、当日の流れとキューを決めます。', 'assets/journal/event.webp', 52),
+ 'canva':     ('クリエイティブ', '2026.05.14', 4, 'Canvaで伝わる投稿をつくる、<wbr>3つの基本', '余白・文字の大きさ・色の数。この3つで見違えます。', 'assets/journal/canva.webp', 71),
+ 'brand':     ('ビジネス', '2026.04.30', 6, '選ばれる理由を言葉にする、<wbr>ブランドコンセプトの考え方', 'お客様が感じている価値を、短い言葉にまとめる手順。', 'assets/journal/brand.webp', 45),
+ 'present':   ('英語・TOEIC', '2026.04.16', 5, '5分で伝わる、<wbr>英語プレゼンの組み立て方', '結論から話す型と、緊張しても崩れない準備のしかた。', 'assets/journal/present.webp', 58),
 }
+def small(k): return A[k][5].replace('assets/journal/', 'assets/photos/articles/')  # 小さい画像は見出しが読めないため、文字なしの写真
 def href(k): return 'article.html' if k == 'weekly2h' else f'/blog/{k}'  # 記事ページは見本の1本だけ
 def meta(k):
     c, d, m = A[k][0], A[k][1], A[k][2]
@@ -59,7 +60,7 @@ pagehead = f'''<section class="phead" aria-labelledby="page-title"><div class="w
 RANK = {'week': ['weekly2h', 'chatgpt5', 'snscamp', 'restart', 'phrase20'], 'month': ['portfolio', 'weekly2h', 'aimemo', 'chatgpt5', 'insta1']}
 def rank_html(key, hidden):
     ks = RANK[key]; top = ks[0]
-    lst = ''.join(f'<li><a class="rk" href="{href(k)}"><span class="rk__n">{i + 2}</span><span class="rk__ph"><img src="{A[k][5]}" alt="" loading="lazy"></span><span class="rk__b">{meta(k)}<b>{A[k][3]}</b></span></a></li>' for i, k in enumerate(ks[1:]))
+    lst = ''.join(f'<li><a class="rk" href="{href(k)}"><span class="rk__n">{i + 2}</span><span class="rk__ph"><img src="{small(k)}" alt="" loading="lazy"></span><span class="rk__b">{meta(k)}<b>{A[k][3]}</b></span></a></li>' for i, k in enumerate(ks[1:]))
     return f'''<div class="rk-panel" data-period="{key}"{" hidden" if hidden else ""}>
 <a class="rk-top" href="{href(top)}"><span class="rk-top__ph"><img src="{A[top][5]}" alt="" loading="lazy"><span class="rk__n rk__n--1">1</span></span><span class="rk-top__b">{meta(top)}<b>{A[top][3]}</b><span class="rk-top__ex">{A[top][4]}</span></span></a>
 <ol class="rk-list">{lst}</ol></div>'''
@@ -78,7 +79,7 @@ rated = f'''<section class="bl-rated" id="rated" aria-labelledby="rated-title"><
 </div></section>'''
 
 # ── ④ 最新記事（カテゴリ絞り込み・並び替え・もっと見る）
-latest_items = ''.join(f'<li class="lt" data-cat="{A[k][0]}" data-date="{A[k][1]}"><a href="{href(k)}"><span class="lt__ph"><img src="{A[k][5]}" alt="" loading="lazy"></span><span class="lt__b">{meta(k)}<b>{A[k][3]}</b><span class="lt__ex">{A[k][4]}</span></span></a></li>' for k in sorted(A, key=lambda k: A[k][1], reverse=True))
+latest_items = ''.join(f'<li class="lt" data-cat="{A[k][0]}" data-date="{A[k][1]}"><a href="{href(k)}"><span class="lt__ph"><img src="{small(k)}" alt="" loading="lazy"></span><span class="lt__b">{meta(k)}<b>{A[k][3]}</b><span class="lt__ex">{A[k][4]}</span></span></a></li>' for k in sorted(A, key=lambda k: A[k][1], reverse=True))
 chips = '<button type="button" class="bl-chip" aria-pressed="true" data-cat="">すべて</button>' + ''.join(f'<button type="button" class="bl-chip" aria-pressed="false" data-cat="{c}">{c}</button>' for c in cats)
 latest = f'''<section class="bl-latest" id="latest" aria-labelledby="latest-title"><div class="wrap">
 <header class="sec-head"><div><p class="sec-kicker">LATEST</p><h2 class="sec-title" id="latest-title">最新記事</h2></div>
@@ -143,19 +144,19 @@ css = r'''
   .rk-top:hover img { transform: scale(1.03); }
   .rk-top__b { display: block; padding: 18px 4px 0; } .rk-top__b b { display: block; margin-top: 10px; color: var(--ink); font-size: 24px; line-height: 1.5; } .rk-top__ex { display: block; margin-top: 8px; color: var(--ts-mid); font-size: 14px; line-height: 1.8; }
   .rk__n { display: grid; place-items: center; flex: none; width: 34px; height: 34px; border-radius: 50%; background: #EEF1F6; color: var(--ink); font: 800 15px/1 'Helvetica Neue', Arial, sans-serif; }
-  .rk__n--1 { position: absolute; left: 16px; top: 16px; width: 48px; height: 48px; background: var(--ts-primary); color: #fff; font-size: 20px; box-shadow: 0 8px 20px rgba(1,65,212,.35); }
+  .rk__n--1 { position: absolute; right: 16px; top: 16px; width: 48px; height: 48px; background: var(--ts-primary); color: #fff; font-size: 20px; box-shadow: 0 8px 20px rgba(1,65,212,.35); }
   .rk-list { display: grid; margin: 0; padding: 0; list-style: none; }
   .rk { display: grid; grid-template-columns: 34px 120px minmax(0, 1fr); gap: 16px; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--line); color: inherit; text-decoration: none; }
   li:first-child > .rk { padding-top: 0; }
   .rk:hover b { color: var(--ts-primary); }
-  .rk__ph { aspect-ratio: 16 / 10; border-radius: 12px; overflow: hidden; background: #EEF1F6; } .rk__ph img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .rk__ph { aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: #EEF1F6; } .rk__ph img { display: block; width: 100%; height: 100%; object-fit: cover; }
   .rk__b b { display: block; margin-top: 6px; color: var(--ink); font-size: 15.5px; line-height: 1.55; }
   /* ③ 評価の高い記事 */
   .rt { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin: 0; padding: 0; list-style: none; }
   .rt__c { display: flex; flex-direction: column; height: 100%; border-radius: 20px; background: #fff; box-shadow: 0 0 0 1px var(--line); color: inherit; text-decoration: none; overflow: hidden; transition: box-shadow .2s, transform .2s; }
   .rt__c:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px rgba(1,65,212,.25), var(--shadow-soft); }
   .rt__ph { position: relative; display: block; aspect-ratio: 16 / 9; background: #EEF1F6; } .rt__ph img { display: block; width: 100%; height: 100%; object-fit: cover; }
-  .rt__badge { position: absolute; left: 14px; bottom: 14px; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 99px; background: #fff; color: var(--ts-mid); font-size: 12px; font-weight: 700; box-shadow: 0 6px 16px rgba(15,27,69,.14); }
+  .rt__badge { position: absolute; right: 12px; top: 12px; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 99px; background: #fff; color: var(--ts-mid); font-size: 12px; font-weight: 700; box-shadow: 0 6px 16px rgba(15,27,69,.14); }
   .rt__badge svg { width: 15px; height: 15px; color: var(--ts-primary); } .rt__badge b { color: var(--ts-primary); font-size: 15px; }
   .rt__b { display: block; padding: 18px 20px 22px; } .rt__b > b { display: block; margin-top: 10px; color: var(--ink); font-size: 17px; line-height: 1.55; } .rt__ex { display: block; margin-top: 8px; color: var(--ts-mid); font-size: 13.5px; line-height: 1.8; }
   /* ④ 最新記事 */
@@ -169,7 +170,7 @@ css = r'''
   .lt[hidden] { display: none; }
   .lt a { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: 18px; align-items: center; padding: 20px 0; border-bottom: 1px solid var(--line); color: inherit; text-decoration: none; }
   .lt a:hover b { color: var(--ts-primary); }
-  .lt__ph { aspect-ratio: 16 / 10; border-radius: 14px; overflow: hidden; background: #EEF1F6; } .lt__ph img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .lt__ph { aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden; background: #EEF1F6; } .lt__ph img { display: block; width: 100%; height: 100%; object-fit: cover; }
   .lt__b b { display: block; margin-top: 8px; color: var(--ink); font-size: 16px; line-height: 1.55; } .lt__ex { display: block; margin-top: 4px; color: var(--ts-mid); font-size: 13px; line-height: 1.7; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
   .lt-empty { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 32px; margin-top: 8px; padding: clamp(22px, 3vw, 32px); border-radius: 22px; background: #fff; box-shadow: 0 0 0 1px var(--line); }
   .lt-empty[hidden] { display: none; }

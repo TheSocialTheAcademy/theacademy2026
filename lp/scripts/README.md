@@ -45,3 +45,12 @@ TA_THUMBS_BARE=1 TA_THUMBS_DIR=lp/assets/digest python3 lp/scripts/gen_thumbs.py
 ```
 
 動画の URL と長さは `course_data.json` の `digest`。イベントデザイン・インスタグラムの動画は、Vimeo の設定で theacademyjapan.org 以外では再生できない（本番の Wix では再生できる）。
+
+## 記事のアイキャッチ（N-2：写真全面＋大見出し）
+
+`lp/assets/journal/<記事のキー>.webp`（1280×720）。写真は `lp/assets/photos/articles/<キー>.webp`（CC0、出典は `assets/photos/CREDITS.md`）。小さい画像の場所（ランキング2〜5位・最新記事・トップのスマホ）は、見出しが読めないため写真だけを出す。
+記事を足したら `gen_eyecatch.py` の EYE に1行（カテゴリ・見出し・アイコン・写真の位置）足して実行する。
+
+```bash
+python3 lp/scripts/gen_eyecatch.py && TA_JOB=/tmp/ta_eyecatch.json NODE_PATH=$(npm root -g) node lp/scripts/gen_thumbs.js && TA_JOB=/tmp/ta_eyecatch.json python3 lp/scripts/thumbs_webp.py
+```

@@ -338,7 +338,7 @@ art_body = f'''<section class="ar-head" id="article-head" aria-labelledby="page-
 <div class="ar-by"><span class="ar-ph" aria-hidden="true">写真</span><span>著者 <b>著者名（仮）</b></span><i aria-hidden="true"></i><span>監修 <b>監修者名（仮）</b></span><i aria-hidden="true"></i><span>公開 <time datetime="2026-09-08">2026.09.08</time>／更新 <time datetime="2026-10-01">2026.10.01</time></span><i aria-hidden="true"></i><span>5分で読める</span></div>
 </div></section>
 <article class="x-sec x-sec--w ar-body" id="article-body"><div class="wrap ar-w">
-<img class="ar-img" src="assets/journal/career.webp" alt="ノートを開いて学習の計画を立てている様子" loading="lazy">
+<img class="ar-img" src="assets/photos/articles/weekly2h.webp" alt="ノートを開いて学習の計画を立てている様子" loading="lazy">
 <p class="x-note" style="text-align:right">※本文は見本です</p>
 <p>忙しい平日でも学びを止めないために、まずは「週2時間」を確保するところから始めましょう。まとまった時間を探すより、短い時間を決まった場所に置くほうが続きます。</p>
 <h2>1. 先に「時間の置き場所」を決める</h2>

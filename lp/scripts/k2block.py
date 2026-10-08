@@ -54,7 +54,7 @@ def cd_page(c):
     def rc(x):
         n2, c2, b2, s2 = CAT[x[2]]
         p2 = f'<span class="k-rc__p">通常 ¥{x[4]:,}<em>LINEクーポン適用 ¥{x[4] - 500:,}</em></span>' if x[4] else '<span class="k-rc__p">¥—（価格の確定待ち）</span>'
-        return f'<a class="k-rc" href="{chref(x[0])}"><span class="k-rc__v" style="--cc:{c2};--cb:{b2}">{s2}</span><b>{x[1]}</b><small>{n2}・{x[7]}</small>{p2}</a>'
+        return f'<a class="k-rc" href="{chref(x[0])}"><span class="k-rc__v"><img src="{g["THUMB"](x[0])}" alt="" loading="lazy"></span><b>{x[1]}</b><small>{n2}・{x[7]}</small>{p2}</a>'
     li = lambda xs: ''.join(f'<li>{CHK}{x}</li>' for x in xs)
     def ch(x):  # 「イベントを企画しよう - 企画の詳細を決めよう」は、前半を小さな見出しにする
         a, _, b = x.partition(' - ')

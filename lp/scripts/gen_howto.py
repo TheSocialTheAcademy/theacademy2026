@@ -70,7 +70,7 @@ how = f'''<section class="hl-how" id="how" aria-labelledby="how-title"><div clas
 # ── ③ KEEP GOING：続けられる3つの理由（それぞれ画面イメージつき）
 week = ''.join(f'<li class="{c}"><b>{d}</b><i></i></li>' for d, c in (('月', ''), ('火', 'on'), ('水', ''), ('木', 'on'), ('金', ''), ('土', 'on2'), ('日', '')))
 k1 = f'''<div class="kv kv--week"><p class="kv__t">今週の学習プラン<span>計 2h</span></p><ol>{week}</ol><p class="kv__lg"><i class="on"></i>平日夜 30分<i class="on2"></i>週末 60分</p></div>'''
-k2 = '''<div class="kv kv--prog"><p class="kv__t">マイラーニング</p><div class="kv__c"><img src="assets/photos/sns-phone.webp" alt=""><div><b>SNSマーケティング実践</b><small>第4章 運用と数値の見方</small><span><em style="width:62%"></em></span></div><strong>62%</strong></div><p class="kv__go">続きから学ぶ ›</p></div>'''
+k2 = '''<div class="kv kv--prog"><p class="kv__t">マイラーニング</p><div class="kv__c"><img src="assets/thumbs/sns-marketing.webp" alt=""><div><b>SNSマーケティング実践</b><small>第4章 運用と数値の見方</small><span><em style="width:62%"></em></span></div><strong>62%</strong></div><p class="kv__go">続きから学ぶ ›</p></div>'''
 k3 = f'''<div class="kv kv--feed"><div class="kv__post">{av(0)}<div><b>ゆい</b><small>2時間前</small><p>企画書の構成を見直しました！<br>フィードバックうれしい☺️</p><span class="kv__like">♥ 12</span></div></div><div class="kv__post">{av(3)}<div><b>りょう</b><small>昨日</small><p>今週は平日夜に30分ずつ進めた📷</p></div></div></div>'''
 KEEPS = [
  ('忙しくても、続けられる設計', '週2h〜。平日夜と週末に分けて、無理なく進められます。', k1),

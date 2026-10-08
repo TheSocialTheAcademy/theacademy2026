@@ -27,3 +27,11 @@ bash lp/scripts/build.sh
 | `gen_replace_list.py` | 差し替え箇所の一覧（lp/docs/replace-list.html・.csv） |
 | `gen_legal_review.py` | 法務ページの文面レビュー用ページ（一時フォルダに legal-draft.html を書き出す） |
 | `slim_zips.py` | `downloads/` の素材 ZIP を、中身を変えずに軽くする（`pip install pyoxipng` が必要） |
+
+## コースのサムネイル（T-B）
+
+`lp/assets/thumbs/<slug>.webp`（1280×800）は、コース一覧のデータ（gen_courses.py の C）から作っています。コースを足したら `gen_thumbs.py` の ICON にアイコンと改行位置を1行足して、次を実行します（Node と Playwright が必要）。
+
+```bash
+python3 lp/scripts/gen_thumbs.py && NODE_PATH=$(npm root -g) node lp/scripts/gen_thumbs.js && python3 lp/scripts/thumbs_webp.py
+```

@@ -34,7 +34,7 @@
   .k-buy__l { margin: 16px 0 0; padding: 14px 0 0; border-top: 1px solid var(--line); list-style: none; display: grid; gap: 6px; color: var(--ts-mid); font-size: 13px; } .k-buy__l li { display: flex; gap: 6px; } .k-buy__l svg { width: 15px; height: 15px; flex: none; margin-top: 2px; color: var(--ts-primary); }
   .k-rel { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
   .k-rc { display: grid; gap: 4px; padding: 14px; border-radius: 18px; background: #fff; box-shadow: 0 0 0 1px var(--line); color: var(--ink); text-decoration: none; } .k-rc:hover { box-shadow: 0 0 0 1.5px var(--ts-primary); }
-  .k-rc__v { display: grid; place-items: center; height: 110px; border-radius: 12px; background: var(--cb); color: var(--cc); } .k-rc__v svg { width: 34px; height: 34px; }
+  .k-rc__v { display: block; aspect-ratio: 16 / 10; border-radius: 12px; overflow: hidden; background: #F1F3F8; } .k-rc__v img { display: block; width: 100%; height: 100%; object-fit: cover; }
   .k-rc b { margin-top: 8px; font-size: 16px; } .k-rc small { color: var(--ts-mid); font-size: 12.5px; } .k-rc__p { margin-top: 6px; color: var(--ts-mid); font-size: 12px; } .k-rc__p em { display: block; color: #06A04A; font-size: 15px; font-style: normal; font-weight: 800; }
   .k2-bar { display: none; }
   @media (max-width: 860px) { .k2-top, .k2-end, .k-2 { grid-template-columns: minmax(0, 1fr); } .k-rel { grid-template-columns: minmax(0, 1fr); } .k-how { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

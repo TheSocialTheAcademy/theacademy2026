@@ -59,12 +59,12 @@ def cur_meta(slug):  # 期間の決まっていないコースは、今のサイ
 
 LINE_SM = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3.5c5 0 9 3.2 9 7.2 0 3.9-3.8 7.1-8.6 7.2-.5.4-2.7 2.3-4.2 2.6-.4.1-.4-.3-.3-.6l.5-2.4C5.3 16.3 3 13.7 3 10.7 3 6.7 7 3.5 12 3.5z"/></svg>'
 def chref(slug): return f'course-{slug}.html'  # コース詳細（K2）
-def THUMB(slug): return f'assets/thumbs/{slug}.webp'  # コースのサムネイル（T-B：淡い地色＋線アイコン）
+def THUMB(slug): return f'assets/thumbs/{slug}.webp'  # コースのサムネイル（C-4：グラデーション＋半透明の形）
 def card(i, c):
     slug, title, cat, desc, price, dur, time, lv, img = c
     name, col, bg, svg = CAT[cat]
     if not dur: dur, time = cur_meta(slug)
-    thumb = f'<div class="cv cv--img"><img src="{THUMB(slug)}" loading="lazy" alt=""></div>'  # サムネイル（T-B）。gen_thumbs.py で作る
+    thumb = f'<div class="cv cv--img"><img src="{THUMB(slug)}" loading="lazy" alt=""></div>'  # サムネイル（C-4）。gen_thumbs.py で作る
     meta = ''.join(f'<span>{ic_}{t}</span>' for ic_, t in ((CAL, dur), (CLOCK, time), (LEVEL, lv)) if t)
     p = '' if price else '<b class="price">¥—</b><span class="todo">価格を入れる</span>'
     cp = (f'<div class="cpr"><span class="cpr__o">通常 ¥{price:,}</span><p class="cpr__n"><small>{LINE_SM}LINEクーポン適用</small><b>¥{price - 500:,}</b></p>'

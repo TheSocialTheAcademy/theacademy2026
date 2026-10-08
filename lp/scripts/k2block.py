@@ -1,10 +1,7 @@
 # ═════════ コース詳細（K2 成果物から見せる型）：全コース分を同じ型で作る ═════════
 C, CAT, chref = g['C'], g['CAT'], g['chref']
 TODO_S = lambda t='仮': f'<span class="x-todo">{t}</span>'
-DELIV = {'sns-marketing': 'SNSキャンペーン企画書', 'ai-efficiency': '業務改善の仕組み（AI活用）', 'toeic-700': '英語で伝える5分間プレゼン', 'event-design': 'イベント企画書・運営マニュアル',
-         'marketing-basic': 'マーケティング戦略シート', 'instagram': 'Instagramアカウント戦略シート', 'automation': 'GASで作るタスク管理ツール', 'chatgpt-basic': '仕事で使えるプロンプト集',
-         'line-official': '公式LINEの資料請求・予約の仕組み', 'business-english': '英語の自己紹介・ビジネスメール文例集', 'project-management': 'プロジェクト計画書（WBS）', 'canva-basic': 'SNS投稿・自己PRのデザインセット',
-         'slack-gas-task': 'Slackで完結するタスク管理'}
+DELIV = g['DELIV']  # 成果物の名前（gen_courses.py で定義。サムネイルと共通）
 CD = g['CD']  # 今のサイトのコース詳細（course_data.json）
 FOR_CAT = {'it': ['毎日の作業に、時間を取られすぎている', 'ツールを使いこなして、仕事を楽にしたい', '社内のデジタル化を任された'],
            'mk': ['発信や集客を任されたが、何から始めればいいか分からない', '投稿はしているが、反応や成果につながらない', '企画から振り返りまで、一通り経験しておきたい'],

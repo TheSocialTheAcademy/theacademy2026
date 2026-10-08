@@ -7,6 +7,7 @@
 | b_thumb.py | thumb.html | コースのサムネイル T-A〜T-D |
 | b_deliv.py | deliv.html | 成果物の画像 D-A〜D-D（D-B は全13コース分） |
 | b_eye.py | eye.html | 記事のアイキャッチ E-A〜E-D |
+| b_eye4.py | eye4.html | 記事のアイキャッチ N-1〜N-4（1枚で表す表紙：大見出し・要点・蛍光ペン）。N-1・N-2 は b_eye3.py と同じ写真を使う |
 | b_eye3.py | eye3.html | 記事のアイキャッチ P-1〜P-3（CC0 の写真＋カード＋アイコン）。写真は未採用のため ph/ に置いて実行（出典は下） |
 | b_eye2.py | eye2.html | 記事のアイキャッチ（考え直し）EA〜ED。コースのサムネイルと見分けられるか |
 | b_hero.py | hero.html | トップのメイン画像 H-A〜H-D |

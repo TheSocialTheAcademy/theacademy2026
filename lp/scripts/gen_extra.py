@@ -335,7 +335,7 @@ art_body = f'''<section class="ar-head" id="article-head" aria-labelledby="page-
 {crumb(('学びのヒント', 'blog.html'), ('記事', None))}
 <span class="bl-tag ar-tag">キャリア・学び方</span>
 <h1 class="ar-t" id="page-title">働きながら学びを続けるための、<wbr>週2時間のつくり方</h1>
-<div class="ar-by"><span class="ar-ph" aria-hidden="true">写真</span><span>著者 <b>著者名（仮）</b></span><i aria-hidden="true"></i><span>監修 <b>監修者名（仮）</b></span><i aria-hidden="true"></i><span>公開 <time datetime="2026-09-08">2026.09.08</time>／更新 <time datetime="2026-10-01">2026.10.01</time></span><i aria-hidden="true"></i><span>5分で読める</span></div>
+<div class="ar-by"><img class="ar-ph" src="assets/illust/staff.webp" alt="" loading="lazy"><span>著者 <b>The Academy スタッフ</b></span><i aria-hidden="true"></i><span>公開 <time datetime="2026-09-08">2026.09.08</time>／更新 <time datetime="2026-10-01">2026.10.01</time></span><i aria-hidden="true"></i><span>5分で読める</span></div>
 </div></section>
 <article class="x-sec x-sec--w ar-body" id="article-body"><div class="wrap ar-w">
 <img class="ar-img" src="assets/photos/articles/weekly2h.webp" alt="ノートを開いて学習の計画を立てている様子" loading="lazy">
@@ -349,8 +349,8 @@ art_body = f'''<section class="ar-head" id="article-head" aria-labelledby="page-
 <p>学んだことや作ったものを記録しておくと、続ける理由になります。The Academyでは、学びの記録をポートフォリオに残せます。</p>
 <div class="ar-end">
 <div class="ar-sh"><p>この記事をシェアする</p><div>{''.join(f'<a href="#" data-share="{tpl}" style="--c:{c}" target="_blank" rel="noopener">{n}</a>' for n, c, tpl in SHARE)}<button type="button" id="arCopy" style="--c:#676688">URLをコピー</button></div></div>
-<section class="x-card ar-au" aria-labelledby="au-h"><span class="ar-ph ar-ph--l" aria-hidden="true">写真</span><div><p class="ar-au__k" id="au-h">この記事を書いた人</p><p class="ar-au__n">著者名（仮）</p><p class="ar-au__r">The Academy 編集部（仮）</p>
-<p class="ar-au__d">働きながら学ぶ人のキャリア相談を担当。<wbr>学び方と、学びを仕事につなげるコツを発信しています。<span class="x-todo">紹介文は仮</span></p><a class="ar-au__a" href="blog.html">この人のほかの記事{ARROW}</a></div></section>
+<section class="x-card ar-au" aria-labelledby="au-h"><img class="ar-ph ar-ph--l" src="assets/illust/staff.webp" alt="" loading="lazy"><div><p class="ar-au__k" id="au-h">この記事を書いた人</p><p class="ar-au__n">The Academy スタッフ</p><p class="ar-au__r">The Academy 運営事務局</p>
+<p class="ar-au__d">受講生のサポートやキャリア相談で得た気づきをもとに、<wbr>働きながら学ぶためのヒントを発信しています。</p><a class="ar-au__a" href="blog.html">スタッフのほかの記事{ARROW}</a></div></section>
 <h2 class="ar-rel__h">関連する記事</h2>
 <div class="ar-rel"><a href="/blog/restart">独学が続かなかった人のための、<wbr>学び直しの始め方</a><a href="/blog/portfolio">未経験から実績をつくる、<wbr>ポートフォリオの育て方</a><a href="/blog/aimemo">会議メモをAIで要約する、<wbr>実務の手順</a></div>
 </div>
@@ -361,7 +361,7 @@ art_css = common_css + '''
   .ar-t { margin: 12px 0 0; color: var(--ink); font-size: clamp(26px, 3.4vw, 36px); line-height: 1.45; word-break: keep-all; overflow-wrap: anywhere; }
   .ar-by { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-top: 18px; padding: 12px 16px; border-radius: 14px; background: #fff; box-shadow: 0 0 0 1px var(--line); color: var(--ts-mid); font-size: 13px; }
   .ar-by b { color: var(--ink); } .ar-by i { width: 1px; height: 22px; background: var(--line); }
-  .ar-ph { display: grid; place-items: center; flex: none; width: 40px; height: 40px; border-radius: 50%; background: repeating-linear-gradient(135deg, #E6EBF5 0 6px, #F1F4FA 6px 12px); color: var(--ts-mid); font-size: 9px; } .ar-ph--l { width: 96px; height: 96px; font-size: 11px; }
+  .ar-ph { display: block; flex: none; width: 40px; height: 40px; border-radius: 50%; background: #EEF2FC; object-fit: contain; } .ar-ph--l { width: 96px; height: 96px; }
   .ar-body .ar-w { color: var(--ink); font-size: 16px; line-height: 2; } .ar-body h2 { margin: 36px 0 0; font-size: 22px; line-height: 1.5; } .ar-body p { margin: 14px 0 0; }
   .ar-img { display: block; width: 100%; height: auto; border-radius: 18px; }
   .ar-end { margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--line); }

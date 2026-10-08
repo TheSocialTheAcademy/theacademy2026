@@ -7,6 +7,7 @@
 | b_thumb.py | thumb.html | コースのサムネイル T-A〜T-D |
 | b_deliv.py | deliv.html | 成果物の画像 D-A〜D-D（D-B は全13コース分） |
 | b_eye.py | eye.html | 記事のアイキャッチ E-A〜E-D |
+| b_eye2.py | eye2.html | 記事のアイキャッチ（考え直し）EA〜ED。コースのサムネイルと見分けられるか |
 | b_hero.py | hero.html | トップのメイン画像 H-A〜H-D |
 | b_cover2.py | cover2.html | C-4 の背景の上に入れるもの X-1〜X-4（アイコン／つくるもの／学習の目安／成果物の模型） |
 | b_bg.py | bg.html | サムネイルの背景 B-1〜B-4（道のり／放射線／光の筋 濃紺・明るい地）。中身は X-2 |

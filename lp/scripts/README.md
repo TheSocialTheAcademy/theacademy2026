@@ -35,3 +35,13 @@ bash lp/scripts/build.sh
 ```bash
 python3 lp/scripts/gen_thumbs.py && NODE_PATH=$(npm root -g) node lp/scripts/gen_thumbs.js && python3 lp/scripts/thumbs_webp.py
 ```
+
+## ダイジェスト動画の表紙
+
+コース詳細のダイジェスト動画（今のサイトと同じ Vimeo）は、押すまで読み込まない作りです。表紙はサムネイルと同じ背景から文字を抜いたもの（`lp/assets/digest/<slug>.webp`）。
+
+```bash
+TA_THUMBS_BARE=1 TA_THUMBS_DIR=lp/assets/digest python3 lp/scripts/gen_thumbs.py && NODE_PATH=$(npm root -g) node lp/scripts/gen_thumbs.js && python3 lp/scripts/thumbs_webp.py
+```
+
+動画の URL と長さは `course_data.json` の `digest`。イベントデザイン・インスタグラムの動画は、Vimeo の設定で theacademyjapan.org 以外では再生できない（本番の Wix では再生できる）。

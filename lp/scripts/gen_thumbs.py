@@ -17,6 +17,7 @@ GR = {'it': ('#1E9E62', '#3E78FE', '#BFEAD3'), 'mk': ('#E46A1F', '#F29A50', '#FF
 GR_MONO = {'it': ('#1E9E62', '#2FAE73', '#BFEAD3'), 'mk': ('#E46A1F', '#F29A50', '#FFD9C2'), 'en': ('#0141D4', '#3E78FE', '#B9CCFF'),
            'biz': ('#6B4FD8', '#8A70E8', '#D5CCFF'), 'cr': ('#D9467A', '#E8608F', '#F9C8D8')}
 CAT_SHAPE = {'it': 2, 'mk': 1, 'en': 3, 'biz': 4, 'cr': 5}  # mono-cat：形もカテゴリで固定
+BARE = os.environ.get('TA_THUMBS_BARE') == '1'  # 1＝文字なしの背景だけ（ダイジェスト動画の表紙 assets/digest に使う）
 MODE = os.environ.get('TA_THUMBS_MODE', 'mono')  # mono＝カテゴリの単色（採用）／mix＝カテゴリ色→ブランドの青（前の案）／mono-cat＝単色＋形もカテゴリで固定
 ORDER = {}  # slug → 一覧での並び順（背景の形の割り当てに使う）
 def rnd(slug): return random.Random(int(hashlib.md5(slug.encode()).hexdigest()[:8], 16))
@@ -68,6 +69,7 @@ def tile(slug, title, cat, lv, dur, time):
     ang = r.randint(110, 160) if v % 2 == 0 else r.randint(200, 250)
     shapes = f'<svg class="bg" viewBox="0 0 480 300">{shapes_of(v, r, c3)}</svg>'
     icon = f'<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">{P[ICON[slug]]}</svg>'
+    if BARE: return f'<div class="th" id="t-{slug}" style="background:linear-gradient({ang}deg,{c1} 0%,{c2} 100%)">{shapes}</div>'
     return (f'<div class="th" id="t-{slug}" style="background:linear-gradient({ang}deg,{c1} 0%,{c2} 100%)">{shapes}{icon}'
             f'<div class="b"><p class="k">つくるもの</p><p class="d">{DELIV[slug]}</p></div></div>')
 CSS = '''*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Noto Sans JP',sans-serif;background:#fff;display:flex;flex-wrap:wrap;gap:20px;padding:20px;width:1400px}

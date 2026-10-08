@@ -51,7 +51,16 @@
     }
    ],
    "url": "https://www.theacademyjapan.org/products/初級編canvaコース",
-   "updated": "2026/05/01"
+   "updated": "2026/05/01",
+   "digest": {
+    "url": "https://vimeo.com/1092472050",
+    "id": "1092472050",
+    "title": "Canvaw初級コースダイジェスト",
+    "seconds": 132,
+    "w": 426,
+    "h": 240,
+    "poster": "assets/digest/canva-basic.webp"
+   }
   },
   "slack-gas-task": {
    "name": "Slack×GASで作るスマート管理ツール",
@@ -67,7 +76,16 @@
    "points": [],
    "outcomes": [],
    "url": "https://www.theacademyjapan.org/products/slack-gasで作るスマート管理ツール",
-   "updated": "2026/05/01"
+   "updated": "2026/05/01",
+   "digest": {
+    "url": "https://vimeo.com/1099971692",
+    "id": "1099971692",
+    "title": "Slackタスク管理ツールダイジェスト",
+    "seconds": 279,
+    "w": 426,
+    "h": 240,
+    "poster": "assets/digest/slack-gas-task.webp"
+   }
   },
   "sns-basic": {
    "name": "SNSマーケティングコース",
@@ -176,7 +194,16 @@
     }
    ],
    "url": "https://www.theacademyjapan.org/products/event-design-course",
-   "updated": "2026/05/01"
+   "updated": "2026/05/01",
+   "digest": {
+    "url": "https://vimeo.com/992946745",
+    "id": "992946745",
+    "title": "",
+    "seconds": null,
+    "w": 426,
+    "h": 240,
+    "poster": "assets/digest/event-design.webp"
+   }
   },
   "instagram": {
    "name": "インスタグラムコース",
@@ -226,7 +253,16 @@
     }
    ],
    "url": "https://www.theacademyjapan.org/products/instagram-basic-course",
-   "updated": "2026/05/01"
+   "updated": "2026/05/01",
+   "digest": {
+    "url": "https://vimeo.com/1004289545",
+    "id": "1004289545",
+    "title": "",
+    "seconds": null,
+    "w": 426,
+    "h": 240,
+    "poster": "assets/digest/instagram.webp"
+   }
   },
   "business-english": {
    "name": "ビジネス英語初級コース",
@@ -272,7 +308,16 @@
     }
    ],
    "url": "https://www.theacademyjapan.org/products/business-enligsh",
-   "updated": "2026/05/01"
+   "updated": "2026/05/01",
+   "digest": {
+    "url": "https://vimeo.com/1077258773",
+    "id": "1077258773",
+    "title": "ビジネス英語初級コースダイジェスト",
+    "seconds": 138,
+    "w": 426,
+    "h": 240,
+    "poster": "assets/digest/business-english.webp"
+   }
   },
   "project-management": {
    "name": "プロジェクトマネジメントコース",
@@ -355,7 +400,16 @@
     }
    ],
    "url": "https://www.theacademyjapan.org/products/marketing-course",
-   "updated": "2026/05/01"
+   "updated": "2026/05/01",
+   "digest": {
+    "url": "https://vimeo.com/1069558939",
+    "id": "1069558939",
+    "title": "マーケティング戦略基礎コースダイジェスト",
+    "seconds": 173,
+    "w": 426,
+    "h": 240,
+    "poster": "assets/digest/marketing-basic.webp"
+   }
   },
   "line-official": {
    "name": "ミニアプリで最適化！公式LINE運用コース",
@@ -397,7 +451,16 @@
     }
    ],
    "url": "https://www.theacademyjapan.org/products/ミニアプリで最適化-公式line運用コース",
-   "updated": "2026/05/01"
+   "updated": "2026/05/01",
+   "digest": {
+    "url": "https://vimeo.com/1184002165",
+    "id": "1184002165",
+    "title": "ミニアプリで最適化！公式LINE運用コースダイジェスト",
+    "seconds": 104,
+    "w": 426,
+    "h": 240,
+    "poster": "assets/digest/line-official.webp"
+   }
   },
   "chatgpt-basic": {
    "name": "初級編 Chat GPTコース",
@@ -455,7 +518,16 @@
     }
    ],
    "url": "https://www.theacademyjapan.org/products/gastool",
-   "updated": "2026/05/01"
+   "updated": "2026/05/01",
+   "digest": {
+    "url": "https://vimeo.com/1075582658",
+    "id": "1075582658",
+    "title": "自動化ツール開発コースダイジェスト",
+    "seconds": 181,
+    "w": 426,
+    "h": 240,
+    "poster": "assets/digest/automation.webp"
+   }
   }
  }
 }

@@ -38,10 +38,8 @@ def cd_page(c):
     pr_note = '' if price else TODO_S('価格の確定待ち')
     cp = f'LINEクーポンで ¥{price - 500:,}' if price else 'LINEクーポンで500円OFF'
     if slug == 'sns-marketing':
-        fig = '<img src="assets/outcomes/sns-design.webp" alt="SNSキャンペーン企画書の例（投稿デザインのセット）" loading="lazy">'
         steps = [(f'Week {i + 1}', a, b) for i, (a, b) in enumerate(SNS_WEEKS)]; flow_t = '8週間の流れ'; kick = '8 WEEKS'; can = SNS_CAN
     else:
-        fig = f'<div class="k2-ph" style="--cc:{col};--cb:{bg}" role="img" aria-label="{name}の成果物（仮の画像）"><span class="k2-ph__ic">{svg}</span><b>{d}</b><small>成果物の画像（準備中）</small></div>'
         steps = [('STEP 1', '基礎を知る', '短い講義と事例で、考え方をつかむ'), ('STEP 2', '自分の仕事で試す', '小さく手を動かして、使い方を身につける'),
                  ('STEP 3', f'{d}を仕上げる', '仕事で使える形に整える'), ('STEP 4', 'ポートフォリオに公開', '背景や過程も残して、次の機会へ')]
         flow_t = 'ツール導入までの流れ' if is_tool else '受講の流れ'; kick = 'FLOW'
@@ -50,13 +48,17 @@ def cd_page(c):
     if cur.get('outcomes'): can = [o['h'] for o in cur['outcomes']][:4]
     for_l = cur['for'][:5] if cur.get('for') else FOR_CAT[cat]
     use_cur = bool(chs) and not is_tool and slug != 'sns-marketing'
-    dg = cur.get('digest'); fig_cap = f'完成する成果物：{d}（例）{"" if slug == "sns-marketing" else TODO_S("成果物の名前・画像は仮")}'
-    if dg:  # 成果物の画像の場所に、今のサイトと同じダイジェスト動画（Vimeo）。押すまでは読み込まない（ページを軽くするため）
+    # 成果物の画像の場所は、全コースともダイジェスト動画にする（今のサイトと同じ Vimeo）。押すまでは読み込まない（ページを軽くするため）
+    dg = cur.get('digest'); poster = f'assets/digest/{slug}.webp'; play = '<span class="k2-dg__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>'
+    if dg:
         sec = dg.get('seconds'); ln = f'約{sec // 60}分{sec % 60:02d}秒' if sec else '約2〜3分'
         fig = (f'<div class="k2-dg"><button type="button" class="k2-dg__btn" data-vimeo="{dg["id"]}" data-title="{plain} ダイジェスト動画" aria-label="{plain}のダイジェスト動画を再生（{ln}）">'
-               f'<img src="{dg["poster"]}" alt=""><span class="k2-dg__t"><small>ダイジェスト動画</small>{plain}</span><span class="k2-dg__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>'
-               f'<span class="k2-dg__cap">{ln}</span></button></div>')
+               f'<img src="{poster}" alt=""><span class="k2-dg__t"><small>ダイジェスト動画</small>{plain}</span>{play}<span class="k2-dg__cap">{ln}</span></button></div>')
         fig_cap = f'ダイジェスト動画（{ln}）：講義の雰囲気とコースの内容をご覧いただけます'
+    else:  # 動画を用意するまでの仮（course_data.json の digest に追加すると再生できるようになる）
+        fig = (f'<div class="k2-dg k2-dg--soon" role="img" aria-label="{plain}のダイジェスト動画（準備中）"><img src="{poster}" alt="">'
+               f'<span class="k2-dg__t"><small>ダイジェスト動画</small>{plain}</span>{play}<span class="k2-dg__cap">準備中</span></div>')
+        fig_cap = f'ダイジェスト動画（準備中） {TODO_S("動画を用意")}'
     if use_cur: flow_t, kick = f'カリキュラム（全{len(chs)}章・約{mins}分）', 'CURRICULUM'
     goal = (f'<p class="k2-goal">{CHK}受講後、{d}を仕上げる → <a href="portfolio.html">ポートフォリオ</a>に公開</p>' if use_cur else
             f'<p class="k2-goal">{CHK}Slackの中で、チームのタスクが見える状態に</p>' if is_tool else f'<p class="k2-goal">{CHK}{steps[-1][0]}で{d}が完成 → <a href="portfolio.html">ポートフォリオ</a>に公開</p>')

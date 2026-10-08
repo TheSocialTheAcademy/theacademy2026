@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>お役立ち資料 | The Academy</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Academy">
+<meta property="og:title" content="お役立ち資料 | The Academy">
+<meta property="og:description" content="平日夜・週末の短い時間で、実務に直結するアウトプットを。仲間の歩みを励みにしながら、自分らしいキャリアを作ろう。">
+<meta property="og:image" content="assets/ogp/default.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="description" content="平日夜・週末の短い時間で、実務に直結するアウトプットを。仲間の歩みを励みにしながら、自分らしいキャリアを作ろう。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1240,10 +1248,9 @@
   .x-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 50px; padding: 0 24px; border: 0; border-radius: 12px; background: var(--ts-primary); color: #fff; font: inherit; font-size: 15px; font-weight: 700; text-decoration: none; cursor: pointer; }
   .x-btn svg { width: 17px; height: 17px; } .x-btn--g { background: #06C755; }
   .x-note { margin: 10px 0 0; color: var(--ts-mid); font-size: 12.5px; line-height: 1.7; } .x-note a { color: var(--ts-primary); }
-  .rs-cv { position: relative; display: flex; flex-direction: column; justify-content: space-between; aspect-ratio: 1 / 1.3; padding: 24px; border-radius: 10px; background: var(--c); color: #fff; overflow: hidden; box-shadow: 0 10px 28px rgba(15,27,69,.16); }
-  .rs-cv::after { content: ""; position: absolute; right: -30%; bottom: -18%; width: 80%; aspect-ratio: 1; border-radius: 50%; background: rgba(255,255,255,.12); }
-  .rs-cv span { font-size: 10px; letter-spacing: .16em; opacity: .8; } .rs-cv b { position: relative; z-index: 1; font-size: 24px; line-height: 1.45; }
-  .rs-f { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 56px; align-items: center; }
+  .rs-cv { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 12px; box-shadow: 0 10px 28px rgba(15,27,69,.14); }
+  .rs-cv--s { width: 168px; border-radius: 8px; box-shadow: none; }
+  .rs-f { display: grid; grid-template-columns: minmax(0, 520px) minmax(0, 1fr); gap: 56px; align-items: center; }
   .rs-tag { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 0; color: var(--ts-primary); font-size: 12.5px; font-weight: 700; }
   .rs-tag em { padding: 1px 9px; border-radius: 99px; background: #FFF1E7; color: #E46A1F; font-style: normal; font-size: 11.5px; }
   .rs-f__t { margin: 10px 0 0; color: var(--ink); font-size: clamp(24px, 2.6vw, 30px); line-height: 1.45; }
@@ -1251,8 +1258,8 @@
   .rs-m { margin: 8px 0 0; color: var(--ts-mid); font-size: 12.5px; white-space: nowrap; } .rs-f .x-btn { margin-top: 20px; }
   .rs-h2 { margin: 0 0 20px; color: var(--ink); font-size: clamp(20px, 2.2vw, 24px); }
   .rs-l { margin: 0; padding: 0; list-style: none; border-radius: 20px; background: #fff; box-shadow: 0 0 0 1px var(--line); }
-  .rs-r { display: grid; grid-template-columns: 10px minmax(0, 1fr) auto auto; gap: 20px; align-items: center; padding: 20px 24px; border-top: 1px solid var(--line); }
-  .rs-r:first-child { border-top: 0; } .rs-dot { width: 10px; height: 10px; border-radius: 3px; background: var(--c); }
+  .rs-r { display: grid; grid-template-columns: 168px minmax(0, 1fr) auto auto; gap: 20px; align-items: center; padding: 20px 24px; border-top: 1px solid var(--line); }
+  .rs-r:first-child { border-top: 0; }
   .rs-r h3 { margin: 4px 0 0; color: var(--ink); font-size: 16px; line-height: 1.5; } .rs-d { margin: 4px 0 0; color: var(--ts-mid); font-size: 13.5px; line-height: 1.7; } .rs-r .rs-m { margin: 0; }
   .rs-r__btn { display: inline-flex; align-items: center; gap: 6px; height: 42px; padding: 0 16px; border: 0; border-radius: 10px; background: #EEF2FD; color: var(--ts-primary); font: inherit; font-size: 13.5px; font-weight: 700; cursor: pointer; white-space: nowrap; }
   .rs-r__btn svg { width: 15px; height: 15px; } .rs-r__btn:hover { background: var(--ts-primary); color: #fff; }
@@ -1273,8 +1280,8 @@
   .rs-done__ic { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: #E9F9EF; color: #06A04A; } .rs-done__ic svg { width: 30px; height: 30px; }
   .rs-done__d { margin: 0; color: var(--ts-mid); font-size: 14px; line-height: 1.8; } .rs-done .x-btn { width: 100%; } .rs-done .x-btn[aria-disabled="true"] { opacity: .45; pointer-events: none; }
   .rs-dlg [hidden] { display: none !important; }
-  @media (max-width: 900px) { .rs-f { grid-template-columns: minmax(0, 1fr); gap: 28px; } .rs-cv--b { max-width: 220px; } .rs-cv--b b { font-size: 20px; }
-    .rs-r { grid-template-columns: 10px minmax(0, 1fr); gap: 6px 14px; padding: 18px; } .rs-dot { grid-row: 1 / 4; align-self: start; margin-top: 6px; } .rs-r .rs-m, .rs-r__btn { grid-column: 2; } .rs-r__btn { justify-self: start; margin-top: 6px; }
+  @media (max-width: 900px) { .rs-f { grid-template-columns: minmax(0, 1fr); gap: 28px; } 
+    .rs-r { grid-template-columns: 112px minmax(0, 1fr); gap: 6px 14px; padding: 18px; } .rs-cv--s { width: 112px; grid-row: 1 / 4; align-self: start; } .rs-r .rs-m, .rs-r__btn { grid-column: 2; } .rs-r__btn { justify-self: start; margin-top: 6px; }
     .rs-line__in .x-btn { width: 100%; } .rs-f .x-btn { width: 100%; } }
   @media (max-width: 480px) { .rs-dlg { padding: 26px 20px; } }
 </style>
@@ -1327,14 +1334,14 @@
 <p class="phead__lead">学びや仕事に役立つ資料を、<wbr>無料で配布しています。<wbr>内容は随時更新します。</p>
 </div></section>
 <section class="x-sec x-sec--w" id="featured" aria-labelledby="rs-new"><div class="wrap rs-f">
-<div class="rs-cv rs-cv--b" style="--c:#0141D4" aria-hidden="true"><span>THE ACADEMY</span><b>SNS投稿 企画シート</b></div>
-<div class="rs-f__b"><p class="rs-tag">新着の資料<em>SNS・マーケ</em></p><h2 class="rs-f__t" id="rs-new">SNS投稿 企画シート</h2><p class="rs-f__d">投稿のねらい・ターゲット・内容を1枚に整理できるシートです。投稿を始める前に、何を誰に届けるかを決めておくと、迷わず続けられます。</p><p class="rs-m">PDF・4ページ</p>
-<button type="button" class="x-btn" data-dl="sns-plan" data-title="SNS投稿 企画シート" data-pdf=""><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></g></svg>無料でダウンロード</button>
-<p class="x-note">お名前とメールアドレスを入力すると、すぐにダウンロードできます。 <span class="x-todo">資料は見本</span></p></div>
+<img class="rs-cv rs-cv--b" src="assets/resources/chatgpt-mail.webp" alt="" loading="lazy">
+<div class="rs-f__b"><p class="rs-tag">新着の資料<em>AI・IT</em></p><h2 class="rs-f__t" id="rs-new">ChatGPTを使いこなす！ビジネスメール作成の効率化術</h2><p class="rs-f__d">ChatGPTに依頼内容と役割を伝える方法から、文章のスタイルの指定、出力の調整までを紹介。問い合わせへの返信・日程調整・フォローアップ・招待のプロンプト例つきです。</p><p class="rs-m">PDF・プロンプト例つき</p>
+<button type="button" class="x-btn" data-dl="chatgpt-mail" data-title="ChatGPTを使いこなす！ビジネスメール作成の効率化術" data-pdf=""><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></g></svg>無料でダウンロード</button>
+<p class="x-note">お名前とメールアドレスを入力すると、すぐにダウンロードできます。</p></div>
 </div></section>
 <section class="x-sec x-sec--g" id="list" aria-labelledby="rs-list"><div class="wrap">
 <h2 class="rs-h2" id="rs-list">資料の一覧</h2>
-<ul class="rs-l"><li class="rs-r"><span class="rs-dot" style="--c:#0F1B45" aria-hidden="true"></span><div class="rs-r__b"><p class="rs-tag">AI・IT</p><h3>ChatGPT 指示文の型 20選</h3><p class="rs-d">仕事でそのまま使える指示文を、目的別にまとめました。</p></div><span class="rs-m">PDF・18ページ</span><button type="button" class="rs-r__btn" data-dl="gpt-prompt" data-title="ChatGPT 指示文の型 20選" data-pdf=""><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></g></svg>ダウンロード</button></li><li class="rs-r"><span class="rs-dot" style="--c:#E46A1F" aria-hidden="true"></span><div class="rs-r__b"><p class="rs-tag">キャリア</p><h3>ポートフォリオ作成チェックリスト</h3><p class="rs-d">採用担当に伝わる作品の見せ方を、10項目で確認できます。</p></div><span class="rs-m">PDF・6ページ</span><button type="button" class="rs-r__btn" data-dl="pf-check" data-title="ポートフォリオ作成チェックリスト" data-pdf=""><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></g></svg>ダウンロード</button></li><li class="rs-r"><span class="rs-dot" style="--c:#2F6BFF" aria-hidden="true"></span><div class="rs-r__b"><p class="rs-tag">英語</p><h3>TOEIC 8週間 学習スケジュール表</h3><p class="rs-d">週2時間から始められる、書き込み式の計画表です。</p></div><span class="rs-m">PDF・3ページ</span><button type="button" class="rs-r__btn" data-dl="toeic-plan" data-title="TOEIC 8週間 学習スケジュール表" data-pdf=""><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></g></svg>ダウンロード</button></li><li class="rs-r"><span class="rs-dot" style="--c:#0141D4" aria-hidden="true"></span><div class="rs-r__b"><p class="rs-tag">SNS・マーケ</p><h3>Instagram 分析の見方ガイド</h3><p class="rs-d">インサイトのどの数字を見ればいいかを解説します。</p></div><span class="rs-m">PDF・12ページ</span><button type="button" class="rs-r__btn" data-dl="ig-insight" data-title="Instagram 分析の見方ガイド" data-pdf=""><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></g></svg>ダウンロード</button></li><li class="rs-r"><span class="rs-dot" style="--c:#0F1B45" aria-hidden="true"></span><div class="rs-r__b"><p class="rs-tag">AI・IT</p><h3>Googleスプレッドシート 時短関数まとめ</h3><p class="rs-d">よく使う関数を、使う場面ごとに整理しました。</p></div><span class="rs-m">PDF・10ページ</span><button type="button" class="rs-r__btn" data-dl="sheet-func" data-title="Googleスプレッドシート 時短関数まとめ" data-pdf=""><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></g></svg>ダウンロード</button></li></ul>
+<ul class="rs-l"><li class="rs-r"><img class="rs-cv rs-cv--s" src="assets/resources/logical-thinking.webp" alt="" loading="lazy"><div class="rs-r__b"><p class="rs-tag">ビジネス</p><h3>【初心者向け】ロジックツリーとピラミッドストラクチャーで学ぶ論理的思考の基本</h3><p class="rs-d">問題を分解して原因や解決策を整理する「ロジックツリー」と、結論から伝える「ピラミッドストラクチャー」の使い方を、具体例を交えて解説します。</p></div><span class="rs-m">PDF・初心者向け</span><button type="button" class="rs-r__btn" data-dl="logical-thinking" data-title="【初心者向け】ロジックツリーとピラミッドストラクチャーで学ぶ論理的思考の基本" data-pdf=""><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></g></svg>ダウンロード</button></li><li class="rs-r"><img class="rs-cv rs-cv--s" src="assets/resources/time-tracking.webp" alt="" loading="lazy"><div class="rs-r__b"><p class="rs-tag">キャリア</p><h3>キャリア実現のためのタイムトラッキングシート：時間の使い方を最適化しよう</h3><p class="rs-d">日々の業務や学習の時間を記録して、理想の時間配分と比べられるシートです。社会人向けと大学生向けの2種類があります。</p></div><span class="rs-m">シート・社会人／大学生</span><button type="button" class="rs-r__btn" data-dl="time-tracking" data-title="キャリア実現のためのタイムトラッキングシート：時間の使い方を最適化しよう" data-pdf=""><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></g></svg>ダウンロード</button></li><li class="rs-r"><img class="rs-cv rs-cv--s" src="assets/resources/smart-woop.webp" alt="" loading="lazy"><div class="rs-r__b"><p class="rs-tag">ビジネス</p><h3>知らないと損する！SMART×WOOPで達成率アップの目標設定術</h3><p class="rs-d">目標を具体的にする「SMART」と、障害を予測して対策を立てる「WOOP」の組み合わせ方を、すぐに実践できる例とともに紹介します。</p></div><span class="rs-m">PDF・実践例つき</span><button type="button" class="rs-r__btn" data-dl="smart-woop" data-title="知らないと損する！SMART×WOOPで達成率アップの目標設定術" data-pdf=""><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></g></svg>ダウンロード</button></li></ul>
 </div></section>
 <section class="rs-line" aria-labelledby="rs-line"><div class="wrap rs-line__in"><div><p class="rs-line__t" id="rs-line">新しい資料のお知らせは、公式LINEで</p><p class="rs-line__d">資料が増えたときにお知らせします。<wbr>全コース500円OFFのクーポンもお届けします。</p></div>
 <a class="x-btn x-btn--g" href="beginners.html#line"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3C6.5 3 2 6.6 2 11c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.5s5.9-3.5 8-6C21.4 14.3 22 12.7 22 11c0-4.4-4.5-8-10-8z"/></svg>友だち追加する</a></div></section>

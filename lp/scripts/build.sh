@@ -8,3 +8,4 @@ for f in gen_courses gen_howto gen_portfolio gen_blog gen_beginners gen_extra ge
   echo "ok $f"
 done
 LEGAL_SITE=1 python3 gen_legal.py > /dev/null && echo "ok gen_legal"
+python3 set_ogp.py > /dev/null && echo "ok set_ogp"

@@ -1,5 +1,5 @@
 # お役立ち資料（resources）：R3 の構成（新着1点＋一覧＋LINE）に、お名前・メールアドレスを入れてすぐダウンロードする受け取り方を組み合わせる
-# 資料は随時入れ替わる前提。RES は見本データで、PDF の URL と送信先は未設定（.x-todo）
+# 資料は随時入れ替わる前提。PDF の URL と送信先は未設定（.x-todo）
 import os, tempfile
 S = os.path.dirname(os.path.abspath(__file__))          # このスクリプトのフォルダ（lp/scripts）
 LPDIR = os.path.dirname(S)                              # 出力先（lp）
@@ -18,23 +18,22 @@ OK = ic('<circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/>', 2.2)
 LN = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3C6.5 3 2 6.6 2 11c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.5s5.9-3.5 8-6C21.4 14.3 22 12.7 22 11c0-4.4-4.5-8-10-8z"/></svg>'
 TODO = lambda t: f'<span class="x-todo">{t}</span>'
 
-# (id, カテゴリ, 資料名, 説明, 形式, 表紙の色, PDFのURL)
+# (id, カテゴリ, 資料名, 説明, 形式, 表紙の色（カテゴリ）, PDFのURL, 表紙の見出し（[]が強調）)
+# 資料は今の theacademyjapan.org/whitepaper の4点（2026-10-08 時点）。表紙は gen_wpcover.py で作る（W-4）
 RES = [
- ('sns-plan', 'SNS・マーケ', 'SNS投稿 企画シート', '投稿のねらい・ターゲット・内容を1枚に整理できるシートです。投稿を始める前に、何を誰に届けるかを決めておくと、迷わず続けられます。', 'PDF・4ページ', '#0141D4', ''),
- ('gpt-prompt', 'AI・IT', 'ChatGPT 指示文の型 20選', '仕事でそのまま使える指示文を、目的別にまとめました。', 'PDF・18ページ', '#0F1B45', ''),
- ('pf-check', 'キャリア', 'ポートフォリオ作成チェックリスト', '採用担当に伝わる作品の見せ方を、10項目で確認できます。', 'PDF・6ページ', '#E46A1F', ''),
- ('toeic-plan', '英語', 'TOEIC 8週間 学習スケジュール表', '週2時間から始められる、書き込み式の計画表です。', 'PDF・3ページ', '#2F6BFF', ''),
- ('ig-insight', 'SNS・マーケ', 'Instagram 分析の見方ガイド', 'インサイトのどの数字を見ればいいかを解説します。', 'PDF・12ページ', '#0141D4', ''),
- ('sheet-func', 'AI・IT', 'Googleスプレッドシート 時短関数まとめ', 'よく使う関数を、使う場面ごとに整理しました。', 'PDF・10ページ', '#0F1B45', ''),
+ ('chatgpt-mail', 'AI・IT', 'ChatGPTを使いこなす！ビジネスメール作成の効率化術', 'ChatGPTに依頼内容と役割を伝える方法から、文章のスタイルの指定、出力の調整までを紹介。問い合わせへの返信・日程調整・フォローアップ・招待のプロンプト例つきです。', 'PDF・プロンプト例つき', 'it', '', 'ChatGPTを使いこなす！<br>ビジネスメール作成の[効率化術]'),
+ ('logical-thinking', 'ビジネス', '【初心者向け】ロジックツリーとピラミッドストラクチャーで学ぶ論理的思考の基本', '問題を分解して原因や解決策を整理する「ロジックツリー」と、結論から伝える「ピラミッドストラクチャー」の使い方を、具体例を交えて解説します。', 'PDF・初心者向け', 'biz', '', 'ロジックツリーと<br>ピラミッドストラクチャーで<br>学ぶ[論理的思考]'),
+ ('time-tracking', 'キャリア', 'キャリア実現のためのタイムトラッキングシート：時間の使い方を最適化しよう', '日々の業務や学習の時間を記録して、理想の時間配分と比べられるシートです。社会人向けと大学生向けの2種類があります。', 'シート・社会人／大学生', 'ca', '', 'キャリア実現のための<br>[タイムトラッキングシート]'),
+ ('smart-woop', 'ビジネス', '知らないと損する！SMART×WOOPで達成率アップの目標設定術', '目標を具体的にする「SMART」と、障害を予測して対策を立てる「WOOP」の組み合わせ方を、すぐに実践できる例とともに紹介します。', 'PDF・実践例つき', 'biz', '', 'SMART×WOOPで<br>[達成率アップ]の目標設定術'),
 ]
 
-def cover(t, col, cls=''):
-    return f'<div class="rs-cv {cls}" style="--c:{col}" aria-hidden="true"><span>THE ACADEMY</span><b>{t}</b></div>'
+def cover(r, cls=''):  # 表紙（W-4）の画像
+    return f'<img class="rs-cv {cls}" src="assets/resources/{r[0]}.webp" alt="" loading="lazy">'
 def btn(r, label, cls='x-btn'):
     return f'<button type="button" class="{cls}" data-dl="{r[0]}" data-title="{r[2]}" data-pdf="{r[6]}">{DL}{label}</button>'
 
 f0 = RES[0]
-rows = ''.join(f'''<li class="rs-r"><span class="rs-dot" style="--c:{r[5]}" aria-hidden="true"></span><div class="rs-r__b"><p class="rs-tag">{r[1]}</p><h3>{r[2]}</h3><p class="rs-d">{r[3]}</p></div><span class="rs-m">{r[4]}</span>{btn(r, 'ダウンロード', 'rs-r__btn')}</li>''' for r in RES[1:])
+rows = ''.join(f'''<li class="rs-r">{cover(r, 'rs-cv--s')}<div class="rs-r__b"><p class="rs-tag">{r[1]}</p><h3>{r[2]}</h3><p class="rs-d">{r[3]}</p></div><span class="rs-m">{r[4]}</span>{btn(r, 'ダウンロード', 'rs-r__btn')}</li>''' for r in RES[1:])
 
 body = f'''<section class="phead" aria-labelledby="page-title"><div class="wrap">
 <nav class="crumb" aria-label="パンくずリスト"><a href="lp-design.html">トップ</a><span aria-hidden="true">/</span><span aria-current="page">お役立ち資料</span></nav>
@@ -42,10 +41,10 @@ body = f'''<section class="phead" aria-labelledby="page-title"><div class="wrap"
 <p class="phead__lead">学びや仕事に役立つ資料を、<wbr>無料で配布しています。<wbr>内容は随時更新します。</p>
 </div></section>
 <section class="x-sec x-sec--w" id="featured" aria-labelledby="rs-new"><div class="wrap rs-f">
-{cover(f0[2], f0[5], 'rs-cv--b')}
+{cover(f0, 'rs-cv--b')}
 <div class="rs-f__b"><p class="rs-tag">新着の資料<em>{f0[1]}</em></p><h2 class="rs-f__t" id="rs-new">{f0[2]}</h2><p class="rs-f__d">{f0[3]}</p><p class="rs-m">{f0[4]}</p>
 {btn(f0, '無料でダウンロード')}
-<p class="x-note">お名前とメールアドレスを入力すると、すぐにダウンロードできます。 {TODO('資料は見本')}</p></div>
+<p class="x-note">お名前とメールアドレスを入力すると、すぐにダウンロードできます。</p></div>
 </div></section>
 <section class="x-sec x-sec--g" id="list" aria-labelledby="rs-list"><div class="wrap">
 <h2 class="rs-h2" id="rs-list">資料の一覧</h2>
@@ -78,10 +77,9 @@ css = '''
   .x-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 50px; padding: 0 24px; border: 0; border-radius: 12px; background: var(--ts-primary); color: #fff; font: inherit; font-size: 15px; font-weight: 700; text-decoration: none; cursor: pointer; }
   .x-btn svg { width: 17px; height: 17px; } .x-btn--g { background: #06C755; }
   .x-note { margin: 10px 0 0; color: var(--ts-mid); font-size: 12.5px; line-height: 1.7; } .x-note a { color: var(--ts-primary); }
-  .rs-cv { position: relative; display: flex; flex-direction: column; justify-content: space-between; aspect-ratio: 1 / 1.3; padding: 24px; border-radius: 10px; background: var(--c); color: #fff; overflow: hidden; box-shadow: 0 10px 28px rgba(15,27,69,.16); }
-  .rs-cv::after { content: ""; position: absolute; right: -30%; bottom: -18%; width: 80%; aspect-ratio: 1; border-radius: 50%; background: rgba(255,255,255,.12); }
-  .rs-cv span { font-size: 10px; letter-spacing: .16em; opacity: .8; } .rs-cv b { position: relative; z-index: 1; font-size: 24px; line-height: 1.45; }
-  .rs-f { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 56px; align-items: center; }
+  .rs-cv { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 12px; box-shadow: 0 10px 28px rgba(15,27,69,.14); }
+  .rs-cv--s { width: 168px; border-radius: 8px; box-shadow: none; }
+  .rs-f { display: grid; grid-template-columns: minmax(0, 520px) minmax(0, 1fr); gap: 56px; align-items: center; }
   .rs-tag { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 0; color: var(--ts-primary); font-size: 12.5px; font-weight: 700; }
   .rs-tag em { padding: 1px 9px; border-radius: 99px; background: #FFF1E7; color: #E46A1F; font-style: normal; font-size: 11.5px; }
   .rs-f__t { margin: 10px 0 0; color: var(--ink); font-size: clamp(24px, 2.6vw, 30px); line-height: 1.45; }
@@ -89,8 +87,8 @@ css = '''
   .rs-m { margin: 8px 0 0; color: var(--ts-mid); font-size: 12.5px; white-space: nowrap; } .rs-f .x-btn { margin-top: 20px; }
   .rs-h2 { margin: 0 0 20px; color: var(--ink); font-size: clamp(20px, 2.2vw, 24px); }
   .rs-l { margin: 0; padding: 0; list-style: none; border-radius: 20px; background: #fff; box-shadow: 0 0 0 1px var(--line); }
-  .rs-r { display: grid; grid-template-columns: 10px minmax(0, 1fr) auto auto; gap: 20px; align-items: center; padding: 20px 24px; border-top: 1px solid var(--line); }
-  .rs-r:first-child { border-top: 0; } .rs-dot { width: 10px; height: 10px; border-radius: 3px; background: var(--c); }
+  .rs-r { display: grid; grid-template-columns: 168px minmax(0, 1fr) auto auto; gap: 20px; align-items: center; padding: 20px 24px; border-top: 1px solid var(--line); }
+  .rs-r:first-child { border-top: 0; }
   .rs-r h3 { margin: 4px 0 0; color: var(--ink); font-size: 16px; line-height: 1.5; } .rs-d { margin: 4px 0 0; color: var(--ts-mid); font-size: 13.5px; line-height: 1.7; } .rs-r .rs-m { margin: 0; }
   .rs-r__btn { display: inline-flex; align-items: center; gap: 6px; height: 42px; padding: 0 16px; border: 0; border-radius: 10px; background: #EEF2FD; color: var(--ts-primary); font: inherit; font-size: 13.5px; font-weight: 700; cursor: pointer; white-space: nowrap; }
   .rs-r__btn svg { width: 15px; height: 15px; } .rs-r__btn:hover { background: var(--ts-primary); color: #fff; }
@@ -111,8 +109,8 @@ css = '''
   .rs-done__ic { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: #E9F9EF; color: #06A04A; } .rs-done__ic svg { width: 30px; height: 30px; }
   .rs-done__d { margin: 0; color: var(--ts-mid); font-size: 14px; line-height: 1.8; } .rs-done .x-btn { width: 100%; } .rs-done .x-btn[aria-disabled="true"] { opacity: .45; pointer-events: none; }
   .rs-dlg [hidden] { display: none !important; }
-  @media (max-width: 900px) { .rs-f { grid-template-columns: minmax(0, 1fr); gap: 28px; } .rs-cv--b { max-width: 220px; } .rs-cv--b b { font-size: 20px; }
-    .rs-r { grid-template-columns: 10px minmax(0, 1fr); gap: 6px 14px; padding: 18px; } .rs-dot { grid-row: 1 / 4; align-self: start; margin-top: 6px; } .rs-r .rs-m, .rs-r__btn { grid-column: 2; } .rs-r__btn { justify-self: start; margin-top: 6px; }
+  @media (max-width: 900px) { .rs-f { grid-template-columns: minmax(0, 1fr); gap: 28px; } 
+    .rs-r { grid-template-columns: 112px minmax(0, 1fr); gap: 6px 14px; padding: 18px; } .rs-cv--s { width: 112px; grid-row: 1 / 4; align-self: start; } .rs-r .rs-m, .rs-r__btn { grid-column: 2; } .rs-r__btn { justify-self: start; margin-top: 6px; }
     .rs-line__in .x-btn { width: 100%; } .rs-f .x-btn { width: 100%; } }
   @media (max-width: 480px) { .rs-dlg { padding: 26px 20px; } }
 '''

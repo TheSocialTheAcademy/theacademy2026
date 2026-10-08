@@ -54,3 +54,19 @@ TA_THUMBS_BARE=1 TA_THUMBS_DIR=lp/assets/digest python3 lp/scripts/gen_thumbs.py
 ```bash
 python3 lp/scripts/gen_eyecatch.py && TA_JOB=/tmp/ta_eyecatch.json NODE_PATH=$(npm root -g) node lp/scripts/gen_thumbs.js && TA_JOB=/tmp/ta_eyecatch.json python3 lp/scripts/thumbs_webp.py
 ```
+
+## お役立ち資料の表紙（W-4）
+
+`lp/assets/resources/<資料のID>.webp`。資料のデータは `gen_resources.py` の RES（8番目が表紙の見出し）。
+
+```bash
+python3 lp/scripts/gen_wpcover.py && TA_JOB=/tmp/ta_wpcover.json NODE_PATH=$(npm root -g) node lp/scripts/gen_thumbs.js && TA_JOB=/tmp/ta_wpcover.json python3 lp/scripts/thumbs_webp.py
+```
+
+## OGP 画像（O-3）
+
+`lp/assets/ogp/`：共通の default.jpg、コース詳細の course-<slug>.jpg、記事の article-<キー>.jpg（1200×630）。サムネイル・アイキャッチを作り直したら、続けて実行する。各ページへの og タグは build.sh の最後（set_ogp.py）で書き込む。
+
+```bash
+python3 lp/scripts/gen_ogp.py && TA_JOB=/tmp/ta_ogp.json NODE_PATH=$(npm root -g) node lp/scripts/gen_ogp.js && python3 lp/scripts/gen_ogp.py save
+```

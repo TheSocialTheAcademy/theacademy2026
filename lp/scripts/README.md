@@ -24,5 +24,6 @@ bash lp/scripts/build.sh
 | `gen_resources.py` | お役立ち資料（resources.html） |
 | `gen_evidence.py` | 数字の根拠（evidence.html）。受講生の声のアイコンは `lp/assets/avatars/` |
 | `gen_legal.py` | 特定商取引法に基づく表記・プライバシーポリシー・利用規約（`LEGAL_SITE=1` のときだけ書き出す） |
+| `gen_replace_list.py` | 差し替え箇所の一覧（lp/docs/replace-list.html・.csv） |
 | `gen_legal_review.py` | 法務ページの文面レビュー用ページ（一時フォルダに legal-draft.html を書き出す） |
 | `slim_zips.py` | `downloads/` の素材 ZIP を、中身を変えずに軽くする（`pip install pyoxipng` が必要） |

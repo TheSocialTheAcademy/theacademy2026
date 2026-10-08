@@ -50,19 +50,16 @@ def cd_page(c):
     if cur.get('outcomes'): can = [o['h'] for o in cur['outcomes']][:4]
     for_l = cur['for'][:5] if cur.get('for') else FOR_CAT[cat]
     use_cur = bool(chs) and not is_tool and slug != 'sns-marketing'
-    dg = cur.get('digest'); dg_sec = dg_link = ''
-    if dg:  # 今のサイトと同じダイジェスト動画（Vimeo）。押すまでは読み込まない（ページを軽くするため）
+    dg = cur.get('digest'); fig_cap = f'完成する成果物：{d}（例）{"" if slug == "sns-marketing" else TODO_S("成果物の名前・画像は仮")}'
+    if dg:  # 成果物の画像の場所に、今のサイトと同じダイジェスト動画（Vimeo）。押すまでは読み込まない（ページを軽くするため）
         sec = dg.get('seconds'); ln = f'約{sec // 60}分{sec % 60:02d}秒' if sec else '約2〜3分'
-        dg_link = f'<a class="k2-dgl" href="#course-digest"><span aria-hidden="true">▶</span>ダイジェスト動画を見る<small>{ln}</small></a>'
-        dg_sec = (f'<section class="x-sec x-sec--w" id="course-digest" aria-labelledby="dg-title"><div class="wrap"><p class="sec-kicker">DIGEST</p>'
-                  f'<h2 class="sec-title" id="dg-title">ダイジェスト動画</h2><p class="k2-dg__lead">講義の雰囲気と、コースで学ぶ内容を{ln}でご覧いただけます。</p>'
-                  f'<div class="k2-dg"><button type="button" class="k2-dg__btn" data-vimeo="{dg["id"]}" data-title="{plain} ダイジェスト動画" aria-label="{plain}のダイジェスト動画を再生（{ln}）">'
-                  f'<img src="{dg["poster"]}" alt="" loading="lazy"><span class="k2-dg__t">{plain}<small>ダイジェスト動画</small></span><span class="k2-dg__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>'
-                  f'<span class="k2-dg__cap">{ln}</span></button></div></div></section>\n')
+        fig = (f'<div class="k2-dg"><button type="button" class="k2-dg__btn" data-vimeo="{dg["id"]}" data-title="{plain} ダイジェスト動画" aria-label="{plain}のダイジェスト動画を再生（{ln}）">'
+               f'<img src="{dg["poster"]}" alt=""><span class="k2-dg__t"><small>ダイジェスト動画</small>{plain}</span><span class="k2-dg__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>'
+               f'<span class="k2-dg__cap">{ln}</span></button></div>')
+        fig_cap = f'ダイジェスト動画（{ln}）：講義の雰囲気とコースの内容をご覧いただけます'
     if use_cur: flow_t, kick = f'カリキュラム（全{len(chs)}章・約{mins}分）', 'CURRICULUM'
     goal = (f'<p class="k2-goal">{CHK}受講後、{d}を仕上げる → <a href="portfolio.html">ポートフォリオ</a>に公開</p>' if use_cur else
             f'<p class="k2-goal">{CHK}Slackの中で、チームのタスクが見える状態に</p>' if is_tool else f'<p class="k2-goal">{CHK}{steps[-1][0]}で{d}が完成 → <a href="portfolio.html">ポートフォリオ</a>に公開</p>')
-    cap_todo = '' if slug == 'sns-marketing' else TODO_S('成果物の名前・画像は仮')
     rel = [x for x in COURSES if x[2] == cat and x[0] != slug][:3]
     if len(rel) < 3: rel += [x for x in COURSES if x[2] != cat and x[0] != slug and x not in rel][:3 - len(rel)]
     def rc(x):
@@ -87,9 +84,8 @@ def cd_page(c):
             + f'<div class="k2-top"><div><span class="k-cat" style="--cc:{col};--cb:{bg}">{name}</span>'
             f'<h1 class="k2-t" id="page-title">{head_t}</h1><p class="k2-name">{cur.get("name", "").removesuffix("コース") or title}</p><p class="k2-desc">{desc}</p><ul class="k-meta">{meta}</ul>'
             f'<div class="k2-pr"><p><small>価格（買い切り）</small><b>{pr}</b>{pr_note}</p><p class="k2-cp">{LN}{cp}</p></div>'
-            f'<div class="k2-cta"><a class="x-btn" href="#" data-todo="カート">このコースを受講する</a><a class="x-btn x-btn--w" href="contact.html?course={plain}">受講前に無料相談する</a></div>{dg_link}</div>'
-            f'<figure class="k2-fig">{fig}<figcaption>完成する成果物：{d}（例）{cap_todo}</figcaption></figure></div></div></section>\n'
-            + dg_sec +
+            f'<div class="k2-cta"><a class="x-btn" href="#" data-todo="カート">このコースを受講する</a><a class="x-btn x-btn--w" href="contact.html?course={plain}">受講前に無料相談する</a></div></div>'
+            f'<figure class="k2-fig">{fig}<figcaption>{fig_cap}</figcaption></figure></div></div></section>\n'
             f'<section class="x-sec x-sec--w" id="course-flow" aria-labelledby="flow-title"><div class="wrap"><p class="sec-kicker">{kick}</p><h2 class="sec-title" id="flow-title">{flow_t}{"" if use_cur else " " + TODO_S("内容は仮")}</h2>'
             + (f'<ol class="k2-cur">{cur_l}</ol>' if use_cur else f'<ol class="k2-tl" style="--n:{len(steps)}">{tl}</ol>') + f'{goal}</div></section>\n'
             f'<section class="x-sec x-sec--g" id="course-for" aria-label="こんな方に・できるようになること"><div class="wrap k-2"><div><h2 class="k-h2">こんな方に</h2><ul class="k-ul">{li(for_l)}</ul></div>'

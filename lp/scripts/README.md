@@ -28,7 +28,7 @@ bash lp/scripts/build.sh
 | `gen_legal_review.py` | 法務ページの文面レビュー用ページ（一時フォルダに legal-draft.html を書き出す） |
 | `slim_zips.py` | `downloads/` の素材 ZIP を、中身を変えずに軽くする（`pip install pyoxipng` が必要） |
 
-## コースのサムネイル（背景 C-4＋つくるもの X-2）
+## コースのサムネイル（カテゴリの単色グラデーション＋形6種類＋つくるもの）
 
 `lp/assets/thumbs/<slug>.webp`（1280×800）は、コース一覧のデータ（gen_courses.py の C）から作っています。コースを足したら、gen_courses.py の DELIV（成果物の名前）と gen_thumbs.py の ICON に1行ずつ足して、次を実行します（Node と Playwright が必要）。
 

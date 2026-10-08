@@ -13,11 +13,11 @@ CAT, C, DELIV = g['CAT'], g['C'], g['DELIV']
 # カテゴリごとのグラデーション（カテゴリ色 → ブランドの青系、3つ目は形の差し色）
 GR = {'it': ('#1E9E62', '#3E78FE', '#BFEAD3'), 'mk': ('#E46A1F', '#F29A50', '#FFD9C2'), 'en': ('#0141D4', '#3E78FE', '#B9CCFF'),
       'biz': ('#6B4FD8', '#3E78FE', '#D5CCFF'), 'cr': ('#D9467A', '#F76B38', '#F9C8D8')}
-# カテゴリの単色グラデーション（同じ色相の濃→淡）。TA_THUMBS_MODE=mono／mono-cat のときに使う
-GR_MONO = {'it': ('#1E9E62', '#4CC38A', '#BFEAD3'), 'mk': ('#E46A1F', '#F29A50', '#FFD9C2'), 'en': ('#0141D4', '#3E78FE', '#B9CCFF'),
-           'biz': ('#6B4FD8', '#9A83F0', '#D5CCFF'), 'cr': ('#D9467A', '#F07AA3', '#F9C8D8')}
+# カテゴリの単色グラデーション（同じ色相の濃→淡。淡い側も白い文字が読める濃さにしている）
+GR_MONO = {'it': ('#1E9E62', '#2FAE73', '#BFEAD3'), 'mk': ('#E46A1F', '#F29A50', '#FFD9C2'), 'en': ('#0141D4', '#3E78FE', '#B9CCFF'),
+           'biz': ('#6B4FD8', '#8A70E8', '#D5CCFF'), 'cr': ('#D9467A', '#E8608F', '#F9C8D8')}
 CAT_SHAPE = {'it': 2, 'mk': 1, 'en': 3, 'biz': 4, 'cr': 5}  # mono-cat：形もカテゴリで固定
-MODE = os.environ.get('TA_THUMBS_MODE', 'mix')  # mix＝カテゴリ色→ブランドの青（いま）
+MODE = os.environ.get('TA_THUMBS_MODE', 'mono')  # mono＝カテゴリの単色（採用）／mix＝カテゴリ色→ブランドの青（前の案）／mono-cat＝単色＋形もカテゴリで固定
 ORDER = {}  # slug → 一覧での並び順（背景の形の割り当てに使う）
 def rnd(slug): return random.Random(int(hashlib.md5(slug.encode()).hexdigest()[:8], 16))
 P = {  # 線アイコン（24×24）

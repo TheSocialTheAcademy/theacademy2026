@@ -35,15 +35,15 @@ GOALS = [
  ('mk', '発信を強みにしたい', ['mk', 'cr'], ic('<path d="M4 11v3a1 1 0 0 0 1 1h2l6 4V6L7 10H5a1 1 0 0 0-1 1z"/><path d="M17 9a4 4 0 0 1 0 6"/>')),
  ('en', '英語で選択肢を広げたい', ['en'], ic('<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/>')),
 ]
-# コース一覧（プロトタイプのコース。価格は一部が現行サイトの掲載価格、期間・レベルの未確定分は空欄）
+# コース一覧（今のサイトで販売中のコースは、価格・レベルを今のサイトに合わせる。章数・時間は course_data.json から）
 C = [
  ('sns-marketing', 'SNSマーケティング実践', 'mk', '顧客理解から数値改善までを、一つのキャンペーンとして実践します。', None, '8週間', '週2〜3時間', 'プロ', 'assets/photos/sns-phone.webp'),
  ('ai-efficiency', '生成AI 業務改善', 'it', '生成AIとノーコードで、調査・資料作成・定型業務を効率化します。', None, '6週間', '週2時間', 'プロ', 'assets/photos/ai-laptop.webp'),
  ('toeic-700', 'TOEIC L&amp;R 700点突破', 'en', '海外経験豊富なコーチと、4技能をバランスよく強化します。', None, '3か月', '週2回・全24回', 'プレミア', 'assets/photos/toeic-study.webp'),
- ('event-design', 'イベントデザイン', 'biz', '目的設定から当日運営まで、成果につながるイベントづくりを学びます。', 9800, '5週間', '週2時間', 'プロ', None),
- ('marketing-basic', 'マーケティング戦略基礎', 'mk', '市場分析から戦略立案・実行・検証までを体系的に学びます。', 11800, None, None, 'プロ', None),
- ('instagram', 'インスタグラム', 'mk', 'インスタグラムで、個人やビジネスを効果的にプロモーションします。', 7900, None, None, 'プロ', None),
- ('automation', '自動化ツール開発', 'it', 'JavaScriptの基礎から、仕様に基づいた自動化ツールを開発します。', 12800, None, None, 'プレミア', None),
+ ('event-design', 'イベントデザイン', 'biz', '目的設定から当日運営まで、成果につながるイベントづくりを学びます。', 9800, None, None, 'ベーシック', None),
+ ('marketing-basic', 'マーケティング戦略基礎', 'mk', '市場分析から戦略立案・実行・検証までを体系的に学びます。', 11800, None, None, 'ベーシック', None),
+ ('instagram', 'インスタグラム', 'mk', 'インスタグラムで、個人やビジネスを効果的にプロモーションします。', 7900, None, None, 'ベーシック', None),
+ ('automation', '自動化ツール開発', 'it', 'JavaScriptの基礎から、仕様に基づいた自動化ツールを開発します。', 12800, None, None, 'ベーシック', None),
  ('chatgpt-basic', '初級編 ChatGPT', 'it', 'ChatGPTの概要から活用方法までを総合的に学びます。', 2980, None, None, 'ベーシック', None),
  ('line-official', '公式LINE運用', 'it', '資料請求・予約受付などを、公式LINEで自分で構築します。', 3980, None, None, 'ベーシック', None),
  ('business-english', 'ビジネス英語初級', 'en', 'ビジネス英語の基本表現を実践的に学びます。', 3000, None, None, 'ベーシック', None),
@@ -51,11 +51,18 @@ C = [
  ('canva-basic', 'Canva初級', 'cr', 'Canva無料版で「自分らしさ」を伝えるデザインを学びます。', 6400, None, None, 'ベーシック', None),
 ]
 
+# 今の theacademyjapan.org のコース詳細（章立て・時間・こんな方に・できるようになること）。Wix 側の内容が正
+CD = json.load(open(os.path.join(S, 'course_data.json')))['courses']
+def cur_meta(slug):  # 期間の決まっていないコースは、今のサイトの章数・動画時間を出す
+    d = CD.get(slug) or {}
+    return (f'全{len(d["chapters"])}章', f'約{d["minutes"]}分') if d.get('chapters') and d.get('minutes') else (None, None)
+
 LINE_SM = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3.5c5 0 9 3.2 9 7.2 0 3.9-3.8 7.1-8.6 7.2-.5.4-2.7 2.3-4.2 2.6-.4.1-.4-.3-.3-.6l.5-2.4C5.3 16.3 3 13.7 3 10.7 3 6.7 7 3.5 12 3.5z"/></svg>'
 def chref(slug): return f'course-{slug}.html'  # コース詳細（K2）
 def card(i, c):
     slug, title, cat, desc, price, dur, time, lv, img = c
     name, col, bg, svg = CAT[cat]
+    if not dur: dur, time = cur_meta(slug)
     thumb = (f'<div class="cv cv--img"><img src="{img}" loading="lazy" alt=""></div>' if img else
              f'<div class="cv cv--g" style="--cc:{col};--cb:{bg}" aria-hidden="true"><span class="cv__dots"></span><span class="cv__ic">{svg}</span><b>{name}</b></div>')
     meta = ''.join(f'<span>{ic_}{t}</span>' for ic_, t in ((CAL, dur), (CLOCK, time), (LEVEL, lv)) if t)

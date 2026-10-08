@@ -40,16 +40,16 @@ IMG = {'strategy': ('assets/outcomes/marketing-strategy.webp', 'マーケティ�
        'event': ('assets/outcomes/event-plan.webp', '架空イベントの運営計画。開催までの準備工程表と、当日の進行・キューシート'),
        'eng': ('assets/outcomes/english-presentation.webp', 'イベントプロデューサーとしての仕事を紹介する、5分間の英語プレゼン資料3枚')}
 def ov(k):
-    if k in IMG: return f'<div class="oc__v oc__v--img"><img src="{IMG[k][0]}" alt="{IMG[k][1]}" loading="lazy"></div>'
+    if k in IMG: return f'<div class="oc__v oc__v--img"><img src="{IMG[k][0]}" alt="作例：{IMG[k][1]}" loading="lazy"><span class="oc__ex">作例</span></div>'
     return f'<div class="oc__v">{M[k]}</div>'
 outs = ''.join(f'<li class="oc">{ov(k)}<div class="oc__b"><span class="oc__cat" style="--cc:{col};--cb:{bg}">{cat}</span><h3>{t}</h3><p>{d}</p></div></li>'
                for k, cat, col, bg, t, d in OUTS)
 outcomes = f'''<section class="hl-out" id="outcomes" aria-labelledby="out-title"><div class="wrap">
 <header class="sec-head"><div><p class="sec-kicker">LEARNING OUTCOMES</p><h2 class="sec-title" id="out-title">できるようになったことが、<wbr>自信になる。</h2>
-<p class="sec-lead">課題を終えることではなく、<wbr>仕事で使えるものを完成させること。<wbr>受講者が生み出した成果の一部をご紹介します。</p></div>
+<p class="sec-lead">課題を終えることではなく、<wbr>仕事で使えるものを完成させること。<wbr>コースでつくる成果物の作例をご紹介します。</p></div>
 <a class="sec-more" href="courses.html">コースを探す<span class="sec-more__arrow">{ARROW}</span></a></header>
 <ul class="ocs">{outs}</ul>
-<p class="hl-note">※成果物はコースによって異なります。画面はイメージです。</p>
+<p class="hl-note">※画像はすべて作例です。実際の成果物はコースによって異なります。</p>
 </div></section>'''
 
 # ── ② HOW IT WORKS：知る→試す→形にする→共有する（01〜03が「学ぶ」、04が「残す」）
@@ -115,7 +115,7 @@ css = r'''
   .oc { display: flex; flex-direction: column; border-radius: 20px; background: #fff; box-shadow: 0 0 0 1px var(--line); overflow: hidden; }
   .oc__v { display: grid; place-items: center; height: 200px; padding: 20px; background: linear-gradient(160deg, #F7F9FE 0%, #E6EDFD 100%); overflow: hidden; }
   .oc__b { padding: 20px 22px 22px; }
-  .oc__v--img { padding: 0; } .oc__v--img img { display: block; width: 100%; height: 100%; object-fit: contain; }
+  .oc__v--img { position: relative; padding: 0; } .oc__ex { position: absolute; right: 10px; top: 10px; padding: 2px 9px; border-radius: 4px; background: rgba(15,27,69,.78); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: .06em; } .oc__v--img img { display: block; width: 100%; height: 100%; object-fit: contain; }
   .oc__cat { display: inline-block; padding: 2px 10px; border-radius: 99px; background: var(--cb); color: var(--cc); font-size: 11.5px; font-weight: 700; }
   .oc h3 { margin: 10px 0 0; color: var(--ink); font-size: 17px; }
   .oc__b p { word-break: keep-all; overflow-wrap: anywhere; margin: 6px 0 0; color: var(--ts-mid); font-size: 13.5px; line-height: 1.75; }

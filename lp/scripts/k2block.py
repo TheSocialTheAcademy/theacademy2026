@@ -1,10 +1,11 @@
 # ═════════ コース詳細（K2 成果物から見せる型）：全コース分を同じ型で作る ═════════
 C, CAT, chref = g['C'], g['CAT'], g['chref']
 TODO_S = lambda t='仮': f'<span class="x-todo">{t}</span>'
-DELIV = {'sns-marketing': 'SNSキャンペーン企画書', 'ai-efficiency': '業務を自動化する仕組み', 'toeic-700': '英語で伝える5分間プレゼン', 'event-design': 'イベント運営計画書',
-         'marketing-basic': 'マーケティング戦略シート', 'instagram': 'Instagramの投稿企画シート', 'automation': '業務自動化ツール', 'chatgpt-basic': '仕事で使えるプロンプト集',
-         'line-official': '公式LINEの予約・資料請求の仕組み', 'business-english': 'ビジネスメールの定型文集', 'project-management': 'プロジェクト計画書', 'canva-basic': 'SNS投稿のデザインセット',
+DELIV = {'sns-marketing': 'SNSキャンペーン企画書', 'ai-efficiency': '業務改善の仕組み（AI活用）', 'toeic-700': '英語で伝える5分間プレゼン', 'event-design': 'イベント企画書・運営マニュアル',
+         'marketing-basic': 'マーケティング戦略シート', 'instagram': 'Instagramアカウント戦略シート', 'automation': 'GASで作るタスク管理ツール', 'chatgpt-basic': '仕事で使えるプロンプト集',
+         'line-official': '公式LINEの資料請求・予約の仕組み', 'business-english': '英語の自己紹介・ビジネスメール文例集', 'project-management': 'プロジェクト計画書（WBS）', 'canva-basic': 'SNS投稿・自己PRのデザインセット',
          'slack-gas-task': 'Slackで完結するタスク管理'}
+CD = g['CD']  # 今のサイトのコース詳細（course_data.json）
 FOR_CAT = {'it': ['毎日の作業に、時間を取られすぎている', 'ツールを使いこなして、仕事を楽にしたい', '社内のデジタル化を任された'],
            'mk': ['発信や集客を任されたが、何から始めればいいか分からない', '投稿はしているが、反応や成果につながらない', '企画から振り返りまで、一通り経験しておきたい'],
            'en': ['英語を使う仕事に、自信を持って臨みたい', '独学が続かず、伸び悩んでいる', 'スコアや実務で、目に見える成果を出したい'],
@@ -21,8 +22,13 @@ def cd_page(c):
     slug, title, cat, desc, price, dur, time, lv, img = c
     name, col, bg, svg = CAT[cat]; d = DELIV[slug]; plain = title.replace('&amp;', '&')
     is_tool = slug == 'slack-gas-task'
+    cur = CD.get(slug) or {}; chs = cur.get('chapters') or []; mins = cur.get('minutes')
+    if cur.get('desc') and len(cur['desc']) <= 200: desc = cur['desc']
+    if not price and cur.get('price'): price = cur['price']
+    if not dur and chs and mins: dur_m, time = f'全{len(chs)}章', f'約{mins}分'
+    else: dur_m = dur
     head_t = (f'{dur}で、<br>{d}を<br>1本仕上げる。' if dur else ('Slackだけで、<br>タスク管理を<br>完結させる。' if is_tool else f'{d}を、<br>自分の手で<br>仕上げる。'))
-    meta = ''.join(f'<li>{x}</li>' for x in ([dur, time, lv, '動画＋演習'] if not is_tool else ['業務効率化ツール', '仕様書つき']) if x)
+    meta = ''.join(f'<li>{x}</li>' for x in ([dur_m, time, lv, '動画＋演習'] if not is_tool else ['業務効率化ツール', '仕様書つき', f'解説動画 約{mins}分' if mins else None]) if x)
     pr = f'¥{price:,}' if price else '¥—'
     pr_note = '' if price else TODO_S('価格の確定待ち')
     cp = f'LINEクーポンで ¥{price - 500:,}' if price else 'LINEクーポンで500円OFF'
@@ -36,7 +42,12 @@ def cd_page(c):
         flow_t = 'ツール導入までの流れ' if is_tool else '受講の流れ'; kick = 'FLOW'
         if is_tool: steps = [('STEP 1', '仕様書を確認する', 'できること・必要な準備をつかむ'), ('STEP 2', 'Slackに設定する', '仕様書どおりにセットアップ'), ('STEP 3', 'チームで使い始める', 'タスク・FAQ・ガントを共有'), ('STEP 4', '運用を整える', '進み具合を見ながら改善')]
         can = [f'{d}を、自分の仕事に合わせて仕上げられる', '学んだ考え方を、ほかの仕事にも応用できる', '成果物をポートフォリオに公開して、伝えられる']
-    goal = (f'<p class="k2-goal">{CHK}Slackの中で、チームのタスクが見える状態に</p>' if is_tool else f'<p class="k2-goal">{CHK}{steps[-1][0]}で{d}が完成 → <a href="portfolio.html">ポートフォリオ</a>に公開</p>')
+    if cur.get('outcomes'): can = [o['h'] for o in cur['outcomes']][:4]
+    for_l = cur['for'][:5] if cur.get('for') else FOR_CAT[cat]
+    use_cur = bool(chs) and not is_tool and slug != 'sns-marketing'
+    if use_cur: flow_t, kick = f'カリキュラム（全{len(chs)}章・約{mins}分）', 'CURRICULUM'
+    goal = (f'<p class="k2-goal">{CHK}受講後、{d}を仕上げる → <a href="portfolio.html">ポートフォリオ</a>に公開</p>' if use_cur else
+            f'<p class="k2-goal">{CHK}Slackの中で、チームのタスクが見える状態に</p>' if is_tool else f'<p class="k2-goal">{CHK}{steps[-1][0]}で{d}が完成 → <a href="portfolio.html">ポートフォリオ</a>に公開</p>')
     cap_todo = '' if slug == 'sns-marketing' else TODO_S('成果物の名前・画像は仮')
     rel = [x for x in COURSES if x[2] == cat and x[0] != slug][:3]
     if len(rel) < 3: rel += [x for x in COURSES if x[2] != cat and x[0] != slug and x not in rel][:3 - len(rel)]
@@ -45,6 +56,10 @@ def cd_page(c):
         p2 = f'<span class="k-rc__p">通常 ¥{x[4]:,}<em>LINEクーポン適用 ¥{x[4] - 500:,}</em></span>' if x[4] else '<span class="k-rc__p">¥—（価格の確定待ち）</span>'
         return f'<a class="k-rc" href="{chref(x[0])}"><span class="k-rc__v" style="--cc:{c2};--cb:{b2}">{s2}</span><b>{x[1]}</b><small>{n2}・{x[7]}</small>{p2}</a>'
     li = lambda xs: ''.join(f'<li>{CHK}{x}</li>' for x in xs)
+    def ch(x):  # 「イベントを企画しよう - 企画の詳細を決めよう」は、前半を小さな見出しにする
+        a, _, b = x.partition(' - ')
+        return f'<p><small>{a}</small>{b}</p>' if b else f'<p>{x}</p>'
+    cur_l = ''.join(f'<li><span>{i + 1:02d}</span>{ch(x)}</li>' for i, x in enumerate(chs))
     tl = ''.join(f'<li><span>{i + 1}</span><p class="k2-tl__w">{w}</p><b>{a}</b><small>{b}</small></li>' for i, (w, a, b) in enumerate(steps))
     how = ''.join(f'<li><b>STEP {i + 1}</b><span>{a}</span><small>{b}</small></li>' for i, (a, b) in enumerate([('知る', '短い講義と事例'), ('試す', '自分の仕事で小さく'), ('形にする', '成果物に仕上げる'), ('共有する', 'ポートフォリオへ')]))
     faqs = ''.join(f'<a href="faq.html#{q}">{t}{ARROW}</a>' for q, t in CD_FAQ)
@@ -56,13 +71,13 @@ def cd_page(c):
     body = (f'<section class="k2-hero" id="course-head" aria-labelledby="page-title"><div class="wrap">'
             + crumb(('コースを探す', 'courses.html'), (plain, None))
             + f'<div class="k2-top"><div><span class="k-cat" style="--cc:{col};--cb:{bg}">{name}</span>'
-            f'<h1 class="k2-t" id="page-title">{head_t}</h1><p class="k2-name">{title}</p><p class="k2-desc">{desc}</p><ul class="k-meta">{meta}</ul>'
+            f'<h1 class="k2-t" id="page-title">{head_t}</h1><p class="k2-name">{cur.get("name", "").removesuffix("コース") or title}</p><p class="k2-desc">{desc}</p><ul class="k-meta">{meta}</ul>'
             f'<div class="k2-pr"><p><small>価格（買い切り）</small><b>{pr}</b>{pr_note}</p><p class="k2-cp">{LN}{cp}</p></div>'
             f'<div class="k2-cta"><a class="x-btn" href="#" data-todo="カート">このコースを受講する</a><a class="x-btn x-btn--w" href="contact.html?course={plain}">受講前に無料相談する</a></div></div>'
             f'<figure class="k2-fig">{fig}<figcaption>完成する成果物：{d}（例）{cap_todo}</figcaption></figure></div></div></section>\n'
-            f'<section class="x-sec x-sec--w" id="course-flow" aria-labelledby="flow-title"><div class="wrap"><p class="sec-kicker">{kick}</p><h2 class="sec-title" id="flow-title">{flow_t} {TODO_S("内容は仮")}</h2>'
-            f'<ol class="k2-tl" style="--n:{len(steps)}">{tl}</ol>{goal}</div></section>\n'
-            f'<section class="x-sec x-sec--g" id="course-for" aria-label="こんな方に・できるようになること"><div class="wrap k-2"><div><h2 class="k-h2">こんな方に</h2><ul class="k-ul">{li(FOR_CAT[cat])}</ul></div>'
+            f'<section class="x-sec x-sec--w" id="course-flow" aria-labelledby="flow-title"><div class="wrap"><p class="sec-kicker">{kick}</p><h2 class="sec-title" id="flow-title">{flow_t}{"" if use_cur else " " + TODO_S("内容は仮")}</h2>'
+            + (f'<ol class="k2-cur">{cur_l}</ol>' if use_cur else f'<ol class="k2-tl" style="--n:{len(steps)}">{tl}</ol>') + f'{goal}</div></section>\n'
+            f'<section class="x-sec x-sec--g" id="course-for" aria-label="こんな方に・できるようになること"><div class="wrap k-2"><div><h2 class="k-h2">こんな方に</h2><ul class="k-ul">{li(for_l)}</ul></div>'
             f'<div><h2 class="k-h2">できるようになること</h2><ul class="k-ul">{li(can)}</ul></div></div></section>\n'
             f'<section class="x-sec x-sec--w" id="course-how" aria-labelledby="how-title"><div class="wrap"><h2 class="k-h2" id="how-title">学び方</h2><ol class="k-how">{how}</ol>'
             f'<a class="k-a" href="how-to-learn.html#how">学び方をもっと知る{ARROW}</a></div></section>\n'

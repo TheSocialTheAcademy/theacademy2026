@@ -41,7 +41,6 @@ A = {
  'brand':     ('ビジネス', '2026.04.30', 6, '選ばれる理由を言葉にする、<wbr>ブランドコンセプトの考え方', 'お客様が感じている価値を、短い言葉にまとめる手順。', 'assets/journal/brand.webp', 45),
  'present':   ('英語・TOEIC', '2026.04.16', 5, '5分で伝わる、<wbr>英語プレゼンの組み立て方', '結論から話す型と、緊張しても崩れない準備のしかた。', 'assets/journal/present.webp', 58),
 }
-def small(k): return A[k][5].replace('assets/journal/', 'assets/photos/articles/')  # 小さい画像は見出しが読めないため、文字なしの写真
 def href(k): return 'article.html' if k == 'weekly2h' else f'/blog/{k}'  # 記事ページは見本の1本だけ
 def meta(k):
     c, d, m = A[k][0], A[k][1], A[k][2]
@@ -60,7 +59,7 @@ pagehead = f'''<section class="phead" aria-labelledby="page-title"><div class="w
 RANK = {'week': ['weekly2h', 'chatgpt5', 'snscamp', 'restart', 'phrase20'], 'month': ['portfolio', 'weekly2h', 'aimemo', 'chatgpt5', 'insta1']}
 def rank_html(key, hidden):
     ks = RANK[key]; top = ks[0]
-    lst = ''.join(f'<li><a class="rk" href="{href(k)}"><span class="rk__n">{i + 2}</span><span class="rk__ph"><img src="{small(k)}" alt="" loading="lazy"></span><span class="rk__b">{meta(k)}<b>{A[k][3]}</b></span></a></li>' for i, k in enumerate(ks[1:]))
+    lst = ''.join(f'<li><a class="rk" href="{href(k)}"><span class="rk__n">{i + 2}</span><span class="rk__ph"><img src="{A[k][5]}" alt="" loading="lazy"></span><span class="rk__b">{meta(k)}<b>{A[k][3]}</b></span></a></li>' for i, k in enumerate(ks[1:]))
     return f'''<div class="rk-panel" data-period="{key}"{" hidden" if hidden else ""}>
 <a class="rk-top" href="{href(top)}"><span class="rk-top__ph"><img src="{A[top][5]}" alt="" loading="lazy"><span class="rk__n rk__n--1">1</span></span><span class="rk-top__b">{meta(top)}<b>{A[top][3]}</b><span class="rk-top__ex">{A[top][4]}</span></span></a>
 <ol class="rk-list">{lst}</ol></div>'''
@@ -79,7 +78,7 @@ rated = f'''<section class="bl-rated" id="rated" aria-labelledby="rated-title"><
 </div></section>'''
 
 # ── ④ 最新記事（カテゴリ絞り込み・並び替え・もっと見る）
-latest_items = ''.join(f'<li class="lt" data-cat="{A[k][0]}" data-date="{A[k][1]}"><a href="{href(k)}"><span class="lt__ph"><img src="{small(k)}" alt="" loading="lazy"></span><span class="lt__b">{meta(k)}<b>{A[k][3]}</b><span class="lt__ex">{A[k][4]}</span></span></a></li>' for k in sorted(A, key=lambda k: A[k][1], reverse=True))
+latest_items = ''.join(f'<li class="lt" data-cat="{A[k][0]}" data-date="{A[k][1]}"><a href="{href(k)}"><span class="lt__ph"><img src="{A[k][5]}" alt="" loading="lazy"></span><span class="lt__b">{meta(k)}<b>{A[k][3]}</b><span class="lt__ex">{A[k][4]}</span></span></a></li>' for k in sorted(A, key=lambda k: A[k][1], reverse=True))
 chips = '<button type="button" class="bl-chip" aria-pressed="true" data-cat="">すべて</button>' + ''.join(f'<button type="button" class="bl-chip" aria-pressed="false" data-cat="{c}">{c}</button>' for c in cats)
 latest = f'''<section class="bl-latest" id="latest" aria-labelledby="latest-title"><div class="wrap">
 <header class="sec-head"><div><p class="sec-kicker">LATEST</p><h2 class="sec-title" id="latest-title">最新記事</h2></div>

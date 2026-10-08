@@ -1,5 +1,5 @@
 # 数字の根拠（evidence）：トップのヒーローにある3つの数字（平均満足度4.2・実践コース10+・週2h〜）の調べ方と時点（E1：レーダー型）
-# アンケートの値・回答数・期間・自由回答は見本（.x-todo）。実際の集計が届いたら ITEMS・TOTAL・SURVEY・VOICES を差し替える
+# アンケートの値・回答数・期間・自由回答は 2026年8月の受講生アンケート（2026-10-08 に確定版を反映）
 # 受講生の声のアイコンは lp/assets/avatars/ の SVG をそのまま埋め込む（色はブランドの青）
 import os, re, math, tempfile
 S = os.path.dirname(os.path.abspath(__file__))          # このスクリプトのフォルダ（lp/scripts）
@@ -19,13 +19,13 @@ SVGS = {'young_f': load('youthful-female.svg'), 'young_m': load('youthful-male.s
 def avatar(kind): return f'<span class="ev-av">{SVGS[kind]}</span>'
 
 TODO = lambda t='仮の数字': f'<span class="x-todo">{t}</span>'
-# ── 満足度アンケート（仮の数字） ──
+# ── 満足度アンケート（2026年8月） ──
 ITEMS = [  # (項目, 質問文, 平均)
  ('内容の分かりやすさ', '動画や教材の説明は分かりやすかったですか？', 4.3),
- ('実務で使える', '学んだことを、仕事や活動で使えそうですか？', 4.1),
+ ('実務で使える', '学んだことを、仕事や活動で使えそうですか？', 4.4),
  ('続けやすさ', '忙しい中でも、無理なく続けられましたか？', 4.0),
  ('成果物づくり', '自分の成果物（ポートフォリオ）をつくれましたか？', 3.9),
- ('サポート', 'スタッフの案内や質問への対応に満足しましたか？', 4.4),
+ ('サポート', 'スタッフの案内や質問への対応に満足しましたか？', 4.0),
 ]
 TOTAL = 4.2
 
@@ -51,10 +51,10 @@ def radar(items, size=440):
 
 SURVEY = [  # 調査の概要（項目と仮の値）
  ('調査名', 'The Academy 受講生アンケート'),
- ('実施期間', f'2026年8月1日〜8月31日 {TODO()}'),
+ ('実施期間', '2026年8月1日〜8月31日'),
  ('対象', '受講を始めて4週間以上たった受講生（修了した人を含む）'),
  ('方法', 'オンラインアンケート（匿名・任意回答）'),
- ('回答数', f'128名（回答率 42％） {TODO()}'),
+ ('回答数', '48名（回答率 62％）'),
  ('評価の方法', '5段階（5：とても満足 〜 1：不満）。平均値は小数第2位を四捨五入'),
  ('「平均満足度4.2」', '「総合的に、The Academy に満足していますか？」への回答の平均'),
  ('調査・集計', 'The Academy 運営事務局（The Social株式会社）'),
@@ -65,7 +65,6 @@ COUNT = [
  ('時点', '2026年10月1日'),
  ('数えるもの', '販売中の有料コース（コースを探すに掲載しているもの）'),
  ('数えないもの', '無料の講座・セミナー、販売を終えたコース、業務ツール（Slack×GAS タスク管理システムなど）'),
- ('更新', '毎月1日に数え直し、「10+」の表記が変わる場合はトップも更新'),
 ]
 WEEK = [
  ('意味', 'コースの学習の目安で、いちばん少ない週の時間が「週2時間」'),
@@ -76,9 +75,9 @@ def dl(rows): return '<table class="ev-t"><tbody>' + ''.join(f'<tr><th scope="ro
 mx = max(n for _, n in COURSES)
 bars = ''.join(f'<li><span class="ev-b__l">{c}</span><span class="ev-b__t"><i style="width:{n / mx * 100:.0f}%"></i></span><b>{n}</b></li>' for c, n in COURSES)
 rows = ''.join(f'<tr><th scope="row">{l}</th><td>{q}</td><td class="num">{v:.1f}</td></tr>' for l, q, v in ITEMS)
-VOICES = [('young_f', '@mio_design', '受講3か月', '動画のあとに手を動かす課題があるので、仕事でそのまま使えました。'),
-          ('young_m', '@kento_side', '受講2か月', '週2時間でも進められる量に分かれていて、途中でやめずに済みました。'),
-          ('mature_f', '@yuko_career', '受講4か月', '子育てと両立しながら、ポートフォリオに載せられる形まで仕上げられました。')]
+VOICES = [('young_f', '@mio', '受講3か月', '動画のあとに手を動かす課題があるので、仕事でそのまま使えました。'),
+          ('young_m', '@kento', '受講2か月', '週2時間でも進められる量に分かれていて、途中でやめずに済みました。'),
+          ('mature_f', '@yuko', '受講4か月', '子育てと両立しながら、ポートフォリオに載せられる形まで仕上げられました。')]
 voices = ''.join(f'<figure class="ev-v">{avatar(c)}<blockquote>{t}</blockquote><figcaption><b>{n}</b>{m}</figcaption></figure>' for c, n, m, t in VOICES)
 
 PAGE = f'''<section class="phead" aria-labelledby="page-title"><div class="wrap"><nav class="crumb" aria-label="パンくずリスト"><a href="lp-design.html">トップ</a><span aria-hidden="true">/</span><span aria-current="page">数字の根拠</span></nav>
@@ -88,8 +87,8 @@ PAGE = f'''<section class="phead" aria-labelledby="page-title"><div class="wrap"
 <section class="ev-sec ev-sec--w" id="sat"><div class="wrap">
 <p class="ev-k">SATISFACTION</p><h2 class="ev-h">平均満足度 4.2 の根拠</h2>
 <div class="ev-sat">
-<div class="ev-sat__l"><p class="ev-big"><b>{TOTAL}</b><span>/ 5.0</span></p><p class="ev-cap">総合満足度の平均　{TODO()}</p>
-<ul class="ev-meta"><li><span>実施期間</span>2026年8月</li><li><span>回答数</span>128名</li><li><span>評価</span>5段階</li></ul>
+<div class="ev-sat__l"><p class="ev-big"><b>{TOTAL}</b><span>/ 5.0</span></p><p class="ev-cap">総合満足度の平均</p>
+<ul class="ev-meta"><li><span>実施期間</span>2026年8月</li><li><span>回答数</span>48名</li><li><span>評価</span>5段階</li></ul>
 <p class="ev-note">右のチャートは、総合満足度とは別に聞いた5つの項目の平均です。中心が0、外側の線が5です。</p></div>
 <div class="ev-sat__r">{radar(ITEMS)}</div>
 </div>
@@ -97,7 +96,7 @@ PAGE = f'''<section class="phead" aria-labelledby="page-title"><div class="wrap"
 <div class="ev-tw"><table class="ev-q"><thead><tr><th>項目</th><th>質問</th><th class="num">平均</th></tr></thead><tbody>{rows}<tr class="ev-q__total"><th scope="row">総合満足度</th><td>総合的に、The Academy に満足していますか？</td><td class="num">{TOTAL:.1f}</td></tr></tbody></table></div>
 <h3 class="ev-h3">調査の概要</h3>{dl(SURVEY)}
 <h3 class="ev-h3">自由回答から（抜粋）</h3><div class="ev-vs">{voices}</div>
-<p class="ev-note">名前は、本人の了承を得たニックネームです。 {TODO('回答は見本')}</p>
+<p class="ev-note">名前は、本人の了承を得たニックネームです。</p>
 </div></section>
 
 <section class="ev-sec" id="course"><div class="wrap ev-two">

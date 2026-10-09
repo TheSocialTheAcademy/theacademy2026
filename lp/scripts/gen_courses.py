@@ -61,7 +61,7 @@ def cur_meta(slug):  # 期間の決まっていないコースは、今のサイ
 LINE_SM = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3.5c5 0 9 3.2 9 7.2 0 3.9-3.8 7.1-8.6 7.2-.5.4-2.7 2.3-4.2 2.6-.4.1-.4-.3-.3-.6l.5-2.4C5.3 16.3 3 13.7 3 10.7 3 6.7 7 3.5 12 3.5z"/></svg>'
 def chref(slug): return f'course-{slug}.html'  # コース詳細（K2）
 # 各コースで完成する成果物の名前（コース詳細の見出し・サムネイルの「つくるもの」に使う。まだ仮）
-DELIV = {'sns-marketing': 'SNSキャンペーン企画書', 'ai-efficiency': '業務改善の仕組み（AI活用）', 'toeic-700': '英語力UP', 'event-design': 'イベント企画書・運営マニュアル',
+DELIV = {'sns-marketing': 'SNSキャンペーン企画書', 'ai-efficiency': '業務改善の仕組み（AI活用）', 'toeic-700': '英語力の成長記録（スコア・録音）', 'event-design': 'イベント企画書・運営マニュアル',
          'marketing-basic': 'マーケティング戦略シート', 'instagram': 'Instagramアカウント戦略シート', 'automation': 'GASで作るタスク管理ツール', 'chatgpt-basic': '仕事で使えるプロンプト集',
          'line-official': '公式LINEの資料請求・予約の仕組み', 'business-english': '英語の自己紹介・ビジネスメール文例集', 'project-management': 'プロジェクト計画書（WBS）', 'canva-basic': 'SNS投稿・自己PRのデザインセット',
          'slack-gas-task': 'Slackで完結するタスク管理'}

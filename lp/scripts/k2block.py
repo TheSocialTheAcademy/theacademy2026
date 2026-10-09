@@ -65,7 +65,7 @@ def cd_page(c):
                f'<span class="k2-dg__t"><small>ダイジェスト動画</small>{plain}</span>{play}<span class="k2-dg__cap">準備中</span></div>')
         fig_cap = f'ダイジェスト動画（準備中） {TODO_S("動画を用意")}'
     if use_cur: flow_t, kick = cur.get('curriculum_title') or f'カリキュラム（全{len(chs)}章・約{mins}分）', 'CURRICULUM'
-    if consult: goal = f'<p class="k2-goal">{CHK}3か月・全24回で、TOEIC® L&amp;R 700点以上を目指す</p>'
+    if consult: goal = f'<p class="k2-goal">{CHK}3か月・全24回で、TOEIC® L&amp;R 700点以上を目指す → {d}を<a href="portfolio.html">ポートフォリオ</a>に公開</p>'
     else: goal = (f'<p class="k2-goal">{CHK}Slackの中で、チームのタスクが見える状態に</p>' if is_tool else
             f'<p class="k2-goal">{CHK}受講後、{d}を仕上げる → <a href="portfolio.html">ポートフォリオ</a>に公開</p>' if use_cur else f'<p class="k2-goal">{CHK}{steps[-1][0]}で{d}が完成 → <a href="portfolio.html">ポートフォリオ</a>に公開</p>')
     rel = [x for x in COURSES if x[2] == cat and x[0] != slug][:3]

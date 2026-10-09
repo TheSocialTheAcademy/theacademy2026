@@ -12,7 +12,7 @@ os.environ['TA_COURSES_OUT'] = TMP_COURSES
 exec(open(os.path.join(S, 'gen_courses.py')).read(), g)
 head, between, footer_on, base_css = g['head'], g['between'], g['footer_on'], g['css']
 LP = LPDIR + '/'
-UPDATED = '2026年◯月◯日'
+UPDATED = '2026年10月1日'
 
 def T(s='要確認'): return f'<span class="x-todo">{s}</span>'
 

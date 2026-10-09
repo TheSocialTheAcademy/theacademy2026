@@ -39,7 +39,7 @@ common_css = '''
 # ═════════ 無料相談・資料請求（FORM-009 → FORM-002/004 → FORM-005 → FORM-006、FORM-007、FORM-001） ═════════
 FAQ_SIDE = [('相談したら、必ず受講しないといけませんか？', 'いいえ。相談だけでも大丈夫です。受講するかは、あとで決められます。'),
             ('何を準備すればいいですか？', '特にありません。気になっていることや、迷っていることをお聞かせください。'),
-            ('顔を出さないといけませんか？', 'カメラはオフでも参加できます。<span class="x-todo">要確認</span>')]
+            ('顔を出さないといけませんか？', 'お互いの様子が分かるよう、カメラをオンにしてのご参加をお願いしています。背景が気になる場合は、Zoom のバーチャル背景やぼかしをお使いください。')]
 faq_side = ('<aside class="ct-side" aria-label="相談の前によくある質問"><p class="ct-side__h">よくある質問</p>'
             + ''.join(f'<details{" open" if i == 0 else ""}><summary>{q}</summary><p>{a}</p></details>' for i, (q, a) in enumerate(FAQ_SIDE))
             + f'<a class="ct-side__more" href="faq.html">よくある質問をすべて見る{ARROW}</a></aside>')
@@ -82,7 +82,7 @@ contact_body = f'''<section class="phead" aria-labelledby="page-title"><div clas
 <div class="ct-done" data-step="3" hidden tabindex="-1">
 <span class="ct-done__ok">{ic('<path d="m5 12 5 5 9-10"/>', 2.4)}</span>
 <p class="ct-done__h">ご予約を受け付けました</p><p class="ct-done__d" id="ctDoneDate"></p>
-<ol class="ct-done__f"><li><b>すぐに</b>確認のメールをお送りします</li><li><b>前日</b>参加のURLと、当日の流れをお送りします</li><li><b>当日</b>URLから参加します（カメラはオフでもOK）</li></ol>
+<ol class="ct-done__f"><li><b>すぐに</b>確認のメールをお送りします</li><li><b>前日</b>参加のURLと、当日の流れをお送りします</li><li><b>当日</b>URLから参加します（カメラはオンでお願いしています）</li></ol>
 <div class="ct-done__m"><b>確認のメールが届かないときは</b>迷惑メールのフォルダをご確認ください。<wbr>10分たっても届かない場合は、<a href="#form">お問い合わせ</a>からご連絡ください。</div>
 <div class="ct-done__b"><a class="x-btn x-btn--g" href="beginners.html#line">{LN}公式LINEも追加しておく</a><a class="x-btn x-btn--w" href="courses.html">コースを見ておく</a></div>
 <p class="x-note">※このページは見本です。実際には送信されません。</p>

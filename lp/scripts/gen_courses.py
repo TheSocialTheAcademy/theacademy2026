@@ -39,7 +39,7 @@ GOALS = [
 C = [
  ('sns-marketing', 'SNSマーケティング実践', 'mk', '顧客理解から数値改善までを、一つのキャンペーンとして実践します。', None, '8週間', '週2〜3時間', 'プロ', 'assets/photos/sns-phone.webp'),
  ('ai-efficiency', '生成AI 業務改善', 'it', '生成AIとノーコードで、調査・資料作成・定型業務を効率化します。', None, '6週間', '週2時間', 'プロ', 'assets/photos/ai-laptop.webp'),
- ('toeic-700', 'TOEIC L&amp;R 700点突破', 'en', '海外経験豊富なコーチと、4技能をバランスよく強化します。', None, '3か月', '週2回・全24回', 'プレミア', 'assets/photos/toeic-study.webp'),
+ ('toeic-700', 'TOEIC L&amp;R 700点突破', 'en', '海外経験豊富なコーチとマンツーマンで、文法・リスニング・リーディング・英会話を強化します。', 289000, '3か月', '週2回・全24回', 'プレミア', 'assets/photos/toeic-study.webp'),
  ('event-design', 'イベントデザイン', 'biz', '目的設定から当日運営まで、成果につながるイベントづくりを学びます。', 9800, None, None, 'ベーシック', None),
  ('marketing-basic', 'マーケティング戦略基礎', 'mk', '市場分析から戦略立案・実行・検証までを体系的に学びます。', 11800, None, None, 'ベーシック', None),
  ('instagram', 'インスタグラム', 'mk', 'インスタグラムで、個人やビジネスを効果的にプロモーションします。', 7900, None, None, 'ベーシック', None),
@@ -53,6 +53,7 @@ C = [
 
 # 今の theacademyjapan.org のコース詳細（章立て・時間・こんな方に・できるようになること）。Wix 側の内容が正
 CD = json.load(open(os.path.join(S, 'course_data.json')))['courses']
+CONSULT = {k for k, v in CD.items() if v.get('consult')}  # 無料カウンセリングから申し込むコース：クーポン価格を出さない
 def cur_meta(slug):  # 期間の決まっていないコースは、今のサイトの章数・動画時間を出す
     d = CD.get(slug) or {}
     return (f'全{len(d["chapters"])}章', f'約{d["minutes"]}分') if d.get('chapters') and d.get('minutes') else (None, None)
@@ -71,9 +72,9 @@ def card(i, c):
     if not dur: dur, time = cur_meta(slug)
     thumb = f'<div class="cv cv--img"><img src="{THUMB(slug)}" loading="lazy" alt=""></div>'  # サムネイル（C-4）。gen_thumbs.py で作る
     meta = ''.join(f'<span>{ic_}{t}</span>' for ic_, t in ((CAL, dur), (CLOCK, time), (LEVEL, lv)) if t)
-    p = '' if price else '<b class="price">¥—</b><span class="todo">価格を入れる</span>'
+    p = (f'<b class="price">¥{price:,}</b><span class="price-n">総額・税込</span>' if slug in CONSULT else '') if price else '<b class="price">¥—</b><span class="todo">価格を入れる</span>'
     cp = (f'<div class="cpr"><span class="cpr__o">通常 ¥{price:,}</span><p class="cpr__n"><small>{LINE_SM}LINEクーポン適用</small><b>¥{price - 500:,}</b></p>'
-          f'<em class="cpr__c">公式LINEの友だち限定・カートでコード入力</em></div>') if price else ''
+          f'<em class="cpr__c">公式LINEの友だち限定・カートでコード入力</em></div>') if price and slug not in CONSULT else ''
     href = chref(slug)
     return (f'<a class="course" href="{href}" data-cat="{cat}" data-level="{lv}" data-price="{price or ""}" data-order="{i}">'
             f'<div class="thumb">{thumb}</div><div class="body"><span class="cat" style="--cc:{col};--cb:{bg}">{name}</span><h3>{title}</h3>'
@@ -176,7 +177,7 @@ CMP_EXTRA = {  # 一覧のデータにない項目（形式・講師のフィー
 def cmp_rows():
     cs = [next(c for c in C if c[0] == k) for k in CMP_IDS]
     v = lambda x: x if x else '<span class="cmp__q">確認中</span>'
-    pr = lambda c: f'¥{c[4]:,}<small>LINEクーポンで ¥{c[4] - 500:,}</small>' if c[4] else '<span class="cmp__q">価格の確定待ち</span>'
+    pr = lambda c: (f'¥{c[4]:,}<small>総額・税込（無料カウンセリングから申し込み）</small>' if c[0] in CONSULT else f'¥{c[4]:,}<small>LINEクーポンで ¥{c[4] - 500:,}</small>') if c[4] else '<span class="cmp__q">価格の確定待ち</span>'
     fb = lambda k: '<b class="cmp__o">○</b> 対応' if CMP_EXTRA[k][1] else '<span class="cmp__n">—</span> 対象外'
     rows = [('カテゴリ', [CAT[c[2]][0] for c in cs]), ('コースの種類', [c[7] for c in cs]), ('期間', [v(c[5]) for c in cs]), ('週の学習時間', [v(c[6]) for c in cs]),
             ('形式', [CMP_EXTRA[c[0]][0] for c in cs]), ('残せる成果', [CMP_EXTRA[c[0]][2] for c in cs]), ('価格', [pr(c) for c in cs])]
@@ -223,6 +224,7 @@ pagehead = f'''<section class="phead" aria-labelledby="page-title"><div class="w
 
 css = '''
   /* 価格：通常 → LINEクーポン適用後（PRC-009） */
+  .price-n { margin-left: 6px; color: var(--ts-mid); font-size: 11.5px; }
   .cpr { margin-top: 12px; padding-top: 10px; border-top: 1px dashed var(--line); }
   .cpr__o { color: var(--ts-mid); font-size: 12px; } .cpr__o { font-variant-numeric: tabular-nums; }
   .cpr__n { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin: 2px 0 0; }

@@ -52,7 +52,7 @@ def cd_page(c):
     if cur.get('steps'): steps = [tuple(x) for x in cur['steps']]; flow_t, kick = '受講の流れ', 'FLOW'
     if cur.get('outcomes'): can = [o['h'] for o in cur['outcomes']][:4]
     for_l = cur['for'][:5] if cur.get('for') else FOR_CAT[cat]
-    use_cur = bool(chs) and not is_tool and slug != 'sns-marketing'
+    use_cur = bool(chs) and slug != 'sns-marketing'  # 販売中のコースは、今のサイトの章立て（カリキュラム）を出す
     # 成果物の画像の場所は、全コースともダイジェスト動画にする（今のサイトと同じ Vimeo）。押すまでは読み込まない（ページを軽くするため）
     dg = cur.get('digest'); poster = f'assets/digest/{slug}.webp'; play = '<span class="k2-dg__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>'
     if dg:
@@ -64,10 +64,10 @@ def cd_page(c):
         fig = (f'<div class="k2-dg k2-dg--soon" role="img" aria-label="{plain}のダイジェスト動画（準備中）"><img src="{poster}" alt="">'
                f'<span class="k2-dg__t"><small>ダイジェスト動画</small>{plain}</span>{play}<span class="k2-dg__cap">準備中</span></div>')
         fig_cap = f'ダイジェスト動画（準備中） {TODO_S("動画を用意")}'
-    if use_cur: flow_t, kick = f'カリキュラム（全{len(chs)}章・約{mins}分）', 'CURRICULUM'
+    if use_cur: flow_t, kick = cur.get('curriculum_title') or f'カリキュラム（全{len(chs)}章・約{mins}分）', 'CURRICULUM'
     if consult: goal = f'<p class="k2-goal">{CHK}3か月・全24回で、TOEIC® L&amp;R 700点以上を目指す</p>'
-    else: goal = (f'<p class="k2-goal">{CHK}受講後、{d}を仕上げる → <a href="portfolio.html">ポートフォリオ</a>に公開</p>' if use_cur else
-            f'<p class="k2-goal">{CHK}Slackの中で、チームのタスクが見える状態に</p>' if is_tool else f'<p class="k2-goal">{CHK}{steps[-1][0]}で{d}が完成 → <a href="portfolio.html">ポートフォリオ</a>に公開</p>')
+    else: goal = (f'<p class="k2-goal">{CHK}Slackの中で、チームのタスクが見える状態に</p>' if is_tool else
+            f'<p class="k2-goal">{CHK}受講後、{d}を仕上げる → <a href="portfolio.html">ポートフォリオ</a>に公開</p>' if use_cur else f'<p class="k2-goal">{CHK}{steps[-1][0]}で{d}が完成 → <a href="portfolio.html">ポートフォリオ</a>に公開</p>')
     rel = [x for x in COURSES if x[2] == cat and x[0] != slug][:3]
     if len(rel) < 3: rel += [x for x in COURSES if x[2] != cat and x[0] != slug and x not in rel][:3 - len(rel)]
     def rc(x):
@@ -98,7 +98,7 @@ def cd_page(c):
             f'<div class="k2-cta">{cta_main}</div></div>'
             f'<figure class="k2-fig">{fig}<figcaption>{fig_cap}</figcaption></figure></div></div></section>\n'
             f'<section class="x-sec x-sec--w" id="course-flow" aria-labelledby="flow-title"><div class="wrap"><p class="sec-kicker">{kick}</p><h2 class="sec-title" id="flow-title">{flow_t}{"" if (use_cur or cur.get("steps")) else " " + TODO_S("内容は仮")}</h2>'
-            + (f'<ol class="k2-cur">{cur_l}</ol>' if use_cur else f'<ol class="k2-tl" style="--n:{len(steps)}">{tl}</ol>') + f'{goal}</div></section>\n'
+            + ((''.join(f'<h3 class="k2-cur__h">{h}</h3><ol class="k2-cur">' + ''.join(f'<li><span>{i + 1:02d}</span>{ch(x)}</li>' for i, x in enumerate(xs)) + '</ol>' for h, xs in cur['cur_groups']) if cur.get('cur_groups') else f'<ol class="k2-cur">{cur_l}</ol>') if use_cur else f'<ol class="k2-tl" style="--n:{len(steps)}">{tl}</ol>') + f'{goal}</div></section>\n'
             f'<section class="x-sec x-sec--g" id="course-for" aria-label="こんな方に・できるようになること"><div class="wrap k-2"><div><h2 class="k-h2">こんな方に</h2><ul class="k-ul">{li(for_l)}</ul></div>'
             f'<div><h2 class="k-h2">できるようになること</h2><ul class="k-ul">{li(can)}</ul></div></div></section>\n'
             + ('' if consult else  # 学び方（動画と演習の4ステップ）は、マンツーマンのコースには出さない

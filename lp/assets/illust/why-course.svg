@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+<path d="M26 50q20-8 40 0v48q-20-8-40 0zM66 50q20-8 40 0v48q-20-8-40 0z" fill="#B3C7F4"/>
+<path d="M20 44q20-8 40 0v48q-20-8-40 0z" fill="#FFFFFF" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M60 44q20-8 40 0v48q-20-8-40 0z" fill="#FFFFFF" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M29 56h22M29 65h22M29 74h14" fill="none" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/>
+<rect x="68" y="54" width="7" height="7" rx="1.5" fill="#0141D4"/>
+<rect x="68" y="68" width="7" height="7" rx="1.5" fill="#0141D4"/>
+<path d="M80 57.5h12M80 71.5h9" fill="none" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/>
+<path d="M88 16l12 12-24 24-14 3 3-14z" fill="#F76B38" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M68 40l9 9" fill="none" stroke="#012270" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/>
+<path d="M22 18 Q22 26 30 26 Q22 26 22 34 Q22 26 14 26 Q22 26 22 18Z" fill="#0141D4" stroke="#012270" stroke-width="2.4" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,132 @@
+<title>The Academy LPデザイン</title>
+<style>
+  /* レイアウト：上に細い操作バー、下の作業面に選んだ幅でLPを表示する */
+  :root {
+    --bg: #E9ECF3;
+    --bar: #FFFFFF;
+    --ink: #0F1B45;
+    --sub: #5B6178;
+    --line: rgba(15, 27, 69, .12);
+    --accent: #0141D4;
+    --accent-ink: #FFFFFF;
+    --seg: #F1F3F8;
+    --frame: #0F1B45;
+    --font: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --bg: #10152A; --bar: #171D36; --ink: #EEF1F8; --sub: #A3AAC4; --line: rgba(255,255,255,.12); --accent: #5B8BFF; --accent-ink: #0B1026; --seg: #20284A; --frame: #2B3561; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --bg: #10152A; --bar: #171D36; --ink: #EEF1F8; --sub: #A3AAC4; --line: rgba(255,255,255,.12); --accent: #5B8BFF; --accent-ink: #0B1026; --seg: #20284A; --frame: #2B3561; color-scheme: dark; }
+
+  html, body { height: 100%; }
+  body { display: flex; flex-direction: column; background: var(--bg); color: var(--ink); font-family: var(--font); }
+  .bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 2; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; padding: 10px 16px; background: var(--bar); border-bottom: 1px solid var(--line); }
+  .bar__name { min-width: 0; margin: 0 auto 0 0; font-size: 14px; font-weight: 700; }
+  .bar__name small { display: block; color: var(--sub); font-size: 11px; font-weight: 400; }
+  .seg { display: inline-flex; gap: 4px; padding: 4px; border-radius: 12px; background: var(--seg); }
+  .seg button { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border: 0; border-radius: 9px; background: transparent; color: var(--sub); font: 700 13px/1 var(--font); cursor: pointer; }
+  .seg button svg { width: 16px; height: 16px; }
+  .seg button span { font-weight: 400; font-size: 11px; font-variant-numeric: tabular-nums; opacity: .8; }
+  .seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+  .seg button:focus-visible, .bar__open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .bar__open { color: var(--accent); font-size: 12.5px; font-weight: 700; text-decoration: none; white-space: nowrap; }
+
+  .stage { flex: 1; min-height: 0; display: flex; justify-content: center; overflow: auto; padding-block: 24px; }
+  .device { flex: none; transform-origin: top center; }
+  .device iframe { display: block; width: 100%; height: 100%; border: 0; background: #fff; }
+  /* PC：画面いっぱい */
+  .stage[data-mode="pc"] { padding: 0; }
+  .stage[data-mode="pc"] .device { width: 100%; height: 100%; }
+  /* タブレット・スマホ：端末の枠 */
+  .stage:not([data-mode="pc"]) .device { padding: 12px; border-radius: 36px; background: var(--frame); box-shadow: 0 24px 60px rgba(15,27,69,.25); }
+  .stage:not([data-mode="pc"]) .device iframe { border-radius: 26px; }
+  .stage[data-mode="mobile"] .device { border-radius: 44px; }
+  .stage[data-mode="mobile"] .device iframe { border-radius: 34px; }
+  .note { margin: 0; padding: 8px 16px; color: var(--sub); font-size: 11.5px; text-align: center; border-top: 1px solid var(--line); background: var(--bar); }
+  @media (max-width: 640px) { .bar__open { display: none; } .seg button span { display: none; } }
+</style>
+
+<header class="bar">
+  <p class="bar__name">The Academy LPデザイン<small>ページと端末を選んでください</small></p>
+  <div class="seg seg--page" role="group" aria-label="表示するページ">
+    <button type="button" id="page-top" data-page="top" aria-pressed="true">トップ</button>
+    <button type="button" id="page-courses" data-page="courses" aria-pressed="false">コースを探す</button>
+    <button type="button" id="page-howto" data-page="howto" aria-pressed="false">学び方・受講成果</button>
+    <button type="button" id="page-portfolio" data-page="portfolio" aria-pressed="false">ポートフォリオ</button>
+    <button type="button" id="page-blog" data-page="blog" aria-pressed="false">学びのヒント</button>
+    <button type="button" id="page-beginners" data-page="beginners" aria-pressed="false">はじめての方へ</button>
+    <button type="button" id="page-contact" data-page="contact" aria-pressed="false">無料相談・資料請求</button>
+    <button type="button" id="page-faq" data-page="faq" aria-pressed="false">よくある質問</button>
+  </div>
+  <div class="seg seg--mode" role="group" aria-label="表示する端末">
+    <button type="button" id="mode-pc" data-mode="pc" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></g></svg>PC<span>1440</span></button>
+    <button type="button" id="mode-tablet" data-mode="tablet" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M11 18h2"/></g></svg>タブレット<span>834</span></button>
+    <button type="button" id="mode-mobile" data-mode="mobile" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18.5h2"/></g></svg>スマホ<span>390</span></button>
+  </div>
+  <a class="bar__open" id="open" href="lp-design.html" target="_blank" rel="noopener">このページだけを開く ↗</a>
+</header>
+
+<main class="stage" id="stage" data-mode="pc">
+  <div class="device" id="device"><iframe id="lp" title="The Academy LPデザイン（プレビュー）"></iframe></div>
+</main>
+<p class="note" id="note">PC表示です。タブレット（834px）・スマホ（390px）は実際の画面幅で表示し、画面に収まらないときは縮小します。</p>
+
+<script>
+  (() => {
+    const SIZES = { pc: null, tablet: { w: 834, h: 1112 }, mobile: { w: 390, h: 844 } };
+    const LABEL = { pc: 'PC表示です。', tablet: 'タブレット表示（幅834px）です。', mobile: 'スマホ表示（幅390px）です。' };
+    const stage = document.getElementById('stage');
+    const device = document.getElementById('device');
+    const note = document.getElementById('note');
+    const buttons = [...document.querySelectorAll('.seg--mode button')];
+    const pageBtns = [...document.querySelectorAll('.seg--page button')];
+    const PAGES = { top: 'lp-design.html', courses: 'courses.html', howto: 'how-to-learn.html', portfolio: 'portfolio.html', blog: 'blog.html', beginners: 'beginners.html', contact: 'contact.html', faq: 'faq.html', article: 'article.html', course: 'course-sns-marketing.html' };
+    const frame = document.getElementById('lp'), open = document.getElementById('open');
+    let mode = 'pc', page = 'top';
+    function setPage(pg) {
+      if (!(pg in PAGES)) pg = 'top';
+      page = pg;
+      pageBtns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.page === pg)));
+      if (!frame.getAttribute('src') || !frame.getAttribute('src').startsWith(PAGES[pg])) frame.setAttribute('src', PAGES[pg]);
+      open.href = PAGES[pg];
+    }
+    pageBtns.forEach(b => b.addEventListener('click', () => setPage(b.dataset.page)));
+    // LPの中のリンクで別ページへ移ったら、上のボタンも合わせる
+    function markPage(file) { const hit = Object.keys(PAGES).find(k => file && file.endsWith(PAGES[k])); if (hit) { page = hit; pageBtns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.page === hit))); open.href = PAGES[hit]; } }
+    window.addEventListener('message', e => { if (e.source === frame.contentWindow && e.data && e.data.lpPage) markPage(e.data.lpPage); });
+    frame.addEventListener('load', () => { try { const p = frame.contentWindow.location.pathname; const hit = Object.keys(PAGES).find(k => p.endsWith(PAGES[k])); if (hit) { page = hit; pageBtns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.page === hit))); open.href = PAGES[hit]; } } catch (e) {} });
+
+    function fit() {
+      const s = SIZES[mode];
+      if (!s) { device.style.width = ''; device.style.height = ''; device.style.transform = ''; device.style.marginBottom = ''; return; }
+      const pad = 24;                                   // 端末の枠（12px × 2）
+      const availW = stage.clientWidth - 32;
+      const availH = stage.clientHeight - 48;
+      const scale = Math.min(1, availW / (s.w + pad), availH / (s.h + pad));
+      device.style.width = (s.w + pad) + 'px';
+      device.style.height = (s.h + pad) + 'px';
+      device.style.transform = scale < 1 ? `scale(${scale})` : '';
+      device.style.marginBottom = scale < 1 ? `-${(s.h + pad) * (1 - scale)}px` : '';
+      note.textContent = LABEL[mode] + (scale < 1 ? `画面に合わせて${Math.round(scale * 100)}%に縮小しています。` : '実寸で表示しています。');
+    }
+    function set(m, remember = true) {
+      if (!(m in SIZES)) m = 'pc';
+      mode = m;
+      stage.dataset.mode = m;
+      buttons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.mode === m)));
+      if (m === 'pc') note.textContent = 'PC表示です。タブレット（834px）・スマホ（390px）は実際の画面幅で表示し、画面に収まらないときは縮小します。';
+      fit();
+      if (remember) { try { localStorage.setItem('lp-preview-mode', m); } catch (e) {} }
+    }
+    buttons.forEach(b => b.addEventListener('click', () => set(b.dataset.mode)));
+    window.addEventListener('resize', fit);
+
+    // #tablet・#mobile・#courses・#courses-mobile などで開くと、そのページ・表示から始まる（チームに渡すリンク用）
+    const parts = (location.hash || '').slice(1).split('-');
+    const hPage = parts.find(x => x in PAGES), hMode = parts.find(x => x in SIZES);
+    let saved = null;
+    try { saved = localStorage.getItem('lp-preview-mode'); } catch (e) {}
+    setPage(hPage || 'top');
+    set(hMode || saved || 'pc', false);
+  })();
+</script>
